@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.7.9)  15 JUL 2020 12:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.7.9)  21 AUG 2020 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/user/Desktop/UNI/tests/tests.tex
-(c:/Users/user/Desktop/UNI/tests/tests.tex
+**"c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.tex"
+(c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18> (c:/texlive/2020/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -50,7 +50,7 @@ tree-dvips version .91 of May 16, 1995
 File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count179
 \l__pdf_internal_box=\box45
-) (c:/Users/user/Desktop/UNI/tests/tests.aux)
+) (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.aux)
 \openout1 = `tests.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -97,17 +97,17 @@ Non-PDF special ignored!
 <special> ps:@beginspec/nodemargin 2.0 pt def 0.3 pt setlinewidth [] 0 setd...
 Non-PDF special ignored!
 <special> ps:@beginspec/nodemargin 2.0 pt def 0.3 pt setlinewidth [] 0 setd...
-] (c:/Users/user/Desktop/UNI/tests/tests.aux) ) 
+] (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.aux) ) 
 Here is how much of TeX's memory you used:
  509 strings out of 480471
- 8189 string characters out of 5903301
+ 8794 string characters out of 5903301
  243790 words of memory out of 5000000
  16603 multiletter control sequences out of 15000+600000
  537542 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 24i,9n,21p,177b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 24i,9n,21p,246b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on c:/Users/user/Desktop/UNI/tests/tests.pdf (1 page, 84757 bytes).
+Output written on "c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.pdf" (1 page, 84757 bytes).
 PDF statistics:
  40 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

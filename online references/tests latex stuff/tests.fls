@@ -1,9 +1,9 @@
-PWD c:/Users/user/Desktop/UNI/tests
+PWD c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff
 INPUT c:/texlive/2020/texmf.cnf
 INPUT c:/texlive/2020/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/user/Desktop/UNI/tests/tests.tex
-OUTPUT c:/Users/user/Desktop/UNI/tests/tests.log
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.tex
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.log
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/size12.clo
@@ -16,9 +16,9 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/tree-dvips/tree-dvips.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/tree-dvips/tree-dvips.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-INPUT c:/Users/user/Desktop/UNI/tests/tests.aux
-INPUT c:/Users/user/Desktop/UNI/tests/tests.aux
-OUTPUT c:/Users/user/Desktop/UNI/tests/tests.aux
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.aux
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.aux
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.aux
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
@@ -35,9 +35,9 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-OUTPUT c:/Users/user/Desktop/UNI/tests/tests.pdf
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.pdf
 INPUT c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT c:/Users/user/Desktop/UNI/tests/tests.aux
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/tests.aux
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb

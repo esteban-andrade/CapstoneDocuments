@@ -1,9 +1,9 @@
-PWD c:/Users/user/Desktop/UNI/tests/test latex
+PWD c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex
 INPUT c:/texlive/2020/texmf.cnf
 INPUT c:/texlive/2020/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.tex
-OUTPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.log
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.tex
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.log
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/book.cls
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/book.cls
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/bk12.clo
@@ -55,12 +55,12 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/index/index.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/index/index.sty
-OUTPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.idx
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.idx
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.aux
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.aux
-OUTPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.aux
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.aux
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.aux
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.aux
 INPUT c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 INPUT c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 INPUT c:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -77,12 +77,12 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-OUTPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.pdf
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.pdf
 INPUT c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.toc
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.toc
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.toc
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.toc
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -95,23 +95,23 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-OUTPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.toc
+OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.toc
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsl12.tfm
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/microcontoller.jpg
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/microcontoller.jpg
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/microcontoller.jpg
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/microcontoller.jpg
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/microcontoller.jpg
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/microcontoller.jpg
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/microcontoller.jpg
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/microcontoller.jpg
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/microcontoller.jpg
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/microcontoller.jpg
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.ind
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.ind
-INPUT c:/Users/user/Desktop/UNI/tests/test latex/tutorial latex.aux
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.ind
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.ind
+INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/tests latex stuff/test latex/tutorial latex.aux
 INPUT c:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

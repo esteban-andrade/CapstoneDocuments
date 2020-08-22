@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.7.9)  22 AUG 2020 13:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.7.9)  23 AUG 2020 00:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -204,6 +204,8 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip55
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count198
+) (c:/texlive/2020/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
 ) (c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count199
@@ -211,20 +213,20 @@ File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
 ) (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.aux)
 \openout1 = `"problem analysis brief.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -277,18 +279,39 @@ File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 \everyMPtoPDFconversion=\toks31
 ) (c:/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (c:/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (c:/texlive/2020/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+ (c:/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (c:/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+ (c:/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+) (c:/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (c:/texlive/2020/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 25.
+LaTeX Info: Redefining \microtypecontext on input line 26.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 25.
+LaTeX Info: Redefining \showhyphens on input line 26.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -302,33 +325,33 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 <./images/table1.png, id=10, 590.95781pt x 171.64125pt>
 File: ./images/table1.png Graphic file (type png)
 <use ./images/table1.png>
-Package pdftex.def Info: ./images/table1.png  used on input line 77.
+Package pdftex.def Info: ./images/table1.png  used on input line 78.
 (pdftex.def)             Requested size: 483.69684pt x 140.49005pt.
 <./images/bodyMedicine.png, id=12, 316.18124pt x 179.92218pt>
 File: ./images/bodyMedicine.png Graphic file (type png)
 <use ./images/bodyMedicine.png>
-Package pdftex.def Info: ./images/bodyMedicine.png  used on input line 83.
+Package pdftex.def Info: ./images/bodyMedicine.png  used on input line 84.
 (pdftex.def)             Requested size: 256.07481pt x 145.72792pt.
  [2 <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/table1.png> <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/bodyMedicine.png>] [3]
 <./images/IMG_0073.png, id=21, 565.36218pt x 237.88875pt>
 File: ./images/IMG_0073.png Graphic file (type png)
 <use ./images/IMG_0073.png>
-Package pdftex.def Info: ./images/IMG_0073.png  used on input line 140.
+Package pdftex.def Info: ./images/IMG_0073.png  used on input line 141.
 (pdftex.def)             Requested size: 256.07481pt x 107.7495pt.
 <./images/shapes.png, id=22, 411.03563pt x 298.11375pt>
 File: ./images/shapes.png Graphic file (type png)
 <use ./images/shapes.png>
-Package pdftex.def Info: ./images/shapes.png  used on input line 160.
-(pdftex.def)             Requested size: 128.0374pt x 92.86009pt.
+Package pdftex.def Info: ./images/shapes.png  used on input line 161.
+(pdftex.def)             Requested size: 107.55486pt x 78.00357pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--162
+Underfull \hbox (badness 10000) in paragraph at lines 157--163
 
  []
 
 <./images/dynamicfusion2.png, id=23, 613.54219pt x 264.23718pt>
 File: ./images/dynamicfusion2.png Graphic file (type png)
 <use ./images/dynamicfusion2.png>
-Package pdftex.def Info: ./images/dynamicfusion2.png  used on input line 166.
+Package pdftex.def Info: ./images/dynamicfusion2.png  used on input line 167.
 (pdftex.def)             Requested size: 358.50317pt x 154.3987pt.
 [4 <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/IMG_0073.png> <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/shapes.png>] [5 <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/dynamicfusion2.png>] (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 14--17
@@ -337,15 +360,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--17
 
 ) [6] (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.aux) ) 
 Here is how much of TeX's memory you used:
- 6053 strings out of 480471
- 91889 string characters out of 5903301
- 403014 words of memory out of 5000000
- 21932 multiletter control sequences out of 15000+600000
- 540505 words of font info for 83 fonts, out of 8000000 for 9000
+ 6490 strings out of 480471
+ 99521 string characters out of 5903301
+ 410641 words of memory out of 5000000
+ 22339 multiletter control sequences out of 15000+600000
+ 540454 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 33i,6n,42p,522b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,6n,42p,567b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on "c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.pdf" (6 pages, 653484 bytes).
+Output written on "c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.pdf" (6 pages, 653615 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream

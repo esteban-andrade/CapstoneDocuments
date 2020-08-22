@@ -69,6 +69,8 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/tocbibind/tocbibind.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/tocbibind/tocbibind.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/natbib/natbib.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/placeins/placeins.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/placeins/placeins.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.aux
@@ -80,6 +82,20 @@ INPUT c:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT c:/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/grfext/grfext.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/grfext/grfext.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
@@ -103,6 +119,7 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
 INPUT c:/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-32.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-32.def
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.pdf
 INPUT c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/table1.png
@@ -111,7 +128,6 @@ INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online refe
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/bodyMedicine.png
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/bodyMedicine.png
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/bodyMedicine.png
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/IMG_0073.png
 INPUT c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/IMG_0073.png

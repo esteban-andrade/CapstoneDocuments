@@ -75,13 +75,13 @@ The table below demonstrated the use of 3D scanner in the medical field the obje
 \begin{table}[ht]
     \centering
     \includegraphics[width=17cm]{table1.png}
-    \caption{table lol}
+    \caption{3D Scanning Applications \cite[]{treleaven_wells_2007}.}
 \end{table}
 
 \begin{figure}[h]
     \begin{center}
     \includegraphics[width=0.5\textwidth]{bodyMedicine.png}
-    \caption{pretty picture}
+    \caption{Front, Side results of 3D Scanning \cite[]{treleaven_wells_2007}.}
     \label{bodymed}
 \end{center}
 \end{figure}
@@ -138,7 +138,7 @@ Dynamic fusion is the mesh and fusion of three techniques used for 3D scanning a
 \begin{wrapfigure}{r}{0.5\textwidth} %this figure will be at the right
     \centering
     \includegraphics[width=0.5\textwidth]{IMG_0073.png}
-    \caption{pretty picture}
+    \caption{Transformation Between Depth Video to Warped canonical Model. \cite[]{newcombe_fox_seitz_2015}}
 \end{wrapfigure}
 The principal focus of Dynamic fusion 3D reconstruction technique is that once the data is gathered, it will solve for a volumetric flow field. 
 This will transform the state of the scene at each time instant into a fixed canonical frame as developed by Newcombe, Fox and Seitz (2015). \\[10pt]
@@ -158,13 +158,13 @@ Once the warp field parameters are obtained from the data.(Slavcheva, Baust and 
 \begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
     \centering
     \includegraphics[width=0.25\textwidth]{shapes.png}
-    \caption{pretty picture}
+    \caption{Triangulated patterns \cite[]{fang_zhao_wen_zhang_2018}}
 \end{wrapfigure}
 These 15 patterns from the image bellow represent the Triangulated cubes for the 15 basic patterns used in Marching Cubes for the method of surface reconstruction. These patterns can reconstruct all the 256 possible solutions using complementary and rotational symmetry (Fang, Zhao, Wen and Zhang, 2018).
 \begin{figure}{l} %this figure will be at the right
     \centering
     \includegraphics[width=0.7\textwidth]{dynamicfusion2.png}
-    \caption{pretty picture}
+    \caption{Dynamic Fusion methodology \cite[]{newcombe_fox_seitz_2015}}
 \end{figure}
 Once the canonical model, and frame and warp field parameters are obtained from the initial data frame and raw depth maps the nodes will be created. Then the canonical frame warp parameters will be estimated. Once the canonical model is created it will be warped to its live frame with help of the warp parameters and then the model normalised and is created. \\
 \enlargethispage{\baselineskip}

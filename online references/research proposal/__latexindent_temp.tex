@@ -1,5 +1,5 @@
 \documentclass[12pt]{report}
-\usepackage[a4paper,left=40mm, right=25mm, top=30mm, bottom=30mm, twoside]{geometry}
+\usepackage[a4paper,left=25mm, right=25mm, top=30mm, bottom=30mm]{geometry}
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
@@ -28,31 +28,70 @@
 \captionsetup{margin=10pt,font=small,labelfont=bf}
 \usepackage[raggedright]{titlesec}
 \usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{lipsum}
 
 \renewcommand{\familydefault}{\sfdefault}
 \setstretch{1.25}
 \graphicspath{ {./images/} }
 \bibliographystyle{agsm} %agsm
 
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{}{0pt}{\huge}
 \begin{document}
 \begin{titlepage}
 
    
 
-    \title{ \includegraphics[scale=1.5]{utslogo.jpg}\\[1cm]  
+    \title{ \includegraphics[scale=1.7]{utslogo.jpg}\\[1cm]  
     Faculty of Engineering and Information Technology\\[1.0cm] 
     \Large{\textbf{Human Body 3D Scanner (Virtual me)}}\\}
     \author{Esteban Andrade\\ 
     12824583\\
     Supervisor: Dr Teresa Vidal Calleja\\}
-    \date{\today}
-   
-
-
-
+    \date{\today}  
      \maketitle
-
-    
+     \cleardoublepage
 \end{titlepage}
 
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+\chapter{Engineering Reseach Problem}
+
+\section{Reseach Question}
+\textit{\large{"Human Body 3D Scanner: The development of software for 3D data reconstruction of a Human body scanner with multiple sensors "}}
+
+\section{Project Contextualization}
+The project is based on creating a Human Body 3D scanner.
+It will have two specific streams that include the development of  the mechatronic design of a 3D scanner for a human and the software development for 3D data reconstruction. 
+This proposal is based on developing the software for 3D data modelling and reconstruction of the Scanned data.\\[10pt]
+Similarly, with the 3D reconstructed model of the human has the aim to be utilised to test different fashion clothing items. This has the intent to adjust the sizing of the clothes fittings based on the Scanned data. The clothing models will adjust automatically depending on the dimensions of the data of the scanned model. 
+   
+\section{Problem Definition}
+Being able to obtain data from multiple sensors and model objects has is very crucial for many industries.
+Nevertheless, there is a lack of precise and accurate options in the market that could create 3D models of Humans with respective sensor data. Similarly there are no current industry application that maximise the potential use of the Human body 3D models.
+Therefore, this project is aimed at creating a solution and develop the software for 3D data reconstruction of the scanned human. This model will be utilised to try different fashion items and adapt the size fittings accordingly. \\[10pt]
+The project will have different stages that range from testing different sensors for data acquision, testing different data stitching frameworks to the deployment of the software in the 3D scanner mechatronic device. 
+\enlargethispage{\baselineskip}
+
+\section{Background}
+The human society has the world comprenhension of the surrouding world through visual perception. This principle allows to differenciate distintive kinds of shapes, objects,colours, textures and the spatial pose of the surroudings.
+Based on this information, it is possible to analyse the number of objects in a determined location, object type, object size, object pose in different coordinate frames. 
+Thus, it impacts how as a society we interactuate with objects ot scenes. As a result it is essential to imitate this perception in order to acquire real world data in different formats that include:
+\begin{itemize}[]
+    \item RGB images
+     \item Depth images
+     \item 3D point clouds 
+     \item Multispectral images
+     \item Laser readings
+\end{itemize}
+All these acquire data can be obtained from a wide variety of comercial or industrial sensors. With this data it will be possible to use computer processing techniques in order to model the object or scene \citep*{murcia_monroy_mora_2018}.
+
+\cite[]{}
+ \nocite{*}   % all not cited bib entrys are shown in bibliography ...
+\bibliography{resources}
 \end{document}

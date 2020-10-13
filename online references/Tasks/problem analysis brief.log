@@ -1,216 +1,215 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.7.9)  23 AUG 2020 00:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.13)  13 OCT 2020 09:20
 entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
- %&-line parsing enabled.
-**"c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.tex"
-(c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-06-18> (c:/texlive/2020/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
-(c:/texlive/2020/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+**"c:/Users/esgaa/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.tex"
+("c:/Users/esgaa/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.tex"
+LaTeX2e <2020-10-01> patch level 1
+L3 programming layer <2020-10-05> xparse <2020-03-03> (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/thesis\thesis.cls
+Document Class: thesis 1996/25/01 1.0g LaTeX document class (wm).
+\hours=\count175
+\minutes=\count176
+(C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/base\bk10.clo
+File: bk10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count167
-\c@section=\count168
-\c@subsection=\count169
-\c@subsubsection=\count170
-\c@paragraph=\count171
-\c@subparagraph=\count172
-\c@figure=\count173
-\c@table=\count174
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen134
-) (c:/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
+\c@part=\count177
+\c@chapter=\count178
+\c@section=\count179
+\c@subsection=\count180
+\c@subsubsection=\count181
+\c@paragraph=\count182
+\c@subparagraph=\count183
+\beforechaptervspace=\skip47
+\afterchaptervspace=\skip48
+\exampleindent=\skip49
+\c@figure=\count184
+\c@table=\count185
+\abovecaptionskip=\skip50
+\belowcaptionskip=\skip51
+\bibindent=\dimen138
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (c:/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
-) (c:/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (c:/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count175
-\Gm@cntv=\count176
-\c@Gm@tempcnt=\count177
-\Gm@bindingoffset=\dimen135
-\Gm@wd@mp=\dimen136
-\Gm@odd@mp=\dimen137
-\Gm@even@mp=\dimen138
-\Gm@layoutwidth=\dimen139
-\Gm@layoutheight=\dimen140
-\Gm@layouthoffset=\dimen141
-\Gm@layoutvoffset=\dimen142
+\Gm@cnth=\count186
+\Gm@cntv=\count187
+\c@Gm@tempcnt=\count188
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
 \Gm@dimlist=\toks16
-) (c:/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2020/07/07 3.46 The Babel package
- (c:/texlive/2020/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2020/07/07 3.46 Babel common definitions
-\babel@savecnt=\count178
-\U@D=\dimen143
-\l@babelnohyphens=\language86
- (c:/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2020/10/06 3.50 The Babel package
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
+File: babel.def 2020/10/06 3.50 Babel common definitions
+\babel@savecnt=\count189
+\U@D=\dimen147
+\l@babelnohyphens=\language79
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
 )
-\bbl@dirlevel=\count179
- (c:/texlive/2020/texmf-dist/tex/generic/babel-english/english.ldf
+\bbl@dirlevel=\count190
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of babel
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
 Package babel Info: \l@australian = using hyphenrules for ukenglish
-(babel)             (\language21) on input line 105.
+(babel)             (\language73) on input line 105.
 Package babel Info: \l@newzealand = using hyphenrules for ukenglish
-(babel)             (\language21) on input line 108.
-)) (c:/texlive/2020/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2018/08/11 v1.3c Input encoding file
+(babel)             (\language73) on input line 108.
+)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
- (c:/texlive/2020/texmf-dist/tex/latex/ucs/utf8x.def
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/ucs\utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
-)) (c:/texlive/2020/texmf-dist/tex/latex/ucs/ucs.sty
+)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucs.sty
 Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
- (c:/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-global.def
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/ucs\uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count180
+\uc@secondtry=\count191
 \uc@combtoks=\toks19
 \uc@combtoksb=\toks20
 \uc@temptokena=\toks21
-) (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2020/01/20 v2.17e AMS math features
-\@mathmargin=\skip49
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip52
 
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+(C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
- (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks22
-\ex@=\dimen144
-)) (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+\ex@=\dimen148
+)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen145
-) (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+\pmbraise@=\dimen149
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count181
-LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count182
-\leftroot@=\count183
-LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count184
-\DOTSCASE@=\count185
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box45
-\strutbox@=\box46
-\big@size=\dimen146
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count186
-\c@MaxMatrixCols=\count187
+\inf@bad=\count192
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count193
+\leftroot@=\count194
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count195
+\DOTSCASE@=\count196
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen150
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count197
+\c@MaxMatrixCols=\count198
 \dotsspace@=\muskip16
-\c@parentequation=\count188
-\dspbrk@lvl=\count189
+\c@parentequation=\count199
+\dspbrk@lvl=\count266
 \tag@help=\toks23
-\row@=\count190
-\column@=\count191
-\maxfields@=\count192
+\row@=\count267
+\column@=\count268
+\maxfields@=\count269
 \andhelp@=\toks24
-\eqnshift@=\dimen147
-\alignsep@=\dimen148
-\tagshift@=\dimen149
-\tagwidth@=\dimen150
-\totwidth@=\dimen151
-\lineht@=\dimen152
+\eqnshift@=\dimen151
+\alignsep@=\dimen152
+\tagshift@=\dimen153
+\tagwidth@=\dimen154
+\totwidth@=\dimen155
+\lineht@=\dimen156
 \@envbody=\toks25
-\multlinegap=\skip50
-\multlinetaggap=\skip51
+\multlinegap=\skip53
+\multlinetaggap=\skip54
 \mathdisplay@stack=\toks26
-LaTeX Info: Redefining \[ on input line 2859.
-LaTeX Info: Redefining \] on input line 2860.
-) (c:/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
- (c:/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
- (c:/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-) (c:/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
- (c:/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen153
-\Gin@req@width=\dimen154
-) (c:/texlive/2020/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen155
-\WF@size=\dimen156
-\c@WF@wrappedlines=\count193
-\WF@box=\box47
+\Gin@req@height=\dimen157
+\Gin@req@width=\dimen158
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
+\wrapoverhang=\dimen159
+\WF@size=\dimen160
+\c@WF@wrappedlines=\count270
+\WF@box=\box49
 \WF@everypar=\toks27
 Package: wrapfig 2003/01/31  v 3.6
-) (c:/texlive/2020/texmf-dist/tex/latex/microtype/microtype.sty
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
 Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
 \MT@toks=\toks28
-\MT@count=\count194
+\MT@count=\count271
 LaTeX Info: Redefining \textls on input line 790.
-\MT@outer@kern=\dimen157
+\MT@outer@kern=\dimen161
 LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
-\MT@listname@count=\count195
- (c:/texlive/2020/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+\MT@listname@count=\count272
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdftex.def
 File: microtype-pdftex.def 2019/11/18 v2.7d Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 914.
 LaTeX Info: Redefining \lslig on input line 914.
-\MT@outer@space=\skip52
+\MT@outer@space=\skip55
 )
 Package microtype Info: Loading configuration file microtype.cfg.
- (c:/texlive/2020/texmf-dist/tex/latex/microtype/microtype.cfg
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
 File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
-)) (c:/texlive/2020/texmf-dist/tex/latex/setspace/setspace.sty
+)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (c:/texlive/2020/texmf-dist/tex/latex/enumitem/enumitem.sty
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip53
-\enit@outerparindent=\dimen158
+\labelindent=\skip56
+\enit@outerparindent=\dimen162
 \enit@toks=\toks29
-\enit@inbox=\box48
-\enit@count@id=\count196
-\enitdp@description=\count197
-) (c:/texlive/2020/texmf-dist/tex/latex/base/fixltx2e.sty
-Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
-Applying: [2015/01/01] Old fixltx2e package on input line 46.
-
-
-Package fixltx2e Warning: fixltx2e is not required with releases after 2015
-(fixltx2e)                All fixes are now in the LaTeX kernel.
-(fixltx2e)                See the latexrelease package for details.
-
-Already applied: [0000/00/00] Old fixltx2e package on input line 53.
-) (c:/texlive/2020/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+\enit@inbox=\box50
+\enit@count@id=\count273
+\enitdp@description=\count274
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/tocbibind\tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
-Package tocbibind Info: The document has section divisions on input line 50.
+Package tocbibind Info: The document has chapter divisions on input line 50.
 
 
-Package tocbibind Note: Using section or other style headings.
+Package tocbibind Note: Using chapter style headings, unless overridden.
 
-) (c:/texlive/2020/texmf-dist/tex/latex/natbib/natbib.sty
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip54
-\bibsep=\skip55
+\bibhang=\skip57
+\bibsep=\skip58
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count198
-) (c:/texlive/2020/texmf-dist/tex/latex/placeins/placeins.sty
+\c@NAT@ctr=\count275
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/placeins\placeins.sty
 Package: placeins 2005/04/18  v 2.2
-) (c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count199
-\l__pdf_internal_box=\box49
-) (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.aux)
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
+\l__kernel_color_stack_int=\count276
+\l__pdf_internal_box=\box51
+) ("c:/Users\esgaa\Desktop\UNI\uts\Capstone\Latex\CapstoneDocuments\online references\Tasks\problem analysis brief.aux")
 \openout1 = `"problem analysis brief.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
@@ -244,13 +243,13 @@ LaTeX Font Info:    ... okay on input line 26.
 * \textheight=717.00946pt
 * \oddsidemargin=-29.59087pt
 * \evensidemargin=-29.59087pt
-* \topmargin=-52.36449pt
+* \topmargin=-45.43198pt
 * \headheight=12.0pt
-* \headsep=25.0pt
+* \headsep=18.06749pt
 * \topskip=10.0pt
-* \footskip=30.0pt
+* \footskip=25.29494pt
 * \marginparwidth=49.79231pt
-* \marginparsep=11.0pt
+* \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
@@ -262,36 +261,36 @@ LaTeX Font Info:    ... okay on input line 26.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(c:/texlive/2020/texmf-dist/tex/latex/ucs/ucsencs.def
+(C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-) (c:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count266
-\scratchdimen=\dimen159
-\scratchbox=\box50
-\nofMPsegments=\count267
-\nofMParguments=\count268
+\scratchcounter=\count277
+\scratchdimen=\dimen163
+\scratchbox=\box52
+\nofMPsegments=\count278
+\nofMParguments=\count279
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count269
-\MPscratchDim=\dimen160
-\MPnumerator=\count270
-\makeMPintoPDFobject=\count271
+\MPscratchCnt=\count280
+\MPscratchDim=\dimen164
+\MPnumerator=\count281
+\makeMPintoPDFobject=\count282
 \everyMPtoPDFconversion=\toks31
-) (c:/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (c:/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (c:/texlive/2020/texmf-dist/tex/latex/grfext/grfext.sty
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
 Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
- (c:/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)) (c:/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
- (c:/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
-) (c:/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-)) (c:/texlive/2020/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+)) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
@@ -301,9 +300,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 Package grfext Info: Graphics extension search list:
 (grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
- (c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-))
+)
 LaTeX Info: Redefining \microtypecontext on input line 26.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
@@ -315,63 +312,64 @@ LaTeX Info: Redefining \showhyphens on input line 26.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
- (c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+ (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
-) (c:/texlive/2020/texmf-dist/tex/latex/ucs/data/uni-32.def
+) (C:\Users\esgaa\AppData\Local\Programs\MiKTeX\tex/latex/ucs\uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
-) [1
+) [1{C:/Users/esgaa/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
-{c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<./images/table1.png, id=10, 590.95781pt x 171.64125pt>
-File: ./images/table1.png Graphic file (type png)
-<use ./images/table1.png>
-Package pdftex.def Info: ./images/table1.png  used on input line 78.
+]
+<./images//table1.png, id=10, 590.95781pt x 171.64125pt>
+File: ./images//table1.png Graphic file (type png)
+<use ./images//table1.png>
+Package pdftex.def Info: ./images//table1.png  used on input line 78.
 (pdftex.def)             Requested size: 483.69684pt x 140.49005pt.
-<./images/bodyMedicine.png, id=12, 316.18124pt x 179.92218pt>
-File: ./images/bodyMedicine.png Graphic file (type png)
-<use ./images/bodyMedicine.png>
-Package pdftex.def Info: ./images/bodyMedicine.png  used on input line 84.
+<./images//bodyMedicine.png, id=12, 316.18124pt x 179.92218pt>
+File: ./images//bodyMedicine.png Graphic file (type png)
+<use ./images//bodyMedicine.png>
+Package pdftex.def Info: ./images//bodyMedicine.png  used on input line 84.
 (pdftex.def)             Requested size: 256.07481pt x 145.72792pt.
- [2 <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/table1.png> <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/bodyMedicine.png>] [3]
-<./images/IMG_0073.png, id=21, 565.36218pt x 237.88875pt>
-File: ./images/IMG_0073.png Graphic file (type png)
-<use ./images/IMG_0073.png>
-Package pdftex.def Info: ./images/IMG_0073.png  used on input line 141.
+ [2 <./images//table1.png> <./images//bodyMedicine.png>] [3]
+<./images//IMG_0073.png, id=22, 565.36218pt x 237.88875pt>
+File: ./images//IMG_0073.png Graphic file (type png)
+<use ./images//IMG_0073.png>
+Package pdftex.def Info: ./images//IMG_0073.png  used on input line 141.
 (pdftex.def)             Requested size: 256.07481pt x 107.7495pt.
-<./images/shapes.png, id=22, 411.03563pt x 298.11375pt>
-File: ./images/shapes.png Graphic file (type png)
-<use ./images/shapes.png>
-Package pdftex.def Info: ./images/shapes.png  used on input line 161.
+<./images//shapes.png, id=23, 411.03563pt x 298.11375pt>
+File: ./images//shapes.png Graphic file (type png)
+<use ./images//shapes.png>
+Package pdftex.def Info: ./images//shapes.png  used on input line 161.
 (pdftex.def)             Requested size: 107.55486pt x 78.00357pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 157--163
 
  []
 
-<./images/dynamicfusion2.png, id=23, 613.54219pt x 264.23718pt>
-File: ./images/dynamicfusion2.png Graphic file (type png)
-<use ./images/dynamicfusion2.png>
-Package pdftex.def Info: ./images/dynamicfusion2.png  used on input line 167.
+<./images//dynamicfusion2.png, id=24, 613.54219pt x 264.23718pt>
+File: ./images//dynamicfusion2.png Graphic file (type png)
+<use ./images//dynamicfusion2.png>
+Package pdftex.def Info: ./images//dynamicfusion2.png  used on input line 167.
 (pdftex.def)             Requested size: 358.50317pt x 154.3987pt.
-[4 <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/IMG_0073.png> <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/shapes.png>] [5 <c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/./images/dynamicfusion2.png>] (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.bbl
+[4 <./images//IMG_0073.png> <./images//shapes.png>] [5 <./images//dynamicfusion2.png>] ("c:/Users\esgaa\Desktop\UNI\uts\Capstone\Latex\CapstoneDocuments\online references\Tasks\problem analysis brief.bbl"
 Underfull \hbox (badness 10000) in paragraph at lines 14--17
 \OT1/cmr/bx/n/10 URL: \OT1/cmr/m/it/10 (+20) https://fashionunited.uk/news/business/the-growing-pain-of-ill-sized-clothes-for-both-consumers-and-
  []
 
-) [6] (c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.aux) ) 
+) [6
+
+] ("c:/Users\esgaa\Desktop\UNI\uts\Capstone\Latex\CapstoneDocuments\online references\Tasks\problem analysis brief.aux") ) 
 Here is how much of TeX's memory you used:
- 6490 strings out of 480471
- 99521 string characters out of 5903301
- 410641 words of memory out of 5000000
- 22339 multiletter control sequences out of 15000+600000
- 540454 words of font info for 82 fonts, out of 8000000 for 9000
+ 6750 strings out of 480236
+ 105900 string characters out of 2880557
+ 455379 words of memory out of 3000000
+ 23116 multiletter control sequences out of 15000+200000
+ 540526 words of font info for 81 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,6n,42p,567b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on "c:/Users/user/Desktop/UNI/uts/Capstone/Latex/CapstoneDocuments/online references/Tasks/problem analysis brief.pdf" (6 pages, 653615 bytes).
+ 64i,7n,70p,569b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl12.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl9.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/esgaa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "c:/Users\esgaa\Desktop\UNI\uts\Capstone\Latex\CapstoneDocuments\online references\Tasks\problem analysis brief.pdf" (6 pages, 690487 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 80 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 12826 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 15898 words of extra memory for PDF output out of 17280 (max. 10000000)
 

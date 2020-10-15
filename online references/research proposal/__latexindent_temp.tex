@@ -141,48 +141,64 @@ Another recent powerful 3D Data recontruction framwork is \textbf{SurfelWarp} wh
 
 
 \section{Dynamic Fusion}
-Dynamic fusion is the mesh and fusion of three techniques used for 3D scanning and reconstruction.  These techniques are:
+Dynamic fusion is the based on three different technologies focused on 3D scanning and data recontruction. These techniques are: 
 
 \begin{description}[style=nextline]
-    \item[Kinect Fusion] Used for real-time Dense surface Mapping and tracking. This technique is designed for static scenes and objects only with a moving camera
-    \item[DART (Dense Articulated Real Time Tracking)] This technology is focused on Real Time template tracking.
-    \item[Animation Cartography] 3D reconstruction technique used for intrinsic Reconstruction of shapes and motions. 
-\end{description}
+    \item[DART (Dense Articulated Real Time Tracking)] This technology is speciaclised  on Real Time body template skeleton tracking.
+    \item[Animation Cartography] It is a 3D reconstruction technique  focused on intrinsic data reconstruction of shapes and motions. 
+    \item[Kinect Fusion] This technology is applied for real-time tracking and condence surface mapping.It is intended to be used in static scenes and objects with only a moving camera sensor. 
+\end{description} 
+
+\vspace{5mm}
 
 \begin{wrapfigure}{r}{0.5\textwidth} %this figure will be at the right
     \centering
     \includegraphics[width=0.5\textwidth]{IMG_0073.png}
     \caption{Transformation Between Depth Video to Warped canonical Model. \cite[]{newcombe_fox_seitz_2015}}
 \end{wrapfigure}
-The principal focus of Dynamic fusion, 3D reconstruction technique, is that once the data is gathered, it will solve for a volumetric flow field. 
-This will transform the state of the scene at each time instant into a fixed canonical frame as developed by Newcombe, Fox and Seitz (2015). \\[10pt]
-The canonical frame is known as the first frame that is captured from the non-rigid object that has been tracked and scanned. The canonical model is the shape of the object that is defined in the canonical frame. 
-Thus, the canonical model will be used as reference for other frames and there will be cumulative refinement on this model and frames, as more scans and  measurements are taken.
-With the new refinements each point in the canonical frame, which will be point cloud will be transformed to its new location in the real time frame.\\[10pt]
-The volumetric flow field will be estimated with the help of the warp field parameters using the live depth video from the sensors. 
-The state of the wrap field W\textsubscript{t} is defined as a function of time and defined by the values of a set of n deformation nodes, which are points in the actual image
-\[N_{warp}^t=\{dg_v,dg_w,dg_{se3}\}t\]
-\begin{itemize}[label =]
-    \item $dg_{v}$: Used for real-time Dense surface Mapping and tracking. This technique is designed for static scenes and objects only with a moving camera
-    \item $dg_{se3}$: This technology is focused on Real Time template tracking.
-    \item $dg_{w}$: 3D reconstruction technique used for intrinsic Reconstruction of shapes and motions. 
-\end{itemize}
+The principal  focal point of the 3D data recontruction feature of \textit{Dynamic Fusion}  is that it will look for a solution for for the volumetric flow based on the gathered data.
+As mentioned by \Citet*{newcombe_fox_seitz_2015} there will be a transformation of the state ot the scene at each time interval to a fixed canonical frame.
+The created  canonical frame is described as the initial frame that is obtained from the non-rigid object that has been detected and tracked.The shape of the detected object is defined as "canonical model" which is the correspoding shape of the object in the canonical frame. 
+Therfore, the canonical model will be utilised as reference model for all the subsequent frames. From this approach there will be progressing adjustment on on the canonical model and frames, as more data is acquired.
+With the new refinements each point in the canonical frame, the point clouds will be transformed and updated to the new location in real time based on the received data.
 
-The current level set of point clouds will be stored as a polygon mesh, with normal pairs points in the canonical frame, that later will be used for surface reconstruction.   
-Slavcheva, Baust and Ilic, (2018)  mention that once the warp field parameters are obtained from the data, the surface reconstruction can be modelled using Marching Cubes, followed by the rasterization rendering pipeline of the Acquired Point cloud values.\\
-\begin{wrapfigure}{l}{0.5\textwidth} %this figure will be at the right
-    \centering
-    \includegraphics[width=0.5\textwidth]{shapes.png}
-    \caption{Triangulated patterns \cite[]{fang_zhao_wen_zhang_2018}}
-\end{wrapfigure}
-These 15 patterns from the image 3 represent the Triangulated cubes for the 15 basic patterns used in Marching Cubes for the method of surface reconstruction. These patterns can reconstruct all the 256 possible solutions using complementary and rotational symmetry (Fang, Zhao, Wen and Zhang, 2018).
-\begin{figure}{l} %this figure will be at the right
+The data acquired from sensors that includes RGB and Depth images will help to determine the warp parameters. Based on the determined warp parameters the volumetric flow field can be estipulated.
+The state of the wrap field W\textsubscript{t} is defined as a function of time. It is modelled by the values of a set of \textit{"n"} deformation nodes, which are described as the points or pixels in the actual image.
+The image below describes the process in which the canonical model and frame are determined based on the initial frame and depth data. 
+\begin{figure}{}%this figure will be at the right
     \centering
     \includegraphics[width=0.7\textwidth]{dynamicfusion2.png}
-    \caption{Dynamic Fusion methodology \cite[]{newcombe_fox_seitz_2015}}
+   \caption{Dynamic Fusion methodology \cite[]{newcombe_fox_seitz_2015}}
 \end{figure}
-Once the canonical model, and frame and warp field parameters are obtained from the initial data frame and raw depth maps, the nodes will be created. Then the canonical frame warp parameters will be estimated. Once the canonical model is created it will be warped to its live frame with help of the warp parameters and then the model normalised and is created. \\
+
+
+The State of the warp field W\textsubscript{t} can be modelled with the below equation.
+\[N_{warp}^t=\{dg_v,dg_w,dg_{se3}\}t\]
+\begin{itemize}[label =]
+    \item $dg_{v}$: is described as the 3D position of each node in the canonical frame. 
+    \item $dg_{se3}$: is the Special Euclidian transformation where $T_{ic}=dg_{se3} ^ {i}$ is the rigid transformation for every node $i$.
+    \item $dg_{w}$: It controls the extend impact of the deformation around each node.
+\end{itemize}
+
+The current set of point clouds will be stored  as a "polygon mesh" with the normal pair of points within the canonical frame and allow to calculate the warp field parameters. 
+The principle will allow effective surface reconstruction as suggested by \Citet*{slavcheva_baust_ilic_2018} as once the warp field parameters are obtained, surface recontruction can be modelled with a principle of marching cubes.
+This process will be followed by a rasterization rendering pipeline of the Acquired Point cloud values \Citep*{newcombe_fox_seitz_2015}.
+
+The patterns from the figure \ref{fig:patterns} illustrate the triangulated cubes for the 15 basic patterns used in marching cubes for surface recontruction.
+These patterns are able to reconstruct all  256 possible solutions using rotational and  complementary symmetry as suggested by \Citet*{fang_zhao_wen_zhang_2018}.
+Once the canonical model and frame can be modelled with the warp field parameters based from the intial raw depth image maos ad data frame, the tracking nodes will be created.
+Based on this it is possible to obtain the canonical frame warp parameters which  are estimated based on this process. 
+As soon as the canonical model is constructed, the life frame will be warp around it based on the warp parameters. As a result the model will be 3D reconstructed model will be succesfully created and normalized.
+\begin{figure} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.4\textwidth]{shapes.png}
+    \caption{Triangulated patterns \cite[]{fang_zhao_wen_zhang_2018}}
+    \label{fig:patterns}
+\end{figure}
+
 \enlargethispage{\baselineskip}
+
+\section{Surfelwarp}
 
 
 

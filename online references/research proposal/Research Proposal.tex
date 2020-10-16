@@ -198,15 +198,82 @@ As soon as the canonical model is constructed, the life frame will be warp aroun
 
 \enlargethispage{\baselineskip}
 
-\section{Surfelwarp}
+\section{SurfelWarp}
+SurfelWarp is defined as "Efficient Non-Volumetric Single View Dynamic Reconstruction. It will present a standard graphics pipeline and GPGPU computing can be utilised for efficient 
+implementation of all data recontruction operations \Citep*{SurfelWarp}. It eliminates the use of volumetric data structures, which represent resouce intensive volumetric operations such as dense deformation field updates, volumetric fusion and marching cubes.
+This represents a significant performance improvement as the explicit surfel representation allow to directly recover from tracknig failures or topology changes as proposed by \citeauthor*{SurfelWarp}.
+
+\subsection{Overview}
+As illustrated in figure \ref{fig:surfelmetho}, SurfelWarp is built in a frame by frame methodology to process an input depth stream data source. 
+When a new depth image is received, the deformation field that is aligned to the reference frame geometry will be solved. 
+This is calculated by startting the deformation field from the previous image, which is followed by an iterative optimization problem similar to \Citet*{newcombe_fox_seitz_2015}.
+Once the deformation field is update, the data fusion process is carried out. This will trigger an accumulative process to fuse the current depth observations into a geometrical representation. 
+
+The deformation field $ W = \{[p_j \in R^{3},\sigma_{j} \in R^{+} ,T_j \in SE(3)]\}$ where j is the node index, $p_j$ is the position of the $j^{th}$ node. $\sigma_j$ is the radius parameter, $T_j$ is the 6DoF transformation.
+For any point in "x" the deformation can be interpolated by equation \ref{eq:deffield1}
+
+\newpage
+\begin{figure}%this figure will be at the right
+    \centering
+    \includegraphics[width=0.95\textwidth]{surfelwarp1.png}
+    \caption{SurfelWarp methodology \cite[]{SurfelWarp}}
+    \label{fig:surfelmetho}
+\end{figure}
 
 
+\begin{equation}  
+  W(x)=normalized(\Sigma_{k \in N(x)} w_{k}(x) \hat{q_k})
+  \label{eq:deffield1}
+\end{equation}
+From equation \ref{eq:deffield1} the following components can be described:
+\begin{itemize}
+  \item $N(x)$: is the closest set of points x
+  \item $W_{k}(x)$:  is the weight that can be computed as $\exp{(-\frac{\ | {x-p_k} \ |^{2}_2 }{2\sigma^{2}_k})}$
+\end{itemize}
+
+A surfel $S$ could is described as the tuple composed in which the following components can be modelled :
+\begin{itemize}
+  \item position : $v \in R^3$ 
+  \item  normal  : $n \in R^3$
+  \item  radius : $r \in R^+$
+  \item confidence : $c \in R$
+  \item initilization time : $t_{init} \in N$
+  \item most recent time : $t_{observed} \in N$ 
+\end{itemize}
+Therefore a surfel can be illustratedby the deformatin of field $W$ in equation \ref{eq:deffield1} \citep{SurfelWarp}.
+Furthermore the deformed vertex position  and normal can be modelled with the following equations:
+\begin{equation}
+  v_{life}=W(v_{ref})v_{ref}
+  \label{eq:deformed vertex}
+\end{equation}
+\begin{equation}
+  n_{life}=rotation(W(v_{ref})n_{ref})
+  \label{eq:deformed vertex normal}
+\end{equation}
+
+From equations \ref{eq:deformed vertex} and \ref{eq:deformed vertex normal} $v_{life}$ and $n_{life}$ are the deformed vertex position and normal.
+Whereas $v_{ref}$ and $n_{ref}$ correspond to the vertex position and normal before the deformation process. 
 
 
+\subsection{Depth Map Fusion \& Warp Fiel Update}
+In order to get the warp fiel estimate, it is neccesary to perform a mathematical prediction of the visibility of the live surfels models $S_{life}$ with the proposed method of \Citet*{newcombe_fox_seitz_2015}
+to cast the deformation estimation into a optimization problem.
+The estimation process is performed by predicting the visibility of the life surfels $S_{life}$.
+\begin{figure}[h]%this figure will be at the right
+  \centering
+  \includegraphics[width=0.9\textwidth]{surfelwarp2.png}
+  \caption{SurfelWarp Reconstruction\cite[]{SurfelWarp}}
+  \label{fig:surfelprocess}
+\end{figure}
 
+Similarly, to the approach of \citet{keller} the life surfels $S_{life}$  are rendered as an overlaped disk shaped surface splat. These shapes are spanned by the position $V_{life}$ 
+,normal $n_{life}$ and radius $r_{life}$ of the live surfel $s_{life}$.
+With all these parameters it is possible to model the warp fiel based on the Dynamic Fusion framework proposed by \citet*{newcombe_fox_seitz_2015}.
 
+Once the deformation is solved, the depth map fusion obtained from sensors along with the warp field update will perform data fusion in the live frame. 
+This live frame  warps the live surfel back to the starting reference frame. Afterwards the warp field is recurrently updated based on the new observed surfels reference. This process can be exemplified with image \ref{fig:surfelprocess} .
 
-
+\chapter{Methodology}
 
 
 

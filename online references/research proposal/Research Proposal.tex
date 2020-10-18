@@ -37,6 +37,7 @@
 \usepackage{tabularx}
 \usepackage{afterpage}
 
+
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
@@ -624,6 +625,37 @@ The proposed communication plan will be located in appendix on table \ref{append
 
 
 \chapter{Progress Statement}
+The progress of this project is running accordingly to the plan of the Gantt Chart as reflected on figure \ref{appendix::gant}.
+This section will discuss in detail the findings of all the work that has been done to date.
+This includes on researching the type of sensors that could be implemented such as the Intel RealSense D435i. 
+Furthermore, there was a research stage that included to browse several 3D reconstruction frameworks and how these perform. 
+On the other side it was also neccesary to research the components of the underlaying frameworks and how it is constructed. Based on this, it was a must to investigate the depedencies 
+are neccesary to install these frameworks into the computer in order to start the 3D software reconstruction. 
+Futhermore, all the project planning was developed. This includes creating the communication plan, risk matrix as well as the Gantt Chart and all the methodology that will be implemented on the project. 
+
+On the other side, several test were perform with the purpose of gathering data of the model. These test were perfomed with the purpose to test the different methods in which it  was possible to gather data for a model.
+For these test a manequin was used a the test model. Please refer to figure \ref{fig:mane}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{manequin.jpg}
+  \caption{Manequin used for testing}
+  \label{fig:mane}
+\end{figure}
+
+
+From these test, it was possible to obtain RGB and Depth images, that will allow to see the Field of view of the sensor. Furthermore, it allowed to see and plan, the potential mechatronic design of the scanner and the number of sensors that could be used in the final design.
+The result of these test was that it was neccesary to use a certain number of sensors in diferent positions in order to obtain as much information and data as possible for the scanned model. 
+
+In contrast, another test was performed with the purpose of gathering data from different positions. Hence, scanning a manequin from different angles with the purpose of gathering the most data as possible. 
+From these test it was possible to obtain the best configuration position for the camera, with the purpose of maximising the Field of View of the RGB and Depth Sensors.
+Futhermore, it allowed to obtain the 3D point clouds of the model in realtime, which allowed to have a preview of the scanned model.  
+
+\newpage
+Based on these test it was also possible to determine the requires distance that the camera has to be from the model in order to obtain a preliminary radius of the scanner mechatronic design.
+This was done my observing the point clouds and via analysing the Sensor data in realtime. The RGB and Depth images acquires from these sensors can be observed on figures \ref{fig:scanRGB} and \ref{fig:scanDepth} respectively.
+
+
 
 
 \nocite{*}   % all not cited bib entrys are shown in bibliography ...
@@ -631,6 +663,23 @@ The proposed communication plan will be located in appendix on table \ref{append
 
 \appendix
 \chapter{Appendix}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth, angle=90]{scan1.png}
+  \caption{Manequin used for testing}
+  \label{fig:scanRGB}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth, angle=90]{scan2.png}
+  \caption{Manequin used for testing}
+  \label{fig:scanDepth}
+\end{figure}
+
+
+
 \begin{table}
   \centering
   \makebox[\textwidth]

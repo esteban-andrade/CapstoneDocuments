@@ -37,6 +37,7 @@
 \usepackage{tabularx}
 \usepackage{afterpage}
 
+
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 
@@ -57,7 +58,7 @@
     \Large{\textbf{Human Body 3D Scanner (Virtual me)}}\\}
     \author{Esteban Andrade\\ 
     12824583\\
-    Supervisor: Dr. Teresa Vidal Calleja\\}
+    Supervisor: Dr Teresa Vidal Calleja\\}
     \date{\today}  
      \maketitle
      \cleardoublepage
@@ -78,29 +79,30 @@
 
 \section{Project Contextualization}
 The project is based on creating a Human Body 3D scanner.
-It will have two specific streams that include the development of  the mechatronic design of a 3D scanner for a human and the software development for 3D data reconstruction. 
+It will have two specific streams that include the development of the mechatronic design of a 3D scanner for a human and the software development for 3D data reconstruction. 
 This proposal is based on developing the software for 3D data modelling and reconstruction of the Scanned data.
 
 Similarly, with the 3D reconstructed model of the human has the aim to be utilised to test different fashion clothing items. This has the intent to adjust the sizing of the clothes fittings based on the Scanned data. The clothing models will adjust automatically depending on the dimensions of the data of the scanned model. 
-The project will have different stages that range from testing different sensors for data acquision, testing different data stitching frameworks to the deployment of the software in the 3D scanner mechatronic device. 
+The project will have different stages that range from testing different sensors for data acquisition, testing different data stitching frameworks to the deployment of the software in the 3D scanner mechatronic device.
 
 \section{Problem Definition}
 %Being able to obtain data from multiple sensors and model objects has is very crucial for many industries.
 %Nevertheless, there is a lack of precise and accurate options in the market that could create 3D models of Humans with respective sensor data. Similarly there are no current industry application that maximise the potential use of the Human body 3D models.
 %Therefore, this project is aimed at creating a solution and develop the software for 3D data reconstruction of the scanned human. This model will be utilised to try different fashion items and adapt the size fittings accordingly. 
-Being able to scan different object and models is crucial for many industries. Many application are in the used in the fashion industry, medical industry, manufacturing ,etc. However, many of the given implementations are extremely expensive , thus making the technology inaccessible for many companies and users in general. 
-There are many forms of implementations , as there are multiple technologies  in the market that facilitate the process in which several devices and software techniques are used. Nevertheless there are no current industry application that maximise the potential use of the Human body 3D models.
-Many of the challenges faced is that the software implementation for 3D reconstruction of the models is not particularly accurate, therefore creating imperfect models that in many occasions will need to be discarded.
+Being able to scan different object and models is crucial for many industries. Many applications are in the used in the fashion industry, medical industry, manufacturing ,etc. However, many of the given implementations are extremely expensive , thus making the technology inaccessible for many companies and users in general. 
+There are many forms of implementations , as there are multiple technologies  in the market that facilitate the process in which several devices and software techniques are used. Nevertheless, there is no current industry application that maximise the potential use of the Human body 3D models.
+Many of the challenges faced is that the software implementation for 3D reconstruction of the models is not particularly accurate, therefore creating imperfect models that on many occasions will need to be discarded.
 
-Hence, this project component will contribute and develop the technology in order to produce software that will be able to produce accurate models from the gathered data from the sensors. These models will be utilised to try different fashion items and adapt the size fittings accordingly. 
+Hence, this project component will contribute and develop the technology to produce software that will be able to produce accurate models from the gathered data from the sensors. These models will be utilised to try different fashion items and adapt the size fittings accordingly. 
 With the competition of this project many stakeholders, industries and institutions could rely on  accurate software that will  allow to create a 3D model of a person or object.
+
 
 \enlargethispage{\baselineskip}
 
 \section{Background}
-The human society has the world comprenhension of the surrouding world through visual perception. This principle allows to differenciate distintive kinds of shapes, objects,colours, textures and the spatial pose of the surroudings.
+The human society has the world comprehension of the surrounding world through visual perception. This principle allows differentiating distinctive kinds of shapes, objects, colours, textures, and the spatial pose of the surroundings.
 Based on this information, it is possible to analyse the number of objects in a determined location, object type, object size, object pose in different coordinate frames. 
-Thus, it impacts how as a society we interactuate with objects ot scenes. As a result it is essential to imitate this perception in order to acquire real world data in different formats that include:
+Thus, it impacts how as a society we interact with objects or scenes. As a result, it is essential to imitate this perception  to acquire real-world data in different formats that include:
 \begin{itemize}[]
     \item RGB images
      \item Depth images
@@ -108,21 +110,21 @@ Thus, it impacts how as a society we interactuate with objects ot scenes. As a r
      \item Multispectral images
      \item Laser readings
 \end{itemize}
-All these acquire data can be obtained from a wide variety of comercial or industrial sensors. With this data it will be possible to use computer processing techniques in order to model the object or scene \citep*{murcia_monroy_mora_2018}.
+All these acquire data can be obtained from a wide variety of commercial or industrial sensors. With this data, it will be possible to use computer processing techniques  to model the object or scene \citep*{murcia_monroy_mora_2018}.
 
 \section{Applications}
-In the recents years the use of 3D body scanners has gain importance in several industries. Within the fashion industry it can aid clothes manufactures to obtain accurate body measurement data of body dimensions.
-As mentioned by \citet*{sturm_bylow_kahl_cremers_2013}, this new technological approach has the potential to alterate the future of the fashion and clothing manufacturing industry.
+In recent years, the use of 3D body scanners has gain importance in several industries. Within the fashion industry, it can aid clothes manufactures to obtain accurate body measurement data of body dimensions.
+As mentioned by \citet*{sturm_bylow_kahl_cremers_2013}, this new technological approach has the potential to alternate the future of the fashion and clothing manufacturing industry.
 
-With the raise of innovatoin of 3D image reconstruction, the interest from to gather precise measurements of the human has raised. Due to the fact, that in the clothing industry
-is extremedely important to create better fittings for different shapes of human bodies. 
-Furthermore, virtual try-on solutions has gain popularity in physical and online retail stores \Citep*{spahiu_shehi_piperi_2014}.
+With the rise of innovation of 3D image reconstruction, the interest from to gather precise measurements of the human has raised. Due to the fact, that in the clothing industry
+is extremely important to create better fittings for different shapes of human bodies. 
+Furthermore, virtual try-on solutions have gain popularity in physical and online retail stores \Citep*{spahiu_shehi_piperi_2014}.
 
-On the other side 3D scanners have gain in particupation in the medical industry. These systems are described as "non-invasive and low cost" , thus making it appealing for epidemiological surveys and clinical uses. \Citep*{treleaven_wells_2007}
-The geometrical measurements could be associated with shape, size, volume and surface area of the body parts. It could aid to be a sustainable approach to screen children and patients with obesity, deformities or specific anatomic defects. 
-Therefore, it will ease the diagnose process and allow to treat and monitor medical conditions holisticly and improve the life quality of patients with non-invasive tests.
-The table below illustrates the use of 3D scanner in the medical field with the purpose to identify and monitor various medical conditions. 
-Frpm which the diagnose, treatment and monitor procedures willd differ based on the acquired data.
+On the other side, 3D scanners have gained participation in the medical industry. These systems are described as "non-invasive and low cost", thus making it appealing for epidemiological surveys and clinical uses. \Citep*{treleaven_wells_2007}
+The geometrical measurements could be associated with shape, size, volume, and surface area of the body parts. It could aid to be a sustainable approach to screen children and patients with obesity, deformities, or specific anatomic defects. 
+Therefore, it will ease the diagnose process and allow to treat and monitor medical conditions holistically and improve the life quality of patients with non-invasive tests.
+The table below illustrates the use of a 3D scanner in the medical field with the purpose to identify and monitor various medical conditions. 
+From which the diagnose, treatment and monitor procedures will differ based on the acquired data.
 \begin{table}[ht]
     \centering
     \includegraphics[width=15cm]{table1.png}
@@ -139,8 +141,8 @@ Frpm which the diagnose, treatment and monitor procedures willd differ based on 
 
 
 \chapter{Related Works}
-Being able to scan different objects and subjects has been challeging task for researchers. Getting an accurate spatial location of the objects is crucial for this  type of application.
-The use of 3D point clouds has facilitated this process as it allows to obtain the following parameters:
+Being able to scan different objects and subjects has been a challenging task for researchers. Getting an accurate spatial location of the objects is crucial for this type of application.
+The use of 3D point clouds has facilitated this process as it allowed to obtain the following parameters:
 \begin{itemize}[]
   \itemsep0em 
   \item Depth
@@ -148,22 +150,21 @@ The use of 3D point clouds has facilitated this process as it allows to obtain t
   \item Pulse width
   \item Light echo
 \end{itemize}
-This information can be obtain with different kind of sensors. There is a wide variety of off the shelf sensors that can procide 3D point clouds. 
+This information can be obtained with different kind of sensors. There is a wide variety of off the shelf sensors that can provide 3D point clouds. 
 These sensors could either be stereo or multiview vision cameras, lasers, time-of-flight sensors (\textit{TOF}) and structured light sensors as stated by \Citet*{murcia_monroy_mora_2018}.
 
-Many Scanning devices will use single or multiple of the above-mentioned sensors in order to acquire data. Once the data is obtained, it essential to have a framework for 3D data modelling and reconstruction.
-The principle behind 3D data recontruction is obtained with data fision from RGB-D sensors. This kind of sensors provide 3 channels images RGB (red,green, blue) and the depth images are mapped to each pixel. Based on this data 3D point clouds could be generated for data recontruction.
+Many Scanning devices will use single or multiple of the above-mentioned sensors to acquire data. Once the data is obtained, it essential to have a framework for 3D data modelling and reconstruction.
+The principle behind 3D data reconstruction is obtained with data fusion from RGB-D sensors. This kind of sensors provide 3 channels images RGB (red, green, blue) and the depth images are mapped to each pixel. Based on this data 3D point clouds could be generated for data reconstruction.
 One of the most common frameworks is known as \textbf{Dynamic Fusion} which is referenced to \textit{"reconstruction and tracking of Non-rigid Scenes in real time"} \Citep*{newcombe_fox_seitz_2015}.
-Another recent powerful 3D Data recontruction framwork is \textbf{SurfelWarp} which is defined as \textit{"Efficient Non-Volumetic Single View Dynamic Reconstruction"} \Citep*{SurfelWarp}.
-
+Another recent powerful 3D Data reconstruction framework is \textbf{SurfelWarp} which is defined as \textit{"Efficient Non-Volumetic Single View Dynamic Reconstruction"} \Citep*{SurfelWarp}.
 
 \section{Dynamic Fusion}
-Dynamic fusion is the based on three different technologies focused on 3D scanning and data recontruction. These techniques are: 
+Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 
 
 \begin{description}[style=nextline]
-    \item[DART (Dense Articulated Real Time Tracking)] This technology is speciaclised  on Real Time body template skeleton tracking.
-    \item[Animation Cartography] It is a 3D reconstruction technique  focused on intrinsic data reconstruction of shapes and motions. 
-    \item[Kinect Fusion] This technology is applied for real-time tracking and condence surface mapping.It is intended to be used in static scenes and objects with only a moving camera sensor. 
+  \item[DART (Dense Articulated Real-Time Tracking)] This technology is specialised on Real-Time body template skeleton tracking.
+  \item[Animation Cartography] It is a 3D reconstruction technique focused on intrinsic data reconstruction of shapes and motions. 
+  \item[Kinect Fusion] This technology is applied for real-time tracking and condensed surface mapping. It is intended to be used in static scenes and objects with only a moving camera sensor. 
 \end{description} 
 
 \vspace{5mm}
@@ -173,13 +174,13 @@ Dynamic fusion is the based on three different technologies focused on 3D scanni
     \includegraphics[width=0.5\textwidth]{IMG_0073.png}
     \caption{Transformation Between Depth Video to Warped canonical Model} \cite[]{newcombe_fox_seitz_2015}.
 \end{wrapfigure}
-The principal  focal point of the 3D data recontruction feature of \textit{Dynamic Fusion}  is that it will look for a solution for for the volumetric flow based on the gathered data.
-As mentioned by \Citet*{newcombe_fox_seitz_2015} there will be a transformation of the state ot the scene at each time interval to a fixed canonical frame.
-The created  canonical frame is described as the initial frame that is obtained from the non-rigid object that has been detected and tracked.The shape of the detected object is defined as "canonical model" which is the correspoding shape of the object in the canonical frame. 
-Therfore, the canonical model will be utilised as reference model for all the subsequent frames. From this approach there will be progressing adjustment on on the canonical model and frames, as more data is acquired.
-With the new refinements each point in the canonical frame, the point clouds will be transformed and updated to the new location in real time based on the received data.
+The principal focal point of the 3D data reconstruction feature of \textit{Dynamic Fusion}  is that it will look for a solution for the volumetric flow based on the gathered data.
+As mentioned by \Citet*{newcombe_fox_seitz_2015} there will be a transformation of the state of the scene at each time interval to a fixed canonical frame.
+The created canonical frame is described as the initial frame that is obtained from the non-rigid object that has been detected and tracked. The shape of the detected object is defined as "canonical model" which is the corresponding shape of the object in the canonical frame. 
+Therefore, the canonical model will be utilised as a reference model for all the subsequent frames. From this approach, there will be progressing adjustment on the canonical model and frames, as more data is acquired.
+With the new refinements each point in the canonical frame, the point clouds will be transformed and updated to the new location in real-time based on the received data.
 
-The data acquired from sensors that includes RGB and Depth images will help to determine the warp parameters. Based on the determined warp parameters the volumetric flow field can be estipulated.
+The data acquired from sensors that include RGB and Depth images will help to determine the warp parameters. Based on the determined warp parameters the volumetric flow field can be stipulated.
 The state of the wrap field W\textsubscript{t} is defined as a function of time. It is modelled by the values of a set of \textit{"n"} deformation nodes, which are described as the points or pixels in the actual image.
 The image below describes the process in which the canonical model and frame are determined based on the initial frame and depth data. 
 \begin{figure}{}%this figure will be at the right
@@ -192,20 +193,20 @@ The image below describes the process in which the canonical model and frame are
 The State of the warp field W\textsubscript{t} can be modelled with the below equation.
 \[N_{warp}^t=\{dg_v,dg_w,dg_{se3}\}t\]
 \begin{itemize}[label =]
-    \item $dg_{v}$: is described as the 3D position of each node in the canonical frame. 
-    \item $dg_{se3}$: is the Special Euclidian transformation where $T_{ic}=dg_{se3} ^ {i}$ is the rigid transformation for every node $i$.
-    \item $dg_{w}$: It controls the extend impact of the deformation around each node.
+  \item $dg_{v}$: is described as the 3D position of each node in the canonical frame. 
+  \item $dg_{se3}$: is the Special Euclidian transformation where $T_{ic}=dg_{se3} ^ {i}$ is the rigid transformation for every node $i$.
+  \item $dg_{w}$: It controls the extended impact of the deformation around each node.
 \end{itemize}
 
-The current set of point clouds will be stored  as a "polygon mesh" with the normal pair of points within the canonical frame and allow to calculate the warp field parameters. 
-The principle will allow effective surface reconstruction as suggested by \Citet*{slavcheva_baust_ilic_2018} as once the warp field parameters are obtained, surface recontruction can be modelled with a principle of marching cubes.
+The current set of point clouds will be stored as a "polygon mesh" with the normal pair of points within the canonical frame and allow to calculate the warp field parameters. 
+The principle will allow effective surface reconstruction as suggested by \Citet*{slavcheva_baust_ilic_2018} as once the warp field parameters are obtained, surface reconstruction can be modelled with a principle of marching cubes.
 This process will be followed by a rasterization rendering pipeline of the Acquired Point cloud values \Citep*{newcombe_fox_seitz_2015}.
 
-The patterns from the figure \ref{fig:patterns} illustrate the triangulated cubes for the 15 basic patterns used in marching cubes for surface recontruction.
-These patterns are able to reconstruct all  256 possible solutions using rotational and  complementary symmetry as suggested by \Citet*{fang_zhao_wen_zhang_2018}.
-Once the canonical model and frame can be modelled with the warp field parameters based from the intial raw depth image maos ad data frame, the tracking nodes will be created.
-Based on this it is possible to obtain the canonical frame warp parameters which  are estimated based on this process. 
-As soon as the canonical model is constructed, the life frame will be warp around it based on the warp parameters. As a result the model will be 3D reconstructed model will be succesfully created and normalized.
+The patterns from the figure \ref{fig:patterns} illustrate the triangulated cubes for the 15 basic patterns used in marching cubes for surface reconstruction.
+These patterns can reconstruct all  256 possible solutions using rotational and complementary symmetry as suggested by \Citet*{fang_zhao_wen_zhang_2018}.
+Once the canonical model and frame can be modelled with the warp field parameters based on the initial raw depth image maps and data frame, the tracking nodes will be created.
+Based on this it is possible to obtain the canonical frame warp parameters which are estimated based on this process. 
+As soon as the canonical model is constructed, the life frame will be warp around it based on the warp parameters. As a result, the model will be 3D reconstructed model will be successfully created and normalized.
 \begin{figure} %this figure will be at the right
     \centering
     \includegraphics[width=0.4\textwidth]{shapes.png}
@@ -217,17 +218,18 @@ As soon as the canonical model is constructed, the life frame will be warp aroun
 
 \section{SurfelWarp}
 SurfelWarp is defined as "Efficient Non-Volumetric Single View Dynamic Reconstruction. It will present a standard graphics pipeline and GPGPU computing can be utilised for efficient 
-implementation of all data recontruction operations \Citep*{SurfelWarp}. It eliminates the use of volumetric data structures, which represent resouce intensive volumetric operations such as dense deformation field updates, volumetric fusion and marching cubes.
-This represents a significant performance improvement as the explicit surfel representation allow to directly recover from tracknig failures or topology changes as proposed by \citeauthor*{SurfelWarp}.
+implementation of all data reconstruction operations \Citep*{SurfelWarp}. It eliminates the use of volumetric data structures, which represent resource-intensive volumetric operations such as dense deformation field updates, volumetric fusion, and marching cubes.
+This represents a significant performance improvement as the explicit surfel representation allow to directly recover from tracking failures or topology changes as proposed by \citeauthor*{SurfelWarp}.
 
 \subsection{Overview}
 As illustrated in figure \ref{fig:surfelmetho}, SurfelWarp is built in a frame by frame methodology to process an input depth stream data source. 
 When a new depth image is received, the deformation field that is aligned to the reference frame geometry will be solved. 
-This is calculated by startting the deformation field from the previous image, which is followed by an iterative optimization problem similar to \Citet*{newcombe_fox_seitz_2015}.
-Once the deformation field is update, the data fusion process is carried out. This will trigger an accumulative process to fuse the current depth observations into a geometrical representation. 
+This is calculated by starting the deformation field from the previous image, which is followed by an iterative optimization problem similar to \Citet*{newcombe_fox_seitz_2015}.
+Once the deformation field is updated, the data fusion process is carried out. This will trigger an accumulative process to fuse the current depth observations into a geometrical representation. 
 
 The deformation field $ W = \{[p_j \in R^{3},\sigma_{j} \in R^{+} ,T_j \in SE(3)]\}$ where j is the node index, $p_j$ is the position of the $j^{th}$ node. $\sigma_j$ is the radius parameter, $T_j$ is the 6DoF transformation.
 For any point in "x" the deformation can be interpolated by equation \ref{eq:deffield1}
+
 
 \newpage
 \begin{figure}%this figure will be at the right
@@ -248,7 +250,7 @@ From equation \ref{eq:deffield1} the following components can be described:
   \item $W_{k}(x)$:  is the weight that can be computed as $\exp{(-\frac{\ | {x-p_k} \ |^{2}_2 }{2\sigma^{2}_k})}$
 \end{itemize}
 
-A surfel $S$ could is described as the tuple composed in which the following components can be modelled :
+A surfel $S$ could be described as the composed tuple in which the following components can be modelled:
 \begin{itemize}
   \item position : $v \in R^3$ 
   \item  normal  : $n \in R^3$
@@ -257,8 +259,8 @@ A surfel $S$ could is described as the tuple composed in which the following com
   \item initilization time : $t_{init} \in N$
   \item most recent time : $t_{observed} \in N$ 
 \end{itemize}
-Therefore a surfel can be illustratedby the deformatin of field $W$ in equation \ref{eq:deffield1} \citep{SurfelWarp}.
-Furthermore the deformed vertex position  and normal can be modelled with the following equations:
+Therefore, a surfel can be illustrated by the deformation of field $W$ in equation \ref{eq:deffield1} \citep{SurfelWarp}.
+Furthermore, the deformed vertex position  and normal can be modelled with the following equations:
 \begin{equation}
   v_{life}=W(v_{ref})v_{ref}
   \label{eq:deformed vertex}
@@ -273,9 +275,9 @@ Whereas $v_{ref}$ and $n_{ref}$ correspond to the vertex position and normal bef
 
 
 \subsection{Depth Map Fusion \& Warp Fiel Update}
-In order to get the warp fiel estimate, it is neccesary to perform a mathematical prediction of the visibility of the live surfels models $S_{life}$ with the proposed method of \Citet*{newcombe_fox_seitz_2015}
-to cast the deformation estimation into a optimization problem.
-The estimation process is performed by predicting the visibility of the life surfels $S_{life}$.
+In order to get the warp field estimate, it is necessary to perform a mathematical prediction of the visibility of the live surfels models $S_{life}$ with the proposed method of \Citet*{newcombe_fox_seitz_2015}
+to cast the deformation estimation into an optimization problem.
+The estimation process is performed by predicting the visibility of life surfels $S_{life}$.
 \begin{figure}[h]%this figure will be at the right
   \centering
   \includegraphics[width=0.9\textwidth]{surfelwarp2.png}
@@ -285,15 +287,16 @@ The estimation process is performed by predicting the visibility of the life sur
 
 Similarly, to the approach of \citet{keller} the life surfels $S_{life}$  are rendered as an overlaped disk shaped surface splat. These shapes are spanned by the position $V_{life}$ 
 ,normal $n_{life}$ and radius $r_{life}$ of the live surfel $s_{life}$.
-With all these parameters it is possible to model the warp fiel based on the Dynamic Fusion framework proposed by \citet*{newcombe_fox_seitz_2015}.
+With all these parameters it is possible to model the warp field based on the Dynamic Fusion framework proposed by \citet*{newcombe_fox_seitz_2015}.
 
 Once the deformation is solved, the depth map fusion obtained from sensors along with the warp field update will perform data fusion in the live frame. 
-This live frame  warps the live surfel back to the starting reference frame. Afterwards the warp field is recurrently updated based on the new observed surfels reference. This process can be exemplified with image \ref{fig:surfelprocess} .
+This live frame warps the live surfel back to the starting reference frame. Afterwards, the warp field is recurrently updated based on the new observed surfels reference. This process can be exemplified with image \ref{fig:surfelprocess}.
 
 \chapter{Methodology}
-As mentioned in the initial section, this project is focused on an engineering design. Hence, it will be focused on creating a prototype for a 3D scanner. 
-This include the hardware and the software for the 3D model reconstruction, from which this section will be focused on the 3D model data reconstruction of the project.
+As mentioned in the initial section, this project is focused on engineering design. Hence, it will be focused on creating a prototype for a 3D scanner. 
+This includes the hardware and the software for the 3D model reconstruction, from which this section will be focused on the 3D model data reconstruction of the project.
 The methodology will be divided into 3 sections that include: 
+
 
 \begin{itemize}
   \item Data Acquisition
@@ -303,10 +306,10 @@ The methodology will be divided into 3 sections that include:
 
 
 \section{Data Acquisition}
-As mentioned above the project can be described as en engineering deging problem, whereby this approach includes the 3D software reconstruction model components for a 3D scanner. 
-This includes in gathering sensor data from the model that will be scanned. Many of the possible ways to gather data can be perform with comercially availible sensors as proposed by \citet*{article}.
+As mentioned above the project can be described as an engineering design problem, whereby this approach includes the 3D software reconstruction model components for a 3D scanner. 
+This includes gathering sensor data from the model that will be scanned. Many of the possible ways to gather data can be performed with commercially available sensors as proposed by \citet*{article}.
 
-\citet{3D_scann_cultural} mentions that many 3D software reconstruction frameworks similar to Dynamic or SurfelWarp use comercially availible sensors.
+\citet{3D_scann_cultural} mentions that many 3D software reconstruction frameworks similar to Dynamic or SurfelWarp use commercially available sensors.
 One of the most common approach to get data for 3D scanning will be to use RGB-D cameras. The proposed sensor that will be used for data acquisition is the 
 \textbf{"Intel RealSense D435i"}. This Sensor is an depth camera with a stereo solutoin which is used in a wide variety of applications which include: 
 \begin{itemize}
@@ -326,11 +329,11 @@ Therefore, making this camera ideal for this project application.
   \label{fig:d435i}
 \end{figure}
 
-This model of camera has a propietary software development library and SDK which is used to interactuate with the computer. This SDK will allow to calibrate the camera and 
-obtain certain calibration parameters that will be used for data acquision. 
-Furthermore there is a software wrapper that will allow to connect with ROS (Robot Operating System). This ros wrapper will allow to interaction between the middleware, which is ROS, the camera and the compouter. 
-With aid of this wrapper it is possible to integrate all the components of ROS and the camera. 
-One of the benefits of using ROS is that it allows to record certain set of data based on the information that is being  acquired by the sensor. 
+This model of camera has a proprietary software development library and SDK which is used to interact with the computer. This SDK will allow calibrating the camera and 
+obtain certain calibration parameters that will be used for data acquisition. 
+Furthermore, there is a software wrapper that will allow connecting with ROS (Robot Operating System). This ROS wrapper will allow interacting between the middleware, which is ROS, the camera, and the computer. 
+With aid of this wrapper, it is possible to integrate all the components of ROS and the camera. 
+One of the benefits of using ROS is that it allows recording a certain set of data based on the information that is being acquired by the sensor. 
 The wrapper will start the camera based on different configuration and it will publish data both RGB and depth images in the following topics:
 
 \begin{itemize}
@@ -351,27 +354,27 @@ The wrapper will start the camera based on different configuration and it will p
   \item /camera/accel/sample
   \item /diagnostics
 \end{itemize}
-The above topics will contain all the data that the sensors perceive in real time. As it can be seen from the above list, there will be data for the RGB, Depth sensors, Infrared sensors, IMU as well as all the extrinsics and status of the camera parameters. 
-Furthermore, all this data will be process with different formats such as raw or compressed. Based on the data perceived from these topics, it will be possible to create 3D point clouds in realtime and run 3D data reconstruction frameworks such as Surfelwarp as the sensors acquire and perceive the environment. 
+The above topics will contain all the data that the sensors perceive in real-time. As can be seen from the above list, there will be data for the RGB, Depth sensors, Infrared sensors, IMU as well as all the extrinsic and status of the camera parameters. 
+Furthermore, all this data will be processed with different formats such as raw or compressed. Based on the data perceived from these topics, it will be possible to create 3D point clouds in realtime and run 3D data reconstruction frameworks such as Surfelwarp as the sensors acquire and perceive the environment. 
 
-On the other side, ROS allows to record data from the above topics. From the above topics it is possible to record the data messages as a "rosbag" or "bag", which is a file format in ROS for storing message data. Hence it will allow to record the data that the camera is sensing. 
-Furthermore, these bags allow to susbcribe to specific topics, which implied that only the required topics will be stored for 3D data recontruction, and storing the received messages data in an efficient file structure. 
-The data acquisition process for the development phase will be perform by storing several rosbags, to be used in the development phase of the 3D recontruction for the scanner.
+On the other side, ROS allows to record data from the above topics. From the above topics, it is possible to record the data messages as a "rosbag" or "bag", which is a file format in ROS for storing message data. Hence it will allow recording the data that the camera is sensing. 
+Furthermore, these bags allow subscribing to specific topics, which implied that only the required topics will be stored for 3D data reconstruction and storing the data of the received message in an efficient file structure. 
+The data acquisition process for the development phase will be performed by storing several rosbags, to be used in the development phase of the 3D reconstruction for the scanner.
 
 \section{Conceptual Design}
-The conceptual design will be focused on the  development of the 3D software recontruction for a 3D scanner. 
-The Intial design will be to test with the field of view of the Intel RealSense D435i for both RGB image and Depth image sensors. From which for the Field of view (H × V × D) of the RGB corresponds to 69.4° × 42.5° × 77° (±3°),
-whereas depth of the field of view for the Depth sensor corresponds to 86° × 57° (±3°)\citep*{intelrealsense}.
+The conceptual design will be focused on the development of the 3D software reconstruction for a 3D scanner. 
+The Initial design will be to test with the field of view of the Intel RealSense D435i for both RGB image and Depth image sensors. From which for the Field of view (H × V × D) of the RGB corresponds to 69.4° × 42.5° × 77° (±3°),
+whereas the depth of the field of view for the Depth sensor corresponds to 86° × 57° (±3°)\citep*{intelrealsense}.
 
-Based on this results there will be a testing phase, which involves on evaluating what is the ideal configuration for the Camera. The ideal configuration will be based on in which pose the sensor will be able to obtain the most accurate and useful data. 
-Hence a manequin will be used for this testing purpose from which the ideal pose for the sensor will be determined. 
+Based on these results there will be a testing phase, which involves evaluating what is the ideal configuration for the Camera. The ideal configuration will be based on which pose the sensor will be able to obtain the most accurate and useful data. 
+Hence a mannequin will be used for this testing purpose from which the ideal pose for the sensor will be determined. 
 \enlargethispage{\baselineskip}
 
-Once the ideal pose for the sensor is found, there will be the need to evaluate and test which is the fastes and most accurate way to obtain data of the model.All the testing purpose will perfomed by recording several rosbags and visualise them .
-This has the intent to find the ideal location and number of all sensors that will be able to scan all the model. With this method iw will be possible to determine the speed and realiability of the Scanning process. 
+Once the ideal pose for the sensor is found, there will be the need to evaluate and test which is the fastest and most accurate way to obtain data of the model. All the testing purpose will be performed by recording several rosbags and visualise them.
+This has the intent to find the ideal location and number of all sensors that will be able to scan all the model. With this method, it will be possible to determine the speed and reliability of the Scanning process. 
 Based results of this it will be possible to determine a prototype for the mechatronic design of the scanner as well as the methodology of how to fuse the data and run the 3D reconstruction framework. 
 
-The Design implementation of the 3D reconstruction software will be to adapt and adjust the 3D modelling data recontruction frameworks. Hence, it includes on developing the correspoding ROS nodes that will allow to use the data from multiple sensors and fuse it. 
+The Design implementation of the 3D reconstruction software will be to adapt and adjust the 3D modelling data reconstruction frameworks. Hence, it includes developing the corresponding ROS nodes that will allow to use the data from multiple sensors and fuse it. 
 With the fuse data, the intent is to run the 3D reconstruction framework which will output the Scanned model. 
 
 Once the process of generating the 3D scanned model is stable. The software will be ported to a small machine such as the Intel NUC, which is a small form factor computer. 
@@ -385,48 +388,48 @@ The software will be installed into the Intel NUC with the purpose to be incorpo
 
 
 \chapter{Project Management}
-This section will provide  guidelines and illustrate the management procedures that will be implemented into the feasibility and development of the software reconstruction for a 3D Scanner. 
-It provides a projected timeline for deliveries and identifies  specific methodologies implemented for the execution of the project from the beginning to the competition of all tasks.
-The project plan will be updated throughout the  development of the project in order to reflect deliverables that may be affected by potential shortfalls.
-In order to prevent this it will be necessary to circumvent any affected task and resolve it in an adequate timely manner. 
-This will be a collaborative project, that involves creating the hardware device that will allow to place the sensors, the 3D data reconstruction of the Model, and the post utilization of the model for different uses such as testing virtual clothes. 
-As the agreed allocated task was the 3D data recontruction this section and document will be focused on the 3D software for data recontruction.
+This section will provide guidelines and illustrate the management procedures that will be implemented into the feasibility and development of the software reconstruction for a 3D Scanner. 
+It provides a projected timeline for deliveries and identifies specific methodologies implemented for the execution of the project from the beginning to the competition of all tasks.
+The project plan will be updated throughout the development of the project to reflect deliverables that may be affected by potential shortfalls.
+In order to prevent this, it will be necessary to circumvent any affected task and resolve it in an adequate timely manner. 
+This will be a collaborative project, that involves creating the hardware device that will allow placing the sensors, the 3D data reconstruction of the Model, and the post utilization of the model for different uses such as testing virtual clothes. 
+As the agreed allocated task was the 3D data reconstruction this section and document will be focused on the 3D software for data reconstruction.
 
 \section{Scope}
-There are multiple ways in which a 3D scanner is defined. Many connotations include of creating the actual hardware of the device or how is software going to be developed in order to create a 3D model. 
+There are multiple ways in which a 3D scanner is defined. Many connotations include creating the actual hardware of the device or how is the software going to be developed to create a 3D model. 
 Based on this, the scope of this project component is to develop and deploy the software for 3D reconstruction of a scanning device as it was previously mentioned. 
 The software will retrieve data from multiple sensors and cameras to then perform data fusion and create a 3D representation of the model that is scanned. Whereas the other components of the collaborative task will include the device creation as well as different applications for the obtained models. 
 
-The allocated 3D reconstruction part  will include two phases to approach the engineering design problem that is targeted. 
+The allocated 3D reconstruction part will include two phases to approach the engineering design problem that is targeted. 
 The initial phase will be focused on gathering data from a wide variety of sensors that include RGB and Depth Cameras and test which is the most effective way to collect data of the model. 
-The second phase will be to develop a framework and methodology to fuse the acquired data from the sensors in order to create a 3D model representation of an object, which in this particular case will be a person. 
-The project will span for over 35 weeks inclusive of Spring 2020 , Summer Break 2021 and Autumn Session 2020 UTS academic semesters. This will include working with various teams that are in charge of the development of the hardware prototype as well as the uses of the model. The subsequent details are located in the sections below. 
+The second phase will be to develop a framework and methodology to fuse the acquired data from the sensors to create a 3D model representation of an object, which in this particular case will be a person. 
+The project will span for over 35 weeks inclusive of Spring 2020, Summer Break 2021, and Autumn Session 2020 UTS academic semesters. This will include working with various teams that oversee the development of the hardware prototype as well as the uses of the model. The subsequent details are located in the sections below. 
 
 \subsection{Project Specifications}
-It is important to outline all the specifications of the project in order to ensure, that the design  will satisfy the purpose and it matches the scope of the project. As this is collaborative project, the other team member will need to elaborate their corresponding details for their allocated sections. 
-All of this will be reflected on the Work Breakdown Structure and Gantt Chart, however the details for the 3D data model reconstruction will be explained below.  
+It is important to outline all the specifications of the project in order to ensure, that the design will satisfy the purpose and it matches the scope of the project. As this is a collaborative project, the other team member will need to elaborate their corresponding details for their allocated sections. 
+All of this will be reflected on the Work Breakdown Structure and Gantt Chart, however, the details for the 3D data model reconstruction will be explained below.  
 
 \subsubsection{Sensing \& Data Acquisition}
 There are multiple ways to achieve data acquisition that will satisfy the project. The proposed way would be to use sensors, especially, RGB and Depth Image Cameras
 The sensors should be able to provide with the following:
 \begin{itemize}
   \item RGB  Colour images of the object or model
-  \item Provide Depth images in order to get Distance for every point in the image
+  \item Provide Depth images  to get Distance for every point in the image
   \item Have a large enough field of view that could fit the entire object or model
 \end{itemize}
-The data acquired from this sensors should be reliable in order to ensure the fidelity of  the final 3D reconstructed model. This data sensors will be converted to Point clouds via data fusion, where each point in the model will be mapped. Hence creating a 3D reconstruction model where its corresponding location in space is known. 
-Therefore the proposed sensor that will be used will be the Intel RealSense D435i. From which the SDK and ROS wrapper will allow to obtain the data and facilitate the process. 
+The data acquired from these sensors should be reliable to ensure the fidelity of the final 3D reconstructed model. These data sensors will be converted to Point clouds via data fusion, where each point in the model will be mapped. Hence creating a 3D reconstruction model where its corresponding location in space is known. 
+Therefore, the proposed sensor that will be used will be the Intel RealSense D435i. From which the SDK and ROS wrapper will allow to obtain the data and facilitate the process. 
 
 \subsubsection{Data Fusion \& Timing}
-Once the data is acquired from the sensors it will be required to  fuse the data in order to be able to create the model.
-The Data fusion is proposed to be perform in Realtime as the objects are scanned. This data fusion process will be perform by processing the data from multiple sensors and running them to a 3D recontruction framework such as SurfelWarp. 
+Once the data is acquired from the sensors it will be required to fuse the data to be able to create the model.
+ Data fusion is proposed to be performed in Realtime as the objects are scanned. This data fusion process will be performed by processing the data from multiple sensors and running them to a 3D reconstruction framework such as SurfelWarp. 
 Thus, creating a visualization preview of the object or person scanned. 
 
 On the other hand, the timing would be critical, as in most application the scanning time should not take more than a couple of minutes that could vary from 2 to 5 minutes.
-Therefore, ideally the 3D reconstructed model from the scan  should finalize within that time frame.
+Therefore, ideally, the 3D reconstructed model from the scan should finalize within that time frame.
 
 \subsection{Project Overview \& Deliverables}
-The project overview can be exemplified in fugure \ref{fig:ConstrainedWBS} and it is associated with all the possible deliverables for the project
+The project overview can be exemplified in figure \ref{fig:ConstrainedWBS} and it is associated with all the possible deliverables for the project
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{ConstrainedWBS.png}
@@ -434,10 +437,10 @@ The project overview can be exemplified in fugure \ref{fig:ConstrainedWBS} and i
   \label{fig:ConstrainedWBS}
 \end{figure}
 
-Furthermore, it is imperative to demonstrate and illustrate the entire work break down structure of the project. This will include other sections and components such as: 
+Furthermore, it is imperative to demonstrate and illustrate the entire work break down the structure of the project. This will include other sections and components such as: 
 \begin{itemize}
   \item Developing the hardware device to do the scanning methodology. 
-  \item Integrating the sensors for data acquisition and 3D reconstruction for model.
+  \item Integrating the sensors for data acquisition and 3D reconstruction for the model.
   \item Uses the model for different applications. 
 \end{itemize}
 
@@ -451,9 +454,9 @@ The details will be located in the appendix on figure \ref{appendix:wbx}
   \label{Fig::timeline}
 \end{wrapfigure}
 
-The timeline shown in figure \ref{Fig::timeline} depicts the problem solving approach that is proposed in order to fully complete the optimum deliverable for the project. 
-The below image summarises and synthesis the process in a waterfall approach. As there has to be a certain number of deliverables that needs to be accounted for an agile approach would not satisfy the needs of the individual components. 
-Once most components are developed with the waterfall approach, an agile methodology will be necessary in order to integrate all the other components of the project.
+ThThe timeline is shown in figure \ref{Fig::timeline} depicts the problem-solving approach that is proposed in order to fully complete the optimum deliverable for the project. 
+The below image summarises and synthesis the process in a waterfall approach. As there must be a certain number of deliverables that needs to be accounted for an agile approach would not satisfy the needs of the individual components. 
+Once most components are developed with the waterfall approach, an agile methodology will be necessary to integrate all the other components of the project.
 
 These include:
 \begin{itemize}
@@ -462,22 +465,20 @@ These include:
   \item Uses and applications of 3D model
 \end{itemize}
 
-  
-The proposed timeline from start to  finish for the proposed project  will be approximately  35 weeks. Including both UTS academic semester (Spring 2020 \& Autumn 2021) and the corresponding university summer break holiday.
+The proposed timeline from start to finish for the proposed project will be approximately  35 weeks. Including both UTS academic semester (Spring 2020 \& Autumn 2021) and the corresponding university summer break holiday.
 All the detailed tasks and proposed deadlines are located in the Gantt Chart, located in the appendix.
-The proposed plan is inclusive of contingency scenarios as extra allocated days are added for different tasks. Any potential date changes will be updated accordingly in the plan, in order to keep the project completion as accurate as possible for the 3D reconstruction component.  
-
-
+The proposed plan is inclusive of contingency scenarios as extra allocated days are added for different tasks. Any potential date changes will be updated accordingly in the plan,  to keep the project completion as accurate as possible for the 3D reconstruction component.  
 
 \section{Progress \& Milestones}
-It is imperative for any project to identify and define particular milestones for the project. 
-Once the milestones are identified , they can be properly analysed in order to establish the corresponding requirements, processing, development and execution. 
-After all these parameters have been established a corresponding timeline could be proposed. All these milestones will be considered  for the 3D model reconstruction component. 
+Any project must identify and define particular milestones for the project. 
+Once the milestones are identified, they can be properly analysed to establish the corresponding requirements, processing, development and execution. 
+After all these parameters have been established a corresponding timeline could be proposed. All these milestones will be considered for the 3D model reconstruction component. 
 
 This project component includes two particular and independent phases. 
 Phase one will include the design proposal and data acquisition and processing, whereas phase two will focus on data fusion and 3D model data reconstruction.  
 These phases could be subdivided five into smaller interdependent subprocesses that would contribute to the corresponding milestones that are part of the project deliverables. 
 Thus, a holistic approach should be implemented with a waterfall implementation. The five major work areas include:
+
 \begin{itemize}
   \item Research and Conceptualization
   \item Testing 
@@ -486,37 +487,37 @@ Thus, a holistic approach should be implemented with a waterfall implementation.
   \item Documentation
 \end{itemize}
 
-The section below will delve into a deeper details of each project and illustrate the major milestones within itself. All do this will be illustrated for the 3D data model reconstruction component. 
-All the other details for the other components are located in the work breakdown structure located in the appendix C. 
+The section below will delve into deeper detail of each project and illustrate the major milestones within itself. All do this will be illustrated for the 3D data model reconstruction component. 
+All the other details for the other components are located in the work breakdown structure located in the appendix in figure \ref{}. 
 
 \subsection{Milestones and Stages}
-\subsubsection{	Stage 1: Research and Conceptualization }
+\subsubsection{ Stage 1: Research and Conceptualization }
 The research component of this project will rely on exploring different robotics parameters and 3D data modelling reconstruction. 
-The corresponding limitations will be  analysed via research into different 3D reconstruction techniques that have been developed and what are the current developments in this 3D scanning field. 
-The already existing solutions will aid to conceptualise the project to ensure optimal functionality that will produce accurate 3D scanned model of persons or objects
-Potential solutions of software implementation will be investigated in detail in order to grasp the different algorithms basics and how they behave in different scenarios. 
+The corresponding limitations will be analysed via research into different 3D reconstruction techniques that have been developed and what are the current developments in this 3D scanning field. 
+The already existing solutions will aid to conceptualise the project to ensure optimal functionality that will produce an accurate 3D scanned model of persons or objects
+Potential solutions for software implementation will be investigated in detail to grasp the basics of the different algorithm and how they behave in different scenarios. 
 
-Furthermore, different kind of sensors will be investigated in order to use the most appropriate equipment to grasp the data. Different fata fusion frameworks will analysed in order to make a collection of them in order to develop the data reconstruction prototype. 
+Furthermore, different kind of sensors will be investigated to use the most appropriate equipment to grasp the data. Different data fusion frameworks will be analysed to make a collection of them in order to develop the data reconstruction prototype. 
 
 A recommendation will be made to the supervisor and team regarding optimal sensors that could be implemented and what type of data reconstruction could be utilised. 
 \enlargethispage{\baselineskip}
 
 \subsubsection{Stage 2: Testing}
-The testing phase for the 3D reconstruction component will be based on testing the different features and component that the d435i has availible. The corresponding included SDK’s will be used to see the camera parameters and different ways to grasp the Data. 
-Furthermore, different tools will be tested with the purpose of meshing raw data in order to test the reliability of the acquired data. 
-On the other side, the meshing components will allow to grasp the idea of how different techniques allow to do model meshing under different circumstances for the 3D data reconstruction framework. 
+The testing phase for the 3D reconstruction component will be based on testing the different features and component that the d435i has available. The corresponding included SDK’s will be used to see the camera parameters and different ways to grasp the Data. 
+Furthermore, different tools will be tested to mesh raw data to test the reliability of the acquired data. 
+On the other side, the meshing components will allow grasping the idea of how different techniques allow doing model meshing under different circumstances for the 3D data reconstruction framework. 
 
 \subsubsection{Stage 3: Development}
 
-The development phase will consist in developing and adapt a framework for Data fusion. The data will be provided with the sensor that were chosen from the previous stage. 
+The development phase will consist of developing and adopting a framework for Data fusion. The data will be provided with the sensor that was chosen from the previous stage. 
 The results obtained will allow to fuse all the data from all the components from the different sensors and visualise them into a single output.
 
-Furthermore, there will be the development of the ROS nodes that will allow to collect the data in real time that will be pass onto the data fusion framework.
+Furthermore, there will be the development of the ROS nodes that will allow collecting the data in real-time that will be pass onto the data fusion framework.
 The ROS nodes will allow to properly map all the sensors and allow them to work simultaneously. Additionally, there will be the development and corresponding test for Body tracking of the scanned models and to convert the data from the sensors into Point clouds. 
 These point clouds will be tested for accuracy of the Scanned data in the visualised model. 
 
-From this acquired and processed point clouds a methodology will be develop to work in conjunction with the Data fusion framework to visualise the final model. 
-All these processes will be tested under different conditions in order to ensure that it will work under most circumstances and will allow a much easier deployment process. 
+From this acquired and processed point clouds a methodology will be developed to work in conjunction with the Data fusion framework to visualise the final model. 
+All these processes will be tested under different conditions to ensure that it will work under most circumstances and will allow a much easier deployment process. 
 
 \subsubsection{Stage 4: Deployment}
 The deployment phase will be subdivided into two main tasks. The initial one  consists of the deployment of all the sensors that will be utilised for data acquisition. 
@@ -527,29 +528,38 @@ Similarly there will be the deployment of the software tools that include the RO
 All of this components will be deployed into the final device that is part of the hardware team. 
 
 \subsubsection{Documentation}
+\subsubsection{Stage 4: Deployment}
+The deployment phase will be subdivided into two main tasks. The initial one consists of the deployment of all the sensors that will be utilised for data acquisition. 
+This will include deploying and installing the sensors into the actual hardware device that will be used. 
+These Sensors will be mounted and interconnected between then for enhanced sensing. This will be worked in conjunction with the hardware team. 
+
+Similarly, there will be the deployment of the software tools that include the ROS nodes, Data fusion Framework and Model visualization methodology. 
+All these components will be deployed into the final device that is part of the hardware team. 
+
+\subsubsection{Documentation}
 The documentation process is one of the crucial components of this project. 
-Especially for the 3D data reconstruction component. All the corresponding stages of the research, testing, development and deployment will have their proper documentation with a high level of detail. 
+Especially for the 3D data reconstruction component. All the corresponding stages of the research, testing, development, and deployment will have their proper documentation with a high level of detail. 
 There will be the corresponding documentation regarding the background research of the project. 
 It will include all the necessary research, use to determining the scope of the project and what are the current solutions for it. 
 
-Similarly, the documentation for all the sensor data visualization will  include what type of sensor was used. It’s characteristics, and what SDKs and libraries were used. 
+Similarly, the documentation for all the sensor data visualization will include what type of sensor was used. It is characteristics, and what SDKs and libraries were used. 
 The corresponding method of visualising the data will be documented as well as all the commands necessary for its use. 
 Furthermore, all the necessary diagrams for connections and set up will be fully documented. As this will help massively the other teams. 
 
-There will be a detailed explanation on how the data acquisition process is carried out and what are the methodologies are used for data fusion. 
-This  with  also include topics such as: what are the best scenarios and circumstances for using the developed technology. 
-Finally there will be the included detailed explanation on how the 3D model is generated. 
-All other content such as risks an limitations will be included as the project is developed
+There will be a detailed explanation of how the data acquisition process is carried out and what are the methodologies are used for data fusion. 
+This also includes topics such as: what are the best scenarios and circumstances for using the developed technology. 
+Finally, there will be the included detailed explanation of how the 3D model is generated. 
+All other content such as risks a limitation will be included as the project is developed.
 
 \subsection{Gantt Chart}
-Please refer to Appendix, figure , to visualise the Gantt Chart. The proposed Gantt Chart  provides a detailed timeline, that includes dates and duration for each milestone. 
-It will include milestones that are part of the hardware team and the use case team. Therefore it will include all the proposed milestones for the entire project. 
-It is important to know that the proposed timeline and dates might change, especially the ones that belong the other teams (hardware and use case). 
+Please refer to Appendix, figure \ref{appendix::gant}, to visualise the Gantt Chart. The proposed Gantt Chart provides a detailed timeline, that includes dates and duration for each milestone. 
+It will include milestones that are part of the hardware team and the use case team. Therefore, it will include all the proposed milestones for the entire project. 
+It is important to know that the proposed timeline and dates might change, especially the ones that belong to the other teams (hardware and use case). 
 
 It is crucial to note the following:
 \begin{itemize}
-  \item The work schedule and load differ between each academic semester. Thus extra time was added to counteract this effect.
-  \item The finalisation date and showcase was planned for the last week of the Autumn 2021 semester. 
+  \item The work schedule and load differ between each academic semester. Thus, extra time was added to counteract this effect.
+  \item The finalisation date and showcase were planned for the last week of the Autumn 2021 semester. 
   \item There is a continuation of work through the UTS summer break with the purpose of maximising efficiency. This is reflected on the Gant Chart.
 \end{itemize}
 
@@ -558,41 +568,41 @@ Resource planning is essential for any successful project.
 Different steps and different teams will require different resources and support. For this project, the principal resources can be split into human and technical. 
 
 \subsection{Human Resources}
-As this project is non confidential, it will not have any external relations. Hence, The main people involved in every component are the following:
+As this project is non-confidential, it will not have any external relations. Hence, the main people involved in every component are the following:
 \begin{description}[style=nextline]
-  \item[Academic Supervisor – Dr. Teresa Vidal Calleja] Teresa is the Deputy Head of School (Research), School of Mechanical and Mechatronic Engineering as well as Core Member for CAS - Centre for Autonomous Systems. Her Interest Include Robotic perception, automatic recognition, alternative sensing, visual SLAM, aerial and ground robots cooperation, and autonomous navigation and manipulation.
-  \item[Hardware Component lead – Asher Katz] Asher is the other capstone student of this project. He will be in charge of developing the hardware ad mechanism for the scanning device.
-  \item[Use cases Component Lead – Mark Liu] Mark will be in charge of use case of the project. He will use the 3D scanned models to try out clothing sizes virtually for different fashion items.
+  \item[Academic Supervisor – Dr Teresa Vidal Calleja] Teresa is the Deputy Head of School (Research), School of Mechanical and Mechatronic Engineering as well as Core Member for CAS - Centre for Autonomous Systems. Her Interest Include Robotic perception, automatic recognition, alternative sensing, visual SLAM, aerial and ground robot’s cooperation, and autonomous navigation and manipulation.
+  \item[Hardware Component lead – Asher Katz] Asher is the other capstone student of this project. He will oversee developing the hardware ad mechanism for the scanning device.
+  \item[Use cases Component Lead – Mark Liu] Mark will oversee the use case of the project. He will use the 3D scanned models to try out clothing sizes virtually for different fashion items.
   \item[Cedric Le Gentil] Cedric will help in the process of creating the 3D scanner as well as facilitating the use case to adapt fashion items to the scanned models.
   \item[Nico Pietroni] Nico will be in charge of making the adaptation process between the 3D scanned models to the use case. Where he will develop the software for adding the clothes meshes to the 3D scanned model.
 \end{description}
 
 \subsection{Technical Components }
-The technical components will include all the required sensors and software that will be implemented. The following resources are critical for the development , testing and deployment phases of the project. 
+The technical components will include all the required sensors and software that will be implemented. The following resources are critical for the development, testing and deployment phases of the project. 
 
 \subsubsection{Sensors}
-The proposed sensor that will be used for both testing and development isthe Intel RealSense D435i. This components will need to be purchased in order to start with the project. Is estimated that the price for the D435i is 200 \$ USD
+The proposed sensor that will be used for both testing and development is the Intel RealSense D435i. These components will need to be purchased to start with the project. Is estimated that the price for the D435i is 200 \$ USD
 These sensors are crucial and will need to be imported from the US. 
 
-The corresponding software controllers and SDK for this sensors are available online and would only need to be installed and compiled. 
-Depending on the outcome of the testing phase it will be necessary to determine the number of sensors that would be used. Hence the total overall price for the sensor is not fully establish yet. 
+The corresponding software controllers and SDK for these sensors are available online and would only need to be installed and compiled. 
+Depending on the outcome of the testing phase it will be necessary to determine the number of sensors that would be used. Hence the total overall price for the sensor is not fully established yet. 
 
 \subsubsection{ROS}
-As mentioned previously ROS (Robotic Operating System) is a robotics middleware. It provides with the necessary services that are designed for computer cluster that include : 
+As mentioned previously ROS (Robotic Operating System) is a robotics middleware. It provides with the necessary services that are designed for a computer cluster that includes : 
 \begin{itemize}
   \item Hardware abstraction
-  \item Low Level device control
+  \item Low-Level device control
   \item Synchronization for multiple sensors
-  \item Real time data acquisition of recording for sensors
-  \item Sensor Data visualization in real time.
+  \item Real-time data acquisition of recording for sensors
+  \item Sensor Data visualization in real-time.
 \end{itemize}
 
-ROS is free and can be installed easily in a Linux machine. All of the proposed sensors have the corresponding ROS driver that will allow to connect the sensors with ROS with ease. 
-This middleware will allow to collect, synchronise and initialise all the sensors. As well as visualise all the acquired data in real Time. ROS allow an easy implementation of the framework for data fusion and Model reconstruction. 
+ROS is free and can be installed easily in a Linux machine. All the proposed sensors have the corresponding ROS driver that will allow connecting the sensors with ROS with ease. 
+This middleware will allow to collect, synchronise, and initialise all the sensors. As well as visualise all the acquired data in real-time. ROS allows an easy implementation of the framework for data fusion and Model reconstruction. 
 
 \section{Uncertainties \& Risk Control}
-All projects face some particular level of unforeseen risks and uncertainties. Good project planning will consider all possible areas of failure  and introduce mitigation plans to try to control and prevent the consequences.  
-All these uncertainties and risk matrix will be considered only  for the 3D model data reconstruction component. The other components will need to be considered by the responsible respective teams. 
+All projects face some particular level of unforeseen risks and uncertainties. Good project planning will consider all possible areas of failure and introduce mitigation plans to try to control and prevent the consequences.  
+All these uncertainties and risk matrix will be considered only for the 3D model data reconstruction component. The other components will need to be considered by the responsible respective teams. 
 
 \newpage
 The Uncertainties of the project float around the next parameters:
@@ -605,10 +615,10 @@ The Uncertainties of the project float around the next parameters:
   \item How is the use case going to be applied for virtual clothing.
 \end{itemize}
 
-On the other side the risk Matrix will explore all possible identified risks  of the  project. 
+On the other side, the risk Matrix will explore all possible identified risks of the project. 
 There is a severity scale from low to high that will illustrate the potential impact on the project and whether it will hinder the competition of itself.
  Additionally, the likelihood of each risk is analysed to reflect the priority risk mitigation. 
-The risk mitigation table will be located in appendix on table \ref{appendix:risk}. 
+The risk mitigation table will be located in the appendix on table \ref{appendix:risk}. 
 
 \section{Communication Management}
 The predicted communication plan was completed and developed after identifying all key stake holders, participants, communication channels for this endeavour. The major stake holders include:
@@ -618,19 +628,62 @@ The predicted communication plan was completed and developed after identifying a
   \item User case team
   \item Engineering research preparation staff
 \end{itemize}
-As mentioned before the planned proposed time is expected to cover 35 weeks (27/7/2020 -30/6/2021). This include both UTS academic semester as well as UTS summer break. 
-The proposed communication plan will be located in appendix on table \ref{appendix:ComunicationPlan}. 
-
-
+As mentioned before the planned proposed time is expected to cover 35 weeks (27/7/2020 -30/6/2021). This includes both UTS academic semester as well as UTS summer break. 
+The proposed communication plan will be located in the appendix on table \ref{appendix:ComunicationPlan}. 
 
 \chapter{Progress Statement}
+The progress of this project is running accordingly to the plan of the Gantt Chart as reflected in figure \ref{appendix::gant}.
+This section will discuss in detail the findings of all the work that has been done to date.
+This includes researching the type of sensors that could be implemented such as the Intel RealSense D435i. 
+Furthermore, there was a research stage that included to browse several 3D reconstruction frameworks and how these perform. 
+On the other side, it was also necessary to research the components of the underlying frameworks and how it is constructed. Based on this, it was a must to investigate the dependencies 
+are necessary to install these frameworks into the computer in order to start the 3D software reconstruction. 
+Furthermore, all the project planning was developed. This includes creating the communication plan, risk matrix as well as the Gantt Chart and all the methodology that will be implemented on the project. 
 
+On the other side, several tests were performed with the purpose of gathering data of the model. These tests were performed with the purpose to test the different methods in which it was possible to gather data for a model.
+For these tests, a mannequin was used as the test model. Please refer to figure \ref{fig:mane}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{manequin.jpg}
+  \caption{Manequin used for testing}
+  \label{fig:mane}
+\end{figure}
+
+
+From these tests, it was possible to obtain RGB and Depth images, that will allow seeing the Field of view of the sensor. Furthermore, it allowed to see and plan, the potential mechatronic design of the scanner and the number of sensors that could be used in the final design.
+The result of this test was that it was necessary to use a certain number of sensors in different positions in order to obtain as much information and data as possible for the scanned model. 
+
+In contrast, another test was performed with the purpose of gathering data from different positions. Hence, scanning a mannequin from different angles with the purpose of gathering the most data as possible. 
+From these tests, it was possible to obtain the best configuration position for the camera, with the purpose of maximising the Field of View of the RGB and Depth Sensors.
+Furthermore, it allowed obtaining the 3D point clouds of the model in realtime, which allowed to have a preview of the scanned model.  
+
+\newpage
+Based on these tests it was also possible to determine the requires distance that the camera has to be from the model in order to obtain a preliminary radius of the scanner mechatronic design.
+This was done by observing the point clouds and via analysing the Sensor data in realtime. The RGB and Depth images acquire from these sensors can be observed on figures \ref{fig:scanRGB} and \ref{fig:scanDepth} respectively.
 
 \nocite{*}   % all not cited bib entrys are shown in bibliography ...
 \bibliography{resources}
 
 \appendix
 \chapter{Appendix}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth, angle=90]{scan1.png}
+  \caption{RGB sensor data results}
+  \label{fig:scanRGB}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth, angle=90]{scan2.png}
+  \caption{Depth image sensor data resuls}
+  \label{fig:scanDepth}
+\end{figure}
+
+
+
 \begin{table}
   \centering
   \makebox[\textwidth]
@@ -672,7 +725,7 @@ The proposed communication plan will be located in appendix on table \ref{append
     \makebox[\textwidth]
     {\includegraphics[width=0.98\linewidth]{Summary Gantt chart.pdf}   } 
     \caption{Gantt Chart}
-    \label{Fig::gant}
+    \label{appendix::gant}
     \end{figure}   
 \end{landscape}
 \restoregeometry

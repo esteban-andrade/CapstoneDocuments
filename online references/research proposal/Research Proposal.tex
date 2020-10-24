@@ -36,7 +36,8 @@
 \usepackage{blindtext}
 \usepackage{tabularx}
 \usepackage{afterpage}
-
+\usepackage{caption}
+\usepackage{subfig}
 
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
@@ -469,6 +470,7 @@ The proposed timeline from start to finish for the proposed project will be appr
 All the detailed tasks and proposed deadlines are located in the Gantt Chart, located in the appendix.
 The proposed plan is inclusive of contingency scenarios as extra allocated days are added for different tasks. Any potential date changes will be updated accordingly in the plan,  to keep the project completion as accurate as possible for the 3D reconstruction component.  
 
+\newpage
 \section{Progress \& Milestones}
 Any project must identify and define particular milestones for the project. 
 Once the milestones are identified, they can be properly analysed to establish the corresponding requirements, processing, development and execution. 
@@ -477,11 +479,12 @@ After all these parameters have been established a corresponding timeline could 
 This project component includes two particular and independent phases. 
 Phase one will include the design proposal and data acquisition and processing, whereas phase two will focus on data fusion and 3D model data reconstruction.  
 These phases could be subdivided five into smaller interdependent subprocesses that would contribute to the corresponding milestones that are part of the project deliverables. 
-Thus, a holistic approach should be implemented with a waterfall implementation. The five major work areas include:
+Thus, a holistic approach should be implemented with a waterfall implementation. The six major work areas include:
 
 \begin{itemize}
   \item Research and Conceptualization
   \item Testing 
+  \item Evaluation
   \item Development
   \item Deployment 
   \item Documentation
@@ -507,7 +510,28 @@ The testing phase for the 3D reconstruction component will be based on testing t
 Furthermore, different tools will be tested to mesh raw data to test the reliability of the acquired data. 
 On the other side, the meshing components will allow grasping the idea of how different techniques allow doing model meshing under different circumstances for the 3D data reconstruction framework. 
 
-\subsubsection{Stage 3: Development}
+All the parameters from the testing phase that include the test of single and multiple sensors for data acquisition. Similarly, an experimental test for sensors synchronization and calibration will be perform accordinly in the testing phase. 
+Based on these parameters the evaluation of all the components will be perform accordingly before the development and deployment stages.
+
+Moreover, there is the need to test how the different 3D reconstruct frameworks perform under different scenarions and conditions and evaluate the performance in order to start the development process.
+
+\subsubsection{Stage 3: Evaluation}
+
+The evaluation stage will be performed under the testing phase. From the obtained results there will be a corresponding team evaluation in which it will be assessed the use of single or multiple sensors. 
+From this, it will be possible to obtain a clear insight into how many sensors will be necessary for the implementation. All these processes will be evaluated based on how the data is received and how it will be integrated with the final mechatronic prototype of the 3D scanner. 
+This will be evaluated based on the requirements on how much data is necessary for the entire model as well as how much data can each sensor obtain based on the field of view.
+
+Similarly, there will be a corresponding evaluation process on how to enable multiple sensors synchronization. This will be tested and evaluated to ensure that the sensors will work simultaneously and that these will be able to acquire data synchronously. 
+On the other side, it is crucial to test the accuracy of the sensors. Therefore it is a must to enable multiple sensor calibration. For this process, it will be necessary to obtain the camera calibration parameters. This includes obtaining the intrinsic and extrinsic parameters. 
+Based on this it will be possible to obtain the distortion of the camera and it will be possible to calibrate each sensor accordingly.
+With these results, it will be possible to evaluate how multiple sensors  will interact with each other and how the calibration process will be performed for the development and deployment stages
+
+On the other side. it is crucial to assess the performance of Dynamic Fusion and SurfelWarp. 
+These will include evaluating the performance under different scenarios and with different models. Also, the speed, accuracy and results will be assessed. 
+Based on the results on these it will be possible to choose the appropriate framework and to plan potential modifications that might need to be developed in the development stage.
+
+
+\subsubsection{Stage 4: Development}
 
 The development phase will consist of developing and adopting a framework for Data fusion. The data will be provided with the sensor that was chosen from the previous stage. 
 The results obtained will allow to fuse all the data from all the components from the different sensors and visualise them into a single output.
@@ -519,7 +543,7 @@ These point clouds will be tested for accuracy of the Scanned data in the visual
 From this acquired and processed point clouds a methodology will be developed to work in conjunction with the Data fusion framework to visualise the final model. 
 All these processes will be tested under different conditions to ensure that it will work under most circumstances and will allow a much easier deployment process. 
 
-\subsubsection{Stage 4: Deployment}
+\subsubsection{Stage 5: Deployment}
 The deployment phase will be subdivided into two main tasks. The initial one  consists of the deployment of all the sensors that will be utilised for data acquisition. 
 This will include in deploying and installing the sensors into the actual hardware device that will be used. 
 These Sensors will be mounted and interconnected between then for enhanced sensing. This will be worked in conjunction with the hardware team. 
@@ -527,14 +551,6 @@ These Sensors will be mounted and interconnected between then for enhanced sensi
 Similarly there will be the deployment of the software tools that include the ROS nodes, Data fusion Framework and Model visualization methodology. 
 All of this components will be deployed into the final device that is part of the hardware team. 
 
-\subsubsection{Documentation}
-\subsubsection{Stage 4: Deployment}
-The deployment phase will be subdivided into two main tasks. The initial one consists of the deployment of all the sensors that will be utilised for data acquisition. 
-This will include deploying and installing the sensors into the actual hardware device that will be used. 
-These Sensors will be mounted and interconnected between then for enhanced sensing. This will be worked in conjunction with the hardware team. 
-
-Similarly, there will be the deployment of the software tools that include the ROS nodes, Data fusion Framework and Model visualization methodology. 
-All these components will be deployed into the final device that is part of the hardware team. 
 
 \subsubsection{Documentation}
 The documentation process is one of the crucial components of this project. 
@@ -604,7 +620,6 @@ This middleware will allow to collect, synchronise, and initialise all the senso
 All projects face some particular level of unforeseen risks and uncertainties. Good project planning will consider all possible areas of failure and introduce mitigation plans to try to control and prevent the consequences.  
 All these uncertainties and risk matrix will be considered only for the 3D model data reconstruction component. The other components will need to be considered by the responsible respective teams. 
 
-\newpage
 The Uncertainties of the project float around the next parameters:
 \begin{itemize}
   \item How is the 3D data reconstruction going to work.
@@ -645,7 +660,7 @@ For these tests, a mannequin was used as the test model. Please refer to figure 
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{manequin.jpg}
+  \includegraphics[width=0.5\textwidth]{manequin.jpg}
   \caption{Manequin used for testing}
   \label{fig:mane}
 \end{figure}
@@ -658,40 +673,32 @@ In contrast, another test was performed with the purpose of gathering data from 
 From these tests, it was possible to obtain the best configuration position for the camera, with the purpose of maximising the Field of View of the RGB and Depth Sensors.
 Furthermore, it allowed obtaining the 3D point clouds of the model in realtime, which allowed to have a preview of the scanned model.  
 
-\newpage
 Based on these tests it was also possible to determine the requires distance that the camera has to be from the model in order to obtain a preliminary radius of the scanner mechatronic design.
 This was done by observing the point clouds and via analysing the Sensor data in realtime. The RGB and Depth images acquire from these sensors can be observed on figures \ref{fig:scanRGB} and \ref{fig:scanDepth} respectively.
+\begin{figure}[ht]
+  \centering
+  \subfloat[RGB sensor data results] {\label{fig:scanRGB}{\includegraphics[width=0.6\textwidth, angle=90]{scan1.png}}}\hfill
+ \subfloat[Depth image sensor data results]{ \label{fig:scanDepth}{\includegraphics[width=0.6\textwidth, angle=90]{scan2.png}}}
+ \label{fig::RGBD d435i}
+ \caption{RGB \& Depth Image Data}
+\end{figure}
+
 
 \nocite{*}   % all not cited bib entrys are shown in bibliography ...
 \bibliography{resources}
 
+
 \appendix
-\chapter{Appendix}
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth, angle=90]{scan1.png}
-  \caption{RGB sensor data results}
-  \label{fig:scanRGB}
-\end{figure}
+\chapter{\vspace{-5.5cm}Appendix}
 
-\newpage
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=1\textwidth, angle=90]{scan2.png}
-  \caption{Depth image sensor data resuls}
-  \label{fig:scanDepth}
-\end{figure}
-
-
-
-\begin{table}
+\begin{table}[!htb]
   \centering
   \makebox[\textwidth]
   {\includegraphics[width=1\linewidth]{Risk matrix.png}    
   }
   \caption{Risk Matrix}
   \label{appendix:risk}
-  \end{table}
+\end{table}
 
 \newpage
 \begin{table}
@@ -709,7 +716,7 @@ This was done by observing the point clouds and via analysing the Sensor data in
   \begin{figure}
     \centering
     \makebox[\textwidth]
-    {\includegraphics[width=1\linewidth]{project Overview diagram.png}    
+    {\includegraphics[width=1\linewidth]{project Overview diagram v2.png}    
     }
     \caption{WorkBreakDown Structure}
     \label{appendix:wbx}

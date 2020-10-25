@@ -39,8 +39,8 @@
 \usepackage{caption}
 \usepackage{subfig}
 
-\setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
 
 \renewcommand{\familydefault}{\sfdefault}
 \setstretch{1.25}
@@ -65,14 +65,18 @@
      \cleardoublepage
 \end{titlepage}
 
-\addtocontents{toc}{\protect\thispagestyle{empty}}
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
+\addtocontents{toc}{\protect}
+\pagenumbering{roman}
 \tableofcontents
 \listoffigures
 \listoftables
-\thispagestyle{empty}
+
+%\thispagestyle{empty}
 \newpage
 \setcounter{page}{1}
 
+\pagenumbering{arabic}
 \chapter{Engineering Reseach Problem}
 
 \section{Reseach Question}
@@ -117,7 +121,7 @@ All these acquire data can be obtained from a wide variety of commercial or indu
 In recent years, the use of 3D body scanners has gain importance in several industries. Within the fashion industry, it can aid clothes manufactures to obtain accurate body measurement data of body dimensions.
 As mentioned by \citet*{sturm_bylow_kahl_cremers_2013}, this new technological approach has the potential to alternate the future of the fashion and clothing manufacturing industry.
 
-With the rise of innovation of 3D image reconstruction, the interest from to gather precise measurements of the human has raised. Due to the fact, that in the clothing industry
+With the rise of innovation of 3D image reconstruction, the interest  to gather precise measurements of humans has raised. Due to the fact, that in the clothing industry
 is extremely important to create better fittings for different shapes of human bodies. 
 Furthermore, virtual try-on solutions have gain popularity in physical and online retail stores \Citep*{spahiu_shehi_piperi_2014}.
 
@@ -155,7 +159,8 @@ This information can be obtained with different kind of sensors. There is a wide
 These sensors could either be stereo or multiview vision cameras, lasers, time-of-flight sensors (\textit{TOF}) and structured light sensors as stated by \Citet*{murcia_monroy_mora_2018}.
 
 Many Scanning devices will use single or multiple of the above-mentioned sensors to acquire data. Once the data is obtained, it essential to have a framework for 3D data modelling and reconstruction.
-The principle behind 3D data reconstruction is obtained with data fusion from RGB-D sensors. This kind of sensors provide 3 channels images RGB (red, green, blue) and the depth images are mapped to each pixel. Based on this data 3D point clouds could be generated for data reconstruction.
+The principle behind 3D data reconstruction is obtained with data fusion from RGB-D sensors. This kind of sensors provide 3 channels images RGB (red, green, blue) and the depth images are mapped to each pixel. Based on this data, 3D point clouds could be generated for data reconstruction.
+
 One of the most common frameworks is known as \textbf{Dynamic Fusion} which is referenced to \textit{"reconstruction and tracking of Non-rigid Scenes in real time"} \Citep*{newcombe_fox_seitz_2015}.
 Another recent powerful 3D Data reconstruction framework is \textbf{SurfelWarp} which is defined as \textit{"Efficient Non-Volumetic Single View Dynamic Reconstruction"} \Citep*{SurfelWarp}.
 
@@ -170,12 +175,12 @@ Dynamic fusion is based on three different technologies focused on 3D scanning a
 
 \vspace{5mm}
 
-\begin{wrapfigure}{r}{0.5\textwidth} %this figure will be at the right
+\begin{wrapfigure}{r}{0.475\textwidth} %this figure will be at the right
     \centering
-    \includegraphics[width=0.5\textwidth]{IMG_0073.png}
+    \includegraphics[width=0.475\textwidth]{IMG_0073.png}
     \caption{Transformation Between Depth Video to Warped canonical Model} \cite[]{newcombe_fox_seitz_2015}.
 \end{wrapfigure}
-The principal focal point of the 3D data reconstruction feature of \textit{Dynamic Fusion}  is that it will look for a solution for the volumetric flow based on the gathered data.
+The focal point of the 3D data reconstruction feature of \textit{Dynamic Fusion}  is that it will look for a solution for the volumetric flow based on the gathered data.
 As mentioned by \Citet*{newcombe_fox_seitz_2015} there will be a transformation of the state of the scene at each time interval to a fixed canonical frame.
 The created canonical frame is described as the initial frame that is obtained from the non-rigid object that has been detected and tracked. The shape of the detected object is defined as "canonical model" which is the corresponding shape of the object in the canonical frame. 
 Therefore, the canonical model will be utilised as a reference model for all the subsequent frames. From this approach, there will be progressing adjustment on the canonical model and frames, as more data is acquired.
@@ -218,7 +223,7 @@ As soon as the canonical model is constructed, the life frame will be warp aroun
 \enlargethispage{\baselineskip}
 
 \section{SurfelWarp}
-SurfelWarp is defined as "Efficient Non-Volumetric Single View Dynamic Reconstruction. It will present a standard graphics pipeline and GPGPU computing can be utilised for efficient 
+SurfelWarp is defined as "Efficient Non-Volumetric Single View Dynamic Reconstruction". It will present a standard graphics pipeline and GPGPU ("General-Purpose Graphics Processing Unit") computing can be utilised for efficient 
 implementation of all data reconstruction operations \Citep*{SurfelWarp}. It eliminates the use of volumetric data structures, which represent resource-intensive volumetric operations such as dense deformation field updates, volumetric fusion, and marching cubes.
 This represents a significant performance improvement as the explicit surfel representation allow to directly recover from tracking failures or topology changes as proposed by \citeauthor*{SurfelWarp}.
 
@@ -228,9 +233,12 @@ When a new depth image is received, the deformation field that is aligned to the
 This is calculated by starting the deformation field from the previous image, which is followed by an iterative optimization problem similar to \Citet*{newcombe_fox_seitz_2015}.
 Once the deformation field is updated, the data fusion process is carried out. This will trigger an accumulative process to fuse the current depth observations into a geometrical representation. 
 
-The deformation field $ W = \{[p_j \in R^{3},\sigma_{j} \in R^{+} ,T_j \in SE(3)]\}$ where j is the node index, $p_j$ is the position of the $j^{th}$ node. $\sigma_j$ is the radius parameter, $T_j$ is the 6DoF transformation.
+The deformation field $ W = \{[p_j \in R^{3},\sigma_{j} \in R^{+} ,T_j \in SE(3)]\}$ where $j$ is the node index, $p_j$ is the position of the $j^{th}$ node. $\sigma_j$ is the radius parameter, $T_j$ is the 6DoF transformation.
 For any point in "x" the deformation can be interpolated by equation \ref{eq:deffield1}
-
+\begin{equation}  
+  W(x)=normalized(\Sigma_{k \in N(x)} w_{k}(x) \hat{q_k})
+  \label{eq:deffield1}
+\end{equation}
 
 \newpage
 \begin{figure}%this figure will be at the right
@@ -241,10 +249,7 @@ For any point in "x" the deformation can be interpolated by equation \ref{eq:def
 \end{figure}
 
 
-\begin{equation}  
-  W(x)=normalized(\Sigma_{k \in N(x)} w_{k}(x) \hat{q_k})
-  \label{eq:deffield1}
-\end{equation}
+
 From equation \ref{eq:deffield1} the following components can be described:
 \begin{itemize}
   \item $N(x)$: is the closest set of points x
@@ -687,20 +692,18 @@ This was done by observing the point clouds and via analysing the Sensor data in
 \nocite{*}   % all not cited bib entrys are shown in bibliography ...
 \bibliography{resources}
 
-\vspace{}
+
 \appendix
-\chapter{Appendix}
+\chapter{\vspace{-5.5cm}Appendix}
 
-
-
-\begin{table}
+\begin{table}[!htb]
   \centering
   \makebox[\textwidth]
   {\includegraphics[width=1\linewidth]{Risk matrix.png}    
   }
   \caption{Risk Matrix}
   \label{appendix:risk}
-  \end{table}
+\end{table}
 
 \newpage
 \begin{table}

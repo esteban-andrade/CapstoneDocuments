@@ -85,9 +85,26 @@ Refer to Appendix for signed statement of originality
 Esteban Gabriel Andrade Zambrano - AUT-21-04017\\
 Supervisor: Dr. Teresa Vidal Calleja\\
 Major: Mechanical and Mechatronics Engineering.\\
-\textbf{Objective}:
-
+\textbf{Objective}: Process recorded sensor data from a human body and create a scaled model of the scanned subject that can be used for clothing fitting.\\
+\rule{\textwidth}{0.1pt}
+The capability of scanning different models is critical for manu industries ranging from fashion to medical and manufacturing. Nevertheless many of the current implementations are extremely expensive. Hence it imposses a barrier for the technology.
+Similarly, many of the current applications do not create extremely accurate models and in various occasions thgse models would be discarded.\\
+Therefore, this project will create both hardware and software implementation for a human 3D scanner with a moderate budget as well as accurate results  in order to be able to produce accurate and scaled models of the scanned subject.
+The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig. 
+Additionally, a Lidar will be used to capture a PointCloud as well as an Image mof the subject inside the rig.\\
+With the acquired images from all the cameras as well as the Lidar, a photogrammetry process will be used in order to obtain an initial mesh. This mesh is the result of the photogrametry reconstruction process.
+Moreover, the initial mesh will be processes with a series of developed algorithms in a pipeline sequence. The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering.\\
+The Scaling will use the PointCloud from the Lidar as reference and adjust the Scale and Pose of the processed mesh. Once the Mesh has been scaled appropiately with the reference PointCloud, a Poisson algorithm will be used in order to reconstruct and obtain the final scanned model.\\
+The results in this report illustrate the process on how with a constrained data set, it is possible to obtain accurate scaled scanned model that can be used in many applications.
+\enlargethispage{\baselineskip}
 \chapter*{Acknowledgements}
+I would like to acknowledge and thank my supervisor Dr. Teresa Vidal Calleja for her help and support throughout this project. I would also like to acknowledge and thank Dr. Cedric Le Gentil for all his guidance, support and input throughout the project development.
+Furthermore, I would like to acknowledge Mr Asher Katz for his contributions in the development of the rig  and the image acquisition process component of the project.\\
+On the other hand, I would also like to acknowledge Dr. Mark Liu as well as the UTS Robotics Institute for assitance and resources provided for the completion of this project.
+
+Similarly, I would like to acknowledge the Open Source Community, as assets developed by this community helped in the development and completion of this project.
+
+Finally, I would like to thank my family for their massive and ongoing support throughout this project and my studies. In equally importance I would like to thank God, who with his countless blessings have gave me the opportunity to develop and complete this project.
 \tableofcontents
 \listoffigures
 \listoftables
@@ -97,7 +114,7 @@ Major: Mechanical and Mechatronics Engineering.\\
 \setcounter{page}{1}
 
 \pagenumbering{arabic}
-\chapter{Engineering Reseach Problem}
+\chapter{Introduction}
 
 \section{Reseach Question}
 \textit{\large{"Human Body 3D Scanner: The development of software for 3D data reconstruction of a Human body scanner with multiple sensors" }}
@@ -111,9 +128,6 @@ Similarly, with the 3D reconstructed model of the human has the aim to be utilis
 The project will have different stages that range from testing different sensors for data acquisition, testing different data stitching frameworks to the deployment of the software in the 3D scanner mechatronic device.
 
 \section{Problem Definition}
-%Being able to obtain data from multiple sensors and model objects has is very crucial for many industries.
-%Nevertheless, there is a lack of precise and accurate options in the market that could create 3D models of Humans with respective sensor data. Similarly there are no current industry application that maximise the potential use of the Human body 3D models.
-%Therefore, this project is aimed at creating a solution and develop the software for 3D data reconstruction of the scanned human. This model will be utilised to try different fashion items and adapt the size fittings accordingly. 
 Being able to scan different object and models is crucial for many industries. Many applications are in the used in the fashion industry, medical industry, manufacturing ,etc. However, many of the given implementations are extremely expensive , thus making the technology inaccessible for many companies and users in general. 
 There are many forms of implementations, as there are multiple technologies in the market that facilitate the process in which several devices and software techniques are used. Nevertheless, there is no current industry application that maximises the potential use of the Human body 3D models.
 Many of the challenges faced is that the software implementation for 3D reconstruction of the models is not particularly accurate, therefore creating imperfect models that on many occasions will need to be discarded.
@@ -156,16 +170,34 @@ From which the diagnose, treatment and monitor procedures will differ based on t
     \caption{3D Scanning Applications}\cite[]{treleaven_wells_2007}.
 \end{table}
 
-\begin{figure}[ht]
-  \begin{center}
-  \includegraphics[width=0.5\textwidth]{bodyMedicine.png}
-  \caption{Front, Side results of 3D Scanning }\cite[]{treleaven_wells_2007}.
-  \label{bodymed}
-\end{center}
-\end{figure}
+\section{Overview}
+As mentioned before, project consists of developing a 3D scanner that is allowed to scan person and be able to use that data in order to be able to virtually fit different clothing.
+This capstone project mainly focuses on the software and processing of the data for the 3D reconstruction.
 
+The aim of this project is to develop algorithms and an implementation pipeline that will use the acquired image data as well as the reference pointcloud data in order to produce an accurate
+and appropiately scaled 3D reconstructed model of a person.\\
+This is reconstructed ans scaled model of the scanned person, is intended to be utilised as the model for testing virtual clothe fitting and be able to correctly determine the size of the garments. 
+This technology could have a massive industry in the clothing industry and online retailers as this could solve an issue with the returns policy due to incorrect sizing for different customers groups.
+\subsection{Methodology}
+To achive the aim, a rig will be used to capture the data. The Rig will consist of a set of poles with multiple cameras. Furthermore a Lidar Intel RealSense L515 will be used to capture another image an the corresponding pointcloud that will be used for reference.
+Once the rig captures the data (28 images) as well as the lidar data(1 image, 1 pointcloud), the images will be processed with photogrammetry approach with Meshroom. 
+The Processed data from Meshroom will produce a preprocessed reconstruction mesh. 
 
-\chapter{Related Works}
+After this the mesh will be processed in the developed algorithmic pipeline and it will be properly scaled with the reference pointcloud from the Lidar. 
+Once the mesh has been processed and scaled, it will be reconstructed appropiatelyand it will generate a final model of the scanned person with the with only the necessary components and appropriate scale.
+
+Once the process is completed the mesh will be saved to disk as a ply file that can be later use in other applications such as clothing fitting. 
+
+\subsection{Structure}
+This Report will start with a literature review in order to analyse and fully understand the algorithms and techniques that are used in both components. 
+It will help to understand the techniques used in the photogrammetry step and the developed algorithm pipeline.
+
+Following this, details will be presented and illustrated as to how the process is carried out and the results that were obtained from different data sets.
+It will fully ilustrated how to import the data to Meshroom, what parameters are required to add and modify in order to change the most robust reconstruction. There will be an indetail explanation of what each step executes.
+
+Furthermore, there will be an detailed explanation of the algorithm pipeline for data processing. Here it will be explain what each component is expected to execute as well as how it was created and wrapped into a framework.
+
+\chapter{Literature Review}
 Being able to scan different objects and subjects has been a challenging task for researchers. Getting an accurate spatial location of the objects is crucial for this type of application.
 The use of 3D point clouds has facilitated this process as it allowed to obtain the following parameters:
 \begin{itemize}[]

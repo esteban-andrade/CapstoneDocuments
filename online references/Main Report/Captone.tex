@@ -213,8 +213,116 @@ These sensors could either be stereo or multiview vision cameras, lasers, time-o
 Many Scanning devices will use single or multiple of the above-mentioned sensors to acquire data. Once the data is obtained, it essential to have a framework for 3D data modelling and reconstruction.
 The principle behind 3D data reconstruction is obtained with data fusion from RGB-D sensors. This kind of sensors provide 3 channels images RGB (red, green, blue) and the depth images are mapped to each pixel. Based on this data, 3D point clouds could be generated for data reconstruction.
 
-One of the most common frameworks is known as \textbf{Dynamic Fusion} which is referenced to \textit{"reconstruction and tracking of Non-rigid Scenes in real time"} \Citep*{newcombe_fox_seitz_2015}.
-Another recent powerful 3D Data reconstruction framework is \textbf{SurfelWarp} which is defined as \textit{"Efficient Non-Volumetic Single View Dynamic Reconstruction"} \Citep*{SurfelWarp}.
+Similarly many other scanning devices use photogrammetry as a technique in order to do the reconstruction. In this particular project Meshroom was used as a 3D photogrammetry reconstruction software.
+
+Moreover, several open source libraries were used in order to process and scale the draft mesh. These open source libraries include PCL and Open3D. From these several algorithms were used that aid in the data processing and these will be explained below. 
+\enlargethispage{\baselineskip}
+
+\section{Photogrammetry}
+Photogrammetry is decribed as the associated techniques with performing measurements of real-world objects and terrain features from images as mentioned by \Citet*{photogrammetry_def}.
+Many of the applications include the quantification of distances, volumes,areas, heights, 3D topographic mapping, measuring of objects, extracion of 3D pointcloud for surfaces reconstruction as well as the generation of orthophotographs and digital elevation models.\Citep*{photogrammetry_def}.
+
+In recent years, with the development of technologies pairing computer vision concepts \& algorithms and photogrammetry specifically \textit{Structure from Motion-Multiview Stereo (\textbf{SfM-MVS})}
+has led to significant advances in 3D surface Reconstruction from images \Citep*{photogrammetry_def}.
+
+The key principle behind all the photogrammetric measurements is associated with the mathematical \& geometrical reconstruction of the path of light rays from the object to the sensor camera in the exact moment of data image acquisition.
+Thus, the fundamental concept of photogrammetry is the undertanding of geometric characteristics of a single photograph.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{photogrammetry.png}
+  \caption{Photogrammetry Principle Illustration}\cite[]{photogrammetry_def}
+  \label{fig:photogrammetry_principle} 
+\end{figure}
+
+\section{Meshroom}
+Meshroom is a free, open-source 3D Reconstruction Software based on the AliceVision framework \Citep*{meshroom}.
+AliceVision is a software framework based on photogrametric computer vision.  which focuses on the development of 3D Reconstruction and Camera Tracking Algorithms.
+It aims to provide robust software foundation with novel computer vision algorithms that can be analysed, tested and reused.\\
+Meshwoom was developed as collobaration project between industry and academia in order to develop cutting-edge algorithms that are robust and of high quality which are crucial for production environments.
+
+\subsection{Components Pipeline}
+Meshroom can be downloaded and used in both Windows and Linux and it will require a powerfull CPU in order to have adequate performance. Also it will require an Nvidia GPU as it requires to run CUDA for different nodes and components.
+Once meshroom is downloaded it can run in either platform. When it is executed the Meshroom GUI will appear and it will be similar to figure \ref{fig:meshroom_gui}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{meshroom_gui.jpg}
+  \caption{Meshroom Graphical User Interface}\cite[]{meshroom}
+  \label{fig:meshroom_gui} 
+\end{figure}
+
+\newpage
+As mentioned before, meshroom is based on AliceVision's Framework. Therfore it follows a photogrametric pipeline for 3D reconstruction. 
+This pipeline will have the following components:
+\begin{itemize}
+  \item Natural Feature Extraction
+  \item Image Matching
+  \item Features Matching
+  \item Structure from Motion
+  \item Depth maps estimation
+  \item Meshing
+  \item Texturing
+  \item Localization
+\end{itemize}
+
+The pipeline will be included into Meshroom GUI and it will be used in the nodes. All the components in Meshroom will be embedded into different individual nodes that will be executed and produce individual results that will be send to the next node along in the pipeline.
+As the nodes represent specific components of the reconstruction pipeline, these should be executed in a defined order.\\
+The nodes in the defined order to reconstruct a 3D model from images include:
+\begin{enumerate}
+  \item Camera Initialization 
+  \item Feature Extraction
+  \item Image Matching
+  \item Feature Matching
+  \item Structure From Motion
+  \item Prepare Dense Scene
+  \item Depth Map
+  \item Depth Map Filter
+  \item Meshing
+  \item Mesh Filtering
+  \item Texturing
+\end{enumerate}
+
+\subsubsection{Camera Initialization}
+Camera Initialization or \textit{"CameraInit"} loads the image metadata, sensor information, camera parameters and it will  generate viewpoints based on the images.
+It is possible to use a mixture of cameras \& focal lengths. This node will generate a groups of intrinsics that are based on the images metadata, these grooup os intrinsics can be adjusted if the cameras have been fully calibrated.
+The intrinsic include the camera matrix  which includes the focal length ($f_x$,$f_y$) and principal point ($x_0$,$y_0$).
+\begin{equation*}
+  Camera Intrinsics = 
+  \begin{pmatrix}
+  f_x & 0 & x_0 \\
+  0 & f_y & y_0 \\
+  0 & 0 & 1
+  \end{pmatrix}
+\end{equation*}
+\label{equ:camera_intrisics}
+
+\subsection{Feature Extraction}
+% https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
+
+
+
+
+\subsection{Image Matching}
+
+\subsection{Feature Matching}
+
+\subsection{Structure From Motion}
+
+\subsection{Prepare Dense Scene}
+
+\subsection{Depth Map}
+
+\subsection{Depth Map Filter}
+
+\subsection{Meshing}
+
+\subsection{Mesh Filtering}
+
+\subsection{Texturing}
+
+\subsection{Localization}
+% https://alicevision.org/#photogrammetry/localization
 
 \section{Dynamic Fusion}
 Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 

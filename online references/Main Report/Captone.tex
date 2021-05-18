@@ -8,7 +8,7 @@
 \usepackage{microtype}
 \usepackage{setspace}
 \usepackage{enumitem}
-
+\usepackage{booktabs}
 
 \usepackage[nottoc]{tocbibind}
 \usepackage{natbib}
@@ -40,6 +40,9 @@
 \usepackage{subfig}
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{longtable}
 
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
@@ -297,21 +300,238 @@ The intrinsic include the camera matrix  which includes the focal length ($f_x$,
 \end{equation*}
 \label{equ:camera_intrisics}
 
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  Viewpoints Input &
+    \begin{tabular}[c]{@{}l@{}}viewpoints (1 Element for each loaded image) \\ - ID \\ - Pose ID \\ -  Image Path \\ - Intrinsic: Internal Camera Parameters (Intrinsic ID) \\ - Rig  (-1 - 200) \\ - Rig Sub-Pose: Rig Sub-Pose Parameters (-1 - 200)\\  - Image  Metadata: (list of metadata elements)\end{tabular} \\ \hline
+  Intrinsic Camera Intrinsics &
+    \begin{tabular}[c]{@{}l@{}}(1 Element for each loaded image) - ID - Initial Focal Length:  Initial Guess on the Focal Length \\ - Focal Length: Known/Calibrated Focal  Length \\ - Camera Type: pinhole’, ‘radial1’, ‘radial3’, ‘brown’,  ‘fisheye4’ \\ - \#Make: Camera Make (not included in this build, commented  out) \\ - \#Model: Camera Model \\ - \#Sensor Width: Camera Sensor Width \\ -  Width: Image - Width (0-10000) \\ - Height: Image Height (0-10000) - Serial  Number: Device Serial Number (camera and lens combined) \\ - Principal  Point: X (0-10000) Y(0-10000)\\ - DistortionParams: Distortion Parameters \\ -  Locked(True/False): If the camera has been calibrated, the internal  camera parameters (intrinsics) can be locked. It should improve  robustness and speedup the reconstruction.\end{tabular} \\ \hline
+  Sensor Database &
+    Camera sensor width database path \\ \hline
+  Default Field Of View &
+    Empirical value for the field of view in degree 45° (0°-180°) \\ \hline
+  Verbose Level &
+    verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+  Output SfMData File &
+    …/cameraInit.sfm \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom CameraInit Node }
+  \label{tab:CameraInit}
+  \end{table}
+
 \subsection{Feature Extraction}
 % https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
+The key objective of this node is to extract distinctive pixel groups, which are to a certain extend invariant to a change in camera viewpoints during the image acquisition process.
+Thus, a feature in this scene should have similiar features descriptors in all the captures images.
+
+One of the most used feature detection method is \textbf{SIFT} \textit{(Scale-invariant feature transform)} algorithm. 
+The objective of SIFT is to extract discriminative patches in an initial image that later can be compared to discriminative patches of a second image, irrespective of scale, rotation and translation \Citep*{Lowe2004}.
+As a relevant detail is only present at a specific scale, the extracted patches are centered around the point of interests. 
+Therefore, the SIFT invarience can be used to deal with image transformations that occur when the viewpoints change during image acquisition.
+
+Based on the representation of one image at different scales, SIFT is able to compute scale-space maxima of the Laplacian Representation. This is a defined image energy-based representation, using the differences of Gaussians.
+This Maxima is associated to the points of interest in the image. 
+Once this is processed, it samples for each of the this maxima a square image patch, whose origin is the maximum and "x" direction is the dominant gradient at the origin as suggested by \Citet*{Lowe2004} and\Citet*{Otero2014} .
+For each keypoint, a description of these patches is associated. 
+
+The description, consists of a statistics of gradients which is computed in regions around the keypoint. The size of the region is defined by the keypoint scale and the orientation by the dominant axis.
+ It is also frequently stored in 128 bits.
+ \enlargethispage{\baselineskip}
+
+The number of extracted features could vary as a result of textures complexity, from one image to other ones or in different image sections. Hence, a post-filtering step controls the number of extrated features to a specified limit. 
+Furthermore, a grid filtering is used to ensure an even repartition in the image.
 
 
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{Name} & Description                                                          \\ \hline
+  Input                      & SfMData file.                                                        \\ \hline
+  Describer Types &
+    Describer types used to describe an image. ‘sift’, ‘sift*float’, ‘sift*upright’, ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, ‘sift*ocv’, ‘akaze*ocv’ \\ \hline
+  Describer Preset &
+    Control the ImageDescriber configuration (low, medium, normal, high, ultra). Configuration “ultra” can take long time ! \\ \hline
+  Force CPU Extraction       & Use only CPU feature extraction.                                     \\ \hline
+  Max Nb Threads &
+    Specifies the maximum number of threads to run simultaneously (0 for automatic mode). (0-24) 0 \\ \hline
+  Verbose Level              & verbosity level (fatal, error, warning, info, debug, trace).         \\ \hline
+  Output Folder              & Output path for the features and descriptors files (*.feat, *.desc). \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom FeatureExtraction Node Settings}
+  \label{tab:FeatureExtraction}
+  \end{table}
 
-
+  
 \subsection{Image Matching}
+The principle behind this node is to find images that point to the same areas of interest. Therefore, image retrieval techniques are implemented with the purpose of finding images 
+that share content without the demand of resolving all the  detailed feature matches. Hence, the goal is to simplify the image in a compact image descriptor. This allows to efficiencly compute the distance between all images descriptors.
+
+A vocabulary tree is one of the widely used methodologies to generate the image descriptor. It works by passing all the extracted features descriptors into it. Then it performs a classification process, which compares their descriptors to the ones on each node of the vocabulary tree as mentioned by \Citet*{Nister2006}.
+Each feature descriptor is associated with one leaf, which can be stored with an standard index (\textit{The index of this leaf in the tree}).Thus, the collection of leaves indices represents the image descriptor \Citep*{Nister2006}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
+  Image                               & SfMData file                                                            \\ \hline
+  Features Folders                    & Folder(s) containing the extracted features and descriptors             \\ \hline
+  Tree                                & Input name for the vocabulary tree file ALICEVISION\_VOCTREE            \\ \hline
+  Weights &
+    Input name for the weight file, if not provided the weights will be computed on the database built with the provided set \\ \hline
+  Minimal Number of Images &
+    \begin{tabular}[c]{@{}l@{}}Minimal number of images to use the vocabulary tree. \\ If we have  less features than this threshold, we will compute all matching  combinations\end{tabular} \\ \hline
+  Max Descriptors                     & Limit the number of descriptors you load per image. Zero means no limit \\ \hline
+  Nb Matches &
+    The number of matches to retrieve for each image (If 0 it will retrieve all the matches) 50 (0-1000) \\ \hline
+  Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
+  Output List File                    & Filepath to the output file with the list of selected image pairs       \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Image Matching Node}
+  \label{tab:ImageMatching}
+  \end{table}
+
+
 
 \subsection{Feature Matching}
+The key component of feature matching node is to be able to match all features between potential image pairs.
+Initially, the node performs a photometric process that creates matches between the descriptors from 2 separe images. For each feature in image "A", a list of potential features in image "B" is generated.
+The descriptor space is not linear and defined space, which causes uncertainty in the validity of the matches due to the absolute distance values. 
+Furthermore, in order to remove bad candidates, an assumption process associates only one valid match in the other image.
+Hence, for each feature descriptor on Image "A", two of the closests descriptors in the image are used with a relative threshold between them which provides a robust criteria as mentioned by \Citet*{Lowe2004}.
+
+This process will provide a photometric list of feature matching candidates. Afterwards, the images features positions are used in a geometrica
+filtering process that uses epipolar geometry in an outlier detection framework, which is RANSAC (\textit{"Random Sample Consensus"}).
+Moreover, a random selection process uses a small set of feature correspondances and it computers either the fundamental or essential matrix. 
+Once this process is completed, the number of features verifies and validates this model and iterates through the RANSAC framework \Citep*{FLANN2009}.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} &
+    \multicolumn{1}{c|}{\textbf{Description}} \\ \hline
+  Input &
+    SfMData file \\ \hline
+  Features Folder &
+     \\ \hline
+  Features Folders &
+    Folder(s) containing the extracted features and descriptors \\ \hline
+  Image Pairs List &
+    Path to a file which contains the list of image pairs to match \\ \hline
+  Describer Types &
+    Describer types used to describe an image **sift**'/ 'sift\_float'/ 'sift\_upright'/ 'akaze'/ 'akaze\_liop'/ 'akaze\_mldb'/ 'cctag3'/ 'cctag4'/ 'sift\_ocv'/ 'akaze\_ocv \\ \hline
+  Photometric Matching Method &
+    \begin{tabular}[c]{@{}l@{}}For Scalar based regions descriptor \\ * BRUTE\_FORCE\_L2: L2  BruteForce matching\\ * ANN\_L2: L2 Approximate Nearest Neighbor  matching \\ * CASCADE\_HASHING\_L2: L2 Cascade Hashing matching\\ *  FAST\_CASCADE\_HASHING\_L2: L2 Cascade Hashing with precomputed hashed  regions (faster than CASCADE\_HASHING\_L2 but use more memory) \\ For Binary  based descriptor  \\ * BRUTE\_FORCE\_HAMMING: BruteForce Hamming matching\end{tabular} \\ \hline
+  Geometric Estimator &
+    Geometric estimator: (acransac:  A-Contrario Ransac //  loransac: LO-Ransac (only available for fundamental\_matrix model) \\ \hline
+  Geometric Filter Type &
+    Geometric validation method to filter features matches: **fundamental\_matrix** // essential\_matrix // homography\_matrix /// homography\_growing // no\_filtering' \\ \hline
+  Distance Ratio &
+    Distance ratio to discard non meaningful matches 0.8 (0.0 - 1) \\ \hline
+  Max Iteration &
+    Maximum number of iterations allowed in ransac step 2048 (1 - 20000) \\ \hline
+  Max Matches &
+    Maximum number of matches to keep (0 - 10000) \\ \hline
+  Save Putative Matches &
+    putative matches (True/False) \\ \hline
+  Guided Matching &
+    the found model to improve the pairwise correspondences (True/False) \\ \hline
+  Export Debug Files &
+    debug files (svg/ dot) (True/False) \\ \hline
+  Verbose Level &
+    verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+  Output Folder &
+    Path to a folder in which computed matches will be stored \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Feature Matching Node}
+  \label{tab:FeatureMatching}
+  \end{table}
 
 \subsection{Structure From Motion}
 
-\subsection{Prepare Dense Scene}
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}[]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \textbf{Input}                      & \textbf{SfMData file}                                                                              \\ \hline
+  Features Folder                     & Folder(s) containing the extracted features and descriptors.                                       \\ \hline
+  Matches Folders                     & Folder(s) in which computed matches are stored.                                                    \\ \hline
+  Describer Types &
+    Describer types used to describe an image. ‘sift’, ‘sift*float’, ‘sift*upright’, ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, **’siftocv’, ‘akazeocv’ \\ \hline
+  Localizer Estimator                 & Estimator type used to localize cameras (acransac, ransac, lsmeds, loransac, maxconsensus).        \\ \hline
+  Observation Constraint &
+    \begin{tabular}[c]{@{}l@{}}Observation constraint mode used in the optimization: \\ Basic:  Use standard reprojection error in pixel coordinates, \\ Scale: Use  reprojection error in pixel coordinates but relative to the feature  scale\end{tabular} \\ \hline
+  Localizer Max Ransac Iterations     & Maximum number of iterations allowed in ransac step. (1-20000) 4096                                \\ \hline
+  Localizer Max Ransac Error &
+    \begin{tabular}[c]{@{}l@{}}Maximum error (in pixels) allowed for camera localization  (resectioning).\\ If set to 0, it will select a threshold according to the  localizer estimator used (if ACRansac, it will analyze the input data  to select the optimal value). (0.0-100-0) 0.0\end{tabular} \\ \hline
+  Lock Scene Previously Reconstructed & This option is useful for SfM augmentation. Lock previously reconstructed poses and intrinsics.    \\ \hline
+  Local Bundle Adjustment &
+    It reduces the reconstruction time, especially for large datasets  (500+ images) by avoiding computation of the Bundle Adjustment on areas  that are not changing. \\ \hline
+  LocalBA Graph Distance              & Graph-distance limit to define the Active region in the Local Bundle Adjustment strategy. (2-10) 1 \\ \hline
+  Maximum Number of Matches &
+    \begin{tabular}[c]{@{}l@{}}Maximum number of matches per image pair (and per feature type).\\  This can be useful to have a quick reconstruction overview. 0 means no  limit. (0-50000) 1\end{tabular} \\ \hline
+  Minimum Number of Matches &
+    \begin{tabular}[c]{@{}l@{}}Minimum number of matches per image pair (and per feature type). \\ This can be useful to have a meaningful reconstruction with accurate  keypoints. 0 means no limit. (0-50000) 1\end{tabular} \\ \hline
+  Min Input Track Length              & Minimum track length in input of SfM (2-10)                                                        \\ \hline
+  Min Observation For Triangulation &
+    \begin{tabular}[c]{@{}l@{}}Minimum number of observations to triangulate a point. \\ Set it to 3  (or more) reduces drastically the noise in the point cloud, but the  number of final poses is a little bit reduced (from 1.5\% to 11\% on the  tested datasets). (2-10)\end{tabular} \\ \hline
+  Min Angle For Triangulation         & Minimum angle for triangulation. (0.1-10) 3.0                                                      \\ \hline
+  Min Angle For Landmark              & Minimum angle for landmark. (0.1-10) 2.0                                                           \\ \hline
+  Max Reprojection Error              & Maximum reprojection error. (0.1-10) 4.0                                                           \\ \hline
+  Min Angle Initial Pair              & Minimum angle for the initial pair. (0.1-10) 5.0                                                   \\ \hline
+  Max Angle Initial Pair              & Maximum angle for the initial pair. (0.1-60) 40.0                                                  \\ \hline
+  Use Only Matches From Input Folder &
+    Use only matches from the input matchesFolder parameter. Matches folders previously added to the SfMData file will be ignored. \\ \hline
+  Use Rig Constraint                  & Enable/Disable rig constraint.                                                                     \\ \hline
+  Force Lock of All Intrinsic Camera Parameters. &
+    \begin{tabular}[c]{@{}l@{}}Force to keep constant all the intrinsics parameters of the  cameras (focal length, principal point, distortion if any) during the  reconstruction. \\ This may be helpful if the input cameras are already  fully calibrated.\end{tabular} \\ \hline
+  Filter Track Forks &
+    \begin{tabular}[c]{@{}l@{}}Enable/Disable the track forks removal. \\ A track contains a fork  when incoherent matches lead to multiple features in the same image for a  single track.\end{tabular} \\ \hline
+  Initial Pair A                      & Filename of the first image (without path).                                                        \\ \hline
+  Initial Pair B                      & Filename of the second image (without path).                                                       \\ \hline
+  Inter File Extension                & Extension of the intermediate file export. (‘.abc’, ‘.ply’)                                        \\ \hline
+  Verbose Level                       & Verbosity level (fatal, error, warning, info, debug, trace).                                       \\ \hline
+  Output SfMData File                 & Path to the output sfmdata file (sfm.abc)                                                          \\ \hline
+  Output SfMData File                 & Path to the output sfmdata file with cameras (views and poses). (cameras.sfm)                      \\ \hline
+  Output Folder                       & Folder for intermediate reconstruction files and additional reconstruction information files.      \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom StructureFromMotion Node}
+  \label{tab:StructureFromMotion}
+  \end{table}
 
+
+
+\subsection{Prepare Dense Scene}
+% https://www.tablesgenerator.com/latex_tables#
 \subsection{Depth Map}
+
+% https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
 
 \subsection{Depth Map Filter}
 
@@ -323,6 +543,10 @@ The intrinsic include the camera matrix  which includes the focal length ($f_x$,
 
 \subsection{Localization}
 % https://alicevision.org/#photogrammetry/localization
+
+\section{PCL}
+
+\section{Open3D}
 
 \section{Dynamic Fusion}
 Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 

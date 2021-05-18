@@ -100,7 +100,7 @@ The proposed method for data acquisition will be with a custom rig. The rig will
 Additionally, a Lidar will be used to capture a PointCloud as well as an Image mof the subject inside the rig.\\
 With the acquired images from all the cameras as well as the Lidar, a photogrammetry process will be used in order to obtain an initial mesh. This mesh is the result of the photogrametry reconstruction process.
 Moreover, the initial mesh will be processes with a series of developed algorithms in a pipeline sequence. The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering.\\
-The Scaling will use the PointCloud from the Lidar as reference and adjust the Scale and Pose of the processed mesh. Once the Mesh has been scaled appropiately with the reference PointCloud, a Poisson algorithm will be used in order to reconstruct and obtain the final scanned model.\\
+The Scaling will use the PointCloud from the Lidar as a reference and adjust the Scale and Pose of the processed mesh. Once the Mesh has been scaled appropiately with the reference PointCloud, a Poisson algorithm will be used in order to reconstruct and obtain the final scanned model.\\
 The results in this report illustrate the process on how with a constrained data set, it is possible to obtain accurate scaled scanned model that can be used in many applications.
 \enlargethispage{\baselineskip}
 \chapter*{Acknowledgements}
@@ -331,7 +331,7 @@ The intrinsic include the camera matrix  which includes the focal length ($f_x$,
 \subsection{Feature Extraction}
 % https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
 The key objective of this node is to extract distinctive pixel groups, which are to a certain extend invariant to a change in camera viewpoints during the image acquisition process.
-Thus, a feature in this scene should have similiar features descriptors in all the captures images.
+Thus, a feature in this scene should have similar features descriptors in all the captures images.
 
 One of the most used feature detection method is \textbf{SIFT} \textit{(Scale-invariant feature transform)} algorithm. 
 The objective of SIFT is to extract discriminative patches in an initial image that later can be compared to discriminative patches of a second image, irrespective of scale, rotation and translation \Citep*{Lowe2004}.
@@ -343,12 +343,12 @@ This Maxima is associated to the points of interest in the image.
 Once this is processed, it samples for each of the this maxima a square image patch, whose origin is the maximum and "x" direction is the dominant gradient at the origin as suggested by \Citet*{Lowe2004} and\Citet*{Otero2014} .
 For each keypoint, a description of these patches is associated. 
 
-The description, consists of a statistics of gradients which is computed in regions around the keypoint. The size of the region is defined by the keypoint scale and the orientation by the dominant axis.
+The description consists of statistics of gradients which is computed in regions around the keypoint. The size of the region is defined by the keypoint scale and the orientation by the dominant axis.
  It is also frequently stored in 128 bits.
  \enlargethispage{\baselineskip}
 
-The number of extracted features could vary as a result of textures complexity, from one image to other ones or in different image sections. Hence, a post-filtering step controls the number of extrated features to a specified limit. 
-Furthermore, a grid filtering is used to ensure an even repartition in the image.
+The number of extracted features could vary as a result of texture complexity, from one image to other ones or in different image sections. Hence, a post-filtering step controls the number of extrated features to a specified limit. 
+Furthermore, grid filtering is used to ensure an even repartition in the image.
 
 
 \begin{table}[h!]

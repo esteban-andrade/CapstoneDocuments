@@ -13,7 +13,7 @@
 \usepackage[nottoc]{tocbibind}
 \usepackage{natbib}
 \usepackage[section]{placeins}
-
+\usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{lscape}
 \usepackage{amssymb}
@@ -54,7 +54,7 @@
 \setstretch{1.25}
 \graphicspath{ {./images/} }
 \bibliographystyle{apa} %agsm
-
+\author{}
 \titleformat{\chapter}[display]
   {\normalfont\bfseries}{}{0pt}{\huge}
 \begin{document}
@@ -202,7 +202,7 @@ Following this, details will be presented and illustrated as to how the process 
 It will fully ilustrated how to import the data to Meshroom, what parameters are required to add and modify in order to change the most robust reconstruction. There will be an indetail explanation of what each step executes.
 
 Furthermore, there will be an detailed explanation of the algorithm pipeline for data processing. Here it will be explain what each component is expected to execute as well as how it was created and wrapped into a framework.
-
+\enlargethispage{\baselineskip}
 \chapter{Literature Review}
 Being able to scan different objects and subjects has been a challenging task for researchers. Getting an accurate spatial location of the objects is crucial for this type of application.
 The use of 3D point clouds has facilitated this process as it allowed to obtain the following parameters:
@@ -303,6 +303,7 @@ The intrinsic include the camera matrix  which includes the focal length ($f_x$,
 \end{equation*}
 \label{equ:camera_intrisics}
 
+The components in the node are described on table \ref{tab:CameraInit}
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
 \begin{table}[h!]
@@ -350,6 +351,7 @@ The description consists of statistics of gradients which is computed in regions
 The number of extracted features could vary as a result of texture complexity, from one image to other ones or in different image sections. Hence, a post-filtering step controls the number of extrated features to a specified limit. 
 Furthermore, grid filtering is used to ensure an even repartition in the image.
 
+The components in the node are described on table \ref{tab:FeatureExtraction}
 
 \begin{table}[h!]
   \centering
@@ -381,8 +383,8 @@ that share content without the demand of resolving all the  detailed feature mat
 A vocabulary tree is one of the widely used methodologies to generate the image descriptor. It works by passing all the extracted features descriptors into it. Then it performs a classification process, which compares their descriptors to the ones on each node of the vocabulary tree as mentioned by \Citet*{Nister2006}.
 Each feature descriptor is associated with one leaf, which can be stored with an standard index (\textit{The index of this leaf in the tree}).Thus, the collection of leaves indices represents the image descriptor \Citep*{Nister2006}.
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
+The components in the node are described on table \ref{tab:ImageMatching}
+
 \begin{table}[h!]
   \centering
   \resizebox{\textwidth}{!}{%
@@ -420,11 +422,9 @@ This process will provide a photometric list of feature matching candidates. Aft
 filtering process that uses epipolar geometry in an outlier detection framework, which is RANSAC (\textit{"Random Sample Consensus"}).
 Moreover, a random selection process uses a small set of feature correspondances and it computers either the fundamental or essential matrix. 
 Once this process is completed, the number of features verifies and validates this model and iterates through the RANSAC framework \Citep*{FLANN2009}.
+\enlargethispage{\baselineskip}
+The components in the node are described on table \ref{tab:FeatureMatching}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-% \usepackage[normalem]{ulem}
-% \useunder{\uline}{\ul}{}
 \begin{table}[h!]
   \centering
   \resizebox{\textwidth}{!}{%
@@ -472,11 +472,30 @@ Once this process is completed, the number of features verifies and validates th
 
 \subsection{Structure From Motion}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-% \usepackage[normalem]{ulem}
-% \useunder{\uline}{\ul}{}
-\begin{table}[]
+The Structure From Motion Node carries out the 3D points reconstruction freom the input images. The key behind this node is to be able to comprenhend
+the geometric relationship behind all the views from the input images, and decifer the rigid scene structure (3D PointCloud) along with the pose (position \& orientation) and internal calibration of the cameras as mentioned by \Citet*{Cheng2014}
+This is an incremental process pipeline which associated with a growing reconstruction process. It  initially computes an starting two-view point reconstruction which is iteratively extended by adding new views \Citep*{Cheng2014}.
+
+It starts by fusing all feature matches between all images and store them in tracks. Each track represents a point in space, which is visible from multiple cameras. 
+Nevertheless, at this stage of the pipeline, many outliers are present,therefore during matches fusion, incorrect tracks are removed \citep*{Fischler1981RandomSC}.
+
+Afterwards, the incremental algorithm chooses the best initial image pair. This choice is very important for the quality of the final reconstruction, hence it should provide robust matches and reliable geometric information as suggested by \citet*{Moulon2012}.
+Therefore, this image pair maximises the number of matches and the repartition of features correspondances in all images. On the other hand, the angle between the cameras must be able to provide with reliable gemoetric information.
+Then, it computes the fundamental matrix between these two images considering the first image as the origin of the coordinate system \Citep*{Kneip2011}. As the pose of the first two cameras is known, 
+it is possible to triangulate the matching 2D features into 3D points. 
+
+Once this step finishes, the \textit{Next Best Views Selection} algorithm selects all the images that have enough number of associations with the 3D reconstructed features.
+Based on 2D-3D associations, it performs the resectioning of each of the new cameras \citep*{Lepetit2008EPnPAA}. The resectioning is a \textbf{Perspective-n-Point} algorithm (\textbf{\textit{PnP}}) in a
+\textbf{RANSAC} framework that finds the pose of the camera that validates the features association. Similarity, a non-linear minimization proceess is performed on each camera, to refine the end pose \citep*{Nister2004}.
+
+From these new camera poses, some tracks become visible by two or more resected cameras and it triangulates them. A Bundle Adjustment process starts and refines everything such as:
+intrinsic and extrinsic parameters of all cameras, as well as the position of all 3D points as suggested by \citet*{Shah2014}. A filter processes the result of the Bundle Adjustment process and removes all osbservations that have a high reprojection error or not enough angles between viewpoints.
+
+In the new points tringulation process, it uses more image candidates for the best views selection. It iterates by adding cameras and tringulatins new 2D features into 3D points and removes 3D points that become invalid in the process,until no more new views can be localized \citep*{Shah2014}.
+
+The components in the node are described on table \ref{tab:StructureFromMotion}
+
+\begin{table}[h!]
   \centering
   \resizebox{\textwidth}{!}{%
   \begin{tabular}{|l|l|}
@@ -531,25 +550,283 @@ Once this process is completed, the number of features verifies and validates th
 
 
 \subsection{Prepare Dense Scene}
-% https://www.tablesgenerator.com/latex_tables#
+This node undistorts the images and it genera etes EXR images.
+The components in the node are described on table \ref{tab:PrepareDenseScene}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                         \\ \hline
+  Input                               & SfMData file                                                      \\ \hline
+  ImagesFolders & Use images from specific folder(s). Filename should be the same or the image uid.      \\ \hline
+  Output File Type                    & Output file type for the undistorted images. (jpg, png, tif, exr) \\ \hline
+  Save Metadata & Save projections and intrinsics information in images metadata (only for .exr images). \\ \hline
+  Save Matrices Text Files            & Save projections and intrinsics information in text files.        \\ \hline
+  Correct images exposure             & Apply a correction on images Exposure Value                       \\ \hline
+  Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}       \\ \hline
+  Output                              & MVS Configuration file (desc.Node.internalFolder + ‘mvs.ini)      \\ \hline
+  Undistorted images                  & List of undistorted images.                                       \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Prepare Dense Scene Node}
+  \label{tab:PrepareDenseScene}
+  \end{table}
+
+\newpage
 \subsection{Depth Map}
 
+This step in the pipeline retrieves the depth value of each pixel for all cameras that were processes by the StructureFromMotion Node.
+It uses Semi-Global Matching method as proposed by \citet*{Hirschmuller2005}.
+
+For each image, it selects the \textbf{"N"} best \& closests cameras around. It chooses fronto-parallel planes based on the intersection of the optical axis with the pixels of the choosen neighboring cameras \Citep*{Hirschmuller2005}.
+This produces a volume \textbf{W,H,Z} with several depth candidates per pixel and it estimates the similarity for all of these. The Similarity is calculated by the \textit{Zero Mean Normalized Cross-Correlation (ZNCC)}
+of a small patch in the principal image which is reprojected into at the other camera, which creates a volume of similarities as suggested by \Citet*{Strecha2006}.
+For each neighboring image, it accumulates similarities in this volume. Nevertheless, this volume is noisy,therefore,  there is a filter in each step along X \& Y axis which reduces the isolated high values.
+Finally, it selects the local minima and replaces the selected plane index with a depth value stored into a depth map \Citep*{Scharstein2002}. This depth map has banding artifacts as it based on the original selection of depth values as mentioned by \Citet*{Scharstein2002}.
+Thus, a refinement process calculates the depth values with sub-pixel accuracy.
+
+The components in the node are described on table \ref{tab:DepthMap}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
+  MVS Configuration File:             & SfMData file.                                                           \\ \hline
+  Images Folder                  & Use images from a specific folder instead of those specify in the SfMData file. Filename should be the image uid. \\ \hline
+  Downscale                           & Image downscale factor (1, 2, 4, 8, 16)                                 \\ \hline
+  Min View Angle                      & Minimum angle between two views.(0.0 - 10.0)                            \\ \hline
+  Max View Angle                      & Maximum angle between two views. (10.0 - 120.0)                         \\ \hline
+  SGM: Nb Neighbour Cameras           & Semi Global Matching: Number of neighbour cameras (1 - 100)             \\ \hline
+  SGM: WSH: Semi Global Matching & Half-size of the patch used to compute the similarity (1 - 20)                                                    \\ \hline
+  SGM: GammaC                         & Semi Global Matching: GammaC Threshold (0 - 30)                         \\ \hline
+  SGM: GammaP                         & Semi Global Matching: GammaP Threshold (0 - 30)                         \\ \hline
+  Refine: Number of samples           & (1 - 500)                                                               \\ \hline
+  Refine: Number of Depths            & (1 - 100)                                                               \\ \hline
+  Refine: Number of Iterations        & (1 - 500)                                                               \\ \hline
+  Refine: Nb Neighbour Cameras        & Refine: Number of neighbour cameras. (1 - 20)                           \\ \hline
+  Refine: WSH                         & Refine: Half-size of the patch used to compute the similarity. (1 - 20) \\ \hline
+  Refine: Sigma                       & Refine: Sigma Threshold (0 - 30)                                        \\ \hline
+  Refine: GammaC                      & Refine: GammaC Threshold. (0 - 30)                                      \\ \hline
+  Refine: GammaP                      & Refine: GammaP threshold. (0 - 30)                                      \\ \hline
+  Refine: Tc or Rc pixel size    & Use minimum pixel size of neighbour cameras (Tc) or current camera pixel size (Rc)                                \\ \hline
+  Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
+  Output                              & Output folder for generated depth maps                                  \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Depth MapNode}
+  \label{tab:DepthMap}
+  \end{table}
 % https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
 
+
 \subsection{Depth Map Filter}
+This node is in charge of processing the DepthMap Node results s the original depth maps will not be entirely consistent.
+Certain depth maps will interprete to see areas that are occluded by other dept maps. Thus, this step of the pipeline isolates these areas and ensures depth consistency.
+
+The components in the node are described on table \ref{tab:DepthMapFilter}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}}     & \multicolumn{1}{c|}{\textbf{Description}}                   \\ \hline
+  Input                                   & SfMData file                                                \\ \hline
+  Depth Map Folder                        & Input depth map folder                                      \\ \hline
+  Number of Nearest Cameras               & Number of nearest cameras used for filtering 10 (0 - 20)    \\ \hline
+  Min Consistent Cameras                  & Min Number of Consistent Cameras 3 (0 - 10)                 \\ \hline
+  Min Consistent Cameras Bad Similarity & Min Number of Consistent Cameras for pixels with weak similarity value 4 (0 - 10) \\ \hline
+  Filtering Size in Pixels                & Filtering size in Pixels (0 - 10)                           \\ \hline
+  Filtering Size in Pixels Bad Similarity & Filtering size in pixels (0 - 10)                           \\ \hline
+  Verbose Level                           & verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+  Output                                  & Output folder for generated depth maps                      \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Depth Map Filter Node}
+  \label{tab:DepthMapFilter}
+  \end{table}
+
+
 
 \subsection{Meshing}
+The main purpose of this node is to construct a dense geometric surface representation of the scene.
+Initially, it fuses all the processed depth maps into a global octree and where it is compatible it will merge depth values into the octree cells.
+Afterwards, the node performs a 3D Delaunay tetrahedralization process. Subsequenly, a complex voting procedure computes the weighs on cells and weights the faces connecting 
+the cells \citep*{Jancosek2011}  as mentioned by  \Citet*{Jancosek2014}.
+
+A Graph Cut Max-Flow \Citep*{Boykov2004} is applied to efficiencly reduce the volume, which represents the extrated mesh surface. 
+Furthermore, it filters bad cells on the surface and applies a Laplacian filtering process on the Mesh to remove local artifacts.
+
+The components in the node are described on table \ref{tab:Meshing}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}}       & \multicolumn{1}{c|}{\textbf{Description}}                                                \\ \hline
+  Input                                     & SfMData file.                                                                            \\ \hline
+  Depth Maps Folder                         & Input depth maps folder                                                                  \\ \hline
+  Filtered Depth Maps Folder                & Input filtered depth maps folder                                                         \\ \hline
+  Estimate Space From SfM                   & Estimate the 3d space from the SfM                                                       \\ \hline
+  Min Observations For SfM Space Estimation & Minimum number of observations for SfM space estimation. (0-100) 3                       \\ \hline
+  Min Observations Angle For SfM Space Estimation &
+    Minimum angle between two observations for SfM space estimation. (0-120) 10 \\ \hline
+  Max Input Points                          & Max input points loaded from depth map images (500**000** - 500000000)                   \\ \hline
+  Max Points                                & Max points at the end of the depth maps fusion (100**000** - 10000000)                   \\ \hline
+  Max Points Per Voxel                      & (500**000** – 30000000)                                                                  \\ \hline
+  Min Step &
+    \begin{tabular}[c]{@{}l@{}}The step used to load depth values from depth maps is computed  from maxInputPts. \\ Here we define the minimal value for this step, so on  small datasets we will not spend too much time at the beginning loading  all depth values (1- 20) 2\end{tabular} \\ \hline
+  Partitioning                              & (singleBlock, auto)                                                                      \\ \hline
+  Repartition                               & (multiResolution, regularGrid)                                                           \\ \hline
+  angleFactor                               & (0.0-200.0) 15.0                                                                         \\ \hline
+  simFactor                                 & (0.0-200.0) 1.0                                                                          \\ \hline
+  pixSizeMarginInitCoef                     & (0.0-10.0) 2.0                                                                           \\ \hline
+  pixSizeMarginFinalCoef                    & (0.0-10.0) 4.0                                                                           \\ \hline
+  voteMarginFactor                          & (0.1-10.0) 4.0                                                                           \\ \hline
+  contributeMarginFactor                    & (0.0-10.0) 2.0                                                                           \\ \hline
+  simGaussianSizeInit                       & (0.0-50) 10.0                                                                            \\ \hline
+  simGaussianSize                           & (0.0-50) 0.1                                                                             \\ \hline
+  minAngleThreshold                         & (0.0-10.0) 0.01                                                                          \\ \hline
+  Refine Fuse                               & Refine depth map fusion with the new pixels size defined by angle and similarity scores. \\ \hline
+  Add Landmarks To The Dense Point Cloud    & Add SfM Landmarks to the dense point cloud.                                              \\ \hline
+  Colorize Output                           & Whether to colorize output dense point cloud and mesh.                                   \\ \hline
+  Save Raw Dense Point Cloud                & Save dense point cloud before cut and filtering.                                         \\ \hline
+  Verbose Level                             & verbosity level (fatal, error, warning, info, debug, trace).                             \\ \hline
+  Output Mesh                               & Output mesh (OBJ file format). mesh.obj                                                  \\ \hline
+  Output Dense Point Cloud                  & Output dense point cloud with visibilities (SfMData file format). densePointCloud.abc    \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Meshing Node}
+  \label{tab:Meshing}
+  \end{table}
 
 \subsection{Mesh Filtering}
 
-\subsection{Texturing}
+This node filters and removes the unwanted elements from the resulting mesh.
+The components in the node are described on table \ref{tab:MeshFiltering}
 
-\subsection{Localization}
-% https://alicevision.org/#photogrammetry/localization
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                    \\ \hline
+  Input                               & Input Mesh (OBJ file format)                                 \\ \hline
+  Filter Large Triangles Factor &
+    \begin{tabular}[c]{@{}l@{}}Remove all large triangles. We consider a triangle as large if  one edge is bigger than N times the average edge length. \\ Put zero to  disable it. 60 (1 - 100)\end{tabular} \\ \hline
+  Keep Only the Largest Mesh          & Keep only the largest connected triangles group (True/False) \\ \hline
+  Nb Iterations                       & 5 (0 - 50)                                                   \\ \hline
+  Lambda                              & 1 (0-10                                                      \\ \hline
+  Verbose Level                       &                                                              \\ \hline
+  Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}  \\ \hline
+  Output mesh                         & Output mesh (OBJ file format) internalFolder + ‘mesh.obj     \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Mesh FilteringNode}
+  \label{tab:MeshFiltering}
+  \end{table}
+
+\subsection{Texturing}
+The principle of this components is to create a texture of the generated mesh.
+If the mesh has no correspondent UV, it computes auomatic UV maps. It uses basic UV mapping approach to reduced the texture space as proposed by \Citet*{Levy2002}.
+
+For each triangle, it uses the visibility information associated to each vertex in order to, retrieve texture candidates.
+It filters the cameras that do not have a good angle to the surface to favourable fronto-parallel cameras to average the pixel values.
+Furthermore, it uses a generalization of multiband blending as described by \Citet*{Burt1983AMS}. Thus, it averages more views in the low frequencies in comparison to the high frequencies.
+
+The components in the node are described on table \ref{tab:Texturing}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \textbf{MVS Configuration file} & \textbf{…/mvs.ini}                                                                             \\ \hline
+  Input Dense Reconstruction      & Path to the dense reconstruction result (mesh with per vertex visibility)                      \\ \hline
+  Other Input Mesh                & Optional input mesh to texture. By default, it will texture the result of the reconstruction.  \\ \hline
+  Texture Side                    & Output texture size 1024, 2048, 4096, 8192, 16384                                              \\ \hline
+  Texture Downscale               & Texture downscale factor1, 2, 4, 8                                                             \\ \hline
+  Texture File Type               & Texture File Type ‘jpg’, ‘png’, ‘tiff’, ‘exr’                                                  \\ \hline
+  Unwrap Method &
+    \begin{tabular}[c]{@{}l@{}}Method to unwrap input mesh if it does not have UV coordinates Basic  (\textgreater 600k faces) fast and simple. \\ Can generate multiple atlases LSCM  (\textless{}= 600k faces): optimize space. Generates one atlas ABF (\textless{}= 300k  faces): optimize space and stretch. \\ Generates one atlas\end{tabular} \\ \hline
+  Fill Holes                      & Fill Texture holes with plausible values True/False                                            \\ \hline
+  Padding                         & Texture edge padding size in pixel (0-100)                                                     \\ \hline
+  Max Nb of Images For Fusion     & Max number of images to combine to create the final texture (0-10)                             \\ \hline
+  Best Score Threshold            & 0.0 to disable filtering based on threshold to relative best score (0.0-1.0)                   \\ \hline
+  Angle Hard Threshold            & 0.0 to disable angle hard threshold filtering (0.0, 180.0)                                     \\ \hline
+  Force Visible By All Vertices   & Triangle visibility is based on the union of vertices visiblity.True/False                     \\ \hline
+  Flip Normals &
+    Option to flip face normals. It can be needed as it depends on  the vertices order in triangles and the convention change from one  software to another. \\ \hline
+  Visibility Remapping Method     & Method to remap visibilities from the reconstruction to the input mesh (Pull, Push, PullPush). \\ \hline
+  Verbose Level                   & verbosity level (fatal, error, warning, info, debug, trace).                                   \\ \hline
+  Output Folder                   & Folder for output mesh: OBJ, material and texture files.                                       \\ \hline
+  Output Mesh                     & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.obj    \\ \hline
+  Output Material                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.mtl    \\ \hline
+  Output Textures                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texture\_*.png      \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Texturing Node}
+  \label{tab:Texturing}
+  \end{table}
+
 
 \section{PCL}
+The \textbf{Point Cloud Library (PCL)} is a large scale, open project used for point cloud processing.\
+The PCL framework contains multiple state-of-the art algorithms ranging from feature estimation,registration,filtering, model fitting to segmentation \Citep*{Rusu_ICRA2011_PCL}. 
+PCL is a cross platform library and it is compatible with Windows, Linux and macOS.
+
+The PCL framework is divided into a series of modular libraries such as:
+\begin{multicols}{2}
+\begin{itemize}
+  \item Filters
+  \item Features
+  \item Keypoints
+  \item Kegistration
+  \item kdtree
+  \item octree
+  \item Segmentation
+  \item Sample Consensus
+  \item Surface
+  \item Recognition
+  \item IO 
+  \item Visualization
+\end{itemize}
+\end{multicols}
+
+These series of modular libraries  have a series of embedded algorithms  that can be used in scenarios such as: filtering outliers from noisy data, stitch multiple 3D pointclouds,
+segment relevants parts of the scene \& point cloud, extract keypoints and compute image descriptors to be able to recognize real world objects based on geometric appearence, among many other possible implementations.
+
+The selected components and algorithms that were used in this project include: 
+
+
 
 \section{Open3D}
+Open3D is an open source library that supports fast development of software that handles 3D data.
+The Open3D frontend exposes outputs a set of carefully choosen data structures and algorithms in both Python and C++ \Citep*{Zhou2018}. 
+The backend of the framework is highly optimized and it configured for parallelization.
+Open3D is compatible with Linux, macOS and Windows and it can be installed via source of via packages. 
+
+The core features include: 
+\begin{multicols}{2}
+  \begin{itemize}
+    \item Simple installation via conda and pip
+    \item 3D data structures
+    \item 3D data processing algorithms
+    \item Scene reconstruction
+    \item Surface alignment
+    \item PBR rendering
+    \item 3D visualization
+    \item Python binding
+  \end{itemize}
+  \end{multicols}
+
+The main components of Open3D used in this project include:
+
 
 \section{Dynamic Fusion}
 Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 

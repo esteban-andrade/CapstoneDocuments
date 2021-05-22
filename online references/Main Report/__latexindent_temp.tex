@@ -8,12 +8,12 @@
 \usepackage{microtype}
 \usepackage{setspace}
 \usepackage{enumitem}
-
+\usepackage{booktabs}
 
 \usepackage[nottoc]{tocbibind}
 \usepackage{natbib}
 \usepackage[section]{placeins}
-
+\usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{lscape}
 \usepackage{amssymb}
@@ -38,15 +38,23 @@
 \usepackage{afterpage}
 \usepackage{caption}
 \usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{longtable}
 
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
-\renewcommand{\familydefault}{\sfdefault}
+% \renewcommand{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
 \setstretch{1.25}
 \graphicspath{ {./images/} }
-\bibliographystyle{agsm} %agsm
-
+\bibliographystyle{apa} %agsm
+\author{}
 \titleformat{\chapter}[display]
   {\normalfont\bfseries}{}{0pt}{\huge}
 \begin{document}
@@ -56,18 +64,53 @@
 
     \title{ \includegraphics[scale=1.7]{utslogo.jpg}\\[1cm]  
     Faculty of Engineering and Information Technology\\[1.0cm] 
-    \Large{\textbf{Human Body 3D Scanner (Virtual me)}}\\}
-    \author{Esteban Andrade\\ 
-    12824583\\
-    Supervisor: Dr Teresa Vidal Calleja\\}
-    \date{\today}  
-     \maketitle
-     \cleardoublepage
+    \Large{\textbf{Human Body 3D Scanner (Virtual me)}}\\[1.0cm] 
+    {Esteban Gabriel Andrade Zambrano\\
+    Student Number: 12824583\\
+    Project Number: AUT-21-04017\\
+    Major: Mechanical and Mechatronics Engineering\\
+    Supervisor: Dr. Teresa Vidal Calleja\\[2.0cm]
+    \small{A 12 Credit Point Project submitted in partial fulfilment of the requirement for the Degree of Bachelor of Engineering}
+    }
+    \date{\today}   
+   }
+   
 \end{titlepage}
+\maketitle  
+\cleardoublepage
 
 %\addtocontents{toc}{\protect\thispagestyle{empty}}
-\addtocontents{toc}{\protect}
 \pagenumbering{roman}
+\addtocontents{toc}{\protect}
+\chapter*{Statement of Originality}
+I, Esteban Gabriel Andrade Zambrano  declare that I am the sole author of this report, that I have not used fragments of text from other sources without proper acknowledgment, that theories, results and designs of others that I have incorporated into my report have been appropriately referenced and all sources of assistance have been acknowledged.\\[2 cm]
+Refer to Appendix for signed statement of originality
+
+\chapter*{Abstract}
+\textbf{Human Body 3D Scanner (Virtual me) (12cp)}\\
+Esteban Gabriel Andrade Zambrano - AUT-21-04017\\
+Supervisor: Dr. Teresa Vidal Calleja\\
+Major: Mechanical and Mechatronics Engineering.\\
+\textbf{Objective}: Process recorded sensor data from a human body and create a scaled model of the scanned subject that can be used for clothing fitting.\\
+\rule{\textwidth}{0.1pt}
+The capability of scanning different models is critical for manu industries ranging from fashion to medical and manufacturing. Nevertheless many of the current implementations are extremely expensive. Hence it imposses a barrier for the technology.
+Similarly, many of the current applications do not create extremely accurate models and in various occasions thgse models would be discarded.\\
+Therefore, this project will create both hardware and software implementation for a human 3D scanner with a moderate budget as well as accurate results  in order to be able to produce accurate and scaled models of the scanned subject.
+The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig. 
+Additionally, a Lidar will be used to capture a PointCloud as well as an Image mof the subject inside the rig.\\
+With the acquired images from all the cameras as well as the Lidar, a photogrammetry process will be used in order to obtain an initial mesh. This mesh is the result of the photogrametry reconstruction process.
+Moreover, the initial mesh will be processes with a series of developed algorithms in a pipeline sequence. The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering.\\
+The Scaling will use the PointCloud from the Lidar as a reference and adjust the Scale and Pose of the processed mesh. Once the Mesh has been scaled appropiately with the reference PointCloud, a Poisson algorithm will be used in order to reconstruct and obtain the final scanned model.\\
+The results in this report illustrate the process on how with a constrained data set, it is possible to obtain accurate scaled scanned model that can be used in many applications.
+\enlargethispage{\baselineskip}
+\chapter*{Acknowledgements}
+I would like to acknowledge and thank my supervisor Dr. Teresa Vidal Calleja for her help and support throughout this project. I would also like to acknowledge and thank Dr. Cedric Le Gentil for all his guidance, support and input throughout the project development.
+Furthermore, I would like to acknowledge Mr Asher Katz for his contributions in the development of the rig  and the image acquisition process component of the project.\\
+On the other hand, I would also like to acknowledge Dr. Mark Liu as well as the UTS Robotics Institute for assitance and resources provided for the completion of this project.
+
+Similarly, I would like to acknowledge the Open Source Community, as assets developed by this community helped in the development and completion of this project.
+
+Finally, I would like to thank my family for their massive and ongoing support throughout this project and my studies. In equally importance I would like to thank God, who with his countless blessings have gave me the opportunity to develop and complete this project.
 \tableofcontents
 \listoffigures
 \listoftables
@@ -77,7 +120,7 @@
 \setcounter{page}{1}
 
 \pagenumbering{arabic}
-\chapter{Engineering Reseach Problem}
+\chapter{Introduction}
 
 \section{Reseach Question}
 \textit{\large{"Human Body 3D Scanner: The development of software for 3D data reconstruction of a Human body scanner with multiple sensors" }}
@@ -91,15 +134,12 @@ Similarly, with the 3D reconstructed model of the human has the aim to be utilis
 The project will have different stages that range from testing different sensors for data acquisition, testing different data stitching frameworks to the deployment of the software in the 3D scanner mechatronic device.
 
 \section{Problem Definition}
-%Being able to obtain data from multiple sensors and model objects has is very crucial for many industries.
-%Nevertheless, there is a lack of precise and accurate options in the market that could create 3D models of Humans with respective sensor data. Similarly there are no current industry application that maximise the potential use of the Human body 3D models.
-%Therefore, this project is aimed at creating a solution and develop the software for 3D data reconstruction of the scanned human. This model will be utilised to try different fashion items and adapt the size fittings accordingly. 
 Being able to scan different object and models is crucial for many industries. Many applications are in the used in the fashion industry, medical industry, manufacturing ,etc. However, many of the given implementations are extremely expensive , thus making the technology inaccessible for many companies and users in general. 
-There are many forms of implementations , as there are multiple technologies  in the market that facilitate the process in which several devices and software techniques are used. Nevertheless, there is no current industry application that maximise the potential use of the Human body 3D models.
+There are many forms of implementations, as there are multiple technologies in the market that facilitate the process in which several devices and software techniques are used. Nevertheless, there is no current industry application that maximises the potential use of the Human body 3D models.
 Many of the challenges faced is that the software implementation for 3D reconstruction of the models is not particularly accurate, therefore creating imperfect models that on many occasions will need to be discarded.
 
 Hence, this project component will contribute and develop the technology to produce software that will be able to produce accurate models from the gathered data from the sensors. These models will be utilised to try different fashion items and adapt the size fittings accordingly. 
-With the competition of this project many stakeholders, industries and institutions could rely on  accurate software that will  allow to create a 3D model of a person or object.
+With the competition of this project many stakeholders, industries and institutions could rely on accurate software that will  allow to create a 3D model of a person or object.
 
 
 \enlargethispage{\baselineskip}
@@ -109,7 +149,7 @@ The human society has the world comprehension of the surrounding world through v
 Based on this information, it is possible to analyse the number of objects in a determined location, object type, object size, object pose in different coordinate frames. 
 Thus, it impacts how as a society we interact with objects or scenes. As a result, it is essential to imitate this perception  to acquire real-world data in different formats that include:
 \begin{itemize}[]
-    \item RGB images
+     \item RGB images
      \item Depth images
      \item 3D point clouds 
      \item Multispectral images
@@ -136,16 +176,34 @@ From which the diagnose, treatment and monitor procedures will differ based on t
     \caption{3D Scanning Applications}\cite[]{treleaven_wells_2007}.
 \end{table}
 
-\begin{figure}[ht]
-  \begin{center}
-  \includegraphics[width=0.5\textwidth]{bodyMedicine.png}
-  \caption{Front, Side results of 3D Scanning }\cite[]{treleaven_wells_2007}.
-  \label{bodymed}
-\end{center}
-\end{figure}
+\section{Overview}
+As mentioned before, project consists of developing a 3D scanner that is allowed to scan person and be able to use that data in order to be able to virtually fit different clothing.
+This capstone project mainly focuses on the software and processing of the data for the 3D reconstruction.
 
+The aim of this project is to develop algorithms and an implementation pipeline that will use the acquired image data as well as the reference pointcloud data in order to produce an accurate
+and appropiately scaled 3D reconstructed model of a person.\\
+This is reconstructed ans scaled model of the scanned person, is intended to be utilised as the model for testing virtual clothe fitting and be able to correctly determine the size of the garments. 
+This technology could have a massive industry in the clothing industry and online retailers as this could solve an issue with the returns policy due to incorrect sizing for different customers groups.
+\subsection{Methodology}
+To achive the aim, a rig will be used to capture the data. The Rig will consist of a set of poles with multiple cameras. Furthermore a Lidar Intel RealSense L515 will be used to capture another image an the corresponding pointcloud that will be used for reference.
+Once the rig captures the data (28 images) as well as the lidar data(1 image, 1 pointcloud), the images will be processed with photogrammetry approach with Meshroom. 
+The Processed data from Meshroom will produce a preprocessed reconstruction mesh. 
 
-\chapter{Related Works}
+After this the mesh will be processed in the developed algorithmic pipeline and it will be properly scaled with the reference pointcloud from the Lidar. 
+Once the mesh has been processed and scaled, it will be reconstructed appropiatelyand it will generate a final model of the scanned person with the with only the necessary components and appropriate scale.
+
+Once the process is completed the mesh will be saved to disk as a ply file that can be later use in other applications such as clothing fitting. 
+
+\subsection{Structure}
+This Report will start with a literature review in order to analyse and fully understand the algorithms and techniques that are used in both components. 
+It will help to understand the techniques used in the photogrammetry step and the developed algorithm pipeline.
+
+Following this, details will be presented and illustrated as to how the process is carried out and the results that were obtained from different data sets.
+It will fully ilustrated how to import the data to Meshroom, what parameters are required to add and modify in order to change the most robust reconstruction. There will be an indetail explanation of what each step executes.
+
+Furthermore, there will be an detailed explanation of the algorithm pipeline for data processing. Here it will be explain what each component is expected to execute as well as how it was created and wrapped into a framework.
+\enlargethispage{\baselineskip}
+\chapter{Literature Review}
 Being able to scan different objects and subjects has been a challenging task for researchers. Getting an accurate spatial location of the objects is crucial for this type of application.
 The use of 3D point clouds has facilitated this process as it allowed to obtain the following parameters:
 \begin{itemize}[]
@@ -161,8 +219,614 @@ These sensors could either be stereo or multiview vision cameras, lasers, time-o
 Many Scanning devices will use single or multiple of the above-mentioned sensors to acquire data. Once the data is obtained, it essential to have a framework for 3D data modelling and reconstruction.
 The principle behind 3D data reconstruction is obtained with data fusion from RGB-D sensors. This kind of sensors provide 3 channels images RGB (red, green, blue) and the depth images are mapped to each pixel. Based on this data, 3D point clouds could be generated for data reconstruction.
 
-One of the most common frameworks is known as \textbf{Dynamic Fusion} which is referenced to \textit{"reconstruction and tracking of Non-rigid Scenes in real time"} \Citep*{newcombe_fox_seitz_2015}.
-Another recent powerful 3D Data reconstruction framework is \textbf{SurfelWarp} which is defined as \textit{"Efficient Non-Volumetic Single View Dynamic Reconstruction"} \Citep*{SurfelWarp}.
+Similarly many other scanning devices use photogrammetry as a technique in order to do the reconstruction. In this particular project Meshroom was used as a 3D photogrammetry reconstruction software.
+
+Moreover, several open source libraries were used in order to process and scale the draft mesh. These open source libraries include PCL and Open3D. From these several algorithms were used that aid in the data processing and these will be explained below. 
+\enlargethispage{\baselineskip}
+
+\section{Photogrammetry}
+Photogrammetry is decribed as the associated techniques with performing measurements of real-world objects and terrain features from images as mentioned by \Citet*{photogrammetry_def}.
+Many of the applications include the quantification of distances, volumes,areas, heights, 3D topographic mapping, measuring of objects, extracion of 3D pointcloud for surfaces reconstruction as well as the generation of orthophotographs and digital elevation models.\Citep*{photogrammetry_def}.
+
+In recent years, with the development of technologies pairing computer vision concepts \& algorithms and photogrammetry specifically \textit{Structure from Motion-Multiview Stereo (\textbf{SfM-MVS})}
+has led to significant advances in 3D surface Reconstruction from images \Citep*{photogrammetry_def}.
+
+The key principle behind all the photogrammetric measurements is associated with the mathematical \& geometrical reconstruction of the path of light rays from the object to the sensor camera in the exact moment of data image acquisition.
+Thus, the fundamental concept of photogrammetry is the undertanding of geometric characteristics of a single photograph.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{photogrammetry.png}
+  \caption{Photogrammetry Principle Illustration}\cite[]{photogrammetry_def}
+  \label{fig:photogrammetry_principle} 
+\end{figure}
+
+\section{Meshroom}
+Meshroom is a free, open-source 3D Reconstruction Software based on the AliceVision framework \Citep*{meshroom}.
+AliceVision is a software framework based on photogrametric computer vision.  which focuses on the development of 3D Reconstruction and Camera Tracking Algorithms.
+It aims to provide robust software foundation with novel computer vision algorithms that can be analysed, tested and reused.\\
+Meshwoom was developed as collobaration project between industry and academia in order to develop cutting-edge algorithms that are robust and of high quality which are crucial for production environments.
+
+\subsection{Components Pipeline}
+Meshroom can be downloaded and used in both Windows and Linux and it will require a powerfull CPU in order to have adequate performance. Also it will require an Nvidia GPU as it requires to run CUDA for different nodes and components.
+Once meshroom is downloaded it can run in either platform. When it is executed the Meshroom GUI will appear and it will be similar to figure \ref{fig:meshroom_gui}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1\textwidth]{meshroom_gui.jpg}
+  \caption{Meshroom Graphical User Interface}\cite[]{meshroom}
+  \label{fig:meshroom_gui} 
+\end{figure}
+
+\newpage
+As mentioned before, meshroom is based on AliceVision's Framework. Therfore it follows a photogrametric pipeline for 3D reconstruction. 
+This pipeline will have the following components:
+\begin{itemize}
+  \item Natural Feature Extraction
+  \item Image Matching
+  \item Features Matching
+  \item Structure from Motion
+  \item Depth maps estimation
+  \item Meshing
+  \item Texturing
+  \item Localization
+\end{itemize}
+
+The pipeline will be included into Meshroom GUI and it will be used in the nodes. All the components in Meshroom will be embedded into different individual nodes that will be executed and produce individual results that will be send to the next node along in the pipeline.
+As the nodes represent specific components of the reconstruction pipeline, these should be executed in a defined order.\\
+The nodes in the defined order to reconstruct a 3D model from images include:
+\begin{enumerate}
+  \item Camera Initialization 
+  \item Feature Extraction
+  \item Image Matching
+  \item Feature Matching
+  \item Structure From Motion
+  \item Prepare Dense Scene
+  \item Depth Map
+  \item Depth Map Filter
+  \item Meshing
+  \item Mesh Filtering
+  \item Texturing
+\end{enumerate}
+
+\subsubsection{Camera Initialization}
+Camera Initialization or \textit{"CameraInit"} loads the image metadata, sensor information, camera parameters and it will  generate viewpoints based on the images.
+It is possible to use a mixture of cameras \& focal lengths. This node will generate a groups of intrinsics that are based on the images metadata, these grooup os intrinsics can be adjusted if the cameras have been fully calibrated.
+The intrinsic include the camera matrix  which includes the focal length ($f_x$,$f_y$) and principal point ($x_0$,$y_0$).
+\begin{equation*}
+  Camera Intrinsics = 
+  \begin{pmatrix}
+  f_x & 0 & x_0 \\
+  0 & f_y & y_0 \\
+  0 & 0 & 1
+  \end{pmatrix}
+\end{equation*}
+\label{equ:camera_intrisics}
+
+The components in the node are described on table \ref{tab:CameraInit}
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  Viewpoints Input &
+    \begin{tabular}[c]{@{}l@{}}viewpoints (1 Element for each loaded image) \\ - ID \\ - Pose ID \\ -  Image Path \\ - Intrinsic: Internal Camera Parameters (Intrinsic ID) \\ - Rig  (-1 - 200) \\ - Rig Sub-Pose: Rig Sub-Pose Parameters (-1 - 200)\\  - Image  Metadata: (list of metadata elements)\end{tabular} \\ \hline
+  Intrinsic Camera Intrinsics &
+    \begin{tabular}[c]{@{}l@{}}(1 Element for each loaded image) - ID - Initial Focal Length:  Initial Guess on the Focal Length \\ - Focal Length: Known/Calibrated Focal  Length \\ - Camera Type: pinhole’, ‘radial1’, ‘radial3’, ‘brown’,  ‘fisheye4’ \\ - \#Make: Camera Make (not included in this build, commented  out) \\ - \#Model: Camera Model \\ - \#Sensor Width: Camera Sensor Width \\ -  Width: Image - Width (0-10000) \\ - Height: Image Height (0-10000) - Serial  Number: Device Serial Number (camera and lens combined) \\ - Principal  Point: X (0-10000) Y(0-10000)\\ - DistortionParams: Distortion Parameters \\ -  Locked(True/False): If the camera has been calibrated, the internal  camera parameters (intrinsics) can be locked. It should improve  robustness and speedup the reconstruction.\end{tabular} \\ \hline
+  Sensor Database &
+    Camera sensor width database path \\ \hline
+  Default Field Of View &
+    Empirical value for the field of view in degree 45° (0°-180°) \\ \hline
+  Verbose Level &
+    verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+  Output SfMData File &
+    …/cameraInit.sfm \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom CameraInit Node }
+  \label{tab:CameraInit}
+  \end{table}
+
+\subsection{Feature Extraction}
+% https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
+The key objective of this node is to extract distinctive pixel groups, which are to a certain extend invariant to a change in camera viewpoints during the image acquisition process.
+Thus, a feature in this scene should have similar features descriptors in all the captures images.
+
+One of the most used feature detection method is \textbf{SIFT} \textit{(Scale-invariant feature transform)} algorithm. 
+The objective of SIFT is to extract discriminative patches in an initial image that later can be compared to discriminative patches of a second image, irrespective of scale, rotation and translation \Citep*{Lowe2004}.
+As a relevant detail is only present at a specific scale, the extracted patches are centered around the point of interests. 
+Therefore, the SIFT invarience can be used to deal with image transformations that occur when the viewpoints change during image acquisition.
+
+Based on the representation of one image at different scales, SIFT is able to compute scale-space maxima of the Laplacian Representation. This is a defined image energy-based representation, using the differences of Gaussians.
+This Maxima is associated to the points of interest in the image. 
+Once this is processed, it samples for each of the this maxima a square image patch, whose origin is the maximum and "x" direction is the dominant gradient at the origin as suggested by \Citet*{Lowe2004} and\Citet*{Otero2014} .
+For each keypoint, a description of these patches is associated. 
+
+The description consists of statistics of gradients which is computed in regions around the keypoint. The size of the region is defined by the keypoint scale and the orientation by the dominant axis.
+ It is also frequently stored in 128 bits.
+ \enlargethispage{\baselineskip}
+
+The number of extracted features could vary as a result of texture complexity, from one image to other ones or in different image sections. Hence, a post-filtering step controls the number of extrated features to a specified limit. 
+Furthermore, grid filtering is used to ensure an even repartition in the image.
+
+The components in the node are described on table \ref{tab:FeatureExtraction}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{Name} & Description                                                          \\ \hline
+  Input                      & SfMData file.                                                        \\ \hline
+  Describer Types &
+    Describer types used to describe an image. ‘sift’, ‘sift*float’, ‘sift*upright’, ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, ‘sift*ocv’, ‘akaze*ocv’ \\ \hline
+  Describer Preset &
+    Control the ImageDescriber configuration (low, medium, normal, high, ultra). Configuration “ultra” can take long time ! \\ \hline
+  Force CPU Extraction       & Use only CPU feature extraction.                                     \\ \hline
+  Max Nb Threads &
+    Specifies the maximum number of threads to run simultaneously (0 for automatic mode). (0-24) 0 \\ \hline
+  Verbose Level              & verbosity level (fatal, error, warning, info, debug, trace).         \\ \hline
+  Output Folder              & Output path for the features and descriptors files (*.feat, *.desc). \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom FeatureExtraction Node Settings}
+  \label{tab:FeatureExtraction}
+  \end{table}
+
+  
+\subsection{Image Matching}
+The principle behind this node is to find images that point to the same areas of interest. Therefore, image retrieval techniques are implemented with the purpose of finding images 
+that share content without the demand of resolving all the  detailed feature matches. Hence, the goal is to simplify the image in a compact image descriptor. This allows to efficiencly compute the distance between all images descriptors.
+
+A vocabulary tree is one of the widely used methodologies to generate the image descriptor. It works by passing all the extracted features descriptors into it. Then it performs a classification process, which compares their descriptors to the ones on each node of the vocabulary tree as mentioned by \Citet*{Nister2006}.
+Each feature descriptor is associated with one leaf, which can be stored with an standard index (\textit{The index of this leaf in the tree}).Thus, the collection of leaves indices represents the image descriptor \Citep*{Nister2006}.
+
+The components in the node are described on table \ref{tab:ImageMatching}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
+  Image                               & SfMData file                                                            \\ \hline
+  Features Folders                    & Folder(s) containing the extracted features and descriptors             \\ \hline
+  Tree                                & Input name for the vocabulary tree file ALICEVISION\_VOCTREE            \\ \hline
+  Weights &
+    Input name for the weight file, if not provided the weights will be computed on the database built with the provided set \\ \hline
+  Minimal Number of Images &
+    \begin{tabular}[c]{@{}l@{}}Minimal number of images to use the vocabulary tree. \\ If we have  less features than this threshold, we will compute all matching  combinations\end{tabular} \\ \hline
+  Max Descriptors                     & Limit the number of descriptors you load per image. Zero means no limit \\ \hline
+  Nb Matches &
+    The number of matches to retrieve for each image (If 0 it will retrieve all the matches) 50 (0-1000) \\ \hline
+  Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
+  Output List File                    & Filepath to the output file with the list of selected image pairs       \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Image Matching Node}
+  \label{tab:ImageMatching}
+  \end{table}
+
+
+
+\subsection{Feature Matching}
+The key component of feature matching node is to be able to match all features between potential image pairs.
+Initially, the node performs a photometric process that creates matches between the descriptors from 2 separe images. For each feature in image "A", a list of potential features in image "B" is generated.
+The descriptor space is not linear and defined space, which causes uncertainty in the validity of the matches due to the absolute distance values. 
+Furthermore, in order to remove bad candidates, an assumption process associates only one valid match in the other image.
+Hence, for each feature descriptor on Image "A", two of the closests descriptors in the image are used with a relative threshold between them which provides a robust criteria as mentioned by \Citet*{Lowe2004}.
+
+This process will provide a photometric list of feature matching candidates. Afterwards, the images features positions are used in a geometrica
+filtering process that uses epipolar geometry in an outlier detection framework, which is RANSAC (\textit{"Random Sample Consensus"}).
+Moreover, a random selection process uses a small set of feature correspondances and it computers either the fundamental or essential matrix. 
+Once this process is completed, the number of features verifies and validates this model and iterates through the RANSAC framework \Citep*{FLANN2009}.
+\enlargethispage{\baselineskip}
+The components in the node are described on table \ref{tab:FeatureMatching}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} &
+    \multicolumn{1}{c|}{\textbf{Description}} \\ \hline
+  Input &
+    SfMData file \\ \hline
+  Features Folder &
+     \\ \hline
+  Features Folders &
+    Folder(s) containing the extracted features and descriptors \\ \hline
+  Image Pairs List &
+    Path to a file which contains the list of image pairs to match \\ \hline
+  Describer Types &
+    Describer types used to describe an image **sift**'/ 'sift\_float'/ 'sift\_upright'/ 'akaze'/ 'akaze\_liop'/ 'akaze\_mldb'/ 'cctag3'/ 'cctag4'/ 'sift\_ocv'/ 'akaze\_ocv \\ \hline
+  Photometric Matching Method &
+    \begin{tabular}[c]{@{}l@{}}For Scalar based regions descriptor \\ * BRUTE\_FORCE\_L2: L2  BruteForce matching\\ * ANN\_L2: L2 Approximate Nearest Neighbor  matching \\ * CASCADE\_HASHING\_L2: L2 Cascade Hashing matching\\ *  FAST\_CASCADE\_HASHING\_L2: L2 Cascade Hashing with precomputed hashed  regions (faster than CASCADE\_HASHING\_L2 but use more memory) \\ For Binary  based descriptor  \\ * BRUTE\_FORCE\_HAMMING: BruteForce Hamming matching\end{tabular} \\ \hline
+  Geometric Estimator &
+    Geometric estimator: (acransac:  A-Contrario Ransac //  loransac: LO-Ransac (only available for fundamental\_matrix model) \\ \hline
+  Geometric Filter Type &
+    Geometric validation method to filter features matches: **fundamental\_matrix** // essential\_matrix // homography\_matrix /// homography\_growing // no\_filtering' \\ \hline
+  Distance Ratio &
+    Distance ratio to discard non meaningful matches 0.8 (0.0 - 1) \\ \hline
+  Max Iteration &
+    Maximum number of iterations allowed in ransac step 2048 (1 - 20000) \\ \hline
+  Max Matches &
+    Maximum number of matches to keep (0 - 10000) \\ \hline
+  Save Putative Matches &
+    putative matches (True/False) \\ \hline
+  Guided Matching &
+    the found model to improve the pairwise correspondences (True/False) \\ \hline
+  Export Debug Files &
+    debug files (svg/ dot) (True/False) \\ \hline
+  Verbose Level &
+    verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+  Output Folder &
+    Path to a folder in which computed matches will be stored \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Feature Matching Node}
+  \label{tab:FeatureMatching}
+  \end{table}
+
+\subsection{Structure From Motion}
+
+The Structure From Motion Node carries out the 3D points reconstruction freom the input images. The key behind this node is to be able to comprenhend
+the geometric relationship behind all the views from the input images, and decifer the rigid scene structure (3D PointCloud) along with the pose (position \& orientation) and internal calibration of the cameras as mentioned by \Citet*{Cheng2014}
+This is an incremental process pipeline which associated with a growing reconstruction process. It  initially computes an starting two-view point reconstruction which is iteratively extended by adding new views \Citep*{Cheng2014}.
+
+It starts by fusing all feature matches between all images and store them in tracks. Each track represents a point in space, which is visible from multiple cameras. 
+Nevertheless, at this stage of the pipeline, many outliers are present,therefore during matches fusion, incorrect tracks are removed \citep*{Fischler1981RandomSC}.
+
+Afterwards, the incremental algorithm chooses the best initial image pair. This choice is very important for the quality of the final reconstruction, hence it should provide robust matches and reliable geometric information as suggested by \citet*{Moulon2012}.
+Therefore, this image pair maximises the number of matches and the repartition of features correspondances in all images. On the other hand, the angle between the cameras must be able to provide with reliable gemoetric information.
+Then, it computes the fundamental matrix between these two images considering the first image as the origin of the coordinate system \Citep*{Kneip2011}. As the pose of the first two cameras is known, 
+it is possible to triangulate the matching 2D features into 3D points. 
+
+Once this step finishes, the \textit{Next Best Views Selection} algorithm selects all the images that have enough number of associations with the 3D reconstructed features.
+Based on 2D-3D associations, it performs the resectioning of each of the new cameras \citep*{Lepetit2008EPnPAA}. The resectioning is a \textbf{Perspective-n-Point} algorithm (\textbf{\textit{PnP}}) in a
+\textbf{RANSAC} framework that finds the pose of the camera that validates the features association. Similarity, a non-linear minimization proceess is performed on each camera, to refine the end pose \citep*{Nister2004}.
+
+From these new camera poses, some tracks become visible by two or more resected cameras and it triangulates them. A Bundle Adjustment process starts and refines everything such as:
+intrinsic and extrinsic parameters of all cameras, as well as the position of all 3D points as suggested by \citet*{Shah2014}. A filter processes the result of the Bundle Adjustment process and removes all osbservations that have a high reprojection error or not enough angles between viewpoints.
+
+In the new points tringulation process, it uses more image candidates for the best views selection. It iterates by adding cameras and tringulatins new 2D features into 3D points and removes 3D points that become invalid in the process,until no more new views can be localized \citep*{Shah2014}.
+
+The components in the node are described on table \ref{tab:StructureFromMotion}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \textbf{Input}                      & \textbf{SfMData file}                                                                              \\ \hline
+  Features Folder                     & Folder(s) containing the extracted features and descriptors.                                       \\ \hline
+  Matches Folders                     & Folder(s) in which computed matches are stored.                                                    \\ \hline
+  Describer Types &
+    Describer types used to describe an image. ‘sift’, ‘sift*float’, ‘sift*upright’, ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, **’siftocv’, ‘akazeocv’ \\ \hline
+  Localizer Estimator                 & Estimator type used to localize cameras (acransac, ransac, lsmeds, loransac, maxconsensus).        \\ \hline
+  Observation Constraint &
+    \begin{tabular}[c]{@{}l@{}}Observation constraint mode used in the optimization: \\ Basic:  Use standard reprojection error in pixel coordinates, \\ Scale: Use  reprojection error in pixel coordinates but relative to the feature  scale\end{tabular} \\ \hline
+  Localizer Max Ransac Iterations     & Maximum number of iterations allowed in ransac step. (1-20000) 4096                                \\ \hline
+  Localizer Max Ransac Error &
+    \begin{tabular}[c]{@{}l@{}}Maximum error (in pixels) allowed for camera localization  (resectioning).\\ If set to 0, it will select a threshold according to the  localizer estimator used (if ACRansac, it will analyze the input data  to select the optimal value). (0.0-100-0) 0.0\end{tabular} \\ \hline
+  Lock Scene Previously Reconstructed & This option is useful for SfM augmentation. Lock previously reconstructed poses and intrinsics.    \\ \hline
+  Local Bundle Adjustment &
+    It reduces the reconstruction time, especially for large datasets  (500+ images) by avoiding computation of the Bundle Adjustment on areas  that are not changing. \\ \hline
+  LocalBA Graph Distance              & Graph-distance limit to define the Active region in the Local Bundle Adjustment strategy. (2-10) 1 \\ \hline
+  Maximum Number of Matches &
+    \begin{tabular}[c]{@{}l@{}}Maximum number of matches per image pair (and per feature type).\\  This can be useful to have a quick reconstruction overview. 0 means no  limit. (0-50000) 1\end{tabular} \\ \hline
+  Minimum Number of Matches &
+    \begin{tabular}[c]{@{}l@{}}Minimum number of matches per image pair (and per feature type). \\ This can be useful to have a meaningful reconstruction with accurate  keypoints. 0 means no limit. (0-50000) 1\end{tabular} \\ \hline
+  Min Input Track Length              & Minimum track length in input of SfM (2-10)                                                        \\ \hline
+  Min Observation For Triangulation &
+    \begin{tabular}[c]{@{}l@{}}Minimum number of observations to triangulate a point. \\ Set it to 3  (or more) reduces drastically the noise in the point cloud, but the  number of final poses is a little bit reduced (from 1.5\% to 11\% on the  tested datasets). (2-10)\end{tabular} \\ \hline
+  Min Angle For Triangulation         & Minimum angle for triangulation. (0.1-10) 3.0                                                      \\ \hline
+  Min Angle For Landmark              & Minimum angle for landmark. (0.1-10) 2.0                                                           \\ \hline
+  Max Reprojection Error              & Maximum reprojection error. (0.1-10) 4.0                                                           \\ \hline
+  Min Angle Initial Pair              & Minimum angle for the initial pair. (0.1-10) 5.0                                                   \\ \hline
+  Max Angle Initial Pair              & Maximum angle for the initial pair. (0.1-60) 40.0                                                  \\ \hline
+  Use Only Matches From Input Folder &
+    Use only matches from the input matchesFolder parameter. Matches folders previously added to the SfMData file will be ignored. \\ \hline
+  Use Rig Constraint                  & Enable/Disable rig constraint.                                                                     \\ \hline
+  Force Lock of All Intrinsic Camera Parameters. &
+    \begin{tabular}[c]{@{}l@{}}Force to keep constant all the intrinsics parameters of the  cameras (focal length, principal point, distortion if any) during the  reconstruction. \\ This may be helpful if the input cameras are already  fully calibrated.\end{tabular} \\ \hline
+  Filter Track Forks &
+    \begin{tabular}[c]{@{}l@{}}Enable/Disable the track forks removal. \\ A track contains a fork  when incoherent matches lead to multiple features in the same image for a  single track.\end{tabular} \\ \hline
+  Initial Pair A                      & Filename of the first image (without path).                                                        \\ \hline
+  Initial Pair B                      & Filename of the second image (without path).                                                       \\ \hline
+  Inter File Extension                & Extension of the intermediate file export. (‘.abc’, ‘.ply’)                                        \\ \hline
+  Verbose Level                       & Verbosity level (fatal, error, warning, info, debug, trace).                                       \\ \hline
+  Output SfMData File                 & Path to the output sfmdata file (sfm.abc)                                                          \\ \hline
+  Output SfMData File                 & Path to the output sfmdata file with cameras (views and poses). (cameras.sfm)                      \\ \hline
+  Output Folder                       & Folder for intermediate reconstruction files and additional reconstruction information files.      \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom StructureFromMotion Node}
+  \label{tab:StructureFromMotion}
+  \end{table}
+
+
+
+\subsection{Prepare Dense Scene}
+This node undistorts the images and it genera etes EXR images.
+The components in the node are described on table \ref{tab:PrepareDenseScene}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                         \\ \hline
+  Input                               & SfMData file                                                      \\ \hline
+  ImagesFolders & Use images from specific folder(s). Filename should be the same or the image uid.      \\ \hline
+  Output File Type                    & Output file type for the undistorted images. (jpg, png, tif, exr) \\ \hline
+  Save Metadata & Save projections and intrinsics information in images metadata (only for .exr images). \\ \hline
+  Save Matrices Text Files            & Save projections and intrinsics information in text files.        \\ \hline
+  Correct images exposure             & Apply a correction on images Exposure Value                       \\ \hline
+  Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}       \\ \hline
+  Output                              & MVS Configuration file (desc.Node.internalFolder + ‘mvs.ini)      \\ \hline
+  Undistorted images                  & List of undistorted images.                                       \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Prepare Dense Scene Node}
+  \label{tab:PrepareDenseScene}
+  \end{table}
+
+\newpage
+\subsection{Depth Map}
+
+This step in the pipeline retrieves the depth value of each pixel for all cameras that were processes by the StructureFromMotion Node.
+It uses Semi-Global Matching method as proposed by \citet*{Hirschmuller2005}.
+
+For each image, it selects the \textbf{"N"} best \& closests cameras around. It chooses fronto-parallel planes based on the intersection of the optical axis with the pixels of the choosen neighboring cameras \Citep*{Hirschmuller2005}.
+This produces a volume \textbf{W,H,Z} with several depth candidates per pixel and it estimates the similarity for all of these. The Similarity is calculated by the \textit{Zero Mean Normalized Cross-Correlation (ZNCC)}
+of a small patch in the principal image which is reprojected into at the other camera, which creates a volume of similarities as suggested by \Citet*{Strecha2006}.
+For each neighboring image, it accumulates similarities in this volume. Nevertheless, this volume is noisy,therefore,  there is a filter in each step along X \& Y axis which reduces the isolated high values.
+Finally, it selects the local minima and replaces the selected plane index with a depth value stored into a depth map \Citep*{Scharstein2002}. This depth map has banding artifacts as it based on the original selection of depth values as mentioned by \Citet*{Scharstein2002}.
+Thus, a refinement process calculates the depth values with sub-pixel accuracy.
+
+The components in the node are described on table \ref{tab:DepthMap}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
+  MVS Configuration File:             & SfMData file.                                                           \\ \hline
+  Images Folder                  & Use images from a specific folder instead of those specify in the SfMData file. Filename should be the image uid. \\ \hline
+  Downscale                           & Image downscale factor (1, 2, 4, 8, 16)                                 \\ \hline
+  Min View Angle                      & Minimum angle between two views.(0.0 - 10.0)                            \\ \hline
+  Max View Angle                      & Maximum angle between two views. (10.0 - 120.0)                         \\ \hline
+  SGM: Nb Neighbour Cameras           & Semi Global Matching: Number of neighbour cameras (1 - 100)             \\ \hline
+  SGM: WSH: Semi Global Matching & Half-size of the patch used to compute the similarity (1 - 20)                                                    \\ \hline
+  SGM: GammaC                         & Semi Global Matching: GammaC Threshold (0 - 30)                         \\ \hline
+  SGM: GammaP                         & Semi Global Matching: GammaP Threshold (0 - 30)                         \\ \hline
+  Refine: Number of samples           & (1 - 500)                                                               \\ \hline
+  Refine: Number of Depths            & (1 - 100)                                                               \\ \hline
+  Refine: Number of Iterations        & (1 - 500)                                                               \\ \hline
+  Refine: Nb Neighbour Cameras        & Refine: Number of neighbour cameras. (1 - 20)                           \\ \hline
+  Refine: WSH                         & Refine: Half-size of the patch used to compute the similarity. (1 - 20) \\ \hline
+  Refine: Sigma                       & Refine: Sigma Threshold (0 - 30)                                        \\ \hline
+  Refine: GammaC                      & Refine: GammaC Threshold. (0 - 30)                                      \\ \hline
+  Refine: GammaP                      & Refine: GammaP threshold. (0 - 30)                                      \\ \hline
+  Refine: Tc or Rc pixel size    & Use minimum pixel size of neighbour cameras (Tc) or current camera pixel size (Rc)                                \\ \hline
+  Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
+  Output                              & Output folder for generated depth maps                                  \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Depth MapNode}
+  \label{tab:DepthMap}
+  \end{table}
+% https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
+
+
+\subsection{Depth Map Filter}
+This node is in charge of processing the DepthMap Node results s the original depth maps will not be entirely consistent.
+Certain depth maps will interprete to see areas that are occluded by other dept maps. Thus, this step of the pipeline isolates these areas and ensures depth consistency.
+
+The components in the node are described on table \ref{tab:DepthMapFilter}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}}     & \multicolumn{1}{c|}{\textbf{Description}}                   \\ \hline
+  Input                                   & SfMData file                                                \\ \hline
+  Depth Map Folder                        & Input depth map folder                                      \\ \hline
+  Number of Nearest Cameras               & Number of nearest cameras used for filtering 10 (0 - 20)    \\ \hline
+  Min Consistent Cameras                  & Min Number of Consistent Cameras 3 (0 - 10)                 \\ \hline
+  Min Consistent Cameras Bad Similarity & Min Number of Consistent Cameras for pixels with weak similarity value 4 (0 - 10) \\ \hline
+  Filtering Size in Pixels                & Filtering size in Pixels (0 - 10)                           \\ \hline
+  Filtering Size in Pixels Bad Similarity & Filtering size in pixels (0 - 10)                           \\ \hline
+  Verbose Level                           & verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+  Output                                  & Output folder for generated depth maps                      \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Depth Map Filter Node}
+  \label{tab:DepthMapFilter}
+  \end{table}
+
+
+
+\subsection{Meshing}
+The main purpose of this node is to construct a dense geometric surface representation of the scene.
+Initially, it fuses all the processed depth maps into a global octree and where it is compatible it will merge depth values into the octree cells.
+Afterwards, the node performs a 3D Delaunay tetrahedralization process. Subsequenly, a complex voting procedure computes the weighs on cells and weights the faces connecting 
+the cells \citep*{Jancosek2011}  as mentioned by  \Citet*{Jancosek2014}.
+
+A Graph Cut Max-Flow \Citep*{Boykov2004} is applied to efficiencly reduce the volume, which represents the extrated mesh surface. 
+Furthermore, it filters bad cells on the surface and applies a Laplacian filtering process on the Mesh to remove local artifacts.
+
+The components in the node are described on table \ref{tab:Meshing}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}}       & \multicolumn{1}{c|}{\textbf{Description}}                                                \\ \hline
+  Input                                     & SfMData file.                                                                            \\ \hline
+  Depth Maps Folder                         & Input depth maps folder                                                                  \\ \hline
+  Filtered Depth Maps Folder                & Input filtered depth maps folder                                                         \\ \hline
+  Estimate Space From SfM                   & Estimate the 3d space from the SfM                                                       \\ \hline
+  Min Observations For SfM Space Estimation & Minimum number of observations for SfM space estimation. (0-100) 3                       \\ \hline
+  Min Observations Angle For SfM Space Estimation &
+    Minimum angle between two observations for SfM space estimation. (0-120) 10 \\ \hline
+  Max Input Points                          & Max input points loaded from depth map images (500**000** - 500000000)                   \\ \hline
+  Max Points                                & Max points at the end of the depth maps fusion (100**000** - 10000000)                   \\ \hline
+  Max Points Per Voxel                      & (500**000** – 30000000)                                                                  \\ \hline
+  Min Step &
+    \begin{tabular}[c]{@{}l@{}}The step used to load depth values from depth maps is computed  from maxInputPts. \\ Here we define the minimal value for this step, so on  small datasets we will not spend too much time at the beginning loading  all depth values (1- 20) 2\end{tabular} \\ \hline
+  Partitioning                              & (singleBlock, auto)                                                                      \\ \hline
+  Repartition                               & (multiResolution, regularGrid)                                                           \\ \hline
+  angleFactor                               & (0.0-200.0) 15.0                                                                         \\ \hline
+  simFactor                                 & (0.0-200.0) 1.0                                                                          \\ \hline
+  pixSizeMarginInitCoef                     & (0.0-10.0) 2.0                                                                           \\ \hline
+  pixSizeMarginFinalCoef                    & (0.0-10.0) 4.0                                                                           \\ \hline
+  voteMarginFactor                          & (0.1-10.0) 4.0                                                                           \\ \hline
+  contributeMarginFactor                    & (0.0-10.0) 2.0                                                                           \\ \hline
+  simGaussianSizeInit                       & (0.0-50) 10.0                                                                            \\ \hline
+  simGaussianSize                           & (0.0-50) 0.1                                                                             \\ \hline
+  minAngleThreshold                         & (0.0-10.0) 0.01                                                                          \\ \hline
+  Refine Fuse                               & Refine depth map fusion with the new pixels size defined by angle and similarity scores. \\ \hline
+  Add Landmarks To The Dense Point Cloud    & Add SfM Landmarks to the dense point cloud.                                              \\ \hline
+  Colorize Output                           & Whether to colorize output dense point cloud and mesh.                                   \\ \hline
+  Save Raw Dense Point Cloud                & Save dense point cloud before cut and filtering.                                         \\ \hline
+  Verbose Level                             & verbosity level (fatal, error, warning, info, debug, trace).                             \\ \hline
+  Output Mesh                               & Output mesh (OBJ file format). mesh.obj                                                  \\ \hline
+  Output Dense Point Cloud                  & Output dense point cloud with visibilities (SfMData file format). densePointCloud.abc    \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Meshing Node}
+  \label{tab:Meshing}
+  \end{table}
+
+\subsection{Mesh Filtering}
+
+This node filters and removes the unwanted elements from the resulting mesh.
+The components in the node are described on table \ref{tab:MeshFiltering}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                    \\ \hline
+  Input                               & Input Mesh (OBJ file format)                                 \\ \hline
+  Filter Large Triangles Factor &
+    \begin{tabular}[c]{@{}l@{}}Remove all large triangles. We consider a triangle as large if  one edge is bigger than N times the average edge length. \\ Put zero to  disable it. 60 (1 - 100)\end{tabular} \\ \hline
+  Keep Only the Largest Mesh          & Keep only the largest connected triangles group (True/False) \\ \hline
+  Nb Iterations                       & 5 (0 - 50)                                                   \\ \hline
+  Lambda                              & 1 (0-10                                                      \\ \hline
+  Verbose Level                       &                                                              \\ \hline
+  Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}  \\ \hline
+  Output mesh                         & Output mesh (OBJ file format) internalFolder + ‘mesh.obj     \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Mesh FilteringNode}
+  \label{tab:MeshFiltering}
+  \end{table}
+
+\subsection{Texturing}
+The principle of this components is to create a texture of the generated mesh.
+If the mesh has no correspondent UV, it computes auomatic UV maps. It uses basic UV mapping approach to reduced the texture space as proposed by \Citet*{Levy2002}.
+
+For each triangle, it uses the visibility information associated to each vertex in order to, retrieve texture candidates.
+It filters the cameras that do not have a good angle to the surface to favourable fronto-parallel cameras to average the pixel values.
+Furthermore, it uses a generalization of multiband blending as described by \Citet*{Burt1983AMS}. Thus, it averages more views in the low frequencies in comparison to the high frequencies.
+
+The components in the node are described on table \ref{tab:Texturing}
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|l|}
+  \hline
+  \textbf{MVS Configuration file} & \textbf{…/mvs.ini}                                                                             \\ \hline
+  Input Dense Reconstruction      & Path to the dense reconstruction result (mesh with per vertex visibility)                      \\ \hline
+  Other Input Mesh                & Optional input mesh to texture. By default, it will texture the result of the reconstruction.  \\ \hline
+  Texture Side                    & Output texture size 1024, 2048, 4096, 8192, 16384                                              \\ \hline
+  Texture Downscale               & Texture downscale factor1, 2, 4, 8                                                             \\ \hline
+  Texture File Type               & Texture File Type ‘jpg’, ‘png’, ‘tiff’, ‘exr’                                                  \\ \hline
+  Unwrap Method &
+    \begin{tabular}[c]{@{}l@{}}Method to unwrap input mesh if it does not have UV coordinates Basic  (\textgreater 600k faces) fast and simple. \\ Can generate multiple atlases LSCM  (\textless{}= 600k faces): optimize space. Generates one atlas ABF (\textless{}= 300k  faces): optimize space and stretch. \\ Generates one atlas\end{tabular} \\ \hline
+  Fill Holes                      & Fill Texture holes with plausible values True/False                                            \\ \hline
+  Padding                         & Texture edge padding size in pixel (0-100)                                                     \\ \hline
+  Max Nb of Images For Fusion     & Max number of images to combine to create the final texture (0-10)                             \\ \hline
+  Best Score Threshold            & 0.0 to disable filtering based on threshold to relative best score (0.0-1.0)                   \\ \hline
+  Angle Hard Threshold            & 0.0 to disable angle hard threshold filtering (0.0, 180.0)                                     \\ \hline
+  Force Visible By All Vertices   & Triangle visibility is based on the union of vertices visiblity.True/False                     \\ \hline
+  Flip Normals &
+    Option to flip face normals. It can be needed as it depends on  the vertices order in triangles and the convention change from one  software to another. \\ \hline
+  Visibility Remapping Method     & Method to remap visibilities from the reconstruction to the input mesh (Pull, Push, PullPush). \\ \hline
+  Verbose Level                   & verbosity level (fatal, error, warning, info, debug, trace).                                   \\ \hline
+  Output Folder                   & Folder for output mesh: OBJ, material and texture files.                                       \\ \hline
+  Output Mesh                     & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.obj    \\ \hline
+  Output Material                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.mtl    \\ \hline
+  Output Textures                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texture\_*.png      \\ \hline
+  \end{tabular}%
+  }
+  \caption{Meshroom Texturing Node}
+  \label{tab:Texturing}
+  \end{table}
+
+
+\section{PCL}
+The \textbf{Point Cloud Library (PCL)} is a large scale, open project used for point cloud processing.\
+The PCL framework contains multiple state-of-the art algorithms ranging from feature estimation,registration,filtering, model fitting to segmentation \Citep*{Rusu_ICRA2011_PCL}. 
+PCL is a cross platform library and it is compatible with Windows, Linux and macOS.
+
+The PCL framework is divided into a series of modular libraries such as:
+\begin{multicols}{2}
+\begin{itemize}
+  \item Filters
+  \item Features
+  \item Keypoints
+  \item Kegistration
+  \item kdtree
+  \item octree
+  \item Segmentation
+  \item Sample Consensus
+  \item Surface
+  \item Recognition
+  \item IO 
+  \item Visualization
+\end{itemize}
+\end{multicols}
+
+These series of modular libraries  have a series of embedded algorithms  that can be used in scenarios such as: filtering outliers from noisy data, stitch multiple 3D pointclouds,
+segment relevants parts of the scene \& point cloud, extract keypoints and compute image descriptors to be able to recognize real world objects based on geometric appearence, among many other possible implementations.
+
+The selected components and algorithms that were used in this project include: 
+
+
+
+\section{Open3D}
+Open3D is an open source library that supports fast development of software that handles 3D data.
+The Open3D frontend exposes outputs a set of carefully choosen data structures and algorithms in both Python and C++ \Citep*{Zhou2018}. 
+The backend of the framework is highly optimized and it configured for parallelization.
+Open3D is compatible with Linux, macOS and Windows and it can be installed via source of via packages. 
+
+The core features include: 
+\begin{multicols}{2}
+  \begin{itemize}
+    \item Simple installation via conda and pip
+    \item 3D data structures
+    \item 3D data processing algorithms
+    \item Scene reconstruction
+    \item Surface alignment
+    \item PBR rendering
+    \item 3D visualization
+    \item Python binding
+  \end{itemize}
+  \end{multicols}
+
+  The main components of Open3D used in this project include:
+  
 
 \section{Dynamic Fusion}
 Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 
@@ -248,8 +912,6 @@ For any point in "x" the deformation can be interpolated by equation \ref{eq:def
     \label{fig:surfelmetho}
 \end{figure}
 
-
-
 From equation \ref{eq:deffield1} the following components can be described:
 \begin{itemize}
   \item $N(x)$: is the closest set of points x
@@ -278,7 +940,7 @@ Furthermore, the deformed vertex position  and normal can be modelled with the f
 
 From equations \ref{eq:deformed vertex} and \ref{eq:deformed vertex normal} $v_{life}$ and $n_{life}$ are the deformed vertex position and normal.
 Whereas $v_{ref}$ and $n_{ref}$ correspond to the vertex position and normal before the deformation process. 
-
+\enlargethispage{\baselineskip}
 
 \subsection{Depth Map Fusion \& Warp Fiel Update}
 In order to get the warp field estimate, it is necessary to perform a mathematical prediction of the visibility of the live surfels models $S_{life}$ with the proposed method of \Citet*{newcombe_fox_seitz_2015}
@@ -296,7 +958,7 @@ Similarly, to the approach of \citet{keller} the life surfels $S_{life}$  are re
 With all these parameters it is possible to model the warp field based on the Dynamic Fusion framework proposed by \citet*{newcombe_fox_seitz_2015}.
 
 Once the deformation is solved, the depth map fusion obtained from sensors along with the warp field update will perform data fusion in the live frame. 
-This live frame warps the live surfel back to the starting reference frame. Afterwards, the warp field is recurrently updated based on the new observed surfels reference. This process can be exemplified with image \ref{fig:surfelprocess}.
+This live frame warps the live surfel back to the starting reference frame. Afterwards, the warp field is recurrently updated based on the new observed surfels reference. This process can be exemplified with figure \ref{fig:surfelprocess}.
 
 \chapter{Methodology}
 As mentioned in the initial section, this project is focused on engineering design. Hence, it will be focused on creating a prototype for a 3D scanner. 
@@ -372,9 +1034,9 @@ The conceptual design will be focused on the development of the 3D software reco
 The Initial design will be to test with the field of view of the Intel RealSense D435i for both RGB image and Depth image sensors. From which for the Field of view (H × V × D) of the RGB corresponds to 69.4° × 42.5° × 77° (±3°),
 whereas the depth of the field of view for the Depth sensor corresponds to 86° × 57° (±3°)\citep*{intelrealsense}.
 
-Based on these results there will be a testing phase, which involves evaluating what is the ideal configuration for the Camera. The ideal configuration will be based on which pose the sensor will be able to obtain the most accurate and useful data. 
+Based on these results there will be a testing and evaluation phase, which involves evaluating what is the ideal configuration for the Camera. The ideal configuration will be based on which pose the sensor will be able to obtain the most accurate and useful data. 
 Hence a mannequin will be used for this testing purpose from which the ideal pose for the sensor will be determined. 
-\enlargethispage{\baselineskip}
+%\enlargethispage{\baselineskip}
 
 Once the ideal pose for the sensor is found, there will be the need to evaluate and test which is the fastest and most accurate way to obtain data of the model. All the testing purpose will be performed by recording several rosbags and visualise them.
 This has the intent to find the ideal location and number of all sensors that will be able to scan all the model. With this method, it will be possible to determine the speed and reliability of the Scanning process. 
@@ -460,7 +1122,7 @@ The details will be located in the appendix on figure \ref{appendix:wbx}
   \label{Fig::timeline}
 \end{wrapfigure}
 
-ThThe timeline is shown in figure \ref{Fig::timeline} depicts the problem-solving approach that is proposed in order to fully complete the optimum deliverable for the project. 
+The timeline shown in figure \ref{Fig::timeline} depicts the problem-solving approach that is proposed in order to fully complete the optimum deliverable for the project. 
 The below image summarises and synthesis the process in a waterfall approach. As there must be a certain number of deliverables that needs to be accounted for an agile approach would not satisfy the needs of the individual components. 
 Once most components are developed with the waterfall approach, an agile methodology will be necessary to integrate all the other components of the project.
 
@@ -533,7 +1195,7 @@ With these results, it will be possible to evaluate how multiple sensors  will i
 
 On the other side. it is crucial to assess the performance of Dynamic Fusion and SurfelWarp. 
 These will include evaluating the performance under different scenarios and with different models. Also, the speed, accuracy and results will be assessed. 
-Based on the results on these it will be possible to choose the appropriate framework and to plan potential modifications that might need to be developed in the development stage.
+Based on the results, it will be possible to choose the appropriate framework and to plan potential modifications that might need to be developed in the development stage.
 
 
 \subsubsection{Stage 4: Development}
@@ -625,6 +1287,7 @@ This middleware will allow to collect, synchronise, and initialise all the senso
 All projects face some particular level of unforeseen risks and uncertainties. Good project planning will consider all possible areas of failure and introduce mitigation plans to try to control and prevent the consequences.  
 All these uncertainties and risk matrix will be considered only for the 3D model data reconstruction component. The other components will need to be considered by the responsible respective teams. 
 
+\newpage
 The Uncertainties of the project float around the next parameters:
 \begin{itemize}
   \item How is the 3D data reconstruction going to work.
@@ -699,7 +1362,7 @@ This was done by observing the point clouds and via analysing the Sensor data in
 \begin{table}[!htb]
   \centering
   \makebox[\textwidth]
-  {\includegraphics[width=1\linewidth]{Risk matrix.png}    
+  {\includegraphics[width=1\linewidth]{Risk_matrix.png}    
   }
   \caption{Risk Matrix}
   \label{appendix:risk}
@@ -721,8 +1384,7 @@ This was done by observing the point clouds and via analysing the Sensor data in
   \begin{figure}
     \centering
     \makebox[\textwidth]
-    {\includegraphics[width=1\linewidth]{project Overview diagram v2.png}    
-    }
+   
     \caption{WorkBreakDown Structure}
     \label{appendix:wbx}
     \end{figure}   
@@ -735,7 +1397,7 @@ This was done by observing the point clouds and via analysing the Sensor data in
   \begin{figure}
     \centering
     \makebox[\textwidth]
-    {\includegraphics[width=0.98\linewidth]{Summary Gantt chart.pdf}   } 
+   
     \caption{Gantt Chart}
     \label{appendix::gant}
     \end{figure}   

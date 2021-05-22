@@ -247,7 +247,7 @@ AliceVision is a software framework based on photogrametric computer vision.  wh
 It aims to provide robust software foundation with novel computer vision algorithms that can be analysed, tested and reused.\\
 Meshwoom was developed as collobaration project between industry and academia in order to develop cutting-edge algorithms that are robust and of high quality which are crucial for production environments.
 
-\subsection{Components Pipeline}
+\subsection*{Components Pipeline}
 Meshroom can be downloaded and used in both Windows and Linux and it will require a powerfull CPU in order to have adequate performance. Also it will require an Nvidia GPU as it requires to run CUDA for different nodes and components.
 Once meshroom is downloaded it can run in either platform. When it is executed the Meshroom GUI will appear and it will be similar to figure \ref{fig:meshroom_gui}
 
@@ -289,7 +289,7 @@ The nodes in the defined order to reconstruct a 3D model from images include:
   \item Texturing
 \end{enumerate}
 
-\subsubsection{Camera Initialization}
+\subsection{Camera Initialization}
 Camera Initialization or \textit{"CameraInit"} loads the image metadata, sensor information, camera parameters and it will  generate viewpoints based on the images.
 It is possible to use a mixture of cameras \& focal lengths. This node will generate a groups of intrinsics that are based on the images metadata, these grooup os intrinsics can be adjusted if the cameras have been fully calibrated.
 The intrinsic include the camera matrix  which includes the focal length ($f_x$,$f_y$) and principal point ($x_0$,$y_0$).

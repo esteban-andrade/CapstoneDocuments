@@ -247,7 +247,7 @@ AliceVision is a software framework based on photogrametric computer vision.  wh
 It aims to provide robust software foundation with novel computer vision algorithms that can be analysed, tested and reused.\\
 Meshwoom was developed as collobaration project between industry and academia in order to develop cutting-edge algorithms that are robust and of high quality which are crucial for production environments.
 
-\subsection{Components Pipeline}
+\subsection*{Components Pipeline}
 Meshroom can be downloaded and used in both Windows and Linux and it will require a powerfull CPU in order to have adequate performance. Also it will require an Nvidia GPU as it requires to run CUDA for different nodes and components.
 Once meshroom is downloaded it can run in either platform. When it is executed the Meshroom GUI will appear and it will be similar to figure \ref{fig:meshroom_gui}
 
@@ -289,7 +289,7 @@ The nodes in the defined order to reconstruct a 3D model from images include:
   \item Texturing
 \end{enumerate}
 
-\subsubsection{Camera Initialization}
+\subsection{Camera Initialization}
 Camera Initialization or \textit{"CameraInit"} loads the image metadata, sensor information, camera parameters and it will  generate viewpoints based on the images.
 It is possible to use a mixture of cameras \& focal lengths. This node will generate a groups of intrinsics that are based on the images metadata, these grooup os intrinsics can be adjusted if the cameras have been fully calibrated.
 The intrinsic include the camera matrix  which includes the focal length ($f_x$,$f_y$) and principal point ($x_0$,$y_0$).
@@ -470,6 +470,7 @@ The components in the node are described on table \ref{tab:FeatureMatching}
   \label{tab:FeatureMatching}
   \end{table}
 
+\newpage
 \subsection{Structure From Motion}
 
 The Structure From Motion Node carries out the 3D points reconstruction freom the input images. The key behind this node is to be able to comprenhend
@@ -548,7 +549,7 @@ The components in the node are described on table \ref{tab:StructureFromMotion}
   \end{table}
 
 
-
+\newpage
 \subsection{Prepare Dense Scene}
 This node undistorts the images and it genera etes EXR images.
 The components in the node are described on table \ref{tab:PrepareDenseScene}
@@ -574,7 +575,7 @@ The components in the node are described on table \ref{tab:PrepareDenseScene}
   \label{tab:PrepareDenseScene}
   \end{table}
 
-\newpage
+
 \subsection{Depth Map}
 
 This step in the pipeline retrieves the depth value of each pixel for all cameras that were processes by the StructureFromMotion Node.
@@ -622,7 +623,7 @@ The components in the node are described on table \ref{tab:DepthMap}
   \end{table}
 % https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
 
-
+\newpage
 \subsection{Depth Map Filter}
 This node is in charge of processing the DepthMap Node results s the original depth maps will not be entirely consistent.
 Certain depth maps will interprete to see areas that are occluded by other dept maps. Thus, this step of the pipeline isolates these areas and ensures depth consistency.
@@ -803,7 +804,71 @@ segment relevants parts of the scene \& point cloud, extract keypoints and compu
 
 The selected components and algorithms that were used in this project include: 
 
+\begin{itemize}
+  \item Statistical Outlier Removal Filter
+  \item Pass Through Filter
+  \item Voxel Grid Filtering
+  \item Plane Model Segmentation
+  \item KdTree
+  \item Euclidean Cluster Extraction
+  \item Principal Component Analysis
+  \item Moving Least Squares
+  \item Poisson Surface Reconstruction 
+\end{itemize}
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/index.html#i-o
 
+
+\subsection{Statistical Outlier Removal Filter}
+% https://pcl.readthedocs.io/projects/tutorials/en/latest/statistical_outlier.html#statistical-outlier-removal
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/statistical_outlier.html#statistical-outlier-removal
+
+This component of the PCL library aims to remove noisy measurements (outliers) from a point cloud dataset using statistical analysis techniques \Citep*{Rusu_ICRA2011_PCL}.
+
+Typically, Laser Scans produces point cloud datasets with various point densities.Similarly, measurement errors generate sparse outliers that can corrupt the results of the dataset.
+This, complicates process of estimating local point cloud characteristics in particular surface normals and curvature changes. Hence, leading to erroneous values, that can create failures in the point cloud registration process.
+Some of these irregularities in the dataset, can be addressed with a statistical analysis performed on each point's neighborhood, and removing the points that do not meet a specified criteria as mentioned by \Citet*{Rusu_ICRA2011_PCL}.
+The sparse outlier removal is built on  the computation of the distribution  of point to neightbors distances of the source dataset \Citep*{Rusu_ICRA2011_PCL}.
+For each point, it computes the mean distance from the points to all the corresponding neighbors. This process assumes that the resulting distribution is Gaussian with a standard deviation and a mean.
+Then all points whose mean distances are outside an interval defined by global distances (mean \& standard deviation) can be expressed as an outlier and it can be removed from the dataset as suggested by \Citet*{Rusu_ICRA2011_PCL}.
+
+Figure \ref{fig:statistical_removal_2} illustrates the results of the sparce outlier analysis and  removal process.
+The initial dataset is on the left and the processed result in on the right. Furthermore, the graph on the right, illustrates the mean k-nearest neighbour distances in a point 
+neighborhood, before and after the filtering process \cite[]{Rusu_ICRA2011_PCL}.
+
+\begin{figure}{h!}%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{statistical_removal_2.jpg}
+ \caption{Removing outliers using a StatisticalOutlierRemoval filter}\cite[]{Rusu_ICRA2011_PCL}
+ \label{fig:statistical_removal_2} 
+\end{figure}
+
+\subsection{Pass Through Filter}
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/passthrough.html#passthrough
+
+\subsection{Voxel Grid Filtering}
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/voxel_grid.html#voxelgrid
+
+\subsection{Plane Model Segmentation}
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/planar_segmentation.html#planar-segmentation
+
+\subsection {KdTree}
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/kdtree_search.html#kdtree-search
+
+\subsection{Euclidean Cluster Extraction}
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/cluster_extraction.html?highlight=CLuster
+
+\subsection{Principal Component Analysis}
+%https://pointclouds.org/documentation/classpcl_1_1_p_c_a.html#details
+
+\subsection{Moving Least Squares }
+%https://pcl.readthedocs.io/projects/tutorials/en/latest/resampling.html?highlight=smoothing
+%https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html
+%https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html#details
+%http://alexandruichim.com/projects/tocs_final_ichim.pdf
+
+\subsection{Poisson Surface Reconstruction}
+%https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
+%https://pointclouds.org/documentation/classpcl_1_1_poisson.html
 
 \section{Open3D}
 Open3D is an open source library that supports fast development of software that handles 3D data.
@@ -825,8 +890,17 @@ The core features include:
   \end{itemize}
   \end{multicols}
 
-  The main components of Open3D used in this project include:
-  
+The main components of Open3D used in this project include:
+\begin{itemize}
+  \item Normal Estimation
+  \item Surface Reconstruction
+\end{itemize}
+
+\subsection{Normal Estimation}
+%http://www.open3d.org/docs/latest/python_api/open3d.geometry.PointCloud.html
+\subsection{Surface Reconstruction}
+%http://www.open3d.org/docs/latest/tutorial/Advanced/surface_reconstruction.html
+
 
 \section{Dynamic Fusion}
 Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 

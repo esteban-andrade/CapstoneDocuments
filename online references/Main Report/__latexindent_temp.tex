@@ -9,7 +9,7 @@
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage{booktabs}
-
+\usepackage{subfig}
 \usepackage[nottoc]{tocbibind}
 \usepackage{natbib}
 \usepackage[section]{placeins}
@@ -835,7 +835,7 @@ Figure \ref{fig:statistical_removal_2} illustrates the results of the sparce out
 The initial dataset is on the left and the processed result in on the right. Furthermore, the graph on the right, illustrates the mean k-nearest neighbour distances in a point 
 neighborhood, before and after the filtering process \cite[]{Rusu_ICRA2011_PCL}.
 
-\begin{figure}{h!}%this figure will be at the right
+\begin{figure}[H]%this figure will be at the right
   \centering
   \includegraphics[width=1\textwidth]{statistical_removal_2.jpg}
  \caption{Removing outliers using a StatisticalOutlierRemoval filter}\cite[]{Rusu_ICRA2011_PCL}
@@ -844,27 +844,181 @@ neighborhood, before and after the filtering process \cite[]{Rusu_ICRA2011_PCL}.
 
 \subsection{Pass Through Filter}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/passthrough.html#passthrough
+This component of the PCL library has embedded two main components of the framework. 
+The \textbf{PassThrough} components uses the base \textbf{Filter} class methods to pass through all the data that satisfies certain contrains.
+
+PassThrough passes points in a pointcloud based on constrains for one specific field of the point type \Citep*{Rusu_ICRA2011_PCL}.
+It iterates through the entire input pointcloud once, and automatically filters non-finite points, including the points outside the interval specfied by \textit{setFilterLimits()}, 
+that only applies uniquely to the configured field \textit{setFilterFieldName()}. 
+The component \textit{setFilterLimits()} sets the numerical limits for the field for data filtering, whereas \textit{setFilterFieldName()} configures the name of the field that will be used for data filtering.
+
+Therefore, this component performs a filter along a given dimension, which essentially removes the values that are either outside or inside the configured range.
+The image \ref{fig:pass_through} illustrates the process. The pointcloud has five points, after filtering the green points represents the remaining end result and the red points are the points that were removed by the filter.
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=0.4\textwidth]{passthrough_2.png}
+ \caption{Filtering a PointCloud using a PassThrough filter}\cite[]{Rusu_ICRA2011_PCL}
+ \label{fig:pass_through} 
+\end{figure}
 
 \subsection{Voxel Grid Filtering}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/voxel_grid.html#voxelgrid
 
+A voxel Grid illustraters a value on a regular grid in 3D space. A Voxel is an image of 3D space region  which is limited by defined sizes, which has its corresponding nodal point coordinates in an accepted system,
+own form, owm state parameter that demostraters it belongs to some modelled object and it associated properties of the modelled region \Citep*{SHCHUROVA201576}. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=0.4\textwidth]{220px-Voxelgitter.png}
+ \caption{Illustration of a voxel grid containing color values}\cite[]{SHCHUROVA201576}
+ \label{fig:voxel_repre} 
+\end{figure}
+
+This component of the PCL  framework aims to downsample (\textit{Reduce the Number of Points}) of a point cloud dataset using a voxelized grid method.
+The \textbf{VoxelGrid} component, creates a 3D Voxel grid, which in common tearms refers to a set of small boxes in 3D space, over the input point cloud dataset. 
+Once the its successfully converted into a voxel grid, then in each voxel(\textit{3D box}), all the existing points will be approximated (\textit{Downsampled}) with their centroid as suggested by \Citet*{Rusu_ICRA2011_PCL}.
+This approach represents the underlaying surface of the point cloud dataset with high accuracy.
+The main component is to set a defined and Voxel leaf Size, which allows to set the Voxel Size and the Number of Voxel in the Voxel Grid. Therefore, directly influencing the downsampling process and the resulting processed point cloud.
+
 \subsection{Plane Model Segmentation}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/planar_segmentation.html#planar-segmentation
+This component of the PCL librabry aims to perform a plane segmentation of a given set of points, which finds all the points within a point cloud data set that support a plane model.
+One of the components that this components uses is \textit{pcl::ExtractIndices}, which aims to extract thhe indices from a point cloud.
+It is a filter that extracts a subset of points from a point cloud dataset, which are related to the indices output of a segmentation algorithm.
+
+Similarly, it uses \textit{pcl::SACSegmentation}, which represents the Nodelet segmentation class for Sample Consensus methods and model, in a way that create a Nodelet wrapper which can be used
+for generic-purpose SAC-based Segmentation \Citep*{Rusu_ICRA2011_PCL}.
+The \textit{pcl::SACSegmentation}, creates an object and sets the model \& method type. Furthermore, it specifies the "distance threshold", that is used to determine the distance for point in the model, in order to be considered an inlier.
+The used method in this project uses the \textbf{RANSAC} method. The main advantage of RANSAC is it's simplicity and robustness. 
+
+The estimated plane parameters are estimated with equation \ref{equ:camera_intrisics}, where \textbf{a,b,c,d} are the model coefficient values.
+\begin{equation}
+  ax + by + cz + d = 0
+\end{equation}
+\label{equ:plane_param}
+
+Figure \ref{fig:plane_seg}, illustrates the process below. The red points are the outliers, whereas the green points are the inliers of the found plane model.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=0.4\textwidth]{planar_segmentation_2.png}
+ \caption{Illustration of Plane model segmentation}\cite[]{SHCHUROVA201576}
+ \label{fig:plane_seg} 
+\end{figure}
+
+
+\subsubsection*{RANSAC}
+Random sample consensus (RANSAC), is an iterative method that is used to estimate parameters of a mathematical model from a set of observed data that contains outliers \Citep*{Strutz}.
+Hence, it can be interpreted as an outlier detection method. It is an non-deterministic algorithm that generates an adequeate result with a specific probability,the probability increases as more iteration are performed.
+
+\begin{figure}[H]%
+  \centering
+  \subfloat[\centering A data set with many outliers for which a line has to be fitted]{{\includegraphics[width=5cm]{255px-Line_with_outliers.png} }}%
+  \qquad
+  \subfloat[\centering Fitted line with RANSAC; outliers have no influence on the result]{{\includegraphics[width=5cm]{255px-Fitted_line.png} }}%
+  \caption{Dataset Before \& After RANSAC algorithm \Citep*{Strutz}}%
+  \label{fig:example}%
+\end{figure}
+
 
 \subsection {KdTree}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/kdtree_search.html#kdtree-search
+In this project Kdtrees are used to find the K nearest neighbour of certain points or locations and how to find these within an specified radius.
+
+A K-D tree (\textit{k-dimensional tree}), is a data structure that is commonly used  to organize a certain number of points in a space with k dimensions as suggested by \Citet*{Rusu_ICRA2011_PCL}.
+It is a binary search tree with other constrains imposed on it and are useful for searches for range and closest neighbours.
+As this project uses pointclouds, the Kdtrees would have three dimensions. Each level of a Kdtree splits all children along a specific dimension, utilising a hyperplane which is perpendicular to the corresponding axis. 
+At the root of the KdTree, all children will be divided based on the first dimension, and each level down in the Kdtree divides on the next dimension, finally it returns to the first dimension once 
+all other have been exhausted \Citep*{Rusu_ICRA2011_PCL}.
+
+KdTrees are used extensively in many components of the project framework pipeline.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=0.4\textwidth]{2d_kdtree.png}
+ \caption{example of a 2-dimensional k-d tree}\cite[]{Rusu_ICRA2011_PCL}
+ \label{fig:kdtree} 
+\end{figure}
 
 \subsection{Euclidean Cluster Extraction}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/cluster_extraction.html?highlight=CLuster
 
+The clustering method allows to divide a non-organized pointcloud dataset \textbf{$P$} into smaller components, in order to reduce the overall processing time for \textbf{$P$}.
+Point Cloud Data Clustering can be approached in an Euclidean manner and be implemented using 3D grid subdivisions of the space with fixed width boxes or a octree data structure.
+In this project, Kdtrees are used to find the nearest neighbours and implements a clustering technique which is similar to a flood fill algorithm \Citep*{Rusu_ICRA2011_PCL}.
+
+The following Steps illustrates the clustering algorithm in this project with a Kdtree:
+
+\begin{enumerate}
+  \item create a Kd-tree representation for the input point cloud dataset $P$;
+  \item set up an empty list of \textit{clusters} $C$, and a queue of the points that need to be checked $Q$;
+  \item then for every point $p_i$ $\in$ $P$, perform the following steps:
+  \begin{itemize}
+    \item add $p_i$ to the current queue $Q$;
+    \item for every point $p_i$ $\in$ $Q$ perform:
+    \begin{itemize}
+      \item Search for the set $P_{i}^{k}$ of point neighbors of $p_i$ in a sphere with radius $r$ $<$ $d_{th}$
+      \item for every neighbor $p_{i}^{k}$ $\in$ $P_{i}^{k}$, check if the point has already been processed, and if not add it to $Q$
+    \end{itemize}
+    \item when the list of all points in $Q$ has been processed, add $Q$ to the list of clusters $C$, and reset $Q$ to an empty list
+
+  \end{itemize}
+  \item the algorithm terminates when all points $p_{i}^{k}$ $\in$ $P$ have been processed and are now part of the list of point clusters $C$
+\end{enumerate}
+
+Figure \ref{fig:cluster_example}, illustrates a cluustering output of a dataset, where different components were divided into multiple clusters
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{cluster_extraction.jpg}
+ \caption{example of point clouud cluster}\cite[]{Rusu_ICRA2011_PCL}
+ \label{fig:cluster_example} 
+\end{figure}
+
+
 \subsection{Principal Component Analysis}
 %https://pointclouds.org/documentation/classpcl_1_1_p_c_a.html#details
+The Principal Component Analysis (PCA) is the process of computing the principal components and use them to change the basis on data, using only the first few principal components
+and discarding the rest. The principal components is a squence of $p$ unit vectors of a collection of points in a real coordinate space \Citep*{pca}.
+
+The principal components are extracted using a singular value decomposition method, which is applied on the covarient matrix of the centered input point cloud dataset.
+Once the PCA analysis is performed using the PCL library, it is possible to calculate the following components:
+\begin{itemize}
+  \item Mean of input data
+  \item Eigen Vectors: Ordered set of vectors that represents the final principal components and the eigen cartesian space.
+  \item Eigen Values: These are the correspondent loading of the Eigen Vectors ina decensing order.
+\end{itemize}
+
+The Principal Component Analysis is used to determine the scale of the Two point clouds that are used in this project and properly adjust the final mesh.
 
 \subsection{Moving Least Squares }
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/resampling.html?highlight=smoothing
 %https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html
 %https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html#details
 %http://alexandruichim.com/projects/tocs_final_ichim.pdf
+
+Moving Least Squares (MLS) is a method of reconstructing continous functions from a set of unorganized point samples through the computation of weighted least squares, 
+biased towards the region around the point at which the reconstructed value is requested \Citep*{mls}.
+
+MLS can be modelled considering function $f$: $\mathbb{R}^n \rightarrow \mathbb{R}$ and a set of sample points $S = \{ ( x_i ; f_i ) | f(x_i) = f_i\} $.
+Then, it MLS approximation of degree $m$ at the point $x$ is $\tilde{p} (x)$ where $\tilde{p}$ reduces the weighted least square error
+$\sum_{i \in I} (p(x_i)-f_i)^2 \theta (\| x-x_i\| )$ over all polynomials $p$ of degree $m$ in $\mathbb{R}^n$ as mentioned by \Citet*{mls}.
+
+The main objective of Moving Least Squares (MLS) is to smooth and resample noisy data in a surface reconstruction object.
+Some pointclouds have certain data irregularities, which can be caused by small errors in the distances measurements, and are complex to remove using conventional
+statistical analysis. It is important to account for complex surfaces and occlusions to create a complete model. Resampling algorithms such as MLS can be used to 
+recreate the missing parts of the surface  by a high order polynomial interpolation between the surroundings data points.
+Resampling, allows to correct the small errors and smooth the surface of a pointcloud dataset. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=0.7\textwidth]{resampling_1.jpg}
+ \caption{Moving Least Square Smoothing}\cite[]{Rusu_ICRA2011_PCL}
+ \label{fig:smoothing_mls} 
+\end{figure}
+
+On figure \ref{fig:smoothing_mls}, on the left side, it is illustrated the effect of estimating the normals of a pointcloud, however, due to alighment errors
+the normals are noisy. On the right side of figure \ref{fig:smoothing_mls}, the effects of the MLS algorithm is 
 
 \subsection{Poisson Surface Reconstruction}
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
@@ -902,137 +1056,7 @@ The main components of Open3D used in this project include:
 %http://www.open3d.org/docs/latest/tutorial/Advanced/surface_reconstruction.html
 
 
-\section{Dynamic Fusion}
-Dynamic fusion is based on three different technologies focused on 3D scanning and data reconstruction. These techniques are: 
 
-\begin{description}[style=nextline]
-  \item[DART (Dense Articulated Real-Time Tracking)] This technology is specialised on Real-Time body template skeleton tracking.
-  \item[Animation Cartography] It is a 3D reconstruction technique focused on intrinsic data reconstruction of shapes and motions. 
-  \item[Kinect Fusion] This technology is applied for real-time tracking and condensed surface mapping. It is intended to be used in static scenes and objects with only a moving camera sensor. 
-\end{description} 
-
-\vspace{5mm}
-
-\begin{wrapfigure}{r}{0.475\textwidth} %this figure will be at the right
-    \centering
-    \includegraphics[width=0.475\textwidth]{IMG_0073.png}
-    \caption{Transformation Between Depth Video to Warped canonical Model} \cite[]{newcombe_fox_seitz_2015}.
-\end{wrapfigure}
-The focal point of the 3D data reconstruction feature of \textit{Dynamic Fusion}  is that it will look for a solution for the volumetric flow based on the gathered data.
-As mentioned by \Citet*{newcombe_fox_seitz_2015} there will be a transformation of the state of the scene at each time interval to a fixed canonical frame.
-The created canonical frame is described as the initial frame that is obtained from the non-rigid object that has been detected and tracked. The shape of the detected object is defined as "canonical model" which is the corresponding shape of the object in the canonical frame. 
-Therefore, the canonical model will be utilised as a reference model for all the subsequent frames. From this approach, there will be progressing adjustment on the canonical model and frames, as more data is acquired.
-With the new refinements each point in the canonical frame, the point clouds will be transformed and updated to the new location in real-time based on the received data.
-
-The data acquired from sensors that include RGB and Depth images will help to determine the warp parameters. Based on the determined warp parameters the volumetric flow field can be stipulated.
-The state of the wrap field W\textsubscript{t} is defined as a function of time. It is modelled by the values of a set of \textit{"n"} deformation nodes, which are described as the points or pixels in the actual image.
-The image below describes the process in which the canonical model and frame are determined based on the initial frame and depth data. 
-\begin{figure}{}%this figure will be at the right
-    \centering
-    \includegraphics[width=0.7\textwidth]{dynamicfusion2.png}
-   \caption{Dynamic Fusion methodology}\cite[]{newcombe_fox_seitz_2015} 
-\end{figure}
-
-
-The State of the warp field W\textsubscript{t} can be modelled with the below equation.
-\[N_{warp}^t=\{dg_v,dg_w,dg_{se3}\}t\]
-\begin{itemize}[label =]
-  \item $dg_{v}$: is described as the 3D position of each node in the canonical frame. 
-  \item $dg_{se3}$: is the Special Euclidian transformation where $T_{ic}=dg_{se3} ^ {i}$ is the rigid transformation for every node $i$.
-  \item $dg_{w}$: It controls the extended impact of the deformation around each node.
-\end{itemize}
-
-The current set of point clouds will be stored as a "polygon mesh" with the normal pair of points within the canonical frame and allow to calculate the warp field parameters. 
-The principle will allow effective surface reconstruction as suggested by \Citet*{slavcheva_baust_ilic_2018} as once the warp field parameters are obtained, surface reconstruction can be modelled with a principle of marching cubes.
-This process will be followed by a rasterization rendering pipeline of the Acquired Point cloud values \Citep*{newcombe_fox_seitz_2015}.
-
-The patterns from the figure \ref{fig:patterns} illustrate the triangulated cubes for the 15 basic patterns used in marching cubes for surface reconstruction.
-These patterns can reconstruct all  256 possible solutions using rotational and complementary symmetry as suggested by \Citet*{fang_zhao_wen_zhang_2018}.
-Once the canonical model and frame can be modelled with the warp field parameters based on the initial raw depth image maps and data frame, the tracking nodes will be created.
-Based on this it is possible to obtain the canonical frame warp parameters which are estimated based on this process. 
-As soon as the canonical model is constructed, the life frame will be warp around it based on the warp parameters. As a result, the model will be 3D reconstructed model will be successfully created and normalized.
-\begin{figure} %this figure will be at the right
-    \centering
-    \includegraphics[width=0.4\textwidth]{shapes.png}
-    \caption{Triangulated patterns} \cite[]{fang_zhao_wen_zhang_2018}.
-    \label{fig:patterns}
-\end{figure}
-
-\enlargethispage{\baselineskip}
-
-\section{SurfelWarp}
-SurfelWarp is defined as "Efficient Non-Volumetric Single View Dynamic Reconstruction". It will present a standard graphics pipeline and GPGPU ("General-Purpose Graphics Processing Unit") computing can be utilised for efficient 
-implementation of all data reconstruction operations \Citep*{SurfelWarp}. It eliminates the use of volumetric data structures, which represent resource-intensive volumetric operations such as dense deformation field updates, volumetric fusion, and marching cubes.
-This represents a significant performance improvement as the explicit surfel representation allow to directly recover from tracking failures or topology changes as proposed by \citeauthor*{SurfelWarp}.
-
-\subsection{Overview}
-As illustrated in figure \ref{fig:surfelmetho}, SurfelWarp is built in a frame by frame methodology to process an input depth stream data source. 
-When a new depth image is received, the deformation field that is aligned to the reference frame geometry will be solved. 
-This is calculated by starting the deformation field from the previous image, which is followed by an iterative optimization problem similar to \Citet*{newcombe_fox_seitz_2015}.
-Once the deformation field is updated, the data fusion process is carried out. This will trigger an accumulative process to fuse the current depth observations into a geometrical representation. 
-
-The deformation field $ W = \{[p_j \in R^{3},\sigma_{j} \in R^{+} ,T_j \in SE(3)]\}$ where $j$ is the node index, $p_j$ is the position of the $j^{th}$ node. $\sigma_j$ is the radius parameter, $T_j$ is the 6DoF transformation.
-For any point in "x" the deformation can be interpolated by equation \ref{eq:deffield1}
-\begin{equation}  
-  W(x)=normalized(\Sigma_{k \in N(x)} w_{k}(x) \hat{q_k})
-  \label{eq:deffield1}
-\end{equation}
-
-\newpage
-\begin{figure}%this figure will be at the right
-    \centering
-    \includegraphics[width=0.95\textwidth]{surfelwarp1.png}
-    \caption{SurfelWarp methodology }\cite[]{SurfelWarp}.
-    \label{fig:surfelmetho}
-\end{figure}
-
-From equation \ref{eq:deffield1} the following components can be described:
-\begin{itemize}
-  \item $N(x)$: is the closest set of points x
-  \item $W_{k}(x)$:  is the weight that can be computed as $\exp{(-\frac{\ | {x-p_k} \ |^{2}_2 }{2\sigma^{2}_k})}$
-\end{itemize}
-
-A surfel $S$ could be described as the composed tuple in which the following components can be modelled:
-\begin{itemize}
-  \item position : $v \in R^3$ 
-  \item  normal  : $n \in R^3$
-  \item  radius : $r \in R^+$
-  \item confidence : $c \in R$
-  \item initilization time : $t_{init} \in N$
-  \item most recent time : $t_{observed} \in N$ 
-\end{itemize}
-Therefore, a surfel can be illustrated by the deformation of field $W$ in equation \ref{eq:deffield1} \citep{SurfelWarp}.
-Furthermore, the deformed vertex position  and normal can be modelled with the following equations:
-\begin{equation}
-  v_{life}=W(v_{ref})v_{ref}
-  \label{eq:deformed vertex}
-\end{equation}
-\begin{equation}
-  n_{life}=rotation(W(v_{ref})n_{ref})
-  \label{eq:deformed vertex normal}
-\end{equation}
-
-From equations \ref{eq:deformed vertex} and \ref{eq:deformed vertex normal} $v_{life}$ and $n_{life}$ are the deformed vertex position and normal.
-Whereas $v_{ref}$ and $n_{ref}$ correspond to the vertex position and normal before the deformation process. 
-\enlargethispage{\baselineskip}
-
-\subsection{Depth Map Fusion \& Warp Fiel Update}
-In order to get the warp field estimate, it is necessary to perform a mathematical prediction of the visibility of the live surfels models $S_{life}$ with the proposed method of \Citet*{newcombe_fox_seitz_2015}
-to cast the deformation estimation into an optimization problem.
-The estimation process is performed by predicting the visibility of life surfels $S_{life}$.
-\begin{figure}[ht]%this figure will be at the right
-  \centering
-  \includegraphics[width=0.9\textwidth]{surfelwarp2.png}
-  \caption{SurfelWarp Reconstruction}\cite[]{SurfelWarp}.
-  \label{fig:surfelprocess}
-\end{figure}
-
-Similarly, to the approach of \citet{keller} the life surfels $S_{life}$  are rendered as an overlaped disk shaped surface splat. These shapes are spanned by the position $V_{life}$ 
-,normal $n_{life}$ and radius $r_{life}$ of the live surfel $s_{life}$.
-With all these parameters it is possible to model the warp field based on the Dynamic Fusion framework proposed by \citet*{newcombe_fox_seitz_2015}.
-
-Once the deformation is solved, the depth map fusion obtained from sensors along with the warp field update will perform data fusion in the live frame. 
-This live frame warps the live surfel back to the starting reference frame. Afterwards, the warp field is recurrently updated based on the new observed surfels reference. This process can be exemplified with figure \ref{fig:surfelprocess}.
 
 \chapter{Methodology}
 As mentioned in the initial section, this project is focused on engineering design. Hence, it will be focused on creating a prototype for a 3D scanner. 

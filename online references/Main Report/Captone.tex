@@ -937,7 +937,7 @@ KdTrees are used extensively in many components of the project framework pipelin
 \begin{figure}[H]%this figure will be at the right
   \centering
   \includegraphics[width=0.4\textwidth]{2d_kdtree.png}
- \caption{example of a 2-dimensional k-d tree}\cite[]{Rusu_ICRA2011_PCL}
+ \caption{Example of a 2-dimensional k-d tree}\cite[]{Rusu_ICRA2011_PCL}
  \label{fig:kdtree} 
 \end{figure}
 
@@ -971,7 +971,7 @@ Figure \ref{fig:cluster_example}, illustrates a cluustering output of a dataset,
 \begin{figure}[H]%this figure will be at the right
   \centering
   \includegraphics[width=1\textwidth]{cluster_extraction.jpg}
- \caption{example of point clouud cluster}\cite[]{Rusu_ICRA2011_PCL}
+ \caption{Example of point clouud cluster}\cite[]{Rusu_ICRA2011_PCL}
  \label{fig:cluster_example} 
 \end{figure}
 
@@ -1020,9 +1020,62 @@ Resampling, allows to correct the small errors and smooth the surface of a point
 On figure \ref{fig:smoothing_mls}, on the left side, it is illustrated the effect of estimating the normals of a pointcloud, however, due to alighment errors
 the normals are noisy. On the right side of figure \ref{fig:smoothing_mls}, the effects of the MLS algorithm is demostrated as it smoothes the surface of the pointcloud.
 
+In order to approximate, the surface illustrated by the local neighbours of points $p1,p2,....pk$ at a point $q$, it uses a bivariate polynomial function, which is defined on a robust modelled reference plane.
+Figure \ref{fig:smoothing_curvature}, shows the curvatures at each point with the eigen value relation before and after the resampling method. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{resampling_2.jpg}
+ \caption{Curvatures of MLS before \& after}\cite[]{Rusu_ICRA2011_PCL}
+ \label{fig:smoothing_curvature} 
+\end{figure}
+
+Furthermore, the Moving Least Squares Component of the PCL library also allows for differnt upsample methods. 
+These include 
+\begin{description}
+  \item[DISTINCT CLOUD] Project the points of the distinct cloud to the MLS surface\cite[]{Rusu_ICRA2011_PCL}.
+  \item[SAMPLE LOCAL PLANE] The local plane of each input point will be sampled in a circular fashion using the $UpsamplingRadius$  and the $UpsamplingStep$ parameters\cite[]{Rusu_ICRA2011_PCL}. 
+  \item[RANDOM UNIFORM DENSITY] The local plane of each input point will be sampled using an uniform random distribution such that the density of points is constant throughout the cloud - given by the $Desired Num Points in Radius Parameter$\cite[]{Rusu_ICRA2011_PCL}. 
+  \item[VOXEL GRID DILATION] The input cloud will be inserted into a voxel grid with voxels of size $Voxel Size$.This voxel grid will be dilated $(Dilation Iteration Num)$ times and the resulting points will be projected to the MLS surface of the closest point in the input cloud; the result is a point cloud with filled holes and a constant point density \cite[]{Rusu_ICRA2011_PCL}.
+\end{description}
+
+For this project,  the \textbf {RANDOM UNIFORM DENSITY} method is used to upsample the MLS processed pointcloud. 
+This method takes the parameters for a desired point cloud density within a fixed radius neighborhood as suggested by \Citet*{ichim_2012}. 
+For each point, based on the density of the of the neighbors it will add more points on the local plane using a ramdom  number generator.
+The random number generator will have a uniform distrubution and it will stop once the desired density is achived. Then it will replay the MLS algorithm in order to smooth the surface again.
+
+Figure \ref{fig:sUpsample_def} illustrates on the left the implementation of MLS with \textbf{UNIFORM DENSITY} upsampling method on a pointcloud, whereas on the right  if the raw pointcloud.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{upsample_def.png}
+ \caption{Uniform Density Upsample Method After \& original}\cite[]{ichim_2012}
+ \label{fig:sUpsample_def} 
+\end{figure}
+
+
 \subsection{Poisson Surface Reconstruction}
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html
+In this project the Poisson Reconstruction algorithm is implemented , to recontruct the processed point cloud.
+The Poisson Reconstruction algorithm demostrates that the surface reconstruction from a set of oriented points can be associates as a spatial Poisson problem.
+This formulation, utilizes all the points at once, with no need of using heuristic spatial partitioning or blending, hence, making it resilient to noise as mentioned by \Citet*{Poisson}.
+
+The main objective of this algorithms to reconstruct a smooth surface, which is based on a large number of points $p_i$ from a pointcloud, where each point possesses an estimate of the local surface normal $n_i$
+It aims to create an implicit function $f$, whose value is zero at the points $p_i$ and the gradient at points $p_i$ is equal to the normal vector $n_i$\Citet*{Poisson}.
+The set of $(p_i,n_i)$ is modelled as a continouos vector field $V$ and the implicit function is found by integrating the vector field $V$.
+In complex calculations, it is possible to perform a \textit{least-squares fit} to minimize the different between the gradient of $f$ and $V$\Citet*{Poisson}.
+
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{poisson_example.png}
+ \caption{Poisson Recontruction Example. On the left it it input pointcloud dataset, whereas on the right is output of the Poisson Surface Reconstruction Algorithm}\cite[]{Poisson}
+ \label{fig:Poisson_def} 
+\end{figure}
+
+
 
 \section{Open3D}
 Open3D is an open source library that supports fast development of software that handles 3D data.
@@ -1044,17 +1097,19 @@ The core features include:
   \end{itemize}
   \end{multicols}
 
-The main components of Open3D used in this project include:
-\begin{itemize}
-  \item Normal Estimation
-  \item Surface Reconstruction
-\end{itemize}
 
-\subsection{Normal Estimation}
-%http://www.open3d.org/docs/latest/python_api/open3d.geometry.PointCloud.html
-\subsection{Surface Reconstruction}
-%http://www.open3d.org/docs/latest/tutorial/Advanced/surface_reconstruction.html
+In this project Open3D was used as an axiliary library used as contingency for Poisson Reconstruction. 
+As in many circumstances the normals of a Pointcloud, might not be properly oriented \textit{orient normals consistent tangent plane} allows to propagate the normal orientation with a minimum
+spanning tree as suggested by \Citet*{Zhou2018}. 
+After the normals is aligned it will  excute the Poission Surface Recontruction algorithm \Citep*{Poisson} and solves a regularized optimization problem to obtain a smooth surface mesh. 
 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{open3dpoisson.png}
+ \caption{Open3D Poisson Recontruction Example}\cite[]{Zhou2018}
+ \label{fig:Possion_exampple} 
+\end{figure}
 
 
 

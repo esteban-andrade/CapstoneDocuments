@@ -1141,11 +1141,12 @@ Similarly, an Nvidia Jetson Xavier is used to acquire data from the Lidar. The N
 \subsubsection*{Cameras}
 
  
-\begin{wrapfigure}{r}{0.23\textwidth}
+\begin{wrapfigure}[7]{r}{0.2\textwidth}
   \begin{center}
     \includegraphics[width=0.2\textwidth]{IMG_5885_cropped.jpg}
   \end{center}
-  \caption{Tall Pole Cameras Location.}
+  \vspace{-10pt}
+  \caption{Tall Pole Cameras Location With Housing.}
   \label{fig:Cameras}
 \end{wrapfigure}
 
@@ -1171,24 +1172,87 @@ in the poles as well as protecting the electronics and connection from external 
 The cameras will be connected to a series of USB hubs that will be directly connected to the Raspberry Pi's to control the data acquisition process.
 
 \subsubsection*{Lidar}
-The Lidar used for the data acquisition process in an Intel RealSense L5
-% The devices consist of a set of eight Tall Poles and four short Poles. 
 
-% In the set of eight Tall poles, each pole will have three cameras attached to them. 
-% The first camera will be located on top of the pole and it will directed and  oriented downwwards towards the person to have the adequeate overlap with the field of view. 
-% The second camera is located on the middle region of the pole and it will be parallel oriented to the person in order to have the best field of view. 
-% The third camera is located at the botton of the pole and it will be oriented upward towards the person in order to have best coverage based on the field of view. 
-% The Tall poles will be placed and arranged in a circular manner in order to capture as much data as possible 
+\begin{wrapfigure}[10]{l}{0.2\textwidth}
+  \begin{center}
+    \includegraphics[width=0.2\textwidth]{IMG_5886_cropped.jpg}
+  \end{center}                          
+  \caption{Lidar Mounted in Pole}
+  \label{fig:lidar_mounted}
+\end{wrapfigure}
+The Lidar used for the data acquisition process in an Intel RealSense L515.
+The Intel RealSense will be located in tall pole and it will be attached in the middle section in order to maximise the field of view. It will be locked above the middle camera of a tall pole.
+As the Lidar has both an RGB sensor and a Depth Camera, it will be used to capture an RGB image as well as a Pointcloud with the Depth and RGB Sensor.
+The Lidar will be connected and controlled with a Nvidia Jetson Xavier. It will use the RealSense SDK to capture both RGB image and Point.
 
-% \begin{wrapfigure}{r}{0.25\textwidth}
-%   \begin{center}
-%     \includegraphics[width=0.2\textwidth]{IMG_5895_cropped.jpg}
-%   \end{center}
-%   \caption{Tall Pole Cameras Location.}
-%   \label{fig:poles_camera_tall}
-% \end{wrapfigure}
+Table \ref{tab:lidar_specs} states the specification of the Intel RealSense L515. 
 
-% Figure \ref{fig:poles_camera_tall}, shows the location of the camaras and 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Model No.                  & Intel RealSense L515               \\ \hline
+    Depth Technology           & Lidar                              \\ \hline
+    Ideal Range                & 0.25 m to 9 m                      \\ \hline
+    Depth Field of View (FOV): & 70° × 55° (±3°)                    \\ \hline
+    Depth output resolution:   & Up to 1024 × 768                   \\ \hline
+    Depth Accuracy:            & $\sim$5 mm to $\sim$14 mm thru 9 m \\ \hline
+    RGB frame resolution       & 1920 × 1080                        \\ \hline
+    RGB sensor technology      & Rolling Shutter                    \\ \hline
+    RGB sensor FOV (H × V)     & 70° × 43° (±3°)                    \\ \hline
+    RGB sensor resolution      & 2 MP                               \\ \hline
+    \end{tabular}
+    \caption{Intel RealSense L515 Specification}
+    \label{tab:lidar_specs}
+\end{table}
+
+\subsection{Layout \& Configuration}
+As mentioned before Lidar will be controlled to an Nvidia Jetson Xavier, which will make it agnostic of the Cameras acquisition process. 
+It was previously mentioned that the Cameras will be controlled with a Series of multiple Raspberry Pi's and those will be managed via a SSH connection with Putty. 
+Due to the limited number of USB connectors, a series of USB hubs will be used in order to control more cameras with Single Raspberry Pi's.
+Figure \ref{fig:cameras_layout}, illustrates how the twenty-eight cameras will be connected with the Different Raspberry Pi's.
+
+\begin{figure}[H]%this figure will be at the right
+   \centering
+  \includegraphics[width=0.6\textwidth]{cameras_layout.png}
+ \caption{Cameras Lay-out connection}
+ \label{fig:cameras_layout} 
+\end{figure}
+
+
+\begin{wrapfigure}[17]{r}{0.3\textwidth}
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{IMG_5895_cropped.jpg}
+  \end{center}
+  \caption{Tall Pole Cameras Configuration.}
+  \label{fig:poles_camera_tall}
+\end{wrapfigure}
+All the cameras will be mounted in the RIG in a series of Pole. There will be a total number of eight tall and four short poles.
+The Tall Poles will be used to attached three cameras to the Frame. The First Camera will be located on top of the pole and oriented toward the subject in order to have the best overlap with the Field of View.
+The Second Camera is located in the middle of the pole and parallel oriented to the scanned subject in order to have the best field of view. 
+The third Camera is located at the bottom of the pole and it will oriented upwards toward the scanned subject in order to have the a wide coverage. 
+This configuration can be observed on figure \ref{fig:poles_camera_tall}.
+
+On the other side, there will be four short poles that each will hold a single camera. 
+The aim of these poles is to gain close data as well as acquiring images from regions of interest around the body in order to increases
+the accuracy of the final scan. 
+
+\begin{figure}[H]
+  % \raggedright
+  \hspace*{0.8cm}  
+  \includegraphics[width=0.5\textwidth]{IMG_5896_cropped.jpg}
+  \captionsetup{singlelinecheck = false, format= hang, justification=raggedright,  labelsep=space}
+ \caption{Open3D Poisson Recontruction Example}
+ \label{fig:short_pole} 
+\end{figure}
+
+All the tall poles will be placed in a circular shape in order to capture as much data as possible. 
+The subject (person) that will use the RIG will be located in the origin of the circle and all the tall poles will be places at a 1.5 m away from the person in order to have the best overlap between all cameras.
+The for short poles will be located closeup from the person that will be scanned. The four poles will be placed at 60 cm away from the person (cir)in order to capture close up data for complex regions and improve the overall reconstruction.
+
+
+
+\subsection{Cameras Calibration}
 
 \chapter{Results}
 

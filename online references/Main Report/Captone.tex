@@ -1312,7 +1312,7 @@ Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration
   C1    & 17    & 2072.818087 & 1037.388 & 805.2937 & 0.041437 & -0.17553 & 65 & 21 \\ \hline
   C2    & 9     & 2023.270233 & 1066.445 & 761.1484 & 0.039684 & -0.19295 & 65 & 22 \\ \hline
   C3    & 5     & 2038.942135 & 1052.651 & 734.7338 & 0.0562   & -0.2034  & 65 & 23 \\ \hline
-  C4    & 8     & 2024.024741 & 1064.304 & 760.5158 & 0.037415 & -0.18791 & 65 & 24 \\ \hline
+  C4    & 8  e   & 2024.024741 & 1064.304 & 760.5158 & 0.037415 & -0.18791 & 65 & 24 \\ \hline
   C5    & 1     & 2063.919749 & 976.3176 & 761.5408 & 0.022828 & -0.11913 & 65 & 25 \\ \hline
   C6    & 22    & 2061.102003 & 1071.594 & 788.9326 & 0.053629 & -0.20935 & 65 & 26 \\ \hline
   C7    & 24    & 2060.07463  & 994.6496 & 772.853  & 0.053323 & -0.1899  & 65 & 27 \\ \hline
@@ -1335,8 +1335,24 @@ In parallel the administrator of the RIG will execute the script to capture data
 using the RealSense SDK. 
 
 The entire process takes approximately ten seconds. Once the data is captured, it can be used in the photogrammetry pipeline for reconstruction.
+\begin{figure}[H]
+  \centering
+  \subfloat[Front View Lidar]{{\includegraphics[width=0.46\textwidth]{11_Color.png} }}
+  \qquad
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{A1-07-49-34.470.jpg} }}
+  \qquad
+  \subfloat[Camera Side View]{{\includegraphics[width=0.46\textwidth]{B2-07-49-34.331.jpg} }}
+  \qquad
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34.888.jpg} }}
+  \qquad
+  \caption{Example from Captured Dataset}
+  \label{fig:examples}
+\end{figure}
+
+\section{Photogrammetry Reconstruction}
 
 
+\section{Data Processing Framework}
 
 
 \chapter{Results}

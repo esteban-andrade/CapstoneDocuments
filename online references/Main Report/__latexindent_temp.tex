@@ -242,6 +242,7 @@ Thus, the fundamental concept of photogrammetry is the undertanding of geometric
 \end{figure}
 
 \section{Meshroom}
+\label{section:meshroom}
 Meshroom is a free, open-source 3D Reconstruction Software based on the AliceVision framework \Citep*{meshroom}.
 AliceVision is a software framework based on photogrametric computer vision.  which focuses on the development of 3D Reconstruction and Camera Tracking Algorithms.
 It aims to provide robust software foundation with novel computer vision algorithms that can be analysed, tested and reused.\\
@@ -1312,7 +1313,7 @@ Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration
   C1    & 17    & 2072.818087 & 1037.388 & 805.2937 & 0.041437 & -0.17553 & 65 & 21 \\ \hline
   C2    & 9     & 2023.270233 & 1066.445 & 761.1484 & 0.039684 & -0.19295 & 65 & 22 \\ \hline
   C3    & 5     & 2038.942135 & 1052.651 & 734.7338 & 0.0562   & -0.2034  & 65 & 23 \\ \hline
-  C4    & 8  e   & 2024.024741 & 1064.304 & 760.5158 & 0.037415 & -0.18791 & 65 & 24 \\ \hline
+  C4    & 8     & 2024.024741 & 1064.304 & 760.5158 & 0.037415 & -0.18791 & 65 & 24 \\ \hline
   C5    & 1     & 2063.919749 & 976.3176 & 761.5408 & 0.022828 & -0.11913 & 65 & 25 \\ \hline
   C6    & 22    & 2061.102003 & 1071.594 & 788.9326 & 0.053629 & -0.20935 & 65 & 26 \\ \hline
   C7    & 24    & 2060.07463  & 994.6496 & 772.853  & 0.053323 & -0.1899  & 65 & 27 \\ \hline
@@ -1341,15 +1342,23 @@ The entire process takes approximately ten seconds. Once the data is captured, i
   \qquad
   \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{A1-07-49-34.470.jpg} }}
   \qquad
-  \subfloat[Camer{{\includegraphics[width=0.46\textwidth]{B2-07-49-34.331.jpg} }}
+  \subfloat[Camera Side View]{{\includegraphics[width=0.46\textwidth]{B2-07-49-34.331.jpg} }}
   \qquad
-  \subfloat[RIG lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34.888.jpg} }}
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34.888.jpg} }}
   \qquad
   \caption{Example from Captured Dataset}
   \label{fig:examples}
 \end{figure}
 
+\section{Photogrammetry Reconstruction}
+\label{section:meshroom_method}
+As mentioned before, Meshroom will be used to process the images and reconstruct the scanned person. 
+Meshroom will have a series of nodes as noted on section \ref{section:meshroom}.
+After a series of multiple iterations \& experimentation, the best parameters were selected and it will be explained in section \ref{section:meshroom_method}.
 
+As Meshroom, has a series of nodes that work in a Pipeline manner
+
+\section{Data Processing Framework}
 
 
 \chapter{Results}

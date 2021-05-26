@@ -1248,11 +1248,96 @@ the accuracy of the final scan.
 
 All the tall poles will be placed in a circular shape in order to capture as much data as possible. 
 The subject (person) that will use the RIG will be located in the origin of the circle and all the tall poles will be places at a 1.5 m away from the person in order to have the best overlap between all cameras.
-The for short poles will be located closeup from the person that will be scanned. The four poles will be placed at 60 cm away from the person (cir)in order to capture close up data for complex regions and improve the overall reconstruction.
+The four short poles will be located closeup from the person that will be scanned. The four poles will be placed at 60 cm away from the person (circle origin) in order to capture close up data for complex regions and improve the overall reconstruction.
+\enlargethispage{\baselineskip}
+
+\newpage
 
 
+\begin{figure}[H]
+  \centering
+  \subfloat[RIG From View]{{\includegraphics[width=0.85\textwidth]{IMG_5883.JPG} }}
+  \qquad
+  \subfloat[RIG lateral View]{{\includegraphics[width=0.85\textwidth]{IMG_5884.JPG} }}
+  \caption{RIG scanning With Poles Locations}
+  \label{fig:RIG}
+\end{figure}
 
+\newpage
 \subsection{Cameras Calibration}
+As mentioned before, there will be a set of twenty-eight camaras in the RIG. 
+It is crucial to be able to calibrate these cameras an object the intrinsic parameters in order to input these parameters into the Photogrammetry Pipeline to enhance
+the reconstruction process. The intrinsic parameters are illustrated in the camera  matrix on equation \ref{equ:camera_intrisics}.
+
+All  the cameras were calibrated by taking a series of fifty photos of a checkerboard. In the images, the checker board is in different positions and orientation, as this enhances the calibration process.
+Once all the images have been captures, these were processed using OpenCV and Matlab in order to perform the calibration process and obtain several paramaters such as the camera intrisics, distorsion, etc.
+
+Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration process for each camera.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[H]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \textbf{Photo ID} &
+    \textbf{Camera ID} &
+    \textbf{Focal Lenght} &
+    \textbf{Principal Point X} &
+    \textbf{Principal Point y} &
+    \textbf{Radial 1} &
+    \textbf{Radial 2} &
+    \textbf{FoV} &
+    \textbf{ID} \\ \hline
+  Lidar & Lidar & 1348.9      & 987.1289 & 552.4585 & 0.002083 & 0.004345 & 70 & 1  \\ \hline
+  A1    & 23    & 2069.79669  & 1062.276 & 825.4553 & 0.043834 & -0.16655 & 65 & 2  \\ \hline
+  A2    & 10    & 2023.979147 & 1055.148 & 740.4276 & 0.047799 & -0.18798 & 65 & 3  \\ \hline
+  A3    & 14    & 2073.0703   & 1064.465 & 772.3883 & 0.037661 & -0.16921 & 65 & 4  \\ \hline
+  A4    & 28    & 1685.622704 & 1044.281 & 772.533  & 0.056978 & -0.06307 & 65 & 5  \\ \hline
+  A5    & 7     & 2077.408129 & 1054.39  & 849.7223 & 0.037899 & -0.19003 & 65 & 6  \\ \hline
+  A6    & 20    & 2080.992114 & 1030.656 & 743.8521 & 0.043046 & -0.20511 & 65 & 7  \\ \hline
+  A7    & 13    & 2035.145838 & 1070.591 & 764.946  & 0.025991 & -0.16304 & 65 & 8  \\ \hline
+  A8    & 11    & 2057.82487  & 1025.147 & 799.6319 & 0.032882 & -0.14583 & 65 & 9  \\ \hline
+  A9    & 4     & 2045.525031 & 1017.459 & 781.6747 & 0.052045 & -0.22293 & 65 & 10 \\ \hline
+  B1    & 19    & 2007.968395 & 1053.849 & 793.203  & 0.040332 & -0.1859  & 65 & 11 \\ \hline
+  B2    & 15    & 2031.574945 & 1060.078 & 775.8948 & 0.033055 & -0.17165 & 65 & 12 \\ \hline
+  B3    & 3     & 2111.254725 & 1037.889 & 799.7706 & 0.032561 & -0.17198 & 65 & 13 \\ \hline
+  B4    & 12    & 2058.9386   & 1022.306 & 742.7845 & 0.046652 & -0.20622 & 65 & 14 \\ \hline
+  B5    & 2     & 2078.153107 & 980.6483 & 781.8416 & 0.060616 & -0.21788 & 65 & 15 \\ \hline
+  B6    & 6     & 2099.600814 & 1000.535 & 731.1288 & 0.035295 & -0.20673 & 65 & 16 \\ \hline
+  B7    & 16    & 2066.488622 & 1035.458 & 756.2719 & 0.045434 & -0.20259 & 65 & 17 \\ \hline
+  B8    & 25    & 2076.530213 & 1060.421 & 815.187  & 0.06066  & -0.20289 & 65 & 18 \\ \hline
+  B9    & 21    & 2031.68852  & 1038.411 & 743.4008 & 0.032986 & -0.19021 & 65 & 19 \\ \hline
+  B10   & 26    & 2048.856969 & 1047.928 & 747.5051 & 0.037514 & -0.18331 & 65 & 20 \\ \hline
+  C1    & 17    & 2072.818087 & 1037.388 & 805.2937 & 0.041437 & -0.17553 & 65 & 21 \\ \hline
+  C2    & 9     & 2023.270233 & 1066.445 & 761.1484 & 0.039684 & -0.19295 & 65 & 22 \\ \hline
+  C3    & 5     & 2038.942135 & 1052.651 & 734.7338 & 0.0562   & -0.2034  & 65 & 23 \\ \hline
+  C4    & 8     & 2024.024741 & 1064.304 & 760.5158 & 0.037415 & -0.18791 & 65 & 24 \\ \hline
+  C5    & 1     & 2063.919749 & 976.3176 & 761.5408 & 0.022828 & -0.11913 & 65 & 25 \\ \hline
+  C6    & 22    & 2061.102003 & 1071.594 & 788.9326 & 0.053629 & -0.20935 & 65 & 26 \\ \hline
+  C7    & 24    & 2060.07463  & 994.6496 & 772.853  & 0.053323 & -0.1899  & 65 & 27 \\ \hline
+  C8    & 18    & 2124.144197 & 1060.398 & 822.0559 & 0.05472  & -0.25224 & 65 & 28 \\ \hline
+  C9    & 27    & 2062.300912 & 995.6599 & 763.2463 & 0.045703 & -0.21291 & 65 & 29 \\ \hline
+  \end{tabular}%
+  }
+  \caption{Cameras Calibration Parameters}
+  \label{tab:Camera_Calibration}
+  \end{table}
+
+\subsection*{Execution}
+The execution process starts by connecting the user computer to the Raspberry Pi's with a SSH connection via Putty.
+Once a connection is established, a trial run will be perform to ensure the cameras are working as intended.
+After the trial run is successful, the RIG is fully opertational.
+
+Before a person enters the scan , the user is requirted to start the Nvidia Jetson Xavier and execute the Realsense SDK.
+Once the mentioned above are perform, a person can enter the RIG to get scanned.
+In parallel the administrator of the RIG will execute the script to capture data using putty. Once that script is executing, the administrator will take a Photo and PointCloud
+using the RealSense SDK. 
+
+The entire process takes approximately ten seconds. Once the data is captures, it can be used in the photogrammetry pipeline for reconstruction.
+
+
+
 
 \chapter{Results}
 

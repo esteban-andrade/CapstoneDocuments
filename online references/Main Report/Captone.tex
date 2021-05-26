@@ -916,9 +916,9 @@ Hence, it can be interpreted as an outlier detection method. It is an non-determ
 
 \begin{figure}[H]%
   \centering
-  \subfloat[\centering A data set with many outliers for which a line has to be fitted]{{\includegraphics[width=5cm]{255px-Line_with_outliers.png} }}%
+  \subfloat[][\centering A data set with many outliers for which a line has to be fitted]{{\includegraphics[width=5cm]{255px-Line_with_outliers.png} }}%
   \qquad
-  \subfloat[\centering Fitted line with RANSAC; outliers have no influence on the result]{{\includegraphics[width=5cm]{255px-Fitted_line.png} }}%
+  \subfloat[][\centering Fitted line with RANSAC; outliers have no influence on the result]{{\includegraphics[width=5cm]{255px-Fitted_line.png} }}%
   \caption{Dataset Before \& After RANSAC algorithm \Citep*{Strutz}}%
   \label{fig:example}%
 \end{figure}
@@ -1340,11 +1340,11 @@ The entire process takes approximately ten seconds. Once the data is captured, i
   \centering
   \subfloat[Front View Lidar]{{\includegraphics[width=0.46\textwidth]{11_Color.png} }}
   \qquad
-  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{A1-07-49-34.470.jpg} }}
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{A1-07-49-34-470.jpg} }}
   \qquad
-  \subfloat[Camera Side View]{{\includegraphics[width=0.46\textwidth]{B2-07-49-34.331.jpg} }}
+  \subfloat[Camera Side View]{{\includegraphics[width=0.46\textwidth]{B2-07-49-34-331.jpg} }}
   \qquad
-  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34.888.jpg} }}
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34-888.jpg} }}
   \qquad
   \caption{Example from Captured Dataset}
   \label{fig:examples}
@@ -1353,10 +1353,103 @@ The entire process takes approximately ten seconds. Once the data is captured, i
 \section{Photogrammetry Reconstruction}
 \label{section:meshroom_method}
 As mentioned before, Meshroom will be used to process the images and reconstruct the scanned person, once the data acquisition process has finalised. 
-Meshroom will have a series of nodes as noted on section \ref{section:meshroom}.
+Meshroom will have a series of nodes as noted on section \ref{section:meshroom}.It can be used in either windows or Linux. In this project both Meshroom version
+(2020 \& 2021) will tested and fully work. The chosen platform was Ubuntu 18.04. It has a CUDA enabled GPU in order to speed up the excution speed in certain nodes.
+
 After a series of multiple iterations \& experimentation, the best parameters were selected and it will be explained in section \ref{section:meshroom_method}.
 
 As Meshroom, has a series of nodes that work in a Pipeline manner, all  of the corresponding setting for the best results are detailed below.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{meshroom_gui_reconstruction.png}
+\caption{Successful Meshroom Pipeline (2021 version)}
+\label{fig:final_meshroom} 
+\end{figure}
+
+\subsection*{CameraInit Node}
+This is the Initial node of Meshroom Pipeline Reconstruction. 
+In this node all the captured data (images) will be imported into.
+Once all the images have been imported into the intial node.
+All the availible fields are illustrated on table \ref{tab:CameraInit}. Nevertheless in this project, the following fields were configured, whereas the remaining stayed as default.
+These fields are described below
+
+\begin{description}
+  \item[ViewPoints]: In this field is neccesary to edit the \textbf{Id, Pose Id, Intrinsic}. \\
+  For each image (viewpoint), the \textit{Id, Pose Id, Intrinsic} have to be unique in order to properly assign the camera calibration parameters from table \ref{tab:Camera_Calibration}. 
+  All of these fields will be direcly mapped with the \textit{Intrinsics Field}.
+  This process will have to be perform for all twenty-nine images for this project. 
+  \item[Intrinsics]: This Field is where all the camera calibration parameters from table \ref{tab:Camera_Calibration} will be associated to all the configure ViewPoints (Images) from the previous field.\\
+  In section, it is crucial to map the \textit{ViewPoint Id} from the previous section, to the correct \textit{Intrisics Id} for this field.
+  Similarly, it is neccesary to select the \textit{Camera Type} as \textbf{Radial3}, as this would allow to input the Focal Lenght, Principal Point and Distorsion Parameters.
+  Furtheremore, the Width \& Heigh of the Image is required to be imported. All these parameters are located on table \ref{tab:Camera_Calibration}.\\
+  On the other hand, the \textit{Initialization Mode} has to be configures as \textbf{calibrated} and the \textit{Locked Box} requires to be checked as the Cameras (viewpoints) have been previously fully calibrated.
+  This process will have to be perform for all twenty-nine images for this project. 
+
+\end{description}
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=0.5\textwidth]{camera_init_node.png}
+\caption{CameraInit Node Settings}
+\label{fig:camera_init_node} 
+\end{figure}
+
+
+\subsection*{FeatureExtraction Node}
+This will be the Second Node of Reconstruction Pipeline. All the field and settings of this node are located on table \ref{tab:FeatureExtraction}.
+For best results all the settings were configured as below:
+
+\begin{description}
+  \item[Describer Types]: The used describers are \textbf{SIFT} and \textbf{AKAZE}. After extensive testing it was found that a combination of \textit{Sift \& Akaze} will extract the most feature and enhance the quality of the reconstruction.
+  \item[Describer Density] : This field was configured as \textbf{Ultra} due to the small dataset (twenty-nine images)
+  \item[Describer Quality] : This was configured to \textbf{Ultra}, in order to retrieve the most amount of features from the images.
+  \item[Contrast Filtering]: Configured as \textbf{GridSort}
+  \item[Grid Filtering]  : Checked field.
+  \item[Force CPU Extraction] : Unchecked Field. The reason behind this was to use CUDA in order to use the GPU to extract all the features to inprove the time of processing.
+\end{description}
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{FeatureExtractionNode.png}
+\caption{FeatureExtraction Node Settings}
+\label{fig:feature_extraction_node} 
+\end{figure}
+
+
+\subsection*{ImageMatching Node}
+This is the thid node of the Pipeline Reconstruction. All the fields \& settings for this node can be seen on table \ref{tab:ImageMatching}.
+The configured fields for best results are found below: 
+
+\begin{description}
+  \item[Method]: The selected method for best results is \textbf{Exhaustive}. This method will export all image pairs for image matching process.  
+\end{description}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{ImageMatchingNode.png}
+\caption{ImageMatchingNode Node Settings}
+\label{fig:ImageMatchingNode._node} 
+\end{figure}
+
+
+
+\subsection*{StructureFromMotion Node}
+
+\subsection*{PrepareDenseScene Node}
+
+\subsection*{DepthMap Node}
+
+\subsection*{DepthMapFilter Node}
+
+
+\subsection*{Meshing Node}
+
+\subsection*{MeshFiltering Node}
+
+\subsection*{Texturing Node}
 
 \section{Data Processing Framework}
 

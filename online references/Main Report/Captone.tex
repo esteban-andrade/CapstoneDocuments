@@ -1434,18 +1434,127 @@ The configured fields for best results are found below:
 \label{fig:ImageMatchingNode._node} 
 \end{figure}
 
+\subsection*{FeatureMatching Node}
+This is the fourth node of the Reconstruction Pipeline. All the settings for this node can be refered to table \ref{tab:FeatureMatching}.
+The configured settings for best results are stated below. 
 
+\begin{description}
+  \item[Describer Types]: The Selected Desciber have to  match the selected on node the \textit{FeatureExtraction Node}. Therefore the selected describers will \textbf{SIFT \& AKAZE}
+  \item[Photometric Matching Method]: The selected method is \textbf{ANN\_L2} \textit{(Approximate Nearest Neighbor Matching)}.
+  \item[Geometric Estimator]: The selected Estimator \textbf{acransac}  \textit{A-Contrario RANSAC}.
+  \item[Geometric Filter Type]: The selected validation method to filter feature matches is \textbf{fundamental\_matrix}.
+  \item[Distance Ratio]: The selected distance ratio to discard non-meaningful matches  is $0.8$.
+  \item[Max Iteration]: The selectd number of iteration for RANSAC step is $5000$.
+  \item[Known Poses Geometric Error] : The maximum error specified for feature matching guided by information for cameras poses was selected as $5$
+\end{description}
+All the other settings were configured as default.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{featurematchingNOde.png}
+\caption{FeatureMatching Node Settings}
+\label{fig:fEATUREmATCHING} 
+\end{figure}
 
 \subsection*{StructureFromMotion Node}
+The Structure for Motion is the fifth node of the Reconstruction Pipeline. All the settings for this node can be refered to table \ref{tab:StructureFromMotion}.
+In this Step it is possible to visualise the Structure along with the valid Viewpoints (images) and number of feature matches. Furthermore it is possible to observer
+the number of cameras that match the valid viewpoints along with its corresponding Pose. As observed in figure \ref{fig:SFM_output}, there are a total of $27883$ feature matches and $29$ valid viewponts.
+Therefore, all the input data was valid and the initial reconstruction process started. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{SFM_example.png}
+\caption{Structure From Motion Output}
+\label{fig:SFM_output} 
+\end{figure}
+
+The configured settings for best results are stated below.
+\begin{description}
+  \item[Describer Type] : The Describer Type has to the match the ones used in previous steps. Hence, \textbf{Sift \& Akaze} were selected.
+  \item[Localizer Estimation]: The estimator selected to localise the cameras poses is \textbf{acransac}.
+  \item[Observation Constraint]: The Selected Method  for Observation Constrain Optimization is \textbf{Basic} .
+  \item[Localizer Max Ransac Itereations]: For an Optimal Results the selected number of iterations is $15000$
+  \item[LocalBA Graph Distance]: The selected Graph-Distance Limit is $1$
+  \item[Min Input Track Lenght]: Configured as $2$
+  \item[Min Observation For Triangulation]: Configured as $2$
+  \item[Min Angle For Triangulation] : Configured as $1$
+  \item[Min Angle For LandMark]: Configured as $1$ 
+  \item[Max Reprojection Error]: Configured as $4$
+  \item[Min Angle Initial Pair]: Configured as $1$ 
+  \item[Min Angle Initial Pair]: Configured as $40$
+  \item[Use Rig Constant]: This field is selected.
+  \item[Foce Lock of All Instrinsic Camera Parameters]: This field is selected in order to force all the cameras intrinsics, as the cameras have been fully calibrated.   
+\end{description}
+
+All the other fields were configured as default. 
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{SFM_settings.png}
+\caption{Structure From Motion Settings}
+\label{fig:SFM_set tings} 
+\end{figure}
+
 
 \subsection*{PrepareDenseScene Node}
+The PrepareDenseScene is the sixth node of the Reconstruction.  All the settings for this node can be refered to table \ref{tab:PrepareDenseScene}.
+The configured settings for best results are stated below. 
+
+\begin{description}
+  \item[Output File Type]: The choosen File Type for undistorted images is \textbf{PNG}.
+\end{description}
+
+
+All the remaining paramaters stayed as default.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{PrepareDenseScene.png}
+\caption{PrepareDenseScene Settings}
+\label{fig:PrepareDepthSense} 
+\end{figure}
 
 \subsection*{DepthMap Node}
+DepthMap Node is the Seventh Node of Meshroom Reconstruction Pipeline.  All the settings for this node can be refered on table \ref{tab:DepthMap}.
+The configured settings for best results are stated below. 
+
+\begin{description}
+  \item[DownScale]: The Downscale Image factor is set to $1$ for the best results.
+  \item[SGM: Nb Neighbour Cameras] : The  Semi Global Matching Number of Neighbour Cameras selected is $10$
+  \item[Refine: Nb Neighbour Cameras]: The selected Refine Number of Neighbour Cameras is $6$.    
+\end{description}
+
+All the remaining parameters stayed as default.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{DepthMapSetting.png}
+\caption{DepthMap Node Settings}
+\label{fig:DepthMapSetting} 
+\end{figure}
+
 
 \subsection*{DepthMapFilter Node}
+DepthMap Node is the Eighth Node of the Meshroom Reconstruction Pipeline. All the settings for this node can be refered on table \ref{tab:DepthMapFilter}.
+The configured settings for the best results are stated below.
 
+\begin{description}
+  \item[Min View Angle]: The selected Minimun angle between two views is $2$.
+  \item[Max View Angle]: The selected Maximum angle between two views is $70$.
+  \item[Number of Nearest Cameras]: The selected Number of nearest cameras used for filtering is $10$.
+  \item[Min Consistent Cameras]: The selected Number of minimum constent cameras is $3$.
+  \item[Min Consistent Cameras Bad Similarity] : The Selected minum Number of consistent cameras with weak similarity value is $4$   
+\end{description}
+All the remaining settings are configured as default. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{DepthMapFilter.png}
+\caption{DepthMapFilter Node Settings}
+\label{fig:DepthMapFilter} 
+\end{figure}
 
 \subsection*{Meshing Node}
+The Meshing is the nineth step of the  
+
 
 \subsection*{MeshFiltering Node}
 

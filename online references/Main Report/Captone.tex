@@ -1371,7 +1371,7 @@ As Meshroom, has a series of nodes that work in a Pipeline manner, all  of the c
 This is the Initial node of Meshroom Pipeline Reconstruction. 
 In this node all the captured data (images) will be imported into.
 Once all the images have been imported into the intial node.
-All the availible fields are illustrated on table \ref{tab:CameraInit}. Nevertheless in this project, the following fields were configured, whereas the remaining stayed as default.
+All the availible fields are illustrated on table \ref{tab:CameraInit}. Nevertheless in this project, the following fields were configured, whereas the remaining stayed as default and are referenced on figure \ref{fig:camera_init_node}.
 These fields are described below
 
 \begin{description}
@@ -1447,7 +1447,7 @@ The configured settings for best results are stated below.
   \item[Max Iteration]: The selectd number of iteration for RANSAC step is $5000$.
   \item[Known Poses Geometric Error] : The maximum error specified for feature matching guided by information for cameras poses was selected as $5$
 \end{description}
-All the other settings were configured as default.
+All the other settings were configured as default and are referenced on figure \ref{fig:fEATUREmATCHING}.
 
 \begin{figure}[H]%this figure will be at the right
   \centering
@@ -1487,7 +1487,7 @@ The configured settings for best results are stated below.
   \item[Foce Lock of All Instrinsic Camera Parameters]: This field is selected in order to force all the cameras intrinsics, as the cameras have been fully calibrated.   
 \end{description}
 
-All the other fields were configured as default. 
+All the other fields were configured as default and are referenced on figure \ref{fig:SFM_set tings}.
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{SFM_settings.png}
@@ -1495,7 +1495,7 @@ All the other fields were configured as default.
 \label{fig:SFM_set tings} 
 \end{figure}
 
-
+\newpage
 \subsection*{PrepareDenseScene Node}
 The PrepareDenseScene is the sixth node of the Reconstruction.  All the settings for this node can be refered to table \ref{tab:PrepareDenseScene}.
 The configured settings for best results are stated below. 
@@ -1505,7 +1505,7 @@ The configured settings for best results are stated below.
 \end{description}
 
 
-All the remaining paramaters stayed as default.
+All the remaining paramaters stayed as default and are referenced on figure \ref{fig:PrepareDepthSense}.
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{PrepareDenseScene.png}
@@ -1523,7 +1523,8 @@ The configured settings for best results are stated below.
   \item[Refine: Nb Neighbour Cameras]: The selected Refine Number of Neighbour Cameras is $6$.    
 \end{description}
 
-All the remaining parameters stayed as default.
+All the remaining parameters stayed as default and are referenced on figure \ref{fig:DepthMapSetting}.
+
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{DepthMapSetting.png}
@@ -1543,7 +1544,7 @@ The configured settings for the best results are stated below.
   \item[Min Consistent Cameras]: The selected Number of minimum constent cameras is $3$.
   \item[Min Consistent Cameras Bad Similarity] : The Selected minum Number of consistent cameras with weak similarity value is $4$   
 \end{description}
-All the remaining settings are configured as default. 
+All the remaining settings are configured as default and are referenced on figure \ref{fig:DepthMapFilter}.
 
 \begin{figure}[H]%this figure will be at the right
   \centering
@@ -1553,12 +1554,95 @@ All the remaining settings are configured as default.
 \end{figure}
 
 \subsection*{Meshing Node}
-The Meshing is the nineth step of the  
+The Meshing is the nineth step of the Meshroom Pipeline Reconstruction. This node will take all the results from the previous steps
+and it will produce a mesh file (\textit{.obj file}) that can be later processed on the PCL framework. 
+All the settings for this node can be referenced to table \ref{tab:Meshing}.
 
+The configured setting for best results are configured below.
+
+\begin{description}
+  \item[Estimate Space From SFM] : This setting was selected in order to estimate the space from the results of the structure from motion node.
+  \item[Min Obsevation For SFM Space Estimation] : The minimum observation selected value for estimation of structure from motion is $1$.
+  \item[Min Obervation Angle For SFM Space Estimation]: The selected value for angle for SFM space estimation is $45$. This angle should be modified based on the desired resullt.
+  \item[Min Step]: The selected step used to load the depth values  from depth maps is $1$
+  \item[Partitioning]: \textbf{singleBlock} was selected for best results.
+  \item[Repartition] : \textbf{MultiResolution} was selected for best results.
+  \item[Refine Fuse] : This setting was selected in order to refine the depth map fusion  with new pixel size which is defined by the angle and similarity scores.
+  \item[Weakly Supported Surface Support]: This setting was selected in order to improve support of weakly supported surfaces.
+  \item[Add Landmarks to the Dense Point Cloud]: This field was selected in order to add Structure From Motion (SFM) Landmarks to the dense point cloud and improve the resulting mesh.
+  \item[Colorize Output]: This field was selected to generate a colorized output point cloud and mesh.
+  \item[Add Mask Helper Points]: This field was selected in order to add helper points on the outline of the depth maps masks.
+\end{description}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=0.42\textwidth]{meshoing.png}
+\caption{Meshing Node Output}
+\label{fig:meshrom_mesh} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[Meshing Node Settings]{{\includegraphics[width=0.5\textwidth]{meshing_1.png} \label{fig:meshing1} }}
+  \qquad
+  \subfloat[Meshing Node Settings]{{\includegraphics[width=0.5\textwidth]{meshing_2.png} \label{fig:meshing2}}}
+  \caption{Entire Meshing Node Settings}
+  \label{fig:Meshingnodesettings}
+\end{figure}
+
+All the remaining settings are configured as default and are referenced on figures \ref{fig:meshing1} and \ref{fig:meshing2}.
 
 \subsection*{MeshFiltering Node}
+The MeshFIltering Node is the tenth step of the reconstruction pipeline. It smooths the resulting point cloud and mesh.
+The output of this step will be used in the Data processing framework based on the PCL library.
+All the settings for this node can be referenced to table \ref{tab:MeshFiltering}.
+
+The configured setting for best results are configured below.
+
+\begin{description}
+  \item[Smoothing Iterations]: The selected number of smoothing iterations for best results is $5$.
+  \item[Filter Large Triangles Factors]: The selected factor to remove all large triangles is $60$.  
+\end{description}
+
+
+All the remaining settings are configured as default and are referenced on figure \ref{fig:meshfiltering_set}.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \subfloat[MeshFiltering Node Settings]{{\includegraphics[width=0.5\textwidth]{mesh_filtering_settings.png} \label{fig:meshfiltering_set} }}
+  \qquad
+  \subfloat[MeshFiltering Node Output]{{\includegraphics[width=0.4\textwidth]{mesh_filtering_output.png} \label{fig:meshing_output}}}
+\caption{MeshFiltering Node Settings \& Output}
+\label{fig:MeshFiltering_settings} 
+\end{figure}
+
+
 
 \subsection*{Texturing Node}
+The Texturing Node is the Final Step of the Meshroom Reconstruction Pipeline. It generates a textures mesh. 
+All the settings for this node can be referenced to table \ref{tab:Texturing}.
+
+The configured settings for best results are configured below.
+\begin{description}
+  \item[Texture Side]: The selected output texture size is $8192$.
+  \item[Texture Downscale]: The selected texture downscale factor is $1$.
+  \item[Texture File Type]: The selected texture file type is \textbf{PNG}.  
+  \item[Fill Holes]: This setting was selected in order to fill texture holes with plausible values.
+  \item[Correct Exposure]: This setting was selected in order to uniformize the exposure value from the images.  
+\end{description}
+
+
+
+All the remaining settings are configured as default and are referenced on figure \ref{fig:texturing_set}.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \subfloat[Texturing Node Settings]{{\includegraphics[width=0.5\textwidth]{texturing.png} \label{fig:texturing_set} }}
+  \qquad
+  \subfloat[Texturing Node Output]{{\includegraphics[width=0.4\textwidth]{texturing_output.png} \label{fig:texturing_output}}}
+\caption{Texturing Node Settings \& Output}
+\label{fig:Texturing_settings} 
+\end{figure}
+
+
 
 \section{Data Processing Framework}
 

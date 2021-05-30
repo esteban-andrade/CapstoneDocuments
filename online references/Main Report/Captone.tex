@@ -149,6 +149,7 @@ The human society has the world comprehension of the surrounding world through v
 Based on this information, it is possible to analyse the number of objects in a determined location, object type, object size, object pose in different coordinate frames. 
 Thus, it impacts how as a society we interact with objects or scenes. As a result, it is essential to imitate this perception  to acquire real-world data in different formats that include:
 \begin{itemize}[]
+  \itemsep0em 
      \item RGB images
      \item Depth images
      \item 3D point clouds 
@@ -263,6 +264,7 @@ Once meshroom is downloaded it can run in either platform. When it is executed t
 As mentioned before, meshroom is based on AliceVision's Framework. Therfore it follows a photogrametric pipeline for 3D reconstruction. 
 This pipeline will have the following components:
 \begin{itemize}
+  \itemsep0em 
   \item Natural Feature Extraction
   \item Image Matching
   \item Features Matching
@@ -277,6 +279,7 @@ The pipeline will be included into Meshroom GUI and it will be used in the nodes
 As the nodes represent specific components of the reconstruction pipeline, these should be executed in a defined order.\\
 The nodes in the defined order to reconstruct a 3D model from images include:
 \begin{enumerate}
+  \itemsep0em 
   \item Camera Initialization 
   \item Feature Extraction
   \item Image Matching
@@ -778,6 +781,7 @@ The components in the node are described on table \ref{tab:Texturing}
 
 
 \section{PCL}
+\label{section:pcl}
 The \textbf{Point Cloud Library (PCL)} is a large scale, open project used for point cloud processing.\
 The PCL framework contains multiple state-of-the art algorithms ranging from feature estimation,registration,filtering, model fitting to segmentation \Citep*{Rusu_ICRA2011_PCL}. 
 PCL is a cross platform library and it is compatible with Windows, Linux and macOS.
@@ -785,6 +789,7 @@ PCL is a cross platform library and it is compatible with Windows, Linux and mac
 The PCL framework is divided into a series of modular libraries such as:
 \begin{multicols}{2}
 \begin{itemize}
+  \itemsep0em 
   \item Filters
   \item Features
   \item Keypoints
@@ -806,6 +811,7 @@ segment relevants parts of the scene \& point cloud, extract keypoints and compu
 The selected components and algorithms that were used in this project include: 
 
 \begin{itemize}
+  \itemsep0em 
   \item Statistical Outlier Removal Filter
   \item Pass Through Filter
   \item Voxel Grid Filtering
@@ -820,6 +826,7 @@ The selected components and algorithms that were used in this project include:
 
 
 \subsection{Statistical Outlier Removal Filter}
+\label{section:StatisticalOutlierRemovalFilter}
 % https://pcl.readthedocs.io/projects/tutorials/en/latest/statistical_outlier.html#statistical-outlier-removal
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/statistical_outlier.html#statistical-outlier-removal
 
@@ -844,6 +851,7 @@ neighborhood, before and after the filtering process \cite[]{Rusu_ICRA2011_PCL}.
 \end{figure}
 
 \subsection{Pass Through Filter}
+\label{section:Pass Through Filter}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/passthrough.html#passthrough
 This component of the PCL library has embedded two main components of the framework. 
 The \textbf{PassThrough} components uses the base \textbf{Filter} class methods to pass through all the data that satisfies certain contrains.
@@ -865,6 +873,7 @@ The image \ref{fig:pass_through} illustrates the process. The pointcloud has fiv
 \end{figure}
 
 \subsection{Voxel Grid Filtering}
+\label{section:Voxel Grid Filtering}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/voxel_grid.html#voxelgrid
 
 A voxel Grid illustraters a value on a regular grid in 3D space. A Voxel is an image of 3D space region  which is limited by defined sizes, which has its corresponding nodal point coordinates in an accepted system,
@@ -884,6 +893,7 @@ This approach represents the underlaying surface of the point cloud dataset with
 The main component is to set a defined and Voxel leaf Size, which allows to set the Voxel Size and the Number of Voxel in the Voxel Grid. Therefore, directly influencing the downsampling process and the resulting processed point cloud.
 
 \subsection{Plane Model Segmentation}
+\label{section:Plane Model Segmentation}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/planar_segmentation.html#planar-segmentation
 This component of the PCL librabry aims to perform a plane segmentation of a given set of points, which finds all the points within a point cloud data set that support a plane model.
 One of the components that this components uses is \textit{pcl::ExtractIndices}, which aims to extract thhe indices from a point cloud.
@@ -910,7 +920,8 @@ Figure \ref{fig:plane_seg}, illustrates the process below. The red points are th
 \end{figure}
 
 
-\subsubsection*{RANSAC}
+\subsubsection{RANSAC}
+\label{section:ransac}
 Random sample consensus (RANSAC), is an iterative method that is used to estimate parameters of a mathematical model from a set of observed data that contains outliers \Citep*{Strutz}.
 Hence, it can be interpreted as an outlier detection method. It is an non-deterministic algorithm that generates an adequeate result with a specific probability,the probability increases as more iteration are performed.
 
@@ -925,6 +936,7 @@ Hence, it can be interpreted as an outlier detection method. It is an non-determ
 
 
 \subsection {KdTree}
+\label{section:KdTree}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/kdtree_search.html#kdtree-search
 In this project Kdtrees are used to find the K nearest neighbour of certain points or locations and how to find these within an specified radius.
 
@@ -943,6 +955,7 @@ KdTrees are used extensively in many components of the project framework pipelin
 \end{figure}
 
 \subsection{Euclidean Cluster Extraction}
+\label{section:Euclidean Cluster Extraction}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/cluster_extraction.html?highlight=CLuster
 
 The clustering method allows to divide a non-organized pointcloud dataset \textbf{$P$} into smaller components, in order to reduce the overall processing time for \textbf{$P$}.
@@ -978,6 +991,7 @@ Figure \ref{fig:cluster_example}, illustrates a cluustering output of a dataset,
 
 
 \subsection{Principal Component Analysis}
+\label{section:Principal Component Analysis}
 %https://pointclouds.org/documentation/classpcl_1_1_p_c_a.html#details
 The Principal Component Analysis (PCA) is the process of computing the principal components and use them to change the basis on data, using only the first few principal components
 and discarding the rest. The principal components is a squence of $p$ unit vectors of a collection of points in a real coordinate space \Citep*{pca}.
@@ -992,7 +1006,8 @@ Once the PCA analysis is performed using the PCL library, it is possible to calc
 
 The Principal Component Analysis is used to determine the scale of the Two point clouds that are used in this project and properly adjust the final mesh.
 
-\subsection{Moving Least Squares }
+\subsection{Moving Least Squares}
+\label{section:Moving Least Squares}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/resampling.html?highlight=smoothing
 %https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html
 %https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html#details
@@ -1056,6 +1071,7 @@ Figure \ref{fig:sUpsample_def} illustrates on the left the implementation of MLS
 
 
 \subsection{Poisson Surface Reconstruction}
+\label{section:Poisson Surface Reconstruction}
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html
 In this project the Poisson Reconstruction algorithm is implemented , to recontruct the processed point cloud.
@@ -1079,6 +1095,7 @@ In complex calculations, it is possible to perform a \textit{least-squares fit} 
 
 
 \section{Open3D}
+\label{section:Open3D}
 Open3D is an open source library that supports fast development of software that handles 3D data.
 The Open3D frontend exposes outputs a set of carefully choosen data structures and algorithms in both Python and C++ \Citep*{Zhou2018}. 
 The backend of the framework is highly optimized and it configured for parallelization.
@@ -1087,6 +1104,7 @@ Open3D is compatible with Linux, macOS and Windows and it can be installed via s
 The core features include: 
 \begin{multicols}{2}
   \begin{itemize}
+    \itemsep0em 
     \item Simple installation via conda and pip
     \item 3D data structures
     \item 3D data processing algorithms
@@ -1651,10 +1669,118 @@ This framework was devevelop using the PCL framework and was built using  modern
 In order to deploy this framework, refer to the following GitHub Repository. It includes all the dependencies for installation with the corresponding steps. 
 \textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.}
 
+This custom developed framework used the concepts from the PCL library and its corresponding algorithms which are detailed on section \ref{section:pcl}.
+On the other hand, an extra framework was attached and incorporated as a wrapper in order to add extra features and functionalities.
+Nevertheless, this wrapper was not implemented in the final executable. 
 
+The framework consist of two wrappers \textit{(classes)} and one executable file \textit{(Main)} which will be explained below.
 
+\subsection{Wrappers (Classes)}
+As mentioned before the framework will have two specific classes that were developed and adapted..
+The main class is the custom develop class that is based on the PCL library and uses the algorithms mentioned on section \ref{section:pcl}. This class is called \textbf{Reconstruction}.
 
+This class is able to input all the output data from the photogrametric reconstruction process (\textit{Meshroom}) and the captured lidar point ploud.
+All the  detailed functionalities (Variales \& APIs) can be found in the Github Repository mentioned above. Nevertheless, the general overview will be explained below. 
 
+On the other hand, the other wrapper is an developed class that was adapted from the following GitHub Repository \textbf{\href{https://github.com/linbaowei/ScaleRatioICP} {ScaleRatioICP}}.
+However, after substancial testing this wrapper was not implemented in the final executable of the develop framework. 
+
+\subsubsection{ScaleRatioICP}
+This developed framework was develop by \Citet*{scaleICP} and it is a method to scale 3D point clouds. 
+It estimates the ratio of scales of two given point clouds by performing PCA of spin Images over different scales of two point clouds, then it generates two sets of cumulative contribution rate curves, which can be considered
+to illustrate the scale of the given point clouds. 
+
+This wrapper process the input pointclouds, and send the result of the cumulative contribution rate curves to MATLAB via the API's in order to obtain the final scale ratio between two input point cloud.
+
+However, after substancial testing, it was discovered that the cumulative contribution rate curves process was extremely time consuming. Furtheremore, in this particular project the final scaling result was inconsistent. 
+As the lidar pointcloud which is used to estimate the scale only has the front view of the person, it has come errors in the calculation process. Therefore, the implementation of this class in the final executable was not appropriate.
+
+\subsubsection{Reconstruction}
+The Reconstruction Class is based on the PCL library and the algorithms used on section \ref{section:pcl}.
+This section will provide an insight of the class API and it the overall functionality. For a detailed look refer to the GitHub Repository \textbf{\href{https://github.com/linbaowei/ScaleRatioICP} {ScaleRatioICP}}.
+
+The description of the developed APIs (\textit{Class Public Methods}) will be explained below.
+
+\begin{description}
+  \item[setInputCloud]: This member class function will be used to input a given Mesh or PointCloud. It designed to work with common \textbf{.ply \& .obj} formats.
+  \item[normalsDirectionAdjustment]: This method is designed to input a given Pointcloud and output a different pointcloud with Adjusted Normals.
+   It will get the vertices of each face and recompute the normals using the \textit{"right hand rule"}. Furthermore, it will normalize the normal vector and stack up the new normals in the output point cloud.
+  \item[pointCloudOutliersFilter]: This API takes an reference cloud and outputs a processed point cloud with filtered data outliers. This method is based on the Statistical OutlierRemoval Filter algoritm referenced on section \ref{section:StatisticalOutlierRemovalFilter}. It requires to have configured the following fields.
+  \begin{description}
+    \item[- \textit{setMeanK}] : It configures the number of points (K) to use for mean distance estimation.
+    \item[- \textit{setStddevMulThresh}] : It Sets ths standard deviation multipler threshold. It considers all the points outside $\mu \pm \sigma *  std\_mul\_threshold$ as outliers where $\mu$ is the estimated mean and $\sigma$  is the standard deviation     
+  \end{description} 
+   \item[pointCloudPlaneSegmentOperation]: This API is degined to input a given Point Cloud and output a plane segmented point cloud. The logic behing this algorithm is based on section \ref{section:Plane Model Segmentation}.
+   Similarly it uses a Kdtree to search through the pointcloud as referenced on section \ref{section:KdTree}. Also it uses RANSAC  as the segmentation method and Model Type. For details about RANSAC refer to section \ref{section:ransac}.
+   For this method it is required to configure the following fields.
+   \begin{description}
+     \item[\textit{- setMaxIterations}] : This parameters set the number of  iterations for RANSAC  analysis.
+     \item[\textit{- setDistanceThreshold}]: This paramater sets the distance threshold for the plane model.
+   \end{description}
+   In a nutshell, this API aims to segment(remove) the plane model for any point cloud that has been used as input.
+  \item[pointCloudClustering]: This API is designed to Input a specific point cloud and run an Euclidean Cluster Extraction (refer to section \ref{section:Euclidean Cluster Extraction}). With the Clusterized point cloud it will output the biggest point cloud cluster as the valid  target point cloud.
+   In order to define a cluster it is crucial to define the \textit{Minimum Cluster Size and the Cluster Tolerance.} Once the all the clusters are generated, these will be stacked in a vector. 
+   In this vector an algorithm will iterate  throughout all elemenets and compare its cluster size. Based on this process it will output the biggest cluster as the valid output point cloud.
+   \item[pointCloudNormaliseUpscale]: This API aims to smooth the surface of the Point Cloud via MLS (\textit{MovingLeastSquares}). 
+   Furthermore it also upsamples the pointcloud to a defined paramater using \textit{RANDOM\_UNIFORM\_DENSITY} as the prefered method (refer to section \ref{section:Moving Least Squares}). 
+   For this specific API uses a Kdtree (refer to section \ref{section:KdTree}) for data searching and it is required to specify the \textit{Search Radius} for determining the k-nearest neighbor for best fitting. 
+   This method required an input point cloud and it will output a smoothed and upsampled pointcloud.
+   \item[poissonReconstruction]: This API will require an input pointcloud and it will generate a reconstructed Polymesh based on the Poisson Reconstruction Algorithm (refer to section \ref{section:Poisson Surface Reconstruction}).
+   For this API is required to configured the following parameters:
+   \begin{description}
+     \item[\textit{- setDepth}]: It sets the maximum depth of the tree(kdtree) that is used for surface reconstruction. 
+     \item[\textit{- setOutputPolygons}] : Enables to use an polygon mesh (polymesh) as output.
+     \item[\textit{- setSamplesPerNode}] : Sets the minimum names of sample points that fall within tree.
+     \item[\textit{- setSolverDivide}] : Sets the depth at which block Gauss-Seidel Solved is used to solve the Laplacian Equation.
+     \item[\textit{- setIsoDivide}] : Sets the depth at which a block extracts the iso-surface.
+     \item[\textit{- setScale}] : Sets the ratio between the diameter of the cube used for reconstruction as well as the diamater of the bouding cube samples.
+   \end{description}
+
+   \item[downsamplePointCloudVoxelGrid] : This API aims to downsample the input pointcloud through a voxel grid  filter(refer to section \ref{section:Voxel Grid Filtering}). 
+   It require the user to input the \textit{LeafSize in x,y,z} of the Voxel Grid. Based on the given LeafSizes it will downsample all the data.
+   \item[pointCloudScaleAdjustment] : This API uses a custom develop algorithm to scale on pointcloud. It required to input the target pointcloud and the reference point cloud. 
+   This developed algorthm is based on PCA (refer to section \ref{section:Principal Component Analysis}). It calculated both centroids of the input \& reference point clouds as well as the corresponding eigen vectors. With his values it will estimate the transform for each point cloud. Based on this results it will estimate the Minimum and Maximum Points in \textbf{X,Y,Z} axis.
+   Based on this it will obtain the scale in axis based on the following equation, where axis applies to the \textit{X,Y,Z axis}
+   \begin{equation}
+     Scale_{axis} =  \frac{cloudRefMaximumPoint_{axis}-cloudRefMinimumPoint_{axis}}{cloudInputMaximumPoint_{axis}-cloudInputMinimumPoint_{axis}}
+     \label{equ:scale}
+   \end{equation}
+With the Obtained values for the Scale in X,Y Z from \ref{equ:scale}, it is possible to fully scale the input cloud based on the obtained results. The final results will be storaged in a vector for later processing. 
+   \item[pointCloudCentroidAlignmentAdjusment] : This API aims to align two given pointcloud to its corresponding centroid. It is based on PCA (refer to section \ref{section:Principal Component Analysis}). Once its properly align the user has the option to rotate in any axis (x,y,z) the output pointcloud with respect to its centroid. This aims to correct the centroid orientation and increate the accuracy of the scaling process. 
+   \item[transformVerification] : This API is used to Verify the error Transform error between the two point clouds. It is used to determine the transformation error between the scaled pointcloud and the referenced pointcloud (lidar).
+   It uses PCA (refer to section \ref{section:Principal Component Analysis}). to determine the transforms ($T$) of the two point clouds. Then it obtain the translation and rotational error between the two transforms. 
+   
+   The Translation error is defined as:
+   \begin{equation}
+     translation\_error = \left\lVert \begin{pmatrix} x_1 \\y_1\\z_1\\1  \end{pmatrix} - \begin{pmatrix} x_2 \\y_2\\z_2\\1  \end{pmatrix} \right\rVert    
+    \label{equ:translation error}
+    \end{equation}
+   The Rotation error is defined as where $R(\hat{n},\theta)$ is the rotation componet of the transform 
+   \begin{equation}
+     Rotation\_error =\left\lVert \log (R_1(\hat{n},\theta) * R_2(\hat{n},\theta)^{-1} ) \right\rVert 
+   \end{equation}
+ With both translation and rotation error it is possible to comparte to a user defined threshold and ensure that the error is within aceptable margins. 
+\end{description}
+
+In addition to the mentioned above API's there area several other such as:
+\begin{multicols}{2}
+\begin{itemize}
+  \itemsep0em 
+  \item getScale
+  \item cloudToPolyMesh
+  \item convertPLYtoPCL
+  \item convertPolyMeshtoPLY
+  \item convertPCLtoPLY
+  \item importPLYtoPolymesh
+  \item pointCloudOutliersFilterManual
+  \item normalsReAdjustement
+  \item normalsTesting 
+  \item pointCloudPlaneSegmentOperationManual
+  \item transformPointCloud
+\end{itemize}
+\end{multicols}
+All the extra API's are used to extra features when importing \& data. Furthermore, it allows extra level of customization to the main API's.  
+\subsubsection{Executable}
 
 
 \chapter{Results}

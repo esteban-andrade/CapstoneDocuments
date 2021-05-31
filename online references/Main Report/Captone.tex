@@ -930,7 +930,7 @@ Hence, it can be interpreted as an outlier detection method. It is an non-determ
   \subfloat[][\centering A data set with many outliers for which a line has to be fitted]{{\includegraphics[width=5cm]{255px-Line_with_outliers.png} }}%
   \qquad
   \subfloat[][\centering Fitted line with RANSAC; outliers have no influence on the result]{{\includegraphics[width=5cm]{255px-Fitted_line.png} }}%
-  \caption{Dataset Before \& After RANSAC algorithm \Citep*{Strutz}}%
+  \caption{Dataset Before \& After RANSAC algorithm }\Citep*{Strutz}%
   \label{fig:example}%
 \end{figure}
 
@@ -1088,7 +1088,7 @@ In complex calculations, it is possible to perform a \textit{least-squares fit} 
 \begin{figure}[H]%this figure will be at the right
   \centering
   \includegraphics[width=1\textwidth]{poisson_example.png}
- \caption{Poisson Recontruction Example. On the left it it input pointcloud dataset, whereas on the right is output of the Poisson Surface Reconstruction Algorithm}\cite[]{Poisson}
+ \caption{Poisson Recontruction Example.} On the left it it input pointcloud dataset, whereas on the right is output of the Poisson Surface Reconstruction Algorithm\cite[]{Poisson}
  \label{fig:Poisson_def} 
 \end{figure}
 
@@ -1268,6 +1268,7 @@ the accuracy of the final scan.
 All the tall poles will be placed in a circular shape in order to capture as much data as possible. 
 The subject (person) that will use the RIG will be located in the origin of the circle and all the tall poles will be places at a 1.5 m away from the person in order to have the best overlap between all cameras.
 The four short poles will be located closeup from the person that will be scanned. The four poles will be placed at 60 cm away from the person (circle origin) in order to capture close up data for complex regions and improve the overall reconstruction.
+The architecture of this RIG is observed on figure \ref{fig:cad}.
 \enlargethispage{\baselineskip}
 
 \newpage
@@ -1282,7 +1283,16 @@ The four short poles will be located closeup from the person that will be scanne
   \label{fig:RIG}
 \end{figure}
 
-\newpage
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{cad.png}
+ \caption{CAD of RIG and Poles Placement}
+ \label{fig:cad} 
+\end{figure}
+
+
+% \newpage
 \subsection{Cameras Calibration}
 As mentioned before, there will be a set of twenty-eight camaras in the RIG. 
 It is crucial to be able to calibrate these cameras an object the intrinsic parameters in order to input these parameters into the Photogrammetry Pipeline to enhance
@@ -1354,6 +1364,7 @@ In parallel the administrator of the RIG will execute the script to capture data
 using the RealSense SDK. 
 
 The entire process takes approximately ten seconds. Once the data is captured, it can be used in the photogrammetry pipeline for reconstruction.
+\enlargethispage{\baselineskip}
 \begin{figure}[H]
   \centering
   \subfloat[Front View Lidar]{{\includegraphics[width=0.46\textwidth]{11_Color.png} }}
@@ -1609,7 +1620,7 @@ The configured setting for best results are configured below.
 \end{figure}
 
 All the remaining settings are configured as default and are referenced on figures \ref{fig:meshing1} and \ref{fig:meshing2}.
-
+\enlargethispage{\baselineskip}
 \subsection*{MeshFiltering Node}
 The MeshFIltering Node is the tenth step of the reconstruction pipeline. It smooths the resulting point cloud and mesh.
 The output of this step will be used in the Data processing framework based on the PCL library.
@@ -1760,6 +1771,8 @@ With the Obtained values for the Scale in X,Y Z from \ref{equ:scale}, it is poss
      Rotation\_error =\left\lVert \log (R_1(\hat{n},\theta) * R_2(\hat{n},\theta)^{-1} ) \right\rVert 
    \end{equation}
  With both translation and rotation error it is possible to comparte to a user defined threshold and ensure that the error is within aceptable margins. 
+  \item[passThroughFilter]: This API aims to filter a specific point cloud based on the specific axis limit, which is known as \textit{passThroughFilter} (refer to section \ref{section:Pass Through Filter}).
+  It requires the user to input an input pointcloud, an string with the axis to filter as well as the maximum and minimin limits of the constrained axis. This is designed to aid with the plane segmentation process and ensure appropriate limits for the scaling process.  
 \end{description}
 
 In addition to the mentioned above API's there area several other such as:
@@ -1780,10 +1793,107 @@ In addition to the mentioned above API's there area several other such as:
 \end{itemize}
 \end{multicols}
 All the extra API's are used to extra features when importing \& data. Furthermore, it allows extra level of customization to the main API's.  
+
 \subsubsection{Executable}
+The Execututable is a program that was developed using the developed framework. For extended details on how what are the dependencies and how to install this executable, 
+refer to the GitHub Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+In order to run this program is necesary to input two pointcloud (the target Point cloud for processing and the reference point clo[ud for scaling). Furthermore it is neccesary to specify if its require to have output files or it will only used for visualization.
+An example is as follows.
+
+
+\scriptsize\begin{verbatim} 
+./3D_reconstruction_pipeline [Path_to_referenceFile] [Path_to_SCaling_file] [yes/no](Generate output files)
+\end{verbatim}
+\normalsize
+
+Example:
+
+\small\begin{verbatim} 
+./3D_reconstruction_pipeline ../Data/mesh_ply.ply ../Data/10.ply no
+\end{verbatim}
+\normalsize
+
+In the main file there will be a series of multiple predefined pointclouds that will be used for reconstruction. These will be used for both processing  of input reference file as well as Input Scaling reference files. 
+Similarly there will be three objects derived from the class (\textit{Reconstruction}) that are used to handle the reconstruction processes(input Refence File), Lidar and a helper object that Handles the optional generation of output files. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{log.png}
+\caption{Pipeline Execution Log}
+\label{fig:pipeline_log} 
+\end{figure}
+
+
+\subsubsection*{ReconstructionMain Object}
+The ReconstructionMain object aims to manipulate and process the input pointcloud data.
+This Object aims to input the given pointcloud and  do all the processing that includes inputing the starting pointcloud and use a series of filter to remove noice \&outliers it is aimed to contain the scanner person as the region of interest. 
+Similarly, this objects scales the pointcloud based on the result and the processed lidar pointcloud.
+Once the pointcloud has been properly scaled it will use the Poission Reconstruction Algorithm to Produce a Polymesh of the Reconstruction pointcloud.
+For a detailed look at the APIs use for this object, refer to the Repository (\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+\subsubsection*{Lidar Object}
+The Lidar Object is made to handle and process the input data from the lidar that will be used for scaling. 
+This object will process in order to maintain only the region of interest of the pointcloud that will be used in the Scaling process in the Reconstruction Object. 
+It will uses several filters and segmentation algorithms to keep the regions of interest as accurate as possible in order to ensure an efficient scaling.
+For a detailed look at the implemented APIs, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+\subsubsection*{Helper Object}
+The helper object is created with the option to be used to save the pipeline of the pointclouds. These axiliary objects saves all the steps of the pointclouds if the last argument of the executuble is configured to \textbf{YES}.
+For a detailed look at the implemented APIs, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+
+
+\subsubsection*{Viewer}
+Similarly, there is a viewer implementation that allows to view the output of the pipeline. This viewer allows to observe the different steps of the reconstruction and scaling pipeline.
+It allows the user to observe the steps and make changes in different components of the pipeline if needed in order to adjust to new datasets.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{pipeline.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:pipeline_final} 
+\end{figure}
+
+
+\subsubsection*{Open3D Poisson Reconstruction}
+In Certain occasions when the Poisson Reconstruction from the PCL pipeline fails. The created \textit{poisson\_open3d.py} script can be used to rerun the Poisson Reconstruction Algorithm and obtain a sucesfull reconstructed mesh.
+This script will take the outputs files from the PCL framework and generate a valid Poisson Reconstructed Mesh and ensure the robustness of the develop framework for this project.
+For a detailed look at the implemented script, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \subfloat[Imported Pipeline Genareted Mesh ]{{\includegraphics[width=0.45\textwidth]{open3dImport.png} \label{fig:importopen3d} }}
+  \qquad
+  \subfloat[Initial Open3D Possion Reconstruction]{{\includegraphics[width=0.42\textwidth]{open3dFirstpoisson.png} \label{fig:intialpossionopen3d}}}
+  \qquad
+  \subfloat[Analyse And Process Region of Interest]{{\includegraphics[width=0.45\textwidth]{open3dRegionsofInterst1.png} \label{fig:analysedpossionopen3d}}}
+  \qquad
+  \subfloat[Final Open3D Reconstructed Mesh]{{\includegraphics[width=0.45\textwidth]{Possionfinalooen3d.png} \label{fig:finalmeshopen3d}}}
+\caption{Open3D Poisson Reconstruction Script Outputs}
+\label{fig:open3dpossionscreipt} 
+\end{figure}
+ 
+
+\subsubsection{Expected Behaviour}
+The expected behavior is to input both files into the script via the arguments in the terminal and enabling to save the files for tracking. 
+Once the input files have been fed to the framework. The metioned objects above (ReconstructionMain \& Lidar) will process in parallel both files and it will remove ourliers, plane segment and multiple filter processes.
+Once Both files have been processed the Initial Scaling process will start. After the Intial scaling process is finished another filtering process will start in order to improve the region of interest of the pointcloud.
+Afterwards, another scaling process will be executed as this will increase the accuracy of the final scale. 
+
+Moreover, the centroids of the pointclouds will be aligned and the processed Pointcloud will be transformed to the reference frame of the Lidar Point Cloud.
+Once the transformation and alignment process is completed the resultant pointcloud will be smoothed and upsampled.
+Furthermore, the pipeline will estimate the transformation error of the final pointcloud with respect to the lidar in order to ensure that the final pose and scale is within acceptable parameters. 
+
+Finally, the poisson reconstruction process will generate the output pointcloud. 
+
+Once all the processes have finished it will, generate the output files if the option was selected and it will start the viewer to see contextualize all the steps of the process with the correspoding expected output pointclouds.
 
 
 \chapter{Results}
+
+\section{Meshroom}
+
+\section{Reconstruction Framework}
 
 \chapter{Conclusion}
 

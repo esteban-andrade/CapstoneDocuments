@@ -93,15 +93,20 @@ Supervisor: Dr. Teresa Vidal Calleja\\
 Major: Mechanical and Mechatronics Engineering.\\
 \textbf{Objective}: Process recorded sensor data from a human body and create a scaled model of the scanned subject that can be used for clothing fitting.\\
 \rule{\textwidth}{0.1pt}
-The capability of scanning different models is critical for manu industries ranging from fashion to medical and manufacturing. Nevertheless many of the current implementations are extremely expensive. Hence it imposses a barrier for the technology.
-Similarly, many of the current applications do not create extremely accurate models and in various occasions thgse models would be discarded.\\
-Therefore, this project will create both hardware and software implementation for a human 3D scanner with a moderate budget as well as accurate results  in order to be able to produce accurate and scaled models of the scanned subject.
-The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig. 
-Additionally, a Lidar will be used to capture a PointCloud as well as an Image mof the subject inside the rig.\\
-With the acquired images from all the cameras as well as the Lidar, a photogrammetry process will be used in order to obtain an initial mesh. This mesh is the result of the photogrametry reconstruction process.
-Moreover, the initial mesh will be processes with a series of developed algorithms in a pipeline sequence. The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering.\\
-The Scaling will use the PointCloud from the Lidar as a reference and adjust the Scale and Pose of the processed mesh. Once the Mesh has been scaled appropiately with the reference PointCloud, a Poisson algorithm will be used in order to reconstruct and obtain the final scanned model.\\
-The results in this report illustrate the process on how with a constrained data set, it is possible to obtain accurate scaled scanned model that can be used in many applications.
+The capability of scanning distinctive models is critical for many industries ranging from fashion to medical and manufacturing. 
+Nevertheless, many of the current implementations are extremely expensive. Hence it imposes a barrier for the technology.
+ Similarly, many of the existing applications do not create highly accurate models, and on various occasions, these models would be discarded. 
+ Therefore, this project will create both hardware and software implementation for a human3D scanner with a moderate budget as well as accurate results in order to be able to produce accurate and scaled models of the scanned subject. 
+ The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig.
+
+Additionally, a Lidar will be used to capture a PointCloud and an Image of the subject inside the rig. 
+With the acquired images from all the cameras as well as the Lidar, a photogrammetric process will be used to obtain an initial mesh. 
+This mesh is the result of the photogrammetric reconstruction process. Moreover, the initial mesh will be processed with a series of developed algorithms in a pipeline sequence. 
+The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering. 
+The Scaling will use the PointCloud from the Lidar to reference and adjust the Scale and Pose of the processed mesh. 
+Once the mesh has been scaled appropriately with the reference PointCloud, a Poisson algorithm will reconstruct and obtain the final scanned model. 
+The results in this report illustrate how with a constrained data set, it is possible to get an accurate scaled scanned model that can be used in many applications.
+
 \enlargethispage{\baselineskip}
 \chapter*{Acknowledgements}
 I would like to acknowledge and thank my supervisor Dr. Teresa Vidal Calleja for her help and support throughout this project. I would also like to acknowledge and thank Dr. Cedric Le Gentil for all his guidance, support and input throughout the project development.
@@ -1817,6 +1822,8 @@ Example:
 In the main file there will be a series of multiple predefined pointclouds that will be used for reconstruction. These will be used for both processing  of input reference file as well as Input Scaling reference files. 
 Similarly there will be three objects derived from the class (\textit{Reconstruction}) that are used to handle the reconstruction processes(input Refence File), Lidar and a helper object that Handles the optional generation of output files. 
 
+Figure \ref{fig:pipeline_log}, shows the output of the executable with a valid result.
+\enlargethispage{\baselineskip}
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{log.png}
@@ -1848,6 +1855,8 @@ For a detailed look at the implemented APIs, refer to the Repository(\textbf{\hr
 Similarly, there is a viewer implementation that allows to view the output of the pipeline. This viewer allows to observe the different steps of the reconstruction and scaling pipeline.
 It allows the user to observe the steps and make changes in different components of the pipeline if needed in order to adjust to new datasets.
 
+Figure \ref{fig:pipeline_final}, illustrates the \textit{Viewer} with all the corresponding steps of the reconstruction pipeline.
+
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{pipeline.png}
@@ -1860,6 +1869,8 @@ It allows the user to observe the steps and make changes in different components
 In Certain occasions when the Poisson Reconstruction from the PCL pipeline fails. The created \textit{poisson\_open3d.py} script can be used to rerun the Poisson Reconstruction Algorithm and obtain a sucesfull reconstructed mesh.
 This script will take the outputs files from the PCL framework and generate a valid Poisson Reconstructed Mesh and ensure the robustness of the develop framework for this project.
 For a detailed look at the implemented script, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+Figure \ref{fig:open3dpossionscreipt}, illustrates all the steps of the Open3D Poisson Reconstruction.
 \begin{figure}[H]%this figure will be at the right
   \centering
   \subfloat[Imported Pipeline Genareted Mesh ]{{\includegraphics[width=0.45\textwidth]{open3dImport.png} \label{fig:importopen3d} }}
@@ -1888,12 +1899,37 @@ Finally, the poisson reconstruction process will generate the output pointcloud.
 
 Once all the processes have finished it will, generate the output files if the option was selected and it will start the viewer to see contextualize all the steps of the process with the correspoding expected output pointclouds.
 
+For a detailed look the process flow of the program, refer to the appendix on figure \ref{appendix::fig:flowdiagram}.
 
 \chapter{Results}
 
+
 \section{Meshroom}
 
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{scan1.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:scan1} 
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{scan2.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:scan2} 
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{scan3.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:scan3} 
+\end{figure}
+
 \section{Reconstruction Framework}
+
+
 
 \chapter{Conclusion}
 
@@ -1924,6 +1960,19 @@ Once all the processes have finished it will, generate the output files if the o
   \caption{Comunication Plan}
   \label{appendix:ComunicationPlan}
   \end{table}    
+
+\newpage
+\newgeometry{top= 3mm, bottom=3mm,left=3mm,right = 3mm}  
+  \thispagestyle{empty}
+  \begin{figure}
+    \centering
+    \makebox[\textwidth]
+    {\includegraphics[width=0.425\linewidth]{Captoneflowdiagram.png}   } 
+    \caption{Gantt Chart}
+    \label{appendix::fig:flowdiagram}
+\end{figure}   
+
+\restoregeometry
 
 
 

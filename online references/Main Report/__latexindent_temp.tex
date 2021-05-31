@@ -43,7 +43,7 @@
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
 \usepackage{longtable}
-
+\usepackage{hyperref}
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
@@ -93,15 +93,20 @@ Supervisor: Dr. Teresa Vidal Calleja\\
 Major: Mechanical and Mechatronics Engineering.\\
 \textbf{Objective}: Process recorded sensor data from a human body and create a scaled model of the scanned subject that can be used for clothing fitting.\\
 \rule{\textwidth}{0.1pt}
-The capability of scanning different models is critical for manu industries ranging from fashion to medical and manufacturing. Nevertheless many of the current implementations are extremely expensive. Hence it imposses a barrier for the technology.
-Similarly, many of the current applications do not create extremely accurate models and in various occasions thgse models would be discarded.\\
-Therefore, this project will create both hardware and software implementation for a human 3D scanner with a moderate budget as well as accurate results  in order to be able to produce accurate and scaled models of the scanned subject.
-The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig. 
-Additionally, a Lidar will be used to capture a PointCloud as well as an Image mof the subject inside the rig.\\
-With the acquired images from all the cameras as well as the Lidar, a photogrammetry process will be used in order to obtain an initial mesh. This mesh is the result of the photogrametry reconstruction process.
-Moreover, the initial mesh will be processes with a series of developed algorithms in a pipeline sequence. The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering.\\
-The Scaling will use the PointCloud from the Lidar as a reference and adjust the Scale and Pose of the processed mesh. Once the Mesh has been scaled appropiately with the reference PointCloud, a Poisson algorithm will be used in order to reconstruct and obtain the final scanned model.\\
-The results in this report illustrate the process on how with a constrained data set, it is possible to obtain accurate scaled scanned model that can be used in many applications.
+The capability of scanning distinctive models is critical for many industries ranging from fashion to medical and manufacturing. 
+Nevertheless, many of the current implementations are extremely expensive. Hence it imposes a barrier for the technology.
+ Similarly, many of the existing applications do not create highly accurate models, and on various occasions, these models would be discarded. 
+ Therefore, this project will create both hardware and software implementation for a human3D scanner with a moderate budget as well as accurate results in order to be able to produce accurate and scaled models of the scanned subject. 
+ The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig.
+
+Additionally, a Lidar will be used to capture a PointCloud and an Image of the subject inside the rig. 
+With the acquired images from all the cameras as well as the Lidar, a photogrammetric process will be used to obtain an initial mesh. 
+This mesh is the result of the photogrammetric reconstruction process. Moreover, the initial mesh will be processed with a series of developed algorithms in a pipeline sequence. 
+The pipeline will process the mesh with operations such as plane removal, outliers removal and clustering. 
+The Scaling will use the PointCloud from the Lidar to reference and adjust the Scale and Pose of the processed mesh. 
+Once the mesh has been scaled appropriately with the reference PointCloud, a Poisson algorithm will reconstruct and obtain the final scanned model. 
+The results in this report illustrate how with a constrained data set, it is possible to get an accurate scaled scanned model that can be used in many applications.
+
 \enlargethispage{\baselineskip}
 \chapter*{Acknowledgements}
 I would like to acknowledge and thank my supervisor Dr. Teresa Vidal Calleja for her help and support throughout this project. I would also like to acknowledge and thank Dr. Cedric Le Gentil for all his guidance, support and input throughout the project development.
@@ -149,6 +154,7 @@ The human society has the world comprehension of the surrounding world through v
 Based on this information, it is possible to analyse the number of objects in a determined location, object type, object size, object pose in different coordinate frames. 
 Thus, it impacts how as a society we interact with objects or scenes. As a result, it is essential to imitate this perception  to acquire real-world data in different formats that include:
 \begin{itemize}[]
+  \itemsep0em 
      \item RGB images
      \item Depth images
      \item 3D point clouds 
@@ -170,7 +176,7 @@ The geometrical measurements could be associated with shape, size, volume, and s
 Therefore, it will ease the diagnose process and allow to treat and monitor medical conditions holistically and improve the life quality of patients with non-invasive tests.
 The table below illustrates the use of a 3D scanner in the medical field with the purpose to identify and monitor various medical conditions. 
 From which the diagnose, treatment and monitor procedures will differ based on the acquired data.
-\begin{table}[ht]
+\begin{table}[H]
     \centering
     \includegraphics[width=15cm]{table1.png}
     \caption{3D Scanning Applications}\cite[]{treleaven_wells_2007}.
@@ -234,7 +240,7 @@ has led to significant advances in 3D surface Reconstruction from images \Citep*
 The key principle behind all the photogrammetric measurements is associated with the mathematical \& geometrical reconstruction of the path of light rays from the object to the sensor camera in the exact moment of data image acquisition.
 Thus, the fundamental concept of photogrammetry is the undertanding of geometric characteristics of a single photograph.
 
-\begin{figure}[h]
+\begin{figure}[]
   \centering
   \includegraphics[width=0.8\textwidth]{photogrammetry.png}
   \caption{Photogrammetry Principle Illustration}\cite[]{photogrammetry_def}
@@ -263,6 +269,7 @@ Once meshroom is downloaded it can run in either platform. When it is executed t
 As mentioned before, meshroom is based on AliceVision's Framework. Therfore it follows a photogrametric pipeline for 3D reconstruction. 
 This pipeline will have the following components:
 \begin{itemize}
+  \itemsep0em 
   \item Natural Feature Extraction
   \item Image Matching
   \item Features Matching
@@ -277,6 +284,7 @@ The pipeline will be included into Meshroom GUI and it will be used in the nodes
 As the nodes represent specific components of the reconstruction pipeline, these should be executed in a defined order.\\
 The nodes in the defined order to reconstruct a 3D model from images include:
 \begin{enumerate}
+  \itemsep0em 
   \item Camera Initialization 
   \item Feature Extraction
   \item Image Matching
@@ -778,6 +786,7 @@ The components in the node are described on table \ref{tab:Texturing}
 
 
 \section{PCL}
+\label{section:pcl}
 The \textbf{Point Cloud Library (PCL)} is a large scale, open project used for point cloud processing.\
 The PCL framework contains multiple state-of-the art algorithms ranging from feature estimation,registration,filtering, model fitting to segmentation \Citep*{Rusu_ICRA2011_PCL}. 
 PCL is a cross platform library and it is compatible with Windows, Linux and macOS.
@@ -785,6 +794,7 @@ PCL is a cross platform library and it is compatible with Windows, Linux and mac
 The PCL framework is divided into a series of modular libraries such as:
 \begin{multicols}{2}
 \begin{itemize}
+  \itemsep0em 
   \item Filters
   \item Features
   \item Keypoints
@@ -806,6 +816,7 @@ segment relevants parts of the scene \& point cloud, extract keypoints and compu
 The selected components and algorithms that were used in this project include: 
 
 \begin{itemize}
+  \itemsep0em 
   \item Statistical Outlier Removal Filter
   \item Pass Through Filter
   \item Voxel Grid Filtering
@@ -820,6 +831,7 @@ The selected components and algorithms that were used in this project include:
 
 
 \subsection{Statistical Outlier Removal Filter}
+\label{section:StatisticalOutlierRemovalFilter}
 % https://pcl.readthedocs.io/projects/tutorials/en/latest/statistical_outlier.html#statistical-outlier-removal
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/statistical_outlier.html#statistical-outlier-removal
 
@@ -844,6 +856,7 @@ neighborhood, before and after the filtering process \cite[]{Rusu_ICRA2011_PCL}.
 \end{figure}
 
 \subsection{Pass Through Filter}
+\label{section:Pass Through Filter}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/passthrough.html#passthrough
 This component of the PCL library has embedded two main components of the framework. 
 The \textbf{PassThrough} components uses the base \textbf{Filter} class methods to pass through all the data that satisfies certain contrains.
@@ -865,6 +878,7 @@ The image \ref{fig:pass_through} illustrates the process. The pointcloud has fiv
 \end{figure}
 
 \subsection{Voxel Grid Filtering}
+\label{section:Voxel Grid Filtering}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/voxel_grid.html#voxelgrid
 
 A voxel Grid illustraters a value on a regular grid in 3D space. A Voxel is an image of 3D space region  which is limited by defined sizes, which has its corresponding nodal point coordinates in an accepted system,
@@ -884,6 +898,7 @@ This approach represents the underlaying surface of the point cloud dataset with
 The main component is to set a defined and Voxel leaf Size, which allows to set the Voxel Size and the Number of Voxel in the Voxel Grid. Therefore, directly influencing the downsampling process and the resulting processed point cloud.
 
 \subsection{Plane Model Segmentation}
+\label{section:Plane Model Segmentation}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/planar_segmentation.html#planar-segmentation
 This component of the PCL librabry aims to perform a plane segmentation of a given set of points, which finds all the points within a point cloud data set that support a plane model.
 One of the components that this components uses is \textit{pcl::ExtractIndices}, which aims to extract thhe indices from a point cloud.
@@ -910,21 +925,23 @@ Figure \ref{fig:plane_seg}, illustrates the process below. The red points are th
 \end{figure}
 
 
-\subsubsection*{RANSAC}
+\subsubsection{RANSAC}
+\label{section:ransac}
 Random sample consensus (RANSAC), is an iterative method that is used to estimate parameters of a mathematical model from a set of observed data that contains outliers \Citep*{Strutz}.
 Hence, it can be interpreted as an outlier detection method. It is an non-deterministic algorithm that generates an adequeate result with a specific probability,the probability increases as more iteration are performed.
 
 \begin{figure}[H]%
   \centering
-  \subfloat[\centering A data set with many outliers for which a line has to be fitted]{{\includegraphics[width=5cm]{255px-Line_with_outliers.png} }}%
+  \subfloat[][\centering A data set with many outliers for which a line has to be fitted]{{\includegraphics[width=5cm]{255px-Line_with_outliers.png} }}%
   \qquad
-  \subfloat[\centering Fitted line with RANSAC; outliers have no influence on the result]{{\includegraphics[width=5cm]{255px-Fitted_line.png} }}%
-  \caption{Dataset Before \& After RANSAC algorithm \Citep*{Strutz}}%
+  \subfloat[][\centering Fitted line with RANSAC; outliers have no influence on the result]{{\includegraphics[width=5cm]{255px-Fitted_line.png} }}%
+  \caption{Dataset Before \& After RANSAC algorithm }\Citep*{Strutz}%
   \label{fig:example}%
 \end{figure}
 
 
 \subsection {KdTree}
+\label{section:KdTree}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/kdtree_search.html#kdtree-search
 In this project Kdtrees are used to find the K nearest neighbour of certain points or locations and how to find these within an specified radius.
 
@@ -943,6 +960,7 @@ KdTrees are used extensively in many components of the project framework pipelin
 \end{figure}
 
 \subsection{Euclidean Cluster Extraction}
+\label{section:Euclidean Cluster Extraction}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/cluster_extraction.html?highlight=CLuster
 
 The clustering method allows to divide a non-organized pointcloud dataset \textbf{$P$} into smaller components, in order to reduce the overall processing time for \textbf{$P$}.
@@ -978,6 +996,7 @@ Figure \ref{fig:cluster_example}, illustrates a cluustering output of a dataset,
 
 
 \subsection{Principal Component Analysis}
+\label{section:Principal Component Analysis}
 %https://pointclouds.org/documentation/classpcl_1_1_p_c_a.html#details
 The Principal Component Analysis (PCA) is the process of computing the principal components and use them to change the basis on data, using only the first few principal components
 and discarding the rest. The principal components is a squence of $p$ unit vectors of a collection of points in a real coordinate space \Citep*{pca}.
@@ -992,7 +1011,8 @@ Once the PCA analysis is performed using the PCL library, it is possible to calc
 
 The Principal Component Analysis is used to determine the scale of the Two point clouds that are used in this project and properly adjust the final mesh.
 
-\subsection{Moving Least Squares }
+\subsection{Moving Least Squares}
+\label{section:Moving Least Squares}
 %https://pcl.readthedocs.io/projects/tutorials/en/latest/resampling.html?highlight=smoothing
 %https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html
 %https://pointclouds.org/documentation/classpcl_1_1_moving_least_squares.html#details
@@ -1056,6 +1076,7 @@ Figure \ref{fig:sUpsample_def} illustrates on the left the implementation of MLS
 
 
 \subsection{Poisson Surface Reconstruction}
+\label{section:Poisson Surface Reconstruction}
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html
 In this project the Poisson Reconstruction algorithm is implemented , to recontruct the processed point cloud.
@@ -1072,13 +1093,14 @@ In complex calculations, it is possible to perform a \textit{least-squares fit} 
 \begin{figure}[H]%this figure will be at the right
   \centering
   \includegraphics[width=1\textwidth]{poisson_example.png}
- \caption{Poisson Recontruction Example. On the left it it input pointcloud dataset, whereas on the right is output of the Poisson Surface Reconstruction Algorithm}\cite[]{Poisson}
+ \caption{Poisson Recontruction Example.} On the left it it input pointcloud dataset, whereas on the right is output of the Poisson Surface Reconstruction Algorithm\cite[]{Poisson}
  \label{fig:Poisson_def} 
 \end{figure}
 
 
 
 \section{Open3D}
+\label{section:Open3D}
 Open3D is an open source library that supports fast development of software that handles 3D data.
 The Open3D frontend exposes outputs a set of carefully choosen data structures and algorithms in both Python and C++ \Citep*{Zhou2018}. 
 The backend of the framework is highly optimized and it configured for parallelization.
@@ -1087,6 +1109,7 @@ Open3D is compatible with Linux, macOS and Windows and it can be installed via s
 The core features include: 
 \begin{multicols}{2}
   \begin{itemize}
+    \itemsep0em 
     \item Simple installation via conda and pip
     \item 3D data structures
     \item 3D data processing algorithms
@@ -1250,6 +1273,7 @@ the accuracy of the final scan.
 All the tall poles will be placed in a circular shape in order to capture as much data as possible. 
 The subject (person) that will use the RIG will be located in the origin of the circle and all the tall poles will be places at a 1.5 m away from the person in order to have the best overlap between all cameras.
 The four short poles will be located closeup from the person that will be scanned. The four poles will be placed at 60 cm away from the person (circle origin) in order to capture close up data for complex regions and improve the overall reconstruction.
+The architecture of this RIG is observed on figure \ref{fig:cad}.
 \enlargethispage{\baselineskip}
 
 \newpage
@@ -1264,7 +1288,16 @@ The four short poles will be located closeup from the person that will be scanne
   \label{fig:RIG}
 \end{figure}
 
-\newpage
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{cad.png}
+ \caption{CAD of RIG and Poles Placement}
+ \label{fig:cad} 
+\end{figure}
+
+
+% \newpage
 \subsection{Cameras Calibration}
 As mentioned before, there will be a set of twenty-eight camaras in the RIG. 
 It is crucial to be able to calibrate these cameras an object the intrinsic parameters in order to input these parameters into the Photogrammetry Pipeline to enhance
@@ -1336,15 +1369,16 @@ In parallel the administrator of the RIG will execute the script to capture data
 using the RealSense SDK. 
 
 The entire process takes approximately ten seconds. Once the data is captured, it can be used in the photogrammetry pipeline for reconstruction.
+\enlargethispage{\baselineskip}
 \begin{figure}[H]
   \centering
   \subfloat[Front View Lidar]{{\includegraphics[width=0.46\textwidth]{11_Color.png} }}
   \qquad
-  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{A1-07-49-34.470.jpg} }}
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{A1-07-49-34-470.jpg} }}
   \qquad
-  \subfloat[Camera Side View]{{\includegraphics[width=0.46\textwidth]{B2-07-49-34.331.jpg} }}
+  \subfloat[Camera Side View]{{\includegraphics[width=0.46\textwidth]{B2-07-49-34-331.jpg} }}
   \qquad
-  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34.888.jpg} }}
+  \subfloat[Camera Lateral View]{{\includegraphics[width=0.46\textwidth]{C1-07-49-34-888.jpg} }}
   \qquad
   \caption{Example from Captured Dataset}
   \label{fig:examples}
@@ -1352,16 +1386,550 @@ The entire process takes approximately ten seconds. Once the data is captured, i
 
 \section{Photogrammetry Reconstruction}
 \label{section:meshroom_method}
-As mentioned before, Meshroom will be used to process the images and reconstruct the scanned person. 
-Meshroom will have a series of nodes as noted on section \ref{section:meshroom}.
+As mentioned before, Meshroom will be used to process the images and reconstruct the scanned person, once the data acquisition process has finalised. 
+Meshroom will have a series of nodes as noted on section \ref{section:meshroom}.It can be used in either windows or Linux. In this project both Meshroom version
+(2020 \& 2021) will tested and fully work. The chosen platform was Ubuntu 18.04. It has a CUDA enabled GPU in order to speed up the excution speed in certain nodes.
+
 After a series of multiple iterations \& experimentation, the best parameters were selected and it will be explained in section \ref{section:meshroom_method}.
 
-As Meshroom, has a series of nodes that work in a Pipeline manner
+As Meshroom, has a series of nodes that work in a Pipeline manner, all  of the corresponding setting for the best results are detailed below.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{meshroom_gui_reconstruction.png}
+\caption{Successful Meshroom Pipeline (2021 version)}
+\label{fig:final_meshroom} 
+\end{figure}
+
+\subsection*{CameraInit Node}
+This is the Initial node of Meshroom Pipeline Reconstruction. 
+In this node all the captured data (images) will be imported into.
+Once all the images have been imported into the intial node.
+All the availible fields are illustrated on table \ref{tab:CameraInit}. Nevertheless in this project, the following fields were configured, whereas the remaining stayed as default and are referenced on figure \ref{fig:camera_init_node}.
+These fields are described below
+
+\begin{description}
+  \item[ViewPoints]: In this field is neccesary to edit the \textbf{Id, Pose Id, Intrinsic}. \\
+  For each image (viewpoint), the \textit{Id, Pose Id, Intrinsic} have to be unique in order to properly assign the camera calibration parameters from table \ref{tab:Camera_Calibration}. 
+  All of these fields will be direcly mapped with the \textit{Intrinsics Field}.
+  This process will have to be perform for all twenty-nine images for this project. 
+  \item[Intrinsics]: This Field is where all the camera calibration parameters from table \ref{tab:Camera_Calibration} will be associated to all the configure ViewPoints (Images) from the previous field.\\
+  In section, it is crucial to map the \textit{ViewPoint Id} from the previous section, to the correct \textit{Intrisics Id} for this field.
+  Similarly, it is neccesary to select the \textit{Camera Type} as \textbf{Radial3}, as this would allow to input the Focal Lenght, Principal Point and Distorsion Parameters.
+  Furtheremore, the Width \& Heigh of the Image is required to be imported. All these parameters are located on table \ref{tab:Camera_Calibration}.\\
+  On the other hand, the \textit{Initialization Mode} has to be configures as \textbf{calibrated} and the \textit{Locked Box} requires to be checked as the Cameras (viewpoints) have been previously fully calibrated.
+  This process will have to be perform for all twenty-nine images for this project. 
+
+\end{description}
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=0.5\textwidth]{camera_init_node.png}
+\caption{CameraInit Node Settings}
+\label{fig:camera_init_node} 
+\end{figure}
+
+
+\subsection*{FeatureExtraction Node}
+This will be the Second Node of Reconstruction Pipeline. All the field and settings of this node are located on table \ref{tab:FeatureExtraction}.
+For best results all the settings were configured as below:
+
+\begin{description}
+  \item[Describer Types]: The used describers are \textbf{SIFT} and \textbf{AKAZE}. After extensive testing it was found that a combination of \textit{Sift \& Akaze} will extract the most feature and enhance the quality of the reconstruction.
+  \item[Describer Density] : This field was configured as \textbf{Ultra} due to the small dataset (twenty-nine images)
+  \item[Describer Quality] : This was configured to \textbf{Ultra}, in order to retrieve the most amount of features from the images.
+  \item[Contrast Filtering]: Configured as \textbf{GridSort}
+  \item[Grid Filtering]  : Checked field.
+  \item[Force CPU Extraction] : Unchecked Field. The reason behind this was to use CUDA in order to use the GPU to extract all the features to inprove the time of processing.
+\end{description}
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{FeatureExtractionNode.png}
+\caption{FeatureExtraction Node Settings}
+\label{fig:feature_extraction_node} 
+\end{figure}
+
+
+\subsection*{ImageMatching Node}
+This is the thid node of the Pipeline Reconstruction. All the fields \& settings for this node can be seen on table \ref{tab:ImageMatching}.
+The configured fields for best results are found below: 
+
+\begin{description}
+  \item[Method]: The selected method for best results is \textbf{Exhaustive}. This method will export all image pairs for image matching process.  
+\end{description}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{ImageMatchingNode.png}
+\caption{ImageMatchingNode Node Settings}
+\label{fig:ImageMatchingNode._node} 
+\end{figure}
+
+\subsection*{FeatureMatching Node}
+This is the fourth node of the Reconstruction Pipeline. All the settings for this node can be refered to table \ref{tab:FeatureMatching}.
+The configured settings for best results are stated below. 
+
+\begin{description}
+  \item[Describer Types]: The Selected Desciber have to  match the selected on node the \textit{FeatureExtraction Node}. Therefore the selected describers will \textbf{SIFT \& AKAZE}
+  \item[Photometric Matching Method]: The selected method is \textbf{ANN\_L2} \textit{(Approximate Nearest Neighbor Matching)}.
+  \item[Geometric Estimator]: The selected Estimator \textbf{acransac}  \textit{A-Contrario RANSAC}.
+  \item[Geometric Filter Type]: The selected validation method to filter feature matches is \textbf{fundamental\_matrix}.
+  \item[Distance Ratio]: The selected distance ratio to discard non-meaningful matches  is $0.8$.
+  \item[Max Iteration]: The selectd number of iteration for RANSAC step is $5000$.
+  \item[Known Poses Geometric Error] : The maximum error specified for feature matching guided by information for cameras poses was selected as $5$
+\end{description}
+All the other settings were configured as default and are referenced on figure \ref{fig:fEATUREmATCHING}.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{featurematchingNOde.png}
+\caption{FeatureMatching Node Settings}
+\label{fig:fEATUREmATCHING} 
+\end{figure}
+
+\subsection*{StructureFromMotion Node}
+The Structure for Motion is the fifth node of the Reconstruction Pipeline. All the settings for this node can be refered to table \ref{tab:StructureFromMotion}.
+In this Step it is possible to visualise the Structure along with the valid Viewpoints (images) and number of feature matches. Furthermore it is possible to observer
+the number of cameras that match the valid viewpoints along with its corresponding Pose. As observed in figure \ref{fig:SFM_output}, there are a total of $27883$ feature matches and $29$ valid viewponts.
+Therefore, all the input data was valid and the initial reconstruction process started. 
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{SFM_example.png}
+\caption{Structure From Motion Output}
+\label{fig:SFM_output} 
+\end{figure}
+
+The configured settings for best results are stated below.
+\begin{description}
+  \item[Describer Type] : The Describer Type has to the match the ones used in previous steps. Hence, \textbf{Sift \& Akaze} were selected.
+  \item[Localizer Estimation]: The estimator selected to localise the cameras poses is \textbf{acransac}.
+  \item[Observation Constraint]: The Selected Method  for Observation Constrain Optimization is \textbf{Basic} .
+  \item[Localizer Max Ransac Itereations]: For an Optimal Results the selected number of iterations is $15000$
+  \item[LocalBA Graph Distance]: The selected Graph-Distance Limit is $1$
+  \item[Min Input Track Lenght]: Configured as $2$
+  \item[Min Observation For Triangulation]: Configured as $2$
+  \item[Min Angle For Triangulation] : Configured as $1$
+  \item[Min Angle For LandMark]: Configured as $1$ 
+  \item[Max Reprojection Error]: Configured as $4$
+  \item[Min Angle Initial Pair]: Configured as $1$ 
+  \item[Min Angle Initial Pair]: Configured as $40$
+  \item[Use Rig Constant]: This field is selected.
+  \item[Foce Lock of All Instrinsic Camera Parameters]: This field is selected in order to force all the cameras intrinsics, as the cameras have been fully calibrated.   
+\end{description}
+
+All the other fields were configured as default and are referenced on figure \ref{fig:SFM_set tings}.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{SFM_settings.png}
+\caption{Structure From Motion Settings}
+\label{fig:SFM_set tings} 
+\end{figure}
+
+\newpage
+\subsection*{PrepareDenseScene Node}
+The PrepareDenseScene is the sixth node of the Reconstruction.  All the settings for this node can be refered to table \ref{tab:PrepareDenseScene}.
+The configured settings for best results are stated below. 
+
+\begin{description}
+  \item[Output File Type]: The choosen File Type for undistorted images is \textbf{PNG}.
+\end{description}
+
+
+All the remaining paramaters stayed as default and are referenced on figure \ref{fig:PrepareDepthSense}.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{PrepareDenseScene.png}
+\caption{PrepareDenseScene Settings}
+\label{fig:PrepareDepthSense} 
+\end{figure}
+
+\subsection*{DepthMap Node}
+DepthMap Node is the Seventh Node of Meshroom Reconstruction Pipeline.  All the settings for this node can be refered on table \ref{tab:DepthMap}.
+The configured settings for best results are stated below. 
+
+\begin{description}
+  \item[DownScale]: The Downscale Image factor is set to $1$ for the best results.
+  \item[SGM: Nb Neighbour Cameras] : The  Semi Global Matching Number of Neighbour Cameras selected is $10$
+  \item[Refine: Nb Neighbour Cameras]: The selected Refine Number of Neighbour Cameras is $6$.    
+\end{description}
+
+All the remaining parameters stayed as default and are referenced on figure \ref{fig:DepthMapSetting}.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{DepthMapSetting.png}
+\caption{DepthMap Node Settings}
+\label{fig:DepthMapSetting} 
+\end{figure}
+
+
+\subsection*{DepthMapFilter Node}
+DepthMap Node is the Eighth Node of the Meshroom Reconstruction Pipeline. All the settings for this node can be refered on table \ref{tab:DepthMapFilter}.
+The configured settings for the best results are stated below.
+
+\begin{description}
+  \item[Min View Angle]: The selected Minimun angle between two views is $2$.
+  \item[Max View Angle]: The selected Maximum angle between two views is $70$.
+  \item[Number of Nearest Cameras]: The selected Number of nearest cameras used for filtering is $10$.
+  \item[Min Consistent Cameras]: The selected Number of minimum constent cameras is $3$.
+  \item[Min Consistent Cameras Bad Similarity] : The Selected minum Number of consistent cameras with weak similarity value is $4$   
+\end{description}
+All the remaining settings are configured as default and are referenced on figure \ref{fig:DepthMapFilter}.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{DepthMapFilter.png}
+\caption{DepthMapFilter Node Settings}
+\label{fig:DepthMapFilter} 
+\end{figure}
+
+\subsection*{Meshing Node}
+The Meshing is the nineth step of the Meshroom Pipeline Reconstruction. This node will take all the results from the previous steps
+and it will produce a mesh file (\textit{.obj file}) that can be later processed on the PCL framework. 
+All the settings for this node can be referenced to table \ref{tab:Meshing}.
+
+The configured setting for best results are configured below.
+
+\begin{description}
+  \item[Estimate Space From SFM] : This setting was selected in order to estimate the space from the results of the structure from motion node.
+  \item[Min Obsevation For SFM Space Estimation] : The minimum observation selected value for estimation of structure from motion is $1$.
+  \item[Min Obervation Angle For SFM Space Estimation]: The selected value for angle for SFM space estimation is $45$. This angle should be modified based on the desired resullt.
+  \item[Min Step]: The selected step used to load the depth values  from depth maps is $1$
+  \item[Partitioning]: \textbf{singleBlock} was selected for best results.
+  \item[Repartition] : \textbf{MultiResolution} was selected for best results.
+  \item[Refine Fuse] : This setting was selected in order to refine the depth map fusion  with new pixel size which is defined by the angle and similarity scores.
+  \item[Weakly Supported Surface Support]: This setting was selected in order to improve support of weakly supported surfaces.
+  \item[Add Landmarks to the Dense Point Cloud]: This field was selected in order to add Structure From Motion (SFM) Landmarks to the dense point cloud and improve the resulting mesh.
+  \item[Colorize Output]: This field was selected to generate a colorized output point cloud and mesh.
+  \item[Add Mask Helper Points]: This field was selected in order to add helper points on the outline of the depth maps masks.
+\end{description}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=0.42\textwidth]{meshoing.png}
+\caption{Meshing Node Output}
+\label{fig:meshrom_mesh} 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[Meshing Node Settings]{{\includegraphics[width=0.5\textwidth]{meshing_1.png} \label{fig:meshing1} }}
+  \qquad
+  \subfloat[Meshing Node Settings]{{\includegraphics[width=0.5\textwidth]{meshing_2.png} \label{fig:meshing2}}}
+  \caption{Entire Meshing Node Settings}
+  \label{fig:Meshingnodesettings}
+\end{figure}
+
+All the remaining settings are configured as default and are referenced on figures \ref{fig:meshing1} and \ref{fig:meshing2}.
+\enlargethispage{\baselineskip}
+\subsection*{MeshFiltering Node}
+The MeshFIltering Node is the tenth step of the reconstruction pipeline. It smooths the resulting point cloud and mesh.
+The output of this step will be used in the Data processing framework based on the PCL library.
+All the settings for this node can be referenced to table \ref{tab:MeshFiltering}.
+
+The configured setting for best results are configured below.
+
+\begin{description}
+  \item[Smoothing Iterations]: The selected number of smoothing iterations for best results is $5$.
+  \item[Filter Large Triangles Factors]: The selected factor to remove all large triangles is $60$.  
+\end{description}
+
+
+All the remaining settings are configured as default and are referenced on figure \ref{fig:meshfiltering_set}.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \subfloat[MeshFiltering Node Settings]{{\includegraphics[width=0.5\textwidth]{mesh_filtering_settings.png} \label{fig:meshfiltering_set} }}
+  \qquad
+  \subfloat[MeshFiltering Node Output]{{\includegraphics[width=0.4\textwidth]{mesh_filtering_output.png} \label{fig:meshing_output}}}
+\caption{MeshFiltering Node Settings \& Output}
+\label{fig:MeshFiltering_settings} 
+\end{figure}
+
+
+
+\subsection*{Texturing Node}
+The Texturing Node is the Final Step of the Meshroom Reconstruction Pipeline. It generates a textures mesh. 
+All the settings for this node can be referenced to table \ref{tab:Texturing}.
+
+The configured settings for best results are configured below.
+\begin{description}
+  \item[Texture Side]: The selected output texture size is $8192$.
+  \item[Texture Downscale]: The selected texture downscale factor is $1$.
+  \item[Texture File Type]: The selected texture file type is \textbf{PNG}.  
+  \item[Fill Holes]: This setting was selected in order to fill texture holes with plausible values.
+  \item[Correct Exposure]: This setting was selected in order to uniformize the exposure value from the images.  
+\end{description}
+
+
+
+All the remaining settings are configured as default and are referenced on figure \ref{fig:texturing_set}.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \subfloat[Texturing Node Settings]{{\includegraphics[width=0.5\textwidth]{texturing.png} \label{fig:texturing_set} }}
+  \qquad
+  \subfloat[Texturing Node Output]{{\includegraphics[width=0.4\textwidth]{texturing_output.png} \label{fig:texturing_output}}}
+\caption{Texturing Node Settings \& Output}
+\label{fig:Texturing_settings} 
+\end{figure}
+
+
 
 \section{Data Processing Framework}
+The Data Processing Framework is a custom developed wrapper that allows to process.
+This framework was devevelop using the PCL framework and was built using  modern C++ on a Linux Platform (Ubuntu 18.04.5 LTS). 
 
+In order to deploy this framework, refer to the following GitHub Repository. It includes all the dependencies for installation with the corresponding steps. 
+\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.}
+
+This custom developed framework used the concepts from the PCL library and its corresponding algorithms which are detailed on section \ref{section:pcl}.
+On the other hand, an extra framework was attached and incorporated as a wrapper in order to add extra features and functionalities.
+Nevertheless, this wrapper was not implemented in the final executable. 
+
+The framework consist of two wrappers \textit{(classes)} and one executable file \textit{(Main)} which will be explained below.
+
+\subsection{Wrappers (Classes)}
+As mentioned before the framework will have two specific classes that were developed and adapted..
+The main class is the custom develop class that is based on the PCL library and uses the algorithms mentioned on section \ref{section:pcl}. This class is called \textbf{Reconstruction}.
+
+This class is able to input all the output data from the photogrametric reconstruction process (\textit{Meshroom}) and the captured lidar point ploud.
+All the  detailed functionalities (Variales \& APIs) can be found in the Github Repository mentioned above. Nevertheless, the general overview will be explained below. 
+
+On the other hand, the other wrapper is an developed class that was adapted from the following GitHub Repository \textbf{\href{https://github.com/linbaowei/ScaleRatioICP} {ScaleRatioICP}}.
+However, after substancial testing this wrapper was not implemented in the final executable of the develop framework. 
+
+\subsubsection{ScaleRatioICP}
+This developed framework was develop by \Citet*{scaleICP} and it is a method to scale 3D point clouds. 
+It estimates the ratio of scales of two given point clouds by performing PCA of spin Images over different scales of two point clouds, then it generates two sets of cumulative contribution rate curves, which can be considered
+to illustrate the scale of the given point clouds. 
+
+This wrapper process the input pointclouds, and send the result of the cumulative contribution rate curves to MATLAB via the API's in order to obtain the final scale ratio between two input point cloud.
+
+However, after substancial testing, it was discovered that the cumulative contribution rate curves process was extremely time consuming. Furtheremore, in this particular project the final scaling result was inconsistent. 
+As the lidar pointcloud which is used to estimate the scale only has the front view of the person, it has come errors in the calculation process. Therefore, the implementation of this class in the final executable was not appropriate.
+
+\subsubsection{Reconstruction}
+The Reconstruction Class is based on the PCL library and the algorithms used on section \ref{section:pcl}.
+This section will provide an insight of the class API and it the overall functionality. For a detailed look refer to the GitHub Repository \textbf{\href{https://github.com/linbaowei/ScaleRatioICP} {ScaleRatioICP}}.
+
+The description of the developed APIs (\textit{Class Public Methods}) will be explained below.
+
+\begin{description}
+  \item[setInputCloud]: This member class function will be used to input a given Mesh or PointCloud. It designed to work with common \textbf{.ply \& .obj} formats.
+  \item[normalsDirectionAdjustment]: This method is designed to input a given Pointcloud and output a different pointcloud with Adjusted Normals.
+   It will get the vertices of each face and recompute the normals using the \textit{"right hand rule"}. Furthermore, it will normalize the normal vector and stack up the new normals in the output point cloud.
+  \item[pointCloudOutliersFilter]: This API takes an reference cloud and outputs a processed point cloud with filtered data outliers. This method is based on the Statistical OutlierRemoval Filter algoritm referenced on section \ref{section:StatisticalOutlierRemovalFilter}. It requires to have configured the following fields.
+  \begin{description}
+    \item[- \textit{setMeanK}] : It configures the number of points (K) to use for mean distance estimation.
+    \item[- \textit{setStddevMulThresh}] : It Sets ths standard deviation multipler threshold. It considers all the points outside $\mu \pm \sigma *  std\_mul\_threshold$ as outliers where $\mu$ is the estimated mean and $\sigma$  is the standard deviation     
+  \end{description} 
+   \item[pointCloudPlaneSegmentOperation]: This API is degined to input a given Point Cloud and output a plane segmented point cloud. The logic behing this algorithm is based on section \ref{section:Plane Model Segmentation}.
+   Similarly it uses a Kdtree to search through the pointcloud as referenced on section \ref{section:KdTree}. Also it uses RANSAC  as the segmentation method and Model Type. For details about RANSAC refer to section \ref{section:ransac}.
+   For this method it is required to configure the following fields.
+   \begin{description}
+     \item[\textit{- setMaxIterations}] : This parameters set the number of  iterations for RANSAC  analysis.
+     \item[\textit{- setDistanceThreshold}]: This paramater sets the distance threshold for the plane model.
+   \end{description}
+   In a nutshell, this API aims to segment(remove) the plane model for any point cloud that has been used as input.
+  \item[pointCloudClustering]: This API is designed to Input a specific point cloud and run an Euclidean Cluster Extraction (refer to section \ref{section:Euclidean Cluster Extraction}). With the Clusterized point cloud it will output the biggest point cloud cluster as the valid  target point cloud.
+   In order to define a cluster it is crucial to define the \textit{Minimum Cluster Size and the Cluster Tolerance.} Once the all the clusters are generated, these will be stacked in a vector. 
+   In this vector an algorithm will iterate  throughout all elemenets and compare its cluster size. Based on this process it will output the biggest cluster as the valid output point cloud.
+   \item[pointCloudNormaliseUpscale]: This API aims to smooth the surface of the Point Cloud via MLS (\textit{MovingLeastSquares}). 
+   Furthermore it also upsamples the pointcloud to a defined paramater using \textit{RANDOM\_UNIFORM\_DENSITY} as the prefered method (refer to section \ref{section:Moving Least Squares}). 
+   For this specific API uses a Kdtree (refer to section \ref{section:KdTree}) for data searching and it is required to specify the \textit{Search Radius} for determining the k-nearest neighbor for best fitting. 
+   This method required an input point cloud and it will output a smoothed and upsampled pointcloud.
+   \item[poissonReconstruction]: This API will require an input pointcloud and it will generate a reconstructed Polymesh based on the Poisson Reconstruction Algorithm (refer to section \ref{section:Poisson Surface Reconstruction}).
+   For this API is required to configured the following parameters:
+   \begin{description}
+     \item[\textit{- setDepth}]: It sets the maximum depth of the tree(kdtree) that is used for surface reconstruction. 
+     \item[\textit{- setOutputPolygons}] : Enables to use an polygon mesh (polymesh) as output.
+     \item[\textit{- setSamplesPerNode}] : Sets the minimum names of sample points that fall within tree.
+     \item[\textit{- setSolverDivide}] : Sets the depth at which block Gauss-Seidel Solved is used to solve the Laplacian Equation.
+     \item[\textit{- setIsoDivide}] : Sets the depth at which a block extracts the iso-surface.
+     \item[\textit{- setScale}] : Sets the ratio between the diameter of the cube used for reconstruction as well as the diamater of the bouding cube samples.
+   \end{description}
+
+   \item[downsamplePointCloudVoxelGrid] : This API aims to downsample the input pointcloud through a voxel grid  filter(refer to section \ref{section:Voxel Grid Filtering}). 
+   It require the user to input the \textit{LeafSize in x,y,z} of the Voxel Grid. Based on the given LeafSizes it will downsample all the data.
+   \item[pointCloudScaleAdjustment] : This API uses a custom develop algorithm to scale on pointcloud. It required to input the target pointcloud and the reference point cloud. 
+   This developed algorthm is based on PCA (refer to section \ref{section:Principal Component Analysis}). It calculated both centroids of the input \& reference point clouds as well as the corresponding eigen vectors. With his values it will estimate the transform for each point cloud. Based on this results it will estimate the Minimum and Maximum Points in \textbf{X,Y,Z} axis.
+   Based on this it will obtain the scale in axis based on the following equation, where axis applies to the \textit{X,Y,Z axis}
+   \begin{equation}
+     Scale_{axis} =  \frac{cloudRefMaximumPoint_{axis}-cloudRefMinimumPoint_{axis}}{cloudInputMaximumPoint_{axis}-cloudInputMinimumPoint_{axis}}
+     \label{equ:scale}
+   \end{equation}
+With the Obtained values for the Scale in X,Y Z from \ref{equ:scale}, it is possible to fully scale the input cloud based on the obtained results. The final results will be storaged in a vector for later processing. 
+   \item[pointCloudCentroidAlignmentAdjusment] : This API aims to align two given pointcloud to its corresponding centroid. It is based on PCA (refer to section \ref{section:Principal Component Analysis}). Once its properly align the user has the option to rotate in any axis (x,y,z) the output pointcloud with respect to its centroid. This aims to correct the centroid orientation and increate the accuracy of the scaling process. 
+   \item[transformVerification] : This API is used to Verify the error Transform error between the two point clouds. It is used to determine the transformation error between the scaled pointcloud and the referenced pointcloud (lidar).
+   It uses PCA (refer to section \ref{section:Principal Component Analysis}). to determine the transforms ($T$) of the two point clouds. Then it obtain the translation and rotational error between the two transforms. 
+   
+   The Translation error is defined as:
+   \begin{equation}
+     translation\_error = \left\lVert \begin{pmatrix} x_1 \\y_1\\z_1\\1  \end{pmatrix} - \begin{pmatrix} x_2 \\y_2\\z_2\\1  \end{pmatrix} \right\rVert    
+    \label{equ:translation error}
+    \end{equation}
+   The Rotation error is defined as where $R(\hat{n},\theta)$ is the rotation componet of the transform 
+   \begin{equation}
+     Rotation\_error =\left\lVert \log (R_1(\hat{n},\theta) * R_2(\hat{n},\theta)^{-1} ) \right\rVert 
+   \end{equation}
+ With both translation and rotation error it is possible to comparte to a user defined threshold and ensure that the error is within aceptable margins. 
+  \item[passThroughFilter]: This API aims to filter a specific point cloud based on the specific axis limit, which is known as \textit{passThroughFilter} (refer to section \ref{section:Pass Through Filter}).
+  It requires the user to input an input pointcloud, an string with the axis to filter as well as the maximum and minimin limits of the constrained axis. This is designed to aid with the plane segmentation process and ensure appropriate limits for the scaling process.  
+\end{description}
+
+In addition to the mentioned above API's there area several other such as:
+\begin{multicols}{2}
+\begin{itemize}
+  \itemsep0em 
+  \item getScale
+  \item cloudToPolyMesh
+  \item convertPLYtoPCL
+  \item convertPolyMeshtoPLY
+  \item convertPCLtoPLY
+  \item importPLYtoPolymesh
+  \item pointCloudOutliersFilterManual
+  \item normalsReAdjustement
+  \item normalsTesting 
+  \item pointCloudPlaneSegmentOperationManual
+  \item transformPointCloud
+\end{itemize}
+\end{multicols}
+All the extra API's are used to extra features when importing \& data. Furthermore, it allows extra level of customization to the main API's.  
+
+\subsubsection{Executable}
+The Execututable is a program that was developed using the developed framework. For extended details on how what are the dependencies and how to install this executable, 
+refer to the GitHub Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+In order to run this program is necesary to input two pointcloud (the target Point cloud for processing and the reference point clo[ud for scaling). Furthermore it is neccesary to specify if its require to have output files or it will only used for visualization.
+An example is as follows.
+
+
+\scriptsize\begin{verbatim} 
+./3D_reconstruction_pipeline [Path_to_referenceFile] [Path_to_SCaling_file] [yes/no](Generate output files)
+\end{verbatim}
+\normalsize
+
+Example:
+
+\small\begin{verbatim} 
+./3D_reconstruction_pipeline ../Data/mesh_ply.ply ../Data/10.ply no
+\end{verbatim}
+\normalsize
+
+In the main file there will be a series of multiple predefined pointclouds that will be used for reconstruction. These will be used for both processing  of input reference file as well as Input Scaling reference files. 
+Similarly there will be three objects derived from the class (\textit{Reconstruction}) that are used to handle the reconstruction processes(input Refence File), Lidar and a helper object that Handles the optional generation of output files. 
+
+Figure \ref{fig:pipeline_log}, shows the output of the executable with a valid result.
+\enlargethispage{\baselineskip}
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{log.png}
+\caption{Pipeline Execution Log}
+\label{fig:pipeline_log} 
+\end{figure}
+
+
+\subsubsection*{ReconstructionMain Object}
+The ReconstructionMain object aims to manipulate and process the input pointcloud data.
+This Object aims to input the given pointcloud and  do all the processing that includes inputing the starting pointcloud and use a series of filter to remove noice \&outliers it is aimed to contain the scanner person as the region of interest. 
+Similarly, this objects scales the pointcloud based on the result and the processed lidar pointcloud.
+Once the pointcloud has been properly scaled it will use the Poission Reconstruction Algorithm to Produce a Polymesh of the Reconstruction pointcloud.
+For a detailed look at the APIs use for this object, refer to the Repository (\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+\subsubsection*{Lidar Object}
+The Lidar Object is made to handle and process the input data from the lidar that will be used for scaling. 
+This object will process in order to maintain only the region of interest of the pointcloud that will be used in the Scaling process in the Reconstruction Object. 
+It will uses several filters and segmentation algorithms to keep the regions of interest as accurate as possible in order to ensure an efficient scaling.
+For a detailed look at the implemented APIs, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+\subsubsection*{Helper Object}
+The helper object is created with the option to be used to save the pipeline of the pointclouds. These axiliary objects saves all the steps of the pointclouds if the last argument of the executuble is configured to \textbf{YES}.
+For a detailed look at the implemented APIs, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+
+
+\subsubsection*{Viewer}
+Similarly, there is a viewer implementation that allows to view the output of the pipeline. This viewer allows to observe the different steps of the reconstruction and scaling pipeline.
+It allows the user to observe the steps and make changes in different components of the pipeline if needed in order to adjust to new datasets.
+
+Figure \ref{fig:pipeline_final}, illustrates the \textit{Viewer} with all the corresponding steps of the reconstruction pipeline.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{pipeline.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:pipeline_final} 
+\end{figure}
+
+
+\subsubsection*{Open3D Poisson Reconstruction}
+In Certain occasions when the Poisson Reconstruction from the PCL pipeline fails. The created \textit{poisson\_open3d.py} script can be used to rerun the Poisson Reconstruction Algorithm and obtain a sucesfull reconstructed mesh.
+This script will take the outputs files from the PCL framework and generate a valid Poisson Reconstructed Mesh and ensure the robustness of the develop framework for this project.
+For a detailed look at the implemented script, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
+
+Figure \ref{fig:open3dpossionscreipt}, illustrates all the steps of the Open3D Poisson Reconstruction.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \subfloat[Imported Pipeline Genareted Mesh ]{{\includegraphics[width=0.45\textwidth]{open3dImport.png} \label{fig:importopen3d} }}
+  \qquad
+  \subfloat[Initial Open3D Possion Reconstruction]{{\includegraphics[width=0.42\textwidth]{open3dFirstpoisson.png} \label{fig:intialpossionopen3d}}}
+  \qquad
+  \subfloat[Analyse And Process Region of Interest]{{\includegraphics[width=0.45\textwidth]{open3dRegionsofInterst1.png} \label{fig:analysedpossionopen3d}}}
+  \qquad
+  \subfloat[Final Open3D Reconstructed Mesh]{{\includegraphics[width=0.45\textwidth]{Possionfinalooen3d.png} \label{fig:finalmeshopen3d}}}
+\caption{Open3D Poisson Reconstruction Script Outputs}
+\label{fig:open3dpossionscreipt} 
+\end{figure}
+ 
+
+\subsubsection{Expected Behaviour}
+The expected behavior is to input both files into the script via the arguments in the terminal and enabling to save the files for tracking. 
+Once the input files have been fed to the framework. The metioned objects above (ReconstructionMain \& Lidar) will process in parallel both files and it will remove ourliers, plane segment and multiple filter processes.
+Once Both files have been processed the Initial Scaling process will start. After the Intial scaling process is finished another filtering process will start in order to improve the region of interest of the pointcloud.
+Afterwards, another scaling process will be executed as this will increase the accuracy of the final scale. 
+
+Moreover, the centroids of the pointclouds will be aligned and the processed Pointcloud will be transformed to the reference frame of the Lidar Point Cloud.
+Once the transformation and alignment process is completed the resultant pointcloud will be smoothed and upsampled.
+Furthermore, the pipeline will estimate the transformation error of the final pointcloud with respect to the lidar in order to ensure that the final pose and scale is within acceptable parameters. 
+
+Finally, the poisson reconstruction process will generate the output pointcloud. 
+
+Once all the processes have finished it will, generate the output files if the option was selected and it will start the viewer to see contextualize all the steps of the process with the correspoding expected output pointclouds.
+
+For a detailed look the process flow of the program, refer to the appendix on figure \ref{appendix::fig:flowdiagram}.
 
 \chapter{Results}
+
+
+\section{Meshroom}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{scan1.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:scan1} 
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{scan2.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:scan2} 
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{scan3.png}
+\caption{Pipeline Viewer Final Result}
+\label{fig:scan3} 
+\end{figure}
+
+\section{Reconstruction Framework}
+
+
 
 \chapter{Conclusion}
 
@@ -1372,9 +1940,9 @@ As Meshroom, has a series of nodes that work in a Pipeline manner
 
 
 \appendix
-\chapter{\vspace{-5.5cm}Appendix}
+% \chapter{\vspace{-5.5cm}Appendix}
 
-\begin{table}[!htb]
+\begin{table}[H]
   \centering
   \makebox[\textwidth]
   {\includegraphics[width=1\linewidth]{Risk_matrix.png}    
@@ -1384,7 +1952,7 @@ As Meshroom, has a series of nodes that work in a Pipeline manner
 \end{table}
 
 \newpage
-\begin{table}
+\begin{table}[H]
   \centering
   \makebox[\textwidth]
   {\includegraphics[width=1\linewidth]{ComunicationPlan.png}    
@@ -1392,6 +1960,19 @@ As Meshroom, has a series of nodes that work in a Pipeline manner
   \caption{Comunication Plan}
   \label{appendix:ComunicationPlan}
   \end{table}    
+
+\newpage
+\newgeometry{top= 3mm, bottom=3mm,left=3mm,right = 3mm}  
+  \thispagestyle{empty}
+  \begin{figure}
+    \centering
+    \makebox[\textwidth]
+    {\includegraphics[width=0.425\linewidth]{Captoneflowdiagram.png}   } 
+    \caption{Gantt Chart}
+    \label{appendix::fig:flowdiagram}
+\end{figure}   
+
+\restoregeometry
 
 
 

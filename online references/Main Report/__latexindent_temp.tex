@@ -49,8 +49,9 @@
 
 % \renewcommand{\familydefault}{\sfdefault}
 \usepackage[T1]{fontenc}
+\usepackage{nomencl}
 \usepackage{lmodern}
-
+\makenomenclature      
 \setstretch{1.25}
 \graphicspath{ {./images/} }
 \bibliographystyle{apa} %agsm
@@ -116,11 +117,27 @@ On the other hand, I would also like to acknowledge Dr. Mark Liu as well as the 
 Similarly, I would like to acknowledge the Open Source Community, as assets developed by this community helped in the development and completion of this project.
 
 Finally, I would like to thank my family for their massive and ongoing support throughout this project and my studies. In equally importance I would like to thank God, who with his countless blessings have gave me the opportunity to develop and complete this project.
+
+
+
+
+
+
+\mbox{}
+
+\nomenclature{$+a$}{Operator}
+\nomenclature{$2a$}{Number}
+\nomenclature{$:a$}{Punctuation Symbol}
+\nomenclature{$Aa$}{Upper Case Letter}
+\nomenclature{$aa$}{Lower Case Letter}
+\nomenclature{$\alpha$}{Greek Character}
+
+\printnomenclature[]
+%\thispagestyle{empty}
 \tableofcontents
 \listoffigures
 \listoftables
 
-%\thispagestyle{empty}
 \newpage
 \setcounter{page}{1}
 
@@ -2027,34 +2044,54 @@ Afterwards, it removes the conflicting areas it will perform the Poisson Reconst
 \end{figure}
 
 \chapter{Conclusion}
+This project aimmed at the developement of a 3D scanner device that will produce accurate results. 
+This report focused on the data processing and resonctruction of the acquired data from the scanned in order to generate a a virtual scaled scanned representation of the person.
+
+As previously mentioned for this project the RIG will capture a set of images that will be used in a photogrammetric process using Meshroom in order to have representation model of the scanned person. 
+The generated result will be processed in a reconstruction framework pipeline that will run several algorithms in order to improve the scan. 
+Finally the pipeline will scale the model accordinluy and run the Possion Surface Reconstruction in order to obtain the final Reconstructed model of the scanned person. 
+The result will be subsequently usable for different applications such as clothing fitting. 
+
+Future developement of this technology will allow to have much more accurate scans andx make this concept commercially viable for different industires such as online retailers, clothing manufacturing,etc. 
+
 
 \chapter{Recommendations}
+Based on the results obtained in this report and future developement and improvements for this technology the following recommendations are proposed.
+
+\begin{itemize}
+  \item Create a Morphing suit with distintive featires and patterns that the user of the scan will use, which will allow to have consistent features in every scan.
+  \item Add more Cameras in order to have more viewpoints and improve the SFM process.
+  \item Add better quality  and resolution cametas in order to have more features in each image.
+\end{itemize}
+
+
 
 \nocite{*}   % all not cited bib entrys are shown in bibliography ...
 \bibliography{resources}
 
 
+
 \appendix
-% \chapter{\vspace{-5.5cm}Appendix}
+\chapter{\vspace{-5.5cm}Appendix}
 
-\begin{table}[!htb]
-  \centering
-  \makebox[\textwidth]
-  {\includegraphics[width=1\linewidth]{Risk_matrix.png}    
-  }
-  \caption{Risk Matrix}
-  \label{appendix:risk}
-\end{table}
+% \begin{table}[!htb]
+%   \centering
+%   \makebox[\textwidth]
+%   {\includegraphics[width=1\linewidth]{Risk_matrix.png}    
+%   }
+%   \caption{Risk Matrix}
+%   \label{appendix:risk}
+% \end{table}
 
-\newpage
-\begin{table}
-  \centering
-  \makebox[\textwidth]
-  {\includegraphics[width=1\linewidth]{ComunicationPlan.png}    
-  }
-  \caption{Comunication Plan}
-  \label{appendix:ComunicationPlan}
-  \end{table}    
+% \newpage
+% \begin{table}
+%   \centering
+%   \makebox[\textwidth]
+%   {\includegraphics[width=1\linewidth]{ComunicationPlan.png}    
+%   }
+%   \caption{Comunication Plan}
+%   \label{appendix:ComunicationPlan}
+%   \end{table}    
 
 \newpage
 \newgeometry{top= 3mm, bottom=3mm,left=3mm,right = 3mm}  

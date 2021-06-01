@@ -176,7 +176,7 @@ The geometrical measurements could be associated with shape, size, volume, and s
 Therefore, it will ease the diagnose process and allow to treat and monitor medical conditions holistically and improve the life quality of patients with non-invasive tests.
 The table below illustrates the use of a 3D scanner in the medical field with the purpose to identify and monitor various medical conditions. 
 From which the diagnose, treatment and monitor procedures will differ based on the acquired data.
-\begin{table}[H]
+\begin{table}[ht]
     \centering
     \includegraphics[width=15cm]{table1.png}
     \caption{3D Scanning Applications}\cite[]{treleaven_wells_2007}.
@@ -240,7 +240,7 @@ has led to significant advances in 3D surface Reconstruction from images \Citep*
 The key principle behind all the photogrammetric measurements is associated with the mathematical \& geometrical reconstruction of the path of light rays from the object to the sensor camera in the exact moment of data image acquisition.
 Thus, the fundamental concept of photogrammetry is the undertanding of geometric characteristics of a single photograph.
 
-\begin{figure}[]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.8\textwidth]{photogrammetry.png}
   \caption{Photogrammetry Principle Illustration}\cite[]{photogrammetry_def}
@@ -1679,6 +1679,7 @@ All the remaining settings are configured as default and are referenced on figur
 
 
 \section{Data Processing Framework}
+\label{Section:data_framework}
 The Data Processing Framework is a custom developed wrapper that allows to process.
 This framework was devevelop using the PCL framework and was built using  modern C++ on a Linux Platform (Ubuntu 18.04.5 LTS). 
 
@@ -1902,34 +1903,128 @@ Once all the processes have finished it will, generate the output files if the o
 For a detailed look the process flow of the program, refer to the appendix on figure \ref{appendix::fig:flowdiagram}.
 
 \chapter{Results}
+After several iterations and different datasets, the results vary due to the differences in the captured data (images). 
+These variation in the datasets cause inconsistencies in the photogrammetric reconstruction process. Therefore, this producted some meshes that had partial holes in certain regions.
+This is explained on section \ref{section:meshroom_results} and include the strategy to solve these issues in order to have a successful reconstructed photogrammetric mesh output from Meshroom.
 
+On the other hand, with inconsistencies in the given caused some issues in the developed reconstruction framework.
+Similarly, it is required to analyse if the scaling and transform of the Input pointcloud is sucessfull in comparison to the reference pointcloud captured with the Lidar. 
+The obtained results are explaine here as well with the estipulated configured threshold in order to ensure a sucesfull process.
+Furthermore, it explains the issues with the Poisson Reconstruction Algorithms and the implemented solution of developing an Open3D script to tackle this issues and ensure a sucessfull Poisson reconstructed Mesh that can be used for external Applications. 
 
 \section{Meshroom}
+\label{section:meshroom_results}
+As mentioned on section \ref{section:meshroom},Meshroom is a Photommetric Software with a series of multiple nodes. All  nodes are connected in a pipeline manner and follow a specific order as mentioned on section \ref{section:meshroom}.
+
+During, the experimentation process, several datasets were processed with a series of different settings in all the different nodes. 
+Many of the challenges in this process, were that not all viewpoints (images), were sucesfull accepted in the StructureFromMotion Node, which cause innacuracies in the reconstructing process and did not produced completed meshes (scanned persons).
+In many occasions the outputs, had missing limbs, or a deformed structure where a non accepted view points is located.
+
+After substancial, investigation and experimentation with different settings in multiple nodes such as testing different descriptors, methods, iterations,etc; the best results for this project were identified.
+Among the modified settings and parameters, it was found that map the Cameras Intrisics to the correspoding Images  in order to avoid the intrisic estimation guess. 
+This allow a 10 \% better result in comparison to the obtained results that did not included the actual camera intrinsics mapped to each image (viewpoint).
+Similarly, another key setting was to use both \textit{Sift \& Akaze} as the descriptors. The inclusion of these allowed to detect more features in each image. 
+Therefore improving the feature matching and enhancing the SFM process and increasing the number of valid viewpoints.
+
+It is essential to ensure that the SFM process accept all the images as valid viewpoints. This will allow to obtain an accurate reconstructed mesh with an even structure.
+All the configured parameters for all the nodes are mentioned in section \ref{section:meshroom_method}.
+
+However, there are still some considerations that need to be address in order to have a valid and complete reconstruction. 
+These considerations what sort of features  are in the images. In many occasions the clothing patterns and features of the scanned person played a key role when reconstructing the scanned person. 
+In a nutshell, the more distintive features in the scanned object, the better the overall final result will be. 
+
 
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{scan1.png}
-\caption{Pipeline Viewer Final Result}
+\caption{First Successful Scand}
 \label{fig:scan1} 
 \end{figure}
 
+After several iterations of tesing with different data. It was clear that the clothing features had to be distinctive in order to have an appropiate structure for the final mesh.
+The first sucessfull scan result is observed on figure \ref{fig:scan1}.
+In this Scan the subject has the correct structure for the body and the overall shape was accurate. However, after detailed inspection , some holes were found in the Legs and Arms.
+The reason behind these holes that not enought features were detected in these areas. In the images the subject used some pants that had repetitive patterns(strips). 
+This pattern caused some issues as not enough feature matches were found due to this pattern. 
+Similarly, on the arms, there were some holes due to the lack of features in these areas. The reason here is that not enough features were detected as it was a solid color pattern, hence causing issues in the Reconstruction of these areas. 
+
+As the initial scan had some issues in certain areas it was neccesary to change the clothing of the subject in order to generate new data and run the photogrammetric process again (Meshroom). 
+
+With a mofication to the clothing of the scanned subject the result improved.
+Some extra patterns were manually added the upper lims (amrs). These added pattern allow to detect and extra more features in these eras that caused issues in the first scan (figure \ref{fig:scan1}).
+Futhermore, the pants were change from a repetitive patern structure to a solid pattern with manually added features. 
+
+The final result of this Scan can be observed in figure \ref{fig:scan2}.
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{scan2.png}
-\caption{Pipeline Viewer Final Result}
+\caption{Second Successful Scan}
 \label{fig:scan2} 
 \end{figure}
 
+As it can be seen, the issues mentioned around the arms were fixed as the manually added patterns allowed a for a better feature detection and matching.
+Nevertheless, in the lower area (around the legs), there are still hole. These holes were present in areas that had only solid pattern, whereas the areas the had the added patterns were fully reconstructed.
+ 
+The main issue, was that in the leg areas where it was mainly a solid pattern, no features were detected. Therefore, causing a lack of features matching, which produces inconsistencies in the reconstructing process. 
+The Result of the second can be observed on figure \ref{fig:scan2}.
+
+Finally, another custom scanning suit was created. This scanning suit had multitude of features, colours and patterns. 
+The custom morphing suit has very distintive colour in different areas of the body which allows to have a significant number of features and allow to obtain more features matches than before.
+
+The final result of this scan can be observed on figure \ref{fig:scan3}. In this scan it can be observed that there are not holes in the entire body of the scanned  person. 
+Therefore, ensurring a consistent and accurate result that can be used in the reconstruction framework
+ 
 \begin{figure}[H]%this figure will be at the right
   \centering
  \includegraphics[width=1\textwidth]{scan3.png}
-\caption{Pipeline Viewer Final Result}
+\caption{Final Sucessful Scan}
 \label{fig:scan3} 
 \end{figure}
 
+\newpage
 \section{Reconstruction Framework}
+The final results of the Reconstruction Framework, were highly dependable of the results of the photogrammetric process output (section \ref{section:meshroom_results}). 
+The results from the reconstruction framework are consistent with different datasets. Minor adjustments have to be performed by the user in order to adjust to new data. 
+However the preconfigured values provide great coverage of most datasets. 
+The expeted result is the viewer with all the subsequet steps of the pipeline. All the steps of the reconstruction pipeline are mentioned on section \ref{Section:data_framework}.
+
+On figure \ref{fig:pcl_result1}, the result of the pipeline reconstruction can be observed. 
+They key step is the poisson Reconstruction steps, as this allows to fully reconstruct the final scaled pointcloud.
+If the Poisson reconstruction step is successful is should look similar to the top left section of the viewer output of the pipeline observed on figure \ref{fig:pcl_result1}.;
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{3D Viewer_030.png}
+\caption{Reconstruction Framework Output}
+\label{fig:pcl_result1} 
+\end{figure}
 
 
+In certain occasions, the  Poisson reconstruction will  have some issues as observed on the top left of figure \ref{fig:pcl_result2}.
+This, is due to an issues with the normals direction in certain datasets. Therefore it triggers issues and inconstencies in the Poisson Reconstruction Step.
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=1\textwidth]{pipeline.png}
+\caption{Reconstruction Framework Output Poisson Problem}
+\label{fig:pcl_result2} 
+\end{figure}
+ 
+In situations, when this happens its neccesary to run the \textit{Open3D Poisson Reconstruction Script}.
+This script will adjust the normals, in order to have a consistent direction in the entire mesh and avoid the problem (refer to figure \ref{fig:open3dpossionscreipt_result}).
+Similarly, this script will adjust wrong inconsistencies in key areas of interest of the output mesh as seen on figure \ref{fig:analysedpossionopen3d_res} . 
+Afterwards, it removes the conflicting areas it will perform the Poisson Reconstruction again in  order to have an accurate output as observed on figure \ref{fig:finalmeshopen3d_res}.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ 
+  \subfloat[Initial Open3D Possion Reconstruction]{{\includegraphics[width=0.42\textwidth]{open3dFirstpoisson.png} \label{fig:intialpossionopen3d_res}}}
+  \qquad
+  \subfloat[Analyse And Process Regions of Interest]{{\includegraphics[width=0.45\textwidth]{open3dRegionsofInterst1.png} \label{fig:analysedpossionopen3d_res}}}
+  \qquad
+  \subfloat[Final Open3D Reconstructed Mesh]{{\includegraphics[width=0.45\textwidth]{Possionfinalooen3d.png} \label{fig:finalmeshopen3d_res}}}
+\caption{Open3D Poisson Reconstruction Script Adjustment}
+\label{fig:open3dpossionscreipt_result} 
+\end{figure}
 
 \chapter{Conclusion}
 
@@ -1942,7 +2037,7 @@ For a detailed look the process flow of the program, refer to the appendix on fi
 \appendix
 % \chapter{\vspace{-5.5cm}Appendix}
 
-\begin{table}[H]
+\begin{table}[!htb]
   \centering
   \makebox[\textwidth]
   {\includegraphics[width=1\linewidth]{Risk_matrix.png}    
@@ -1952,7 +2047,7 @@ For a detailed look the process flow of the program, refer to the appendix on fi
 \end{table}
 
 \newpage
-\begin{table}[H]
+\begin{table}
   \centering
   \makebox[\textwidth]
   {\includegraphics[width=1\linewidth]{ComunicationPlan.png}    

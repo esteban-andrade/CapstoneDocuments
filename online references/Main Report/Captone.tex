@@ -106,7 +106,7 @@ Major: Mechanical and Mechatronics Engineering.\\
 The capability of scanning distinctive models is critical for many industries ranging from fashion to medical and manufacturing. 
 Nevertheless, many of the current implementations are extremely expensive. Hence it imposes a barrier for the technology.
  Similarly, many of the existing applications do not create highly accurate models, and on various occasions, these models would be discarded. 
- Therefore, this project will create both hardware and software implementation for a human3D scanner with a moderate budget as well as accurate results in order to be able to produce accurate and scaled models of the scanned subject. 
+ Therefore, this project will create both hardware and software implementation for a human 3D scanner with a moderate budget as well as accurate results in order to be able to produce accurate and scaled models of the scanned subject. 
  The proposed method for data acquisition will be with a custom rig. The rig will be a set of poles with cameras that will capture images from the person that is inside the rig.
 
 Additionally, a Lidar will be used to capture a PointCloud and an Image of the subject inside the rig. 
@@ -152,6 +152,11 @@ Finally, I would like to thank my family for their massive and ongoing support t
   RANSAC           & Random Sample Consensus           \\ \hline
   SIFT             & Scale-Invariant Feature Transform \\ \hline
   AKAZE            & Accelerated-Kaze Features         \\ \hline
+  PnP              & Perspective-n-Point               \\ \hline
+  ZNCC             & Zero Mean Normalized Cross-Correlation \\ \hline
+  ANN\_L2          & ApproximateNearest Neighbor Matching \\ \hline
+  acransac         & A-Contrario RANSAC          \\ \hline  
+  SGM              &Semi Global Matching \\ \hline  
   \end{tabular}
   \end{table}
 
@@ -169,7 +174,7 @@ Finally, I would like to thank my family for their massive and ongoing support t
 \section{Project Contextualization}
 The project is based on creating a Human Body 3D scanner.
 It will have two specific streams that include developing the mechatronic design of a 3D scanner for a human and the software development for 3D data reconstruction. 
-This proposal is based on developing the software for 3D data modelling and reconstruction of the Scanned data.
+This capstone is based on developing the software for 3D data modelling and reconstruction of the Scanned data.
 
 Similarly,  the 3D reconstructed model of the human aims to be utilised with the intention to test different fashion clothing items. This has the intent to adjust the sizing of the clothes fittings based on the Scanned data. The clothing models will adjust automatically depending on the dimensions of the data of the scanned model. 
 The project will have different stages that range from testing various sensors for data acquisition, testing other data stitching frameworks to deploy the software in the 3D scanner mechatronic device.
@@ -208,7 +213,7 @@ With the rise of innovation of 3D image reconstruction, the interest to gather p
 is extremely important to create better fittings for different shapes of human bodies. 
 Furthermore, virtual try-on solutions have gain popularity in physical and online retail stores \Citep*{spahiu_shehi_piperi_2014}.
 
-On the other side, 3D scanners have gained participation in the medical industry. These systems are described as "non-invasive and low cost, " making them appealing for epidemiological surveys and clinical uses. \Citep*{treleaven_wells_2007}
+On the other side, 3D scanners have gained participation in the medical industry. These systems are described as "non-invasive and low cost, " making them appealing for epidemiological surveys and clinical uses \Citep*{treleaven_wells_2007}.
 The geometrical measurements could be associated with the shape, size, volume, and surface area of the body parts. It could aid to be a sustainable approach to screen children and patients with obesity, deformities, or specific anatomic defects. 
 Therefore, it will ease the diagnose process and allow treatment and monitor medical conditions holistically and improve the life quality of patients with non-invasive tests.
 The table below illustrates the use of a 3D scanner in the medical field to identify and monitor various medical conditions. 
@@ -221,33 +226,33 @@ From which the diagnose, treatment and monitor procedures will differ based on t
 \end{table}
 
 \section{Overview}
-As mentioned before, the project consists of developing a 3D scanner that is allowed to scan a person and be able to use that data to be able to fit different clothing virtually.
+As mentioned before, this project consists of developing a 3D scanner that is able to scan a person and use that data to fit virtually different clothing items.
 This capstone project mainly focuses on the software and processing of the data for the 3D reconstruction.
 
 This project aims to develop algorithms and an implementation pipeline that will use the acquired image data as well as the reference point cloud data in order to produce an accurate
 and appropriately scaled 3D reconstructed model of a person.\\
-This is a reconstructed and scaled model, is intended to be utilised as the model for testing virtual clothe fitting and correctly determining the size of the garments. 
-This technology could have a massive industry in the clothing industry and online retailers. This could solve an issue with the returns policy due to incorrect sizing for different customer groups.
+The reconstructed and scaled model, is intended to be utilised as the model for testing virtual cloth fittings and correctly determining the size of the garments. 
+This technology could have a massive impact in the clothing industry and online retailers. This could solve an issue with the returns policy due to incorrect sizing for different customer groups.
 
 
 
 \subsection{Methodology}
 To achieve the aim, a rig will be used to capture the data. The rig will consist of a set of poles with multiple cameras. Furthermore, a Lidar Intel RealSense L515 will be used to capture another image and the corresponding point cloud used for reference.
-Once the rig captures the data (28 images) and the lidar data(1 image, 1 pointcloud), the images will be processed with a photogrammetry approach with Meshroom. 
+Once the rig captures the data (twenty-eight images) and the lidar data(one image \& one pointcloud), the images will be processed using a photogrammetry approach with Meshroom. 
 The Processed data from Meshroom will produce a preprocessed reconstruction mesh. 
 
 After this, the mesh will be processed in the developed algorithmic pipeline, and it will be scaled appropriately with the reference point cloud from the Lidar. 
-Once the mesh has been processed and scaled, it will be reconstructed appropriately. It will generate a final model of the scanned person with only the necessary components and appropriate scale.
+Once the mesh has been processed and scaled, it will be reconstructed appropriately. It will generate a final scaled model of the scanned person.
 
-Once the process is completed, the mesh will be saved to disk as a ply file that can be later used in other applications such as clothing fitting. 
+Once the process is completed, the mesh will be saved to disk as a ply file that can be later used in other applications such as virtual clothing fitting. 
 
 
 \subsection{Structure}
-This Report will start with a literature review to analyse and fully understand the algorithms and techniques used in both components. 
-It will help to understand the techniques used in the photogrammetry step and the developed algorithm pipeline.
+This Report will start with a literature review to analyse and fully understand the algorithms and techniques used throughout the development of this technology. 
+It will help to understand the techniques used in the photogrammetric step and the developed algorithm pipeline.
 
 Following this, details will be presented and illustrated as to how the process is carried out and the obtained results from different data sets.
-It will be entirely demonstrated how to import the data to Meshroom and what parameters are required to add and modify to change the most robust reconstruction. There will be a detailed explanation of what each step executes.
+It will be entirely demonstrated how to import the data to Meshroom and what parameters are required to add and modify to obtain the most robust reconstruction. There will be a detailed explanation of what each step executes and outputs.
 
 Furthermore, there will be a detailed explanation of the algorithm pipeline for data processing. It will explain what each component is expected to execute and how it was created and wrapped into a framework.
 
@@ -271,7 +276,7 @@ These sensors could either be stereo or multiview vision cameras, lasers, time-o
 Many Scanning devices will use single or multiple of the sensors mentioned above to acquire data. Once the data is obtained, it essential to have a framework for 3D data modelling and reconstruction.
 The principle behind 3D data reconstruction is obtained with data fusion from RGB-D sensors. This kind of sensors provide three channels in each RGB image (red, green, blue), and the depth images are mapped to each pixel. Based on this data, 3D point clouds could be generated for data reconstruction.
 
-Similarly, many other scanning devices use photogrammetry as a technique to do the reconstruction. In this particular project, Meshroom was used as a 3D photogrammetry reconstruction software.
+Similarly, many other scanning devices use photogrammetry as a technique to do the reconstruction. In this particular project, Meshroom was used as a 3D photogrammetric reconstruction software.
 
 Moreover, several open-source libraries were used to process and scale the draft mesh. These open-source libraries include PCL and Open3D. From these, several algorithms were implemented which aided in the data processing, and these will be explained below. 
 \enlargethispage{\baselineskip}
@@ -485,6 +490,7 @@ The components in the node are described on table \ref{tab:CameraInit}
       Moreover, a random selection process uses a small set of feature correspondences and it computers either the fundamental or essential matrix. 
       Once this process is completed, the number of features verifies and validates this model and iterates through the RANSAC framework \Citep*{FLANN2009}.
       \enlargethispage{\baselineskip}
+      
       The components in the node are described on table \ref{tab:FeatureMatching}
       
       \begin{table}[H]
@@ -537,7 +543,7 @@ The components in the node are described on table \ref{tab:CameraInit}
 \subsection{Structure From Motion}
 
 The Structure From Motion Node carries out the 3D points reconstruction from the input images. The key behind this node is to be able to comprehend
-the geometric relationship behind all the views from the input images and decipher the rigid scene structure (3D PointCloud) along with the pose (position \& orientation) and internal calibration of the cameras as mentioned by \Citet*{Cheng2014}
+the geometric relationship behind all the views from the input images and decipher the rigid scene structure (3D PointCloud) along with the pose (position \& orientation) and internal calibration of the cameras as mentioned by \Citet*{Cheng2014}.
 This is an incremental process pipeline associated with a growing reconstruction process. It initially computes a starting two-view point reconstruction which is iteratively extended by adding new views \Citep*{Cheng2014}.
 
 It starts by fusing all feature matches between all images and store them in tracks. Each track represents a point in space, which is visible from multiple cameras. 
@@ -617,7 +623,8 @@ The components in the node are described on table \ref{tab:StructureFromMotion}
 
 \newpage
 \subsection{Prepare Dense Scene}
-This node undistorts the images and generates EXR images.
+This node undistorts the images and generates EXR images.\
+
 The components in the node are described on table \ref{tab:PrepareDenseScene}
 
 \begin{table}[H]
@@ -693,7 +700,7 @@ The components in the node are described on table \ref{tab:PrepareDenseScene}
 
 % \newpage
 \subsection{Depth Map Filter}
-This node is in charge of processing the DepthMap Node results s the original depth maps will not be entirely consistent.
+This node is in charge of processing the DepthMap Node results as the original depth maps will not be entirely consistent.
 Specific depth maps will be interpreted to see areas that are occluded by other dept maps. Thus, this step of the pipeline isolates these areas and ensures depth consistency.
 
 The components in the node are described in table \ref{tab:DepthMapFilter}
@@ -725,7 +732,7 @@ The components in the node are described in table \ref{tab:DepthMapFilter}
   The primary purpose of this node is to construct a dense geometric surface representation of the scene.
   Initially, it fuses all the processed depth maps into a global octree, and where it is compatible, it will merge depth values into the octree cells.
   Afterwards, the node performs a 3D Delaunay tetrahedralization process. Subsequently, a complex voting procedure computes the weighs on cells and weights the faces connecting 
-  the cells \citep*{Jancosek2011}  as mentioned by  \Citet*{Jancosek2014}.
+  the cells as mentioned by  \Citet*{Jancosek2014}.
   
   A Graph Cut Max-Flow \Citep*{Boykov2004} is applied to efficiently reduce the volume, which represents the extracted mesh surface. 
   Furthermore, it filters bad cells on the surface and applies a Laplacian filtering process on the mesh to remove local artifacts.
@@ -774,10 +781,11 @@ The components in the node are described in table \ref{tab:DepthMapFilter}
     \label{tab:Meshing}
     \end{table}
   
-
+\newpage
 \subsection{Mesh Filtering}
 
 This node filters and removes the unwanted elements from the resulting mesh.
+
 The components in the node are described in table \ref{tab:MeshFiltering}
 
 \begin{table}[H]
@@ -1095,7 +1103,7 @@ Once the PCA analysis is performed using the PCL library, it is possible to calc
 \begin{itemize}
   \item Mean of input data
   \item Eigen Vectors: Ordered set of vectors represents the final principal components and the Eigen cartesian space.
-  \item Eigen Values: These are the correspondent loading of the Eigen Vectors ina descending order.
+  \item Eigen Values: These are the correspondent loading of the Eigen Vectors in a descending order.
 \end{itemize}
 
 The Principal Component Analysis is used to determine the scale of the two point clouds used in this project and properly adjust the final mesh.
@@ -1135,7 +1143,7 @@ Resampling allows for correcting minor errors and smoothing the surface of a poi
 In figure \ref{fig:smoothing_mls}, on the left side,  is illustrated the effect of estimating the normals of a point cloud; however, due to alignment errors,
 the normals are noisy. On the right side of figure \ref{fig:smoothing_mls}, the effects of the MLS algorithm is demonstrated as it smoothes the surface of the point cloud.
 
-To approximate the surface illustrated by the local neighbours of points $p1,p2,....pk$ at a point $q$, it uses a bivariate polynomial function, which is defined on a robust modelled reference plane.
+To approximate the surface illustrated by the local neighbours of points $p1,p2,\rightarrow pk$ at a point $q$, it uses a bivariate polynomial function, which is defined on a robust modelled reference plane.
 Figure \ref{fig:smoothing_curvature}, shows the curvatures at each point with the eigenvalue relation before and after the resampling method. 
 
 \begin{figure}[H]%this figure will be at the right
@@ -1146,12 +1154,12 @@ Figure \ref{fig:smoothing_curvature}, shows the curvatures at each point with th
 \end{figure}
 
 Furthermore, the Moving Least Squares Component of the PCL library also allows for different upsample methods. 
-These include 
+These include:
 \begin{description}
   \item[DISTINCT CLOUD] Project the points of the distinct cloud to the MLS surface\cite[]{Rusu_ICRA2011_PCL}.
   \item[SAMPLE LOCAL PLANE] The local plane of each input point will be sampled in a circular fashion using the $UpsamplingRadius$  and the $UpsamplingStep$ parameters\cite[]{Rusu_ICRA2011_PCL}. 
   \item[RANDOM UNIFORM DENSITY] The local plane of each input point will be sampled using a uniform random distribution such that the density of points is constant throughout the cloud - given by the $Desired Num Points in Radius Parameter$\cite[]{Rusu_ICRA2011_PCL}. 
-  \item[VOXEL GRID DILATION] The input cloud will be inserted into a voxel grid with voxels of size $Voxel Size$.This voxel grid will be dilated $(Dilation Iteration Num)$ times, and the resulting points will be projected to the MLS surface of the closest point in the input cloud; the result is a point cloud with filled holes and a constant point density \cite[]{Rusu_ICRA2011_PCL}.
+  \item[VOXEL GRID DILATION] The input cloud will be inserted into a voxel grid with voxels of size $Voxel Size$.This voxel grid will be dilated $(Dilation Iteration Num)$ N times, and the resulting points will be projected to the MLS surface of the closest point in the input cloud; the result is a point cloud with filled holes and a constant point density \cite[]{Rusu_ICRA2011_PCL}.
 \end{description}
 
 For this project,  the \textbf {RANDOM UNIFORM DENSITY} method is used for upsampling the MLS processed point cloud. 
@@ -1174,7 +1182,7 @@ Figure \ref{fig:sUpsample_def} illustrates on the left the implementation of MLS
 
 
 
-
+\newpage
 \subsection{Poisson Surface Reconstruction}
 \label{section:Poisson Surface Reconstruction}
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
@@ -1183,10 +1191,10 @@ In this project the Poisson Reconstruction algorithm is implemented , to recontr
 The Poisson Reconstruction algorithm demonstrates that the surface reconstruction from a set of oriented points can be associates with a spatial Poisson problem.
 This formulation utilizes all the points at once, with no need of using heuristic spatial partitioning or blending, hence, making it resilient to noise as mentioned by \Citet*{Poisson}.
 
-The main objective of this algorithms to reconstruct a smooth surface, which is based on a large number of points $p_i$ from a point cloud, where each point possesses an estimate of the local surface normal $n_i$
-It aims to create an implicit function $f$, whose value is zero at the points $p_i$ and the gradient at points $p_i$ is equal to the normal vector $n_i$\Citet*{Poisson}.
+The main objective of this algorithms to reconstruct a smooth surface, which is based on a large number of points $p_i$ from a point cloud, where each point possesses an estimate of the local surface normal $n_i$.
+It aims to create an implicit function $f$, whose value is zero at the points $p_i$ and the gradient at points $p_i$ is equal to the normal vector $n_i$ \Citep*{Poisson}.
 The set of $(p_i,n_i)$ is modelled as a continuous vector field $V$ and the implicit function is found by integrating the vector field $V$.
-In complex calculations, it is possible to perform a \textit{least-squares fit} to minimize the difference between the gradient of $f$ and $V$\Citet*{Poisson}.
+In complex calculations, it is possible to perform a \textit{least-squares fit} to minimize the difference between the gradient of $f$ and $V$ \Citep*{Poisson}.
 
 
 \begin{figure}[H]%this figure will be at the right
@@ -1204,6 +1212,7 @@ In complex calculations, it is possible to perform a \textit{least-squares fit} 
 Open3D is an open-source library that supports fast development of software that handles 3D data.
 The Open3D frontend exposes outputs a set of carefully chosen data structures and algorithms in both Python and C++ \Citep*{Zhou2018}. 
 The backend of the framework is highly optimized, and it configured for parallelization.
+
 Open3D is compatible with Linux, macOS and Windows, and it can be installed via source code or packages. 
 
 The core features include: 
@@ -1243,13 +1252,13 @@ The key components are divided into three processes that include:
 \begin{itemize}
   \item Data collection
   \item Photogrammetry Process
-  \item Point Cloud Processing \& Reconstruction
+  \item Data Processing Framework
 \end{itemize}
 
 All the components mentioned above will work in a Pipeline manner and as the critical process for a 3D scanner includes  Data collection. 
 Once the Data is collected, a photogrammetric process will run to reconstruct the object based on the input data. 
 Finally, the resultant reconstructed object will be processed using a Custom framework pipeline based on the PCL (\textit{Point Cloud Library}) and proceed with a processed mesh.
-Once the mesh has finished processing, it can be used in different applications such as clothes fitting.
+Once the mesh has finished processing, it can be used in different applications such as virtual clothing fitting.
 
 \section{Data Collection}
 The Data Collection process is performed with a 3D scanning RIG (device).
@@ -1257,7 +1266,7 @@ The process will be performed with a series of twenty-eight cameras and a single
 The cameras will be located and assembled in a series of eight tall poles and four short poles. Similarly, the Lidar will be mounted to a single Pole.
 
 All the cameras will be controlled using Raspberry Pis.
-There will be a total of three Raspberry Pi's that set the execution process to acquire data from all the cameras that are attached to them, with a total number of twenty-eight images
+There will be a total of three Raspberry Pis that control the execution process to acquire data from all the cameras that are attached to them, with a total number of twenty-eight images.
 Similarly, an Nvidia Jetson Xavier is used to acquire data from the Lidar. The Nvidia Jetson Xavier will obtain a single image and a point cloud of the scanned subject. 
 
 \newpage
@@ -1292,7 +1301,7 @@ The cameras used for data acquisition have the following specifications.
 
 As observed in figure \ref{fig:Cameras}, the cameras will have a Plastic Housing. This Housing device allows to place the cameras safely 
 in the poles as well as protecting the electronics and connection from external factors.
-The cameras will be connected to a series of USB hubs directly connected to the Raspberry Pi's to control the data acquisition process.
+The cameras will be connected to a series of USB hubs directly connected to the Raspberry Pis to control the data acquisition process.
 
 
 
@@ -1339,9 +1348,9 @@ Table \ref{tab:lidar_specs} states the specification of the Intel RealSense L515
 
 \subsection{Layout \& Configuration}
 As mentioned before, Lidar will be controlled to an Nvidia Jetson Xavier, which will make it agnostic of the Cameras acquisition process. 
-It was previously mentioned that the Cameras would be controlled with a Series of multiple Raspberry Pi's, and those will be managed via an SSH connection with Putty. 
-Due to the limited number of USB connectors, a series of USB hubs will control more cameras with Single Raspberry PIs.
-Figure \ref{fig:cameras_layout}, illustrates how the twenty-eight cameras will be connected with the Different Raspberry Pi's.
+It was previously mentioned that the Cameras would be controlled with a Series of multiple Raspberry Pis, and those will be managed via an SSH connection with Putty. 
+Due to the limited number of USB connectors, a series of USB hubs will control more cameras with Single Raspberry Pis.
+Figure \ref{fig:cameras_layout}, illustrates how the twenty-eight cameras will be connected with the Different Raspberry Pis.
 
 \begin{figure}[H]%this figure will be at the right
    \centering
@@ -1357,9 +1366,9 @@ Figure \ref{fig:cameras_layout}, illustrates how the twenty-eight cameras will b
   \caption{Tall Pole Cameras Configuration.}
   \label{fig:poles_camera_tall}
 \end{wrapfigure}
-All the cameras will be mounted in the RIG in a series of Pole. There will be a total number of eight tall and four short poles.
-The Tall Poles will be used to attached three cameras to the Frame. The First Camera will be located on top of the pole and oriented toward the subject to have the best overlap with the Field of View.
-The Second Camera is located in the middle of the pole and parallel oriented to the scanned subject to having the best field of view. 
+All the cameras will be mounted in the RIG in a series of poles. There will be a total number of eight tall and four short poles.
+The Tall poles will be used to attached three cameras to the Frame. The First Camera will be located on top of the pole and oriented toward the subject to have the best overlap with the Field of View.
+The Second Camera is located in the middle of the pole and parallel oriented to the scanned subject to enhance the field of view. 
 The third Camera is located at the bottom of the pole, and it will be oriented upwards towards the scanned subject in order to have comprehensive coverage. 
 This configuration can be observed on figure \ref{fig:poles_camera_tall}.
 
@@ -1379,7 +1388,7 @@ the accuracy of the final scan.
 All the tall poles will be placed in a circular shape to capture as much data as possible. 
 The subject (person) that will use the RIG will be located in the circle's origin, and all the tall poles will be placed 1.5 m away from the person to have the best overlap between all cameras.
 The four short poles will be located closeup from the person that will be scanned. The four poles will be placed 60 cm away from the person (circle origin) to capture close up data for complex regions and improve the overall reconstruction.
-The architecture of this RIG is observed on figure \ref{fig:cad}.
+The architecture of this RIG is observed on figures \ref{fig:RIG}  and \ref{fig:cad}.
 \enlargethispage{\baselineskip}
 
 \newpage
@@ -1503,7 +1512,7 @@ Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration
   \label{section:meshroom_method}
   As mentioned before, Meshroom will be used to process the images and reconstruct the scanned person once the data acquisition process has finalised. 
   Meshroom will have a series of nodes as noted in section \ref{section:meshroom}. It can be used in either windows or Linux. In this project, both Meshroom versions
-  (2020 \& 2021) were tested and fully worked. The chosen platform was Ubuntu 18.04. It has a CUDA enabled GPU  to speed up the execution speed in specific nodes.
+  (2020 \& 2021) were tested and fully worked. The chosen platform was Ubuntu 18.04. The host computer had a CUDA enabled GPU  to speed up the execution speed in specific nodes.
   
   After a series of multiple iterations \& experimentation, the best parameters were selected, and it will be explained in section \ref{section:meshroom_method}.
   
@@ -1526,7 +1535,7 @@ Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration
   This is the Initial node of Meshroom Pipeline Reconstruction. 
   In this node, all the captured data (images) will be imported.
   Once all the images have been imported into the initial node.
-  All the available fields are illustrated on table \ref{tab:CameraInit}. Nevertheless, in this project, the following fields were configured, whereas the remaining stayed as default and are referenced on figure \ref{fig:camera_init_node}.
+  All the available fields are illustrated on table \ref{tab:CameraInit}. Nevertheless, in this section, the mentioned fields were configured, whereas non-mentioned settings remaining as default and are referenced on figure \ref{fig:camera_init_node}.
   These fields are described below
   
   \begin{description}
@@ -1546,7 +1555,7 @@ Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration
 
   \begin{figure}[H]%this figure will be at the right
     \centering
-   \includegraphics[width=0.5\textwidth]{camera_init_node.png}
+   \includegraphics[width=0.7\textwidth]{camera_init_node.png}
   \caption{CameraInit Node Settings}
   \label{fig:camera_init_node} 
   \end{figure}
@@ -1770,7 +1779,7 @@ The configured settings for best results are configured below.
   \label{fig:Meshingnodesettings}
 \end{figure}
 
-All the remaining settings are configured as default and are referenced on figures \ref{fig:meshing1} and \ref{fig:meshing2}.
+All the remaining settings are configured as default and are referenced on figures \ref{fig:meshing1} and \ref{fig:meshing2}. Full scale images in Appendix (\ref{fig:meshing1_big} \& \ref{fig:meshing2_big})
 \enlargethispage{\baselineskip}
 
 
@@ -1839,7 +1848,7 @@ To deploy this framework, refer to the following GitHub Repository. It includes 
 \textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.}
 
 This custom-developed framework used the concepts from the PCL library and its corresponding algorithms, which are detailed in section \ref{section:pcl}.
-On the other hand, a different framework was attached and incorporated as a wrapper to add extra features and functionalities.
+On the other hand, a different framework (ScaleRatioICP) was attached and incorporated as a wrapper to add extra features and functionalities.
 Nevertheless, this wrapper was not implemented in the final executable. 
 
 The framework consists of two wrappers \textit{(classes)} and one executable file \textit{(Main)} which will be explained below.
@@ -2016,7 +2025,7 @@ For a detailed look at the APIs used for this Object, refer to the Repository (\
 
 \subsubsection*{Lidar Object}
 The Lidar Object is made to handle and process the input data from the lidar that will be used for scaling. 
-This Object will process in order to maintain only the region of interest of the point cloud that will be used in the Scaling process in the Reconstruction Object. 
+This Object will process the captures point cloud in order to maintain only the region of interest of the point cloud that will be used in the Scaling process in the Reconstruction Object. 
 It will use several filters and segmentation algorithms to keep the regions of interest as accurate as possible to ensure an efficient scaling.
 For a detailed look at the implemented APIs, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
 
@@ -2062,8 +2071,8 @@ Figure \ref{fig:open3dpossionscreipt}, illustrates all the steps of the Open3D P
  
 \subsubsection{Expected Behaviour}
 The expected behaviour is to input both files into the script via the terminal's arguments and enable to save the files for tracking. 
-Once the input files have been fed to the framework, the mentioned objects above (ReconstructionMain \& Lidar) will process in parallel both files and will remove outliers, plane segment and multiple filter processes.
-Once Both files have been processed, the Initial Scaling process will start. After the Initial scaling process is finished, another filtering process will start to improve the region of interest of the point cloud.
+Once the input files have been fed to the framework, the mentioned objects above (ReconstructionMain \& Lidar) will process in parallel both files and will remove outliers, plane segment and execute multiple filtering processes.
+Once Both files have been processed, the Initial Scaling process will start. After the Initial scaling process is finished, another filtering process will start in order to improve the region of interest of the point cloud.
 Afterwards, another scaling process will be executed as this will increase the accuracy of the final scale. 
 
 Moreover, the centroids of the point clouds will be aligned, and the processed Pointcloud will be transformed to the reference frame of the Lidar Point Cloud.
@@ -2119,6 +2128,7 @@ In a nutshell, the more distinctive features in the scanned object, the better t
 \label{fig:scan1} 
 \end{figure}
 
+\newpage
 After several iterations of testing with different data, it was clear that the clothing features had to be distinctive to have an appropriate structure for the final mesh.
 The first successful scan result is observed in figure \ref{fig:scan1}.
 In this Scan, the subject has the correct structure for the body, and the overall shape was accurate. However, after a detailed inspection, some holes were found in the Legs and Arms.
@@ -2129,7 +2139,7 @@ Similarly, there were some holes in the arms due to the lack of features in thes
 As the initial Scan had some issues in certain areas, therefore it was necessary to change the subject's clothing to generate new data and rerun the photogrammetric process (Meshroom). 
 
 With a modification to the clothing of the scanned subject, the result improved.
-Some extra patterns were manually added to the upper limbs (arms). These added patterns allow to detect and extra more features in these eras that caused issues in the first Scan (figure \ref{fig:scan1}).
+Some extra patterns were manually added to the upper limbs (arms). These added patterns allow to detect and extra more features in these areas that caused issues in the first Scan (figure \ref{fig:scan1}).
 Furthermore, the pants changed from a repetitive pattern structure to a solid pattern with manually added features. 
 
 The final result of this Scan can be observed in figure \ref{fig:scan2}.
@@ -2143,7 +2153,7 @@ The final result of this Scan can be observed in figure \ref{fig:scan2}.
 As it can be seen, the issues mentioned around the arms were fixed as the manually added patterns allowed for better feature detection and matching.
 Nevertheless, in the lower area (around the legs), there are still holes. These holes were present in areas with only solid pattern, whereas the areas with the added patterns were fully reconstructed.
  
-The main issue was that in the leg areas where it was mainly a solid pattern, no features were detected. Therefore, causing a lack of features matching, which produces inconsistencies in the reconstructing process. 
+The main issue was that in the leg areas where it was mainly a solid pattern, no features were detected. Therefore, causing a lack of features matches, which produced inconsistencies in the reconstructing process. 
 The result of the second can be observed in figure \ref{fig:scan2}.
 
 Finally, another custom scanning suit was created. This scanning suit had a multitude of features, colours and patterns. 
@@ -2222,17 +2232,17 @@ Afterwards, it removes the conflicting areas it will perform the Poisson Reconst
 
 \chapter{Conclusion}
 This project aimed at the development of a 3D scanner device that will produce accurate results. 
-This report focused on the data processing and reconstruction of the acquired data from the scanned in order to generate a virtual scaled scanned representation of the person.
+This report focused on the data processing and reconstruction of the acquired data from the scanned subject in order to generate a virtual scaled scanned representation of the person.
 
-As previously mentioned, for this project, the RIG will capture a set of images used in a photogrammetric process using Meshroom to have a representation model of the scanned person. 
+As previously mentioned, for this project, the RIG will capture a set of images used in a photogrammetric process using Meshroom to have a representation model of the person. 
 The generated result will be processed in a reconstruction framework pipeline that will run several algorithms to improve the scan. 
-Finally, the pipeline will scale the model accordingly and run the Poisson Surface Reconstruction in order to obtain the final Reconstructed model of the scanned person. 
+Finally, the pipeline will scale the model accordingly and run the Poisson Surface Reconstruction in order to obtain the final Reconstructed model of the scanned user. 
 The result will be subsequently usable for different applications such as clothing fitting. 
 
 Future development of this technology will allow more accurate scans and make this concept commercially viable for different industries such as online retailers, clothing manufacturing, among many others.
 
 
-
+\chapter{Recommendations}
 
 Based on the results obtained in this report and future development and improvements for this technology, the following recommendations are proposed.
 
@@ -2284,6 +2294,33 @@ Based on the results obtained in this report and future development and improvem
 \end{figure}   
 
 \restoregeometry
+
+\newpage
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{meshing_1.png}
+\caption{Meshing Node Settings}
+\label{fig:meshing1_big}
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{meshing_2.png}
+\caption{Meshing Node Settings}
+\label{fig:meshing2_big}
+\end{figure}
+
+
+% \begin{figure}[H]
+%   \centering
+%   \subfloat[Meshing Node Settings]{{\includegraphics[width=1\textwidth]{meshing_1.png} \label{fig:meshing1_big} }}
+%   \qquad
+%   \subfloat[Meshing Node Settings]{{\includegraphics[width=1\textwidth]{meshing_2.png} \label{fig:meshing2_big}}}
+%   \caption{Entire Meshing Node Settings}
+%   \label{fig:Meshingnodesettings_big}
+% \end{figure}
 
 
 

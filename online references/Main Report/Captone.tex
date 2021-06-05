@@ -44,6 +44,8 @@
 \useunder{\uline}{\ul}{}
 \usepackage{longtable}
 \usepackage{hyperref}
+
+\usepackage[table,xcdraw]{xcolor}
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
@@ -85,7 +87,7 @@
 \addtocontents{toc}{\protect}
 \chapter*{Statement of Originality}
 I, Esteban Gabriel Andrade Zambrano,  declare that I am the sole author of this report, that I have not used fragments of text from other sources without proper acknowledgment, that theories, results and designs of others that I have incorporated into my report have been appropriately referenced and all sources of assistance have been acknowledged.\\[2 cm]
-Refer to Appendix for the signed statement of originality 
+Refer to Appendix \ref{appendix:cover} for the signed statement of originality 
 
 
 \vspace{10cm}
@@ -1949,6 +1951,7 @@ With the Obtained values for the Scale in X, Y and Z from \ref{equ:scale}, it is
      Rotation\_error =\left\lVert \log (R_1(\hat{n},\theta) * R_2(\hat{n},\theta)^{-1} ) \right\rVert 
    \end{equation}
  With both translation and rotation error, it is possible to compare to a user-defined threshold and ensure that the error is within acceptable margins. 
+ \label{scale_API}
   \item[passThroughFilter]: This API aims to filter a specific point cloud based on the specific axis limit, which is known as \textit{passThroughFilter} (refer to section \ref{section:Pass Through Filter}).
   It requires the user to input an input point cloud, a string with the axis to filter, and the maximum and minimin limits of the constrained axis. This is designed to aid with the plane segmentation process and ensure appropriate limits for the scaling process.  
 \end{description}
@@ -2085,9 +2088,82 @@ Once all the processes finish, it will generate the output files if the option w
 
 For a detailed look at the process flow of the program, refer to the appendix on figure \ref{appendix::fig:flowdiagram}.
 
+The Terminal Logs are Located  on the Appendix on figures \ref{fig:log1} ,\ref{fig:log2} and \ref{fig:log3}
 
 
 
+
+
+
+\section{Scale Estimation}
+\label{sectoin:Scale_est}
+The Scale estimation and Adjustment is one of the critical components of this project. 
+The mesh obtained from the photogrammetric process does not output a point cloud with the correct scale in reference to the real scanned object. 
+Therefore the point cloud obtained from the Lidar Intel Realsense L515 is used to find and adjust the scale of the processed mesh. 
+The reason behind this is that the Lidar obtains a real accurate result in terms of the size of the point cloud. 
+This site will match the actual dimensions of the scanned persons. Hence allowing to have the reference scale for this process. 
+The reference lidar point cloud will have a scale of $1$ as it is the real scale of the person. 
+The scale estimation for the reconstruction will use the scale of this reference and estimate the scale for the target point cloud and adjust it to match the reference scale from the Lidar. 
+
+This process uses PCA analysis to find the scale between the Lidar point cloud and the reconstructed processed point cloud used in the developed framework. 
+This was implemented into the wrapper class as an API, and it can be referenced in section \ref{scale_API}.
+
+This API will require inputting both point clouds: the Lidar one and the photogrammetric processed point cloud result. It will output a  vector containing both files being the first element, the scaled photogrammetric point cloud, whereas the second element is the reference point cloud (Lidar).
+
+As mentioned before, this process uses the PCA method to estimate the scale.
+It will extract both the EigenVectors and Mean of the point cloud. 
+Using these values, it will construct the corresponding Transform for both point clouds. 
+
+Once the Transform is estimated, it will calculate the minimum and maximum points in 3D space. Therefore it will obtain the minima and maxima values in all axis (\textit{X, Y, Z}).
+Using these values it will estimate the scale in all axis (\textit{X,Y,Z}) using the equation  \ref{equ:scale}.
+
+The user will have the option to configure the scaling process based on a specified axis. The reason behind this is that not all point cloud will have the same structural morphology.
+Which can lead to errors in the scaling process.
+
+Once the scale has been defined, the target point cloud scale will be adjusted accordingly to match the scale of the reference point cloud.
+Then an iterative process will run in the entire point cloud, adjusting the size of all points to match the estimated scale. 
+This process will use the point that belongs to the point cloud and multiple for the scale. This will be performed for all points inside the target point cloud.
+
+This process is defined as :
+\begin{equation}
+  P_{xyz} ^i \epsilon PC = P_{xyz} ^i * S
+  \label{equ:scale_process_eque}
+\end{equation}
+
+Where $P_{xyz} ^i$ is the point inside the point cloud ($PC$), and this point will be multiplied by the determined scaled ($S$)
+
+The resuls  for this process are explain on section \ref{section:scale_res}. Similarly a flow diagram for this process is explain below on figure \ref{fig:scaling_flow}.
+
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+ \includegraphics[width=0.5\textwidth]{scaling_flow.png}
+\caption{Scaling Process Flow Diagram}
+\label{fig:scaling_flow} 
+\end{figure}
+
+Similarly,  there will be the transformation analysis to verify that the scaling process and transform matches the lidar reference point cloud.
+This process will use PCA to obtain the Transform of the reference point cloud.
+The target point cloud will transform its pose to have the same transformation as the reference point cloud. This process will also align the corresponding centroids in order to have the correct centroid orientation and align the two point clouds correctly,
+Once this process finishes the two transforms will be compared using equations \ref{equ:scale_process_eque} \& \ref{equ:translation error}.
+Based on this verification step, it will be possible to determine if the scaling and reference frame matches the reference point cloud.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \chapter{Results}
 After several iterations and different datasets, the results vary due to the differences in the captured data (images). 
 These variations in the datasets cause inconsistencies in the photogrammetric reconstruction process. Therefore, this produced some meshes that had partial holes in certain regions.
@@ -2221,11 +2297,81 @@ Afterwards, it removes the conflicting areas it will perform the Poisson Reconst
 \end{figure}
 
 
+\newpage
+\section{Scaling Results}
+\label{section:scale_res}
 
+The Scaling Process is one of the most critical processes in the entire reconstruction pipeline. 
+This step allows us to estimate the scale and adjust the resulting point cloud.
+As mentioned in section \ref{sectoin:Scale_est}, the scale of the lidar will be  $1$, as it is the actual scale of the scanned person. 
 
+As mentioned before, the scaling process will start after processing and filtering has been performed to both reference and target point cloud.
+This allows having the specific regions of interest of only the scanned person in both target and reference point cloud to have accurate results.
 
+The results obtained in the scaling process are based on the data set to obtain in figure \ref{fig:scan3}.
+These will involve the scaling process and verifying the final transform between the target and reference point cloud. 
 
+Initially,  the two sets of point cloud will look similar to figure \ref{fig:scale1}. 
+As it can be seen, the point cloud in the middle is the target result from the photogrammetric process and pipeline, whereas the right point cloud is the lidar reference point cloud.
+Based on this image, the target point cloud is smaller than the lidar reference point cloud, and it will have a different transform. 
 
+\begin{figure}[H]%this figure will be at the right
+  \centering
+%  \includegraphics[width=1\textwidth]{Step2ForScale01.png}
+  \subfloat[Scale Initial Step Comparison 1]{{\includegraphics[width=0.46\textwidth]{Step2ForScale01.png} \label{fig:scale1a}}}
+  \qquad
+  \subfloat[Scale Initial Step Comparison 2]{{\includegraphics[width=0.46\textwidth]{Step3ForScale02.png} \label{fig:scale1b}}}
+  \qquad
+\caption{Scale Initial Step}. On figure \ref{fig:scale1b}, the reference point cloud is on red, whereas the target point cloud is yellow.
+\label{fig:scale1} 
+\end{figure}
+ 
+After the PCA analysis and Transformation process, the estimated scale was \textbf{0.9171}. 
+This matches figure \ref{fig:scale1} as the target point cloud is \textbf{0.9171} smaller than the reference point cloud.
+
+\newpage
+
+\begin{wrapfigure}[14]{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{scaledexample.png}
+  \end{center}
+  \caption{Scale Results}
+  \label{fig:scale_res1}
+\end{wrapfigure}
+With that scale value, the target point cloud gets adjusted as mentioned in section \ref{sectoin:Scale_est}, in order to match the correct scale of the scanned person. 
+The iteration process starts to adjust the target point cloud, and it will adjust the final scale. 
+
+Once the point cloud has finished the scaling process, the transform adjustment will starts. 
+As mentioned in section \ref{scale_API}, the transform adjustment process will use PCA to obtain the pose of the reference point cloud. Then the target point cloud will be transformed to that reference pose.
+Afterwards, it will adjust the centroid in order to align both point clouds centroids.
+
+Once the transformation and alignment process finished the error can be estimates using equations \ref{equ:scale_process_eque} \& \ref{equ:translation error}.
+The obtained errors where below the configured threshold of $10$ cm.
+\begin{description}
+  \item[Translation Error]: $2.52653$ cm
+  \item[Rotation Error]: $5.27637$ cm 
+\end{description}
+
+These obtained results ensure that the scaling and translation process were successful as the target point cloud has the same scale as the reference Lidar point cloud and the correct final pose.
+
+The results can be illustrated on figures \ref{fig:scale_res1} and \ref{fig:scale_results}.
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+%  \includegraphics[width=1\textwidth]{Step2ForScale01.png}
+  \subfloat[]{{\includegraphics[width=0.46\textwidth]{Step4ForScale03.png}}}
+  \qquad
+  \subfloat[]{{\includegraphics[width=0.46\textwidth]{Step5ForScale04.png} }}
+  \qquad
+  \subfloat[]{{\includegraphics[width=0.46\textwidth]{Step6ForScale05.png} }}
+  \qquad
+  \subfloat[]{{\includegraphics[width=0.46\textwidth]{Step7ForScale06.png} }}
+  \qquad
+\caption{Scaling and transformation Results}.
+\label{fig:scale_results} 
+\end{figure}
+
+In figure \ref{fig:scale_results}, the target scaled point cloud is illustrated with \textit{yellow}, whereas the referece lidar point cloud is on \textit{red}.
 
 
 
@@ -2263,6 +2409,8 @@ Based on the results obtained in this report and future development and improvem
 \appendix
 \chapter{\vspace{-5.5cm}Appendix}
 
+
+
 % \begin{table}[!htb]
 %   \centering
 %   \makebox[\textwidth]
@@ -2273,14 +2421,27 @@ Based on the results obtained in this report and future development and improvem
 % \end{table}
 
 % \newpage
-% \begin{table}
-%   \centering
-%   \makebox[\textwidth]
-%   {\includegraphics[width=1\linewidth]{ComunicationPlan.png}    
-%   }
-%   \caption{Comunication Plan}
-%   \label{appendix:ComunicationPlan}
-%   \end{table}    
+\begin{table}[H]
+  \centering
+  \makebox[\textwidth]
+  {\includegraphics[width=1\linewidth]{coverletter.png}    
+  }
+  \caption{Statement of Originality}
+  \label{appendix:cover}
+  \end{table}
+  
+
+\newpage
+\begin{table}[H]
+  \centering
+  \makebox[\textwidth]
+  {\includegraphics[width=0.92\linewidth]{commsLog.png}    
+  }
+  \caption{Comunication Plan}
+  \label{appendix:ComunicationPlan}
+  \end{table}
+  
+  
 
 \newpage
 \newgeometry{top= 3mm, bottom=3mm,left=3mm,right = 3mm}  
@@ -2289,7 +2450,7 @@ Based on the results obtained in this report and future development and improvem
     \centering
     \makebox[\textwidth]
     {\includegraphics[width=0.425\linewidth]{Captoneflowdiagram.png}   } 
-    \caption{Gantt Chart}
+    \caption{Pipeline Flow Diagram}
     \label{appendix::fig:flowdiagram}
 \end{figure}   
 
@@ -2310,6 +2471,27 @@ Based on the results obtained in this report and future development and improvem
   \includegraphics[width=1\textwidth]{meshing_2.png}
 \caption{Meshing Node Settings}
 \label{fig:meshing2_big}
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{log1.png}
+\caption{Pipeline Terminal Logs}
+\label{fig:log1}
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{log2.png}
+\caption{Pipeline Terminal Logs}
+\label{fig:log2}
+\end{figure}
+
+\begin{figure}[H]%this figure will be at the right
+  \centering
+  \includegraphics[width=1\textwidth]{log3.png}
+\caption{Pipeline Terminal Logs}
+\label{fig:log3}
 \end{figure}
 
 

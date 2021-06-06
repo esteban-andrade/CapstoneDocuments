@@ -372,28 +372,40 @@ The intrinsic include the camera matrix  which includes the focal length ($f_x$,
 The components in the node are described on table \ref{tab:CameraInit}
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
-\begin{table}[h!]
+% \begin{table}[h!]
+%   \centering
+%   \resizebox{\textwidth}{!}{%
+%   \begin{tabular}{|l|l|}
+%   \hline
+%   Viewpoints Input &
+%     \begin{tabular}[c]{@{}l@{}}viewpoints (1 Element for each loaded image) \\ - ID \\ - Pose ID \\ -  Image Path \\ - Intrinsic: Internal Camera Parameters (Intrinsic ID) \\ - Rig  (-1 - 200) \\ - Rig Sub-Pose: Rig Sub-Pose Parameters (-1 - 200)\\  - Image  Metadata: (list of metadata elements)\end{tabular} \\ \hline
+%   Intrinsic Camera Intrinsics &
+%     \begin{tabular}[c]{@{}l@{}}(1 Element for each loaded image) - ID - Initial Focal Length:  Initial Guess on the Focal Length \\ - Focal Length: Known/Calibrated Focal  Length \\ - Camera Type: pinhole’, ‘radial1’, ‘radial3’, ‘brown’,  ‘fisheye4’ \\ - \#Make: Camera Make (not included in this build, commented  out) \\ - \#Model: Camera Model \\ - \#Sensor Width: Camera Sensor Width \\ -  Width: Image - Width (0-10000) \\ - Height: Image Height (0-10000) - Serial  Number: Device Serial Number (camera and lens combined) \\ - Principal  Point: X (0-10000) Y(0-10000)\\ - DistortionParams: Distortion Parameters \\ -  Locked(True/False): If the camera has been calibrated, the internal  camera parameters (intrinsics) can be locked.\\ It should improve  robustness and speedup the reconstruction.\end{tabular} \\ \hline
+%   Sensor Database &
+%     Camera sensor width database path \\ \hline
+%   Default Field Of View &
+%     Empirical value for the field of view in degree 45° (0°-180°) \\ \hline
+%   Verbose Level &
+%     verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+%   Output SfMData File &
+%     …/cameraInit.sfm \\ \hline
+%   \end{tabular}%
+%   }
+%   \caption{Meshroom CameraInit Node }
+%   \label{tab:CameraInit}
+%   \end{table}
+
+\begin{table}[H]
   \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{|l|l|}
-  \hline
-  Viewpoints Input &
-    \begin{tabular}[c]{@{}l@{}}viewpoints (1 Element for each loaded image) \\ - ID \\ - Pose ID \\ -  Image Path \\ - Intrinsic: Internal Camera Parameters (Intrinsic ID) \\ - Rig  (-1 - 200) \\ - Rig Sub-Pose: Rig Sub-Pose Parameters (-1 - 200)\\  - Image  Metadata: (list of metadata elements)\end{tabular} \\ \hline
-  Intrinsic Camera Intrinsics &
-    \begin{tabular}[c]{@{}l@{}}(1 Element for each loaded image) - ID - Initial Focal Length:  Initial Guess on the Focal Length \\ - Focal Length: Known/Calibrated Focal  Length \\ - Camera Type: pinhole’, ‘radial1’, ‘radial3’, ‘brown’,  ‘fisheye4’ \\ - \#Make: Camera Make (not included in this build, commented  out) \\ - \#Model: Camera Model \\ - \#Sensor Width: Camera Sensor Width \\ -  Width: Image - Width (0-10000) \\ - Height: Image Height (0-10000) - Serial  Number: Device Serial Number (camera and lens combined) \\ - Principal  Point: X (0-10000) Y(0-10000)\\ - DistortionParams: Distortion Parameters \\ -  Locked(True/False): If the camera has been calibrated, the internal  camera parameters (intrinsics) can be locked.\\ It should improve  robustness and speedup the reconstruction.\end{tabular} \\ \hline
-  Sensor Database &
-    Camera sensor width database path \\ \hline
-  Default Field Of View &
-    Empirical value for the field of view in degree 45° (0°-180°) \\ \hline
-  Verbose Level &
-    verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
-  Output SfMData File &
-    …/cameraInit.sfm \\ \hline
-  \end{tabular}%
+  \makebox[\textwidth]
+  {\includegraphics[width=1\linewidth]{camerainit_table.png}    
   }
   \caption{Meshroom CameraInit Node }
   \label{tab:CameraInit}
   \end{table}
+  
+
+
 
 \newpage
   \subsection{Feature Extraction}
@@ -420,29 +432,37 @@ The components in the node are described on table \ref{tab:CameraInit}
   
   The components in the node are described on table \ref{tab:FeatureExtraction}
   
+  % \begin{table}[H]
+  %   \centering
+  %   \resizebox{\textwidth}{!}{%
+  %   \begin{tabular}{|l|l|}
+  %   \hline
+  %   \multicolumn{1}{|c|}{Name} & Description                                                          \\ \hline
+  %   Input                      & SfMData file.                                                        \\ \hline
+  %   Describer Types &
+  %   \begin{tabular}[c]{@{}l@{}} Describer types used to describe an image. ‘sift’, ‘sift*float’, ‘sift*upright’,\\ ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, ‘sift*ocv’, ‘akaze*ocv’ \end{tabular} \\ \hline
+  %   Describer Preset &
+  %   \begin{tabular}[c]{@{}l@{}} Control the ImageDescriber configuration (low, medium, normal, high, ultra).\\ Configuration “ultra” can take a long time! \end{tabular}\\ \hline
+  %   Force CPU Extraction       & Use only CPU feature extraction.                                     \\ \hline
+  %   Max Nb Threads &
+  %     Specifies the maximum number of threads to run simultaneously (0 for automatic mode). (0-24) 0 \\ \hline
+  %   Verbose Level              & verbosity level (fatal, error, warning, info, debug, trace).         \\ \hline
+  %   Output Folder              & Output path for the features and descriptors files (*.feat, *.desc). \\ \hline
+  %   \end{tabular}%
+  %   }
+  %   \caption{Meshroom FeatureExtraction Node Settings}
+  %   \label{tab:FeatureExtraction}
+  %   \end{table}
+  
   \begin{table}[H]
     \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l|l|}
-    \hline
-    \multicolumn{1}{|c|}{Name} & Description                                                          \\ \hline
-    Input                      & SfMData file.                                                        \\ \hline
-    Describer Types &
-    \begin{tabular}[c]{@{}l@{}} Describer types used to describe an image. ‘sift’, ‘sift*float’, ‘sift*upright’,\\ ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, ‘sift*ocv’, ‘akaze*ocv’ \end{tabular} \\ \hline
-    Describer Preset &
-    \begin{tabular}[c]{@{}l@{}} Control the ImageDescriber configuration (low, medium, normal, high, ultra).\\ Configuration “ultra” can take a long time! \end{tabular}\\ \hline
-    Force CPU Extraction       & Use only CPU feature extraction.                                     \\ \hline
-    Max Nb Threads &
-      Specifies the maximum number of threads to run simultaneously (0 for automatic mode). (0-24) 0 \\ \hline
-    Verbose Level              & verbosity level (fatal, error, warning, info, debug, trace).         \\ \hline
-    Output Folder              & Output path for the features and descriptors files (*.feat, *.desc). \\ \hline
-    \end{tabular}%
+    \makebox[\textwidth]
+    {\includegraphics[width=1\linewidth]{featureExtractionTable.png}    
     }
     \caption{Meshroom FeatureExtraction Node Settings}
     \label{tab:FeatureExtraction}
     \end{table}
   
-
   
     \subsection{Image Matching}
     The principle behind this node is to find images that point to the same areas of interest. Therefore, image retrieval techniques are implemented to find images 
@@ -453,31 +473,39 @@ The components in the node are described on table \ref{tab:CameraInit}
     
     The components in the node are described on table \ref{tab:ImageMatching}
     
+    % \begin{table}[H]
+    %   \centering
+    %   \resizebox{\textwidth}{!}{%
+    %   \begin{tabular}{|l|l|}
+    %   \hline
+    %   \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
+    %   Image                               & SfMData file                                                            \\ \hline
+    %   Features Folders                    & Folder(s) containing the extracted features and descriptors             \\ \hline
+    %   Tree                                & Input name for the vocabulary tree file ALICEVISION\_VOCTREE            \\ \hline
+    %   Weights &
+    %     Input name for the weight file, if not provided, the weights will be computed on the database built with the provided set \\ \hline
+    %   Minimal Number of Images &
+    %     \begin{tabular}[c]{@{}l@{}}Minimal number of images to use the vocabulary tree. \\ If we have  fewer features than this threshold, we will compute all matching  combinations\end{tabular} \\ \hline
+    %   Max Descriptors                     & Limit the number of descriptors you load per image. Zero means no limit \\ \hline
+    %   Nb Matches &
+    %     The number of matches to retrieve for each image (If 0, it will retrieve all the matches) 50 (0-1000) \\ \hline
+    %   Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
+    %   Output List File                    & Filepath to the output file with the list of selected image pairs       \\ \hline
+    %   \end{tabular}%
+    %   }
+    %   \caption{Meshroom Image Matching Node}
+    %   \label{tab:ImageMatching}
+    %   \end{table}
+    
     \begin{table}[H]
       \centering
-      \resizebox{\textwidth}{!}{%
-      \begin{tabular}{|l|l|}
-      \hline
-      \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
-      Image                               & SfMData file                                                            \\ \hline
-      Features Folders                    & Folder(s) containing the extracted features and descriptors             \\ \hline
-      Tree                                & Input name for the vocabulary tree file ALICEVISION\_VOCTREE            \\ \hline
-      Weights &
-        Input name for the weight file, if not provided, the weights will be computed on the database built with the provided set \\ \hline
-      Minimal Number of Images &
-        \begin{tabular}[c]{@{}l@{}}Minimal number of images to use the vocabulary tree. \\ If we have  fewer features than this threshold, we will compute all matching  combinations\end{tabular} \\ \hline
-      Max Descriptors                     & Limit the number of descriptors you load per image. Zero means no limit \\ \hline
-      Nb Matches &
-        The number of matches to retrieve for each image (If 0, it will retrieve all the matches) 50 (0-1000) \\ \hline
-      Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
-      Output List File                    & Filepath to the output file with the list of selected image pairs       \\ \hline
-      \end{tabular}%
+      \makebox[\textwidth]
+      {\includegraphics[width=1\linewidth]{ImageMatchingTable.png}    
       }
-      \caption{Meshroom Image Matching Node}
+      \caption{Meshroom FeatureExtraction Node Settings}
       \label{tab:ImageMatching}
       \end{table}
     
-
 
 
       \subsection{Feature Matching}
@@ -495,46 +523,55 @@ The components in the node are described on table \ref{tab:CameraInit}
       
       The components in the node are described on table \ref{tab:FeatureMatching}
       
+      % \begin{table}[H]
+      %   \centering
+      %   \resizebox{\textwidth}{!}{%
+      %   \begin{tabular}{|l|l|}
+      %   \hline
+      %   \multicolumn{1}{|c|}{\textbf{Name}} &
+      %     \multicolumn{1}{c|}{\textbf{Description}} \\ \hline
+      %   Input &
+      %     SfMData file \\ \hline
+      %   Features Folder &
+      %      \\ \hline
+      %   Features Folders &
+      %     Folder(s) containing the extracted features and descriptors \\ \hline
+      %   Image Pairs List &
+      %     Path to a file which contains the list of image pairs to match \\ \hline
+      %   Describer Types &
+      %   \begin{tabular}[c]{@{}l@{}} Describer types used to describe an image\\ **sift**'/ 'sift\_float'/ 'sift\_upright'/ 'akaze'/ \\ 'akaze\_liop'/ 'akaze\_mldb'/ 'cctag3'/ 'cctag4'/ 'sift\_ocv'/ 'akaze\_ocv \end{tabular} \\ \hline
+      %   Photometric Matching Method &
+      %     \begin{tabular}[c]{@{}l@{}}For Scalar based regions descriptor \\ * BRUTE\_FORCE\_L2: L2  BruteForce matching\\ * ANN\_L2: L2 Approximate Nearest Neighbor  matching \\ * CASCADE\_HASHING\_L2: L2 Cascade Hashing matching\\ *  FAST\_CASCADE\_HASHING\_L2: L2 Cascade Hashing with precomputed hashed  regions \\ For Binary  based descriptor  \\ * BRUTE\_FORCE\_HAMMING: BruteForce Hamming matching\end{tabular} \\ \hline
+      %   Geometric Estimator &
+      %   \begin{tabular}[c]{@{}l@{}} Geometric estimator: \\(acransac:  A-Contrario Ransac //  loransac: LO-Ransac (only available for fundamental\_matrix model) \end{tabular}\\ \hline
+      %   Geometric Filter Type &
+      %   \begin{tabular}[c]{@{}l@{}} Geometric validation method to filter features matches: \\**fundamental\_matrix** // essential\_matrix // homography\_matrix /// homography\_growing // no\_filtering' \end{tabular} \\ \hline
+      %   Distance Ratio &
+      %     Distance ratio to discard non-meaningful matches 0.8 (0.0 - 1) \\ \hline
+      %   Max Iteration &
+      %     Maximum number of iterations allowed in RANSAC step 2048 (1 - 20000) \\ \hline
+      %   Max Matches &
+      %     Maximum number of matches to keep (0 - 10000) \\ \hline
+      %   Save Putative Matches &
+      %     putative matches (True/False) \\ \hline
+      %   Guided Matching &
+      %     the found model to improve the pairwise correspondences (True/False) \\ \hline
+      %   Export Debug Files &
+      %     debug files (svg/ dot) (True/False) \\ \hline
+      %   Verbose Level &
+      %     verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+      %   Output Folder &
+      %     Path to a folder in which computed matches will be stored \\ \hline
+      %   \end{tabular}%
+      %   }
+      %   \caption{Meshroom Feature Matching Node}
+      %   \label{tab:FeatureMatching}
+      %   \end{table}
+      
       \begin{table}[H]
         \centering
-        \resizebox{\textwidth}{!}{%
-        \begin{tabular}{|l|l|}
-        \hline
-        \multicolumn{1}{|c|}{\textbf{Name}} &
-          \multicolumn{1}{c|}{\textbf{Description}} \\ \hline
-        Input &
-          SfMData file \\ \hline
-        Features Folder &
-           \\ \hline
-        Features Folders &
-          Folder(s) containing the extracted features and descriptors \\ \hline
-        Image Pairs List &
-          Path to a file which contains the list of image pairs to match \\ \hline
-        Describer Types &
-        \begin{tabular}[c]{@{}l@{}} Describer types used to describe an image\\ **sift**'/ 'sift\_float'/ 'sift\_upright'/ 'akaze'/ \\ 'akaze\_liop'/ 'akaze\_mldb'/ 'cctag3'/ 'cctag4'/ 'sift\_ocv'/ 'akaze\_ocv \end{tabular} \\ \hline
-        Photometric Matching Method &
-          \begin{tabular}[c]{@{}l@{}}For Scalar based regions descriptor \\ * BRUTE\_FORCE\_L2: L2  BruteForce matching\\ * ANN\_L2: L2 Approximate Nearest Neighbor  matching \\ * CASCADE\_HASHING\_L2: L2 Cascade Hashing matching\\ *  FAST\_CASCADE\_HASHING\_L2: L2 Cascade Hashing with precomputed hashed  regions \\ For Binary  based descriptor  \\ * BRUTE\_FORCE\_HAMMING: BruteForce Hamming matching\end{tabular} \\ \hline
-        Geometric Estimator &
-        \begin{tabular}[c]{@{}l@{}} Geometric estimator: \\(acransac:  A-Contrario Ransac //  loransac: LO-Ransac (only available for fundamental\_matrix model) \end{tabular}\\ \hline
-        Geometric Filter Type &
-        \begin{tabular}[c]{@{}l@{}} Geometric validation method to filter features matches: \\**fundamental\_matrix** // essential\_matrix // homography\_matrix /// homography\_growing // no\_filtering' \end{tabular} \\ \hline
-        Distance Ratio &
-          Distance ratio to discard non-meaningful matches 0.8 (0.0 - 1) \\ \hline
-        Max Iteration &
-          Maximum number of iterations allowed in RANSAC step 2048 (1 - 20000) \\ \hline
-        Max Matches &
-          Maximum number of matches to keep (0 - 10000) \\ \hline
-        Save Putative Matches &
-          putative matches (True/False) \\ \hline
-        Guided Matching &
-          the found model to improve the pairwise correspondences (True/False) \\ \hline
-        Export Debug Files &
-          debug files (svg/ dot) (True/False) \\ \hline
-        Verbose Level &
-          verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
-        Output Folder &
-          Path to a folder in which computed matches will be stored \\ \hline
-        \end{tabular}%
+        \makebox[\textwidth]
+        {\includegraphics[width=1\linewidth]{featurematchingtable.png}    
         }
         \caption{Meshroom Feature Matching Node}
         \label{tab:FeatureMatching}
@@ -567,58 +604,66 @@ intrinsic and extrinsic parameters of all cameras, as well as the position of al
 
 The components in the node are described on table \ref{tab:StructureFromMotion}
 
+% \begin{table}[H]
+%   \centering
+%   \resizebox{\textwidth}{!}{%
+%   \begin{tabular}{|l|l|}
+%   \hline
+%   \textbf{Input}                      & \textbf{SfMData file}                                                                              \\ \hline
+%   Features Folder                     & Folder(s) containing the extracted features and descriptors.                                       \\ \hline
+%   Matches Folders                     & Folder(s) in which computed matches are stored.                                                    \\ \hline
+%   Describer Types &
+%   \begin{tabular}[c]{@{}l@{}} Describer types used to describe an image.\\ ‘sift’, ‘sift*float’, ‘sift*upright’, ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, **’siftocv’, ‘akazeocv’ \end{tabular} \\ \hline
+%   Localizer Estimator                 & Estimator type used to localize cameras (acransac, ransac, lsmeds, loransac, maxconsensus).        \\ \hline
+%   Observation Constraint &
+%     \begin{tabular}[c]{@{}l@{}}Observation constraint mode used in the optimization: \\ Basic:  Use standard reprojection error in pixel coordinates, \\ Scale: Use  reprojection error in pixel coordinates but relative to the feature  scale\end{tabular} \\ \hline
+%   Localizer Max Ransac Iterations     & Maximum number of iterations allowed in ransac step. (1-20000) 4096                                \\ \hline
+%   Localizer Max Ransac Error &
+%       \begin{tabular}[c]{@{}l@{}}Maximum error (in pixels) allowed for camera localization  (resectioning).\\ If set to 0, it will select a threshold according to the  localizer estimator used \\(if ACRansac, it will analyze the input data  to select the optimal value). (0.0-100-0) 0.0\end{tabular} \\ \hline
+%   Lock Scene Previously Reconstructed & This option is useful for SfM augmentation. Lock previously reconstructed poses and intrinsics.    \\ \hline
+%   Local Bundle Adjustment &
+%   \begin{tabular}[c]{@{}l@{}}  It reduces the reconstruction time, especially for large datasets  (500+ images)\\ by avoiding computation of the Bundle Adjustment on areas  that are not changing. \end{tabular}\\ \hline
+%   LocalBA Graph Distance              & Graph-distance limit to define the Active region in the Local Bundle Adjustment strategy. (2-10) 1 \\ \hline
+%   Maximum Number of Matches &
+%     \begin{tabular}[c]{@{}l@{}}Maximum number of matches per image pair (and per feature type).\\  This can be useful to have a quick reconstruction overview. 0 means no  limit. (0-50000) 1\end{tabular} \\ \hline
+%   Minimum Number of Matches &
+%     \begin{tabular}[c]{@{}l@{}}Minimum number of matches per image pair (and per feature type). \\ This can be useful to have a meaningful reconstruction with accurate  keypoints. 0 means no limit. (0-50000) 1\end{tabular} \\ \hline
+%   Min Input Track Length              & Minimum track length in input of SfM (2-10)                                                        \\ \hline
+%   Min Observation For Triangulation &
+%     \begin{tabular}[c]{@{}l@{}}Minimum number of observations to triangulate a point. \\ Set it to 3  (or more) reduces drastically the noise in the point cloud,\\ but the  number of final poses is a little bit reduced (from 1.5\% to 11\% on the  tested datasets). (2-10)\end{tabular} \\ \hline
+%   Min Angle For Triangulation         & Minimum angle for triangulation. (0.1-10) 3.0                                                      \\ \hline
+%   Min Angle For Landmark              & Minimum angle for landmark. (0.1-10) 2.0                                                           \\ \hline
+%   Max Reprojection Error              & Maximum reprojection error. (0.1-10) 4.0                                                           \\ \hline
+%   Min Angle Initial Pair              & Minimum angle for the initial pair. (0.1-10) 5.0                                                   \\ \hline
+%   Max Angle Initial Pair              & Maximum angle for the initial pair. (0.1-60) 40.0                                                  \\ \hline
+%   Use Only Matches From Input Folder &
+%   \begin{tabular}[c]{@{}l@{}}  Use only matches from the input matchesFolder parameter.\\ Matches folders previously added to the SfMData file will be ignored. \end{tabular}  \\ \hline
+%   Use Rig Constraint                  & Enable/Disable rig constraint.                                                                     \\ \hline
+%   Force Lock of All Intrinsic Camera Parameters. &
+%     \begin{tabular}[c]{@{}l@{}}Force to keep constant all the intrinsics parameters of the  cameras during the  reconstruction. \\ This may be helpful if the input cameras are already  fully calibrated.\end{tabular} \\ \hline
+%   Filter Track Forks &
+%     \begin{tabular}[c]{@{}l@{}}Enable/Disable the track forks removal. \\ A track contains a fork  when incoherent matches lead to multiple features in the same image for a  single track.\end{tabular} \\ \hline
+%   Initial Pair A                      & Filename of the first image (without path).                                                        \\ \hline
+%   Initial Pair B                      & Filename of the second image (without path).                                                       \\ \hline
+%   Inter File Extension                & Extension of the intermediate file export. (‘.abc’, ‘.ply’)                                        \\ \hline
+%   Verbose Level                       & Verbosity level (fatal, error, warning, info, debug, trace).                                       \\ \hline
+%   Output SfMData File                 & Path to the output sfmdata file (sfm.abc)                                                          \\ \hline
+%   Output SfMData File                 & Path to the output sfmdata file with cameras (views and poses). (cameras.sfm)                      \\ \hline
+%   Output Folder                       & Folder for intermediate reconstruction files and additional reconstruction information files.      \\ \hline
+%   \end{tabular}%
+%   }
+%   \caption{Meshroom StructureFromMotion Node}
+%   \label{tab:StructureFromMotion}
+%   \end{table}
+
 \begin{table}[H]
   \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{|l|l|}
-  \hline
-  \textbf{Input}                      & \textbf{SfMData file}                                                                              \\ \hline
-  Features Folder                     & Folder(s) containing the extracted features and descriptors.                                       \\ \hline
-  Matches Folders                     & Folder(s) in which computed matches are stored.                                                    \\ \hline
-  Describer Types &
-  \begin{tabular}[c]{@{}l@{}} Describer types used to describe an image.\\ ‘sift’, ‘sift*float’, ‘sift*upright’, ‘akaze’, ‘akaze*liop’, ‘akaze*mldb’, ‘cctag3’, ‘cctag4’, **’siftocv’, ‘akazeocv’ \end{tabular} \\ \hline
-  Localizer Estimator                 & Estimator type used to localize cameras (acransac, ransac, lsmeds, loransac, maxconsensus).        \\ \hline
-  Observation Constraint &
-    \begin{tabular}[c]{@{}l@{}}Observation constraint mode used in the optimization: \\ Basic:  Use standard reprojection error in pixel coordinates, \\ Scale: Use  reprojection error in pixel coordinates but relative to the feature  scale\end{tabular} \\ \hline
-  Localizer Max Ransac Iterations     & Maximum number of iterations allowed in ransac step. (1-20000) 4096                                \\ \hline
-  Localizer Max Ransac Error &
-      \begin{tabular}[c]{@{}l@{}}Maximum error (in pixels) allowed for camera localization  (resectioning).\\ If set to 0, it will select a threshold according to the  localizer estimator used \\(if ACRansac, it will analyze the input data  to select the optimal value). (0.0-100-0) 0.0\end{tabular} \\ \hline
-  Lock Scene Previously Reconstructed & This option is useful for SfM augmentation. Lock previously reconstructed poses and intrinsics.    \\ \hline
-  Local Bundle Adjustment &
-  \begin{tabular}[c]{@{}l@{}}  It reduces the reconstruction time, especially for large datasets  (500+ images)\\ by avoiding computation of the Bundle Adjustment on areas  that are not changing. \end{tabular}\\ \hline
-  LocalBA Graph Distance              & Graph-distance limit to define the Active region in the Local Bundle Adjustment strategy. (2-10) 1 \\ \hline
-  Maximum Number of Matches &
-    \begin{tabular}[c]{@{}l@{}}Maximum number of matches per image pair (and per feature type).\\  This can be useful to have a quick reconstruction overview. 0 means no  limit. (0-50000) 1\end{tabular} \\ \hline
-  Minimum Number of Matches &
-    \begin{tabular}[c]{@{}l@{}}Minimum number of matches per image pair (and per feature type). \\ This can be useful to have a meaningful reconstruction with accurate  keypoints. 0 means no limit. (0-50000) 1\end{tabular} \\ \hline
-  Min Input Track Length              & Minimum track length in input of SfM (2-10)                                                        \\ \hline
-  Min Observation For Triangulation &
-    \begin{tabular}[c]{@{}l@{}}Minimum number of observations to triangulate a point. \\ Set it to 3  (or more) reduces drastically the noise in the point cloud,\\ but the  number of final poses is a little bit reduced (from 1.5\% to 11\% on the  tested datasets). (2-10)\end{tabular} \\ \hline
-  Min Angle For Triangulation         & Minimum angle for triangulation. (0.1-10) 3.0                                                      \\ \hline
-  Min Angle For Landmark              & Minimum angle for landmark. (0.1-10) 2.0                                                           \\ \hline
-  Max Reprojection Error              & Maximum reprojection error. (0.1-10) 4.0                                                           \\ \hline
-  Min Angle Initial Pair              & Minimum angle for the initial pair. (0.1-10) 5.0                                                   \\ \hline
-  Max Angle Initial Pair              & Maximum angle for the initial pair. (0.1-60) 40.0                                                  \\ \hline
-  Use Only Matches From Input Folder &
-  \begin{tabular}[c]{@{}l@{}}  Use only matches from the input matchesFolder parameter.\\ Matches folders previously added to the SfMData file will be ignored. \end{tabular}  \\ \hline
-  Use Rig Constraint                  & Enable/Disable rig constraint.                                                                     \\ \hline
-  Force Lock of All Intrinsic Camera Parameters. &
-    \begin{tabular}[c]{@{}l@{}}Force to keep constant all the intrinsics parameters of the  cameras during the  reconstruction. \\ This may be helpful if the input cameras are already  fully calibrated.\end{tabular} \\ \hline
-  Filter Track Forks &
-    \begin{tabular}[c]{@{}l@{}}Enable/Disable the track forks removal. \\ A track contains a fork  when incoherent matches lead to multiple features in the same image for a  single track.\end{tabular} \\ \hline
-  Initial Pair A                      & Filename of the first image (without path).                                                        \\ \hline
-  Initial Pair B                      & Filename of the second image (without path).                                                       \\ \hline
-  Inter File Extension                & Extension of the intermediate file export. (‘.abc’, ‘.ply’)                                        \\ \hline
-  Verbose Level                       & Verbosity level (fatal, error, warning, info, debug, trace).                                       \\ \hline
-  Output SfMData File                 & Path to the output sfmdata file (sfm.abc)                                                          \\ \hline
-  Output SfMData File                 & Path to the output sfmdata file with cameras (views and poses). (cameras.sfm)                      \\ \hline
-  Output Folder                       & Folder for intermediate reconstruction files and additional reconstruction information files.      \\ \hline
-  \end{tabular}%
+  \makebox[\textwidth]
+  {\includegraphics[width=1\linewidth]{SFM_table.png}    
   }
   \caption{Meshroom StructureFromMotion Node}
   \label{tab:StructureFromMotion}
   \end{table}
-
 
 
 
@@ -629,22 +674,30 @@ This node undistorts the images and generates EXR images.\
 
 The components in the node are described on table \ref{tab:PrepareDenseScene}
 
+% \begin{table}[H]
+%   \centering
+%   \resizebox{\textwidth}{!}{%
+%   \begin{tabular}{|l|l|}
+%   \hline
+%   \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                         \\ \hline
+%   Input                               & SfMData file                                                      \\ \hline
+%   ImagesFolders & Use images from specific folder(s). Filename should be the same or the image uid.      \\ \hline
+%   Output File Type                    & Output file type for the undistorted images. (jpg, png, tif, exr) \\ \hline
+%   Save Metadata & Save projections and intrinsics information in images metadata (only for .exr images). \\ \hline
+%   Save Matrices Text Files            & Save projections and intrinsics information in text files.        \\ \hline
+%   Correct images exposure             & Apply a correction on images Exposure Value                       \\ \hline
+%   Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}       \\ \hline
+%   Output                              & MVS Configuration file (desc.Node.internalFolder + ‘mvs.ini)      \\ \hline
+%   Undistorted images                  & List of undistorted images.                                       \\ \hline
+%   \end{tabular}%
+%   }
+%   \caption{Meshroom Prepare Dense Scene Node}
+%   \label{tab:PrepareDenseScene}
+%   \end{table}
 \begin{table}[H]
   \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{|l|l|}
-  \hline
-  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                         \\ \hline
-  Input                               & SfMData file                                                      \\ \hline
-  ImagesFolders & Use images from specific folder(s). Filename should be the same or the image uid.      \\ \hline
-  Output File Type                    & Output file type for the undistorted images. (jpg, png, tif, exr) \\ \hline
-  Save Metadata & Save projections and intrinsics information in images metadata (only for .exr images). \\ \hline
-  Save Matrices Text Files            & Save projections and intrinsics information in text files.        \\ \hline
-  Correct images exposure             & Apply a correction on images Exposure Value                       \\ \hline
-  Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}       \\ \hline
-  Output                              & MVS Configuration file (desc.Node.internalFolder + ‘mvs.ini)      \\ \hline
-  Undistorted images                  & List of undistorted images.                                       \\ \hline
-  \end{tabular}%
+  \makebox[\textwidth]
+  {\includegraphics[width=1\linewidth]{PrepareDenseSceneTable.png}    
   }
   \caption{Meshroom Prepare Dense Scene Node}
   \label{tab:PrepareDenseScene}
@@ -665,38 +718,45 @@ The components in the node are described on table \ref{tab:PrepareDenseScene}
   
   The components in the node are described in table \ref{tab:DepthMap}
   
+  % \begin{table}[H]
+  %   \centering
+  %   \resizebox{\textwidth}{!}{%
+  %   \begin{tabular}{|l|l|}
+  %   \hline
+  %   \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
+  %   MVS Configuration File:             & SfMData file.                                                           \\ \hline
+  %   Images Folder                  &     \begin{tabular}[c]{@{}l@{}}Use images from a specific folder instead of those specify in the SfMData file.\\ Filename should be the image uid.\end{tabular}  \\ \hline
+  %   Downscale                           & Image downscale factor (1, 2, 4, 8, 16)                                 \\ \hline
+  %   Min View Angle                      & Minimum angle between two views.(0.0 - 10.0)                            \\ \hline
+  %   Max View Angle                      & Maximum angle between two views. (10.0 - 120.0)                         \\ \hline
+  %   SGM: Nb Neighbour Cameras           & Semi Global Matching: Number of neighbour cameras (1 - 100)             \\ \hline
+  %   SGM: WSH: Semi Global Matching & Half-size of the patch used to compute the similarity (1 - 20)                                                    \\ \hline
+  %   SGM: GammaC                         & Semi Global Matching: GammaC Threshold (0 - 30)                         \\ \hline
+  %   SGM: GammaP                         & Semi Global Matching: GammaP Threshold (0 - 30)                         \\ \hline
+  %   Refine: Number of samples           & (1 - 500)                                                               \\ \hline
+  %   Refine: Number of Depths            & (1 - 100)                                                               \\ \hline
+  %   Refine: Number of Iterations        & (1 - 500)                                                               \\ \hline
+  %   Refine: Nb Neighbour Cameras        & Refine: Number of neighbour cameras. (1 - 20)                           \\ \hline
+  %   Refine: WSH                         & Refine: Half-size of the patch used to compute the similarity. (1 - 20) \\ \hline
+  %   Refine: Sigma                       & Refine: Sigma Threshold (0 - 30)                                        \\ \hline
+  %   Refine: GammaC                      & Refine: GammaC Threshold. (0 - 30)                                      \\ \hline
+  %   Refine: GammaP                      & Refine: GammaP threshold. (0 - 30)                                      \\ \hline
+  %   Refine: Tc or Rc pixel size    & Use minimum pixel size of neighbour cameras (Tc) or current camera pixel size (Rc)                                \\ \hline
+  %   Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
+  %   Output                              & Output folder for generated depth maps                                  \\ \hline
+  %   \end{tabular}%
+  %   }
+  %   \caption{Meshroom Depth MapNode}
+  %   \label{tab:DepthMap}
+  %   \end{table}
   \begin{table}[H]
     \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l|l|}
-    \hline
-    \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                               \\ \hline
-    MVS Configuration File:             & SfMData file.                                                           \\ \hline
-    Images Folder                  &     \begin{tabular}[c]{@{}l@{}}Use images from a specific folder instead of those specify in the SfMData file.\\ Filename should be the image uid.\end{tabular}  \\ \hline
-    Downscale                           & Image downscale factor (1, 2, 4, 8, 16)                                 \\ \hline
-    Min View Angle                      & Minimum angle between two views.(0.0 - 10.0)                            \\ \hline
-    Max View Angle                      & Maximum angle between two views. (10.0 - 120.0)                         \\ \hline
-    SGM: Nb Neighbour Cameras           & Semi Global Matching: Number of neighbour cameras (1 - 100)             \\ \hline
-    SGM: WSH: Semi Global Matching & Half-size of the patch used to compute the similarity (1 - 20)                                                    \\ \hline
-    SGM: GammaC                         & Semi Global Matching: GammaC Threshold (0 - 30)                         \\ \hline
-    SGM: GammaP                         & Semi Global Matching: GammaP Threshold (0 - 30)                         \\ \hline
-    Refine: Number of samples           & (1 - 500)                                                               \\ \hline
-    Refine: Number of Depths            & (1 - 100)                                                               \\ \hline
-    Refine: Number of Iterations        & (1 - 500)                                                               \\ \hline
-    Refine: Nb Neighbour Cameras        & Refine: Number of neighbour cameras. (1 - 20)                           \\ \hline
-    Refine: WSH                         & Refine: Half-size of the patch used to compute the similarity. (1 - 20) \\ \hline
-    Refine: Sigma                       & Refine: Sigma Threshold (0 - 30)                                        \\ \hline
-    Refine: GammaC                      & Refine: GammaC Threshold. (0 - 30)                                      \\ \hline
-    Refine: GammaP                      & Refine: GammaP threshold. (0 - 30)                                      \\ \hline
-    Refine: Tc or Rc pixel size    & Use minimum pixel size of neighbour cameras (Tc) or current camera pixel size (Rc)                                \\ \hline
-    Verbose Level                       & verbosity level (fatal, error, warning, info, debug, trace)             \\ \hline
-    Output                              & Output folder for generated depth maps                                  \\ \hline
-    \end{tabular}%
+    \makebox[\textwidth]
+    {\includegraphics[width=1\linewidth]{DepthMapTable.png}    
     }
     \caption{Meshroom Depth MapNode}
     \label{tab:DepthMap}
-    \end{table}
-  
+    \end{table}  
   
 % https://meshroom-manual.readthedocs.io/en/latest/feature-documentation/core/pipelines/photogrammetry.html
 
@@ -707,27 +767,37 @@ Specific depth maps will be interpreted to see areas that are occluded by other 
 
 The components in the node are described in table \ref{tab:DepthMapFilter}
 
-\begin{table}[H]
-  \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{|l|l|}
-  \hline
-  \multicolumn{1}{|c|}{\textbf{Name}}     & \multicolumn{1}{c|}{\textbf{Description}}                   \\ \hline
-  Input                                   & SfMData file                                                \\ \hline
-  Depth Map Folder                        & Input depth map folder                                      \\ \hline
-  Number of Nearest Cameras               & Number of nearest cameras used for filtering 10 (0 - 20)    \\ \hline
-  Min Consistent Cameras                  & Min Number of Consistent Cameras 3 (0 - 10)                 \\ \hline
-  Min Consistent Cameras Bad Similarity & Min Number of Consistent Cameras for pixels with weak similarity value 4 (0 - 10) \\ \hline
-  Filtering Size in Pixels                & Filtering size in Pixels (0 - 10)                           \\ \hline
-  Filtering Size in Pixels Bad Similarity & Filtering size in pixels (0 - 10)                           \\ \hline
-  Verbose Level                           & verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
-  Output                                  & Output folder for generated depth maps                      \\ \hline
-  \end{tabular}%
-  }
-  \caption{Meshroom Depth Map Filter Node}
-  \label{tab:DepthMapFilter}
-  \end{table}
+% \begin{table}[H]
+%   \centering
+%   \resizebox{\textwidth}{!}{%
+%   \begin{tabular}{|l|l|}
+%   \hline
+%   \multicolumn{1}{|c|}{\textbf{Name}}     & \multicolumn{1}{c|}{\textbf{Description}}                   \\ \hline
+%   Input                                   & SfMData file                                                \\ \hline
+%   Depth Map Folder                        & Input depth map folder                                      \\ \hline
+%   Number of Nearest Cameras               & Number of nearest cameras used for filtering 10 (0 - 20)    \\ \hline
+%   Min Consistent Cameras                  & Min Number of Consistent Cameras 3 (0 - 10)                 \\ \hline
+%   Min Consistent Cameras Bad Similarity & Min Number of Consistent Cameras for pixels with weak similarity value 4 (0 - 10) \\ \hline
+%   Filtering Size in Pixels                & Filtering size in Pixels (0 - 10)                           \\ \hline
+%   Filtering Size in Pixels Bad Similarity & Filtering size in pixels (0 - 10)                           \\ \hline
+%   Verbose Level                           & verbosity level (fatal, error, warning, info, debug, trace) \\ \hline
+%   Output                                  & Output folder for generated depth maps                      \\ \hline
+%   \end{tabular}%
+%   }
+%   \caption{Meshroom Depth Map Filter Node}
+%   \label{tab:DepthMapFilter}
+%   \end{table}
 
+
+  \begin{table}[H]
+    \centering
+    \makebox[\textwidth]
+    {\includegraphics[width=1\linewidth]{DepthMapFilterTable.png}    
+    }
+    \caption{Meshroom Depth Map Filter Node}
+    \label{tab:DepthMapFilter}
+    \end{table}  
+  
 
 
   \subsection{Meshing}
@@ -741,48 +811,58 @@ The components in the node are described in table \ref{tab:DepthMapFilter}
   
   The components in the node are described in table \ref{tab:Meshing}
   
-  \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l|l|}
-    \hline
-    \multicolumn{1}{|c|}{\textbf{Name}}       & \multicolumn{1}{c|}{\textbf{Description}}                                                \\ \hline
-    Input                                     & SfMData file.                                                                            \\ \hline
-    Depth Maps Folder                         & Input depth maps folder                                                                  \\ \hline
-    Filtered Depth Maps Folder                & Input filtered depth maps folder                                                         \\ \hline
-    Estimate Space From SfM                   & Estimate the 3d space from the SfM                                                       \\ \hline
-    Min Observations For SfM Space Estimation & Minimum number of observations for SfM space estimation. (0-100) 3                       \\ \hline
-    Min Observations Angle For SfM Space Estimation &
-      Minimum angle between two observations for SfM space estimation. (0-120) 10 \\ \hline
-    Max Input Points                          & Max input points loaded from depth map images (500**000** - 500000000)                   \\ \hline
-    Max Points                                & Max points at the end of the depth maps fusion (100**000** - 10000000)                   \\ \hline
-    Max Points Per Voxel                      & (500**000** – 30000000)                                                                  \\ \hline
-    Min Step &
-      \begin{tabular}[c]{@{}l@{}}The step used to load depth values from depth maps is computed  from maxInputPts. \\ Here we define the minimal value for this step,\\ so on  small datasets we will not spend too much time at the beginning loading  all depth values \\(1- 20) 2\end{tabular} \\ \hline
-    Partitioning                              & (singleBlock, auto)                                                                      \\ \hline
-    Repartition                               & (multiResolution, regularGrid)                                                           \\ \hline
-    angleFactor                               & (0.0-200.0) 15.0                                                                         \\ \hline
-    simFactor                                 & (0.0-200.0) 1.0                                                                          \\ \hline
-    pixSizeMarginInitCoef                     & (0.0-10.0) 2.0                                                                           \\ \hline
-    pixSizeMarginFinalCoef                    & (0.0-10.0) 4.0                                                                           \\ \hline
-    voteMarginFactor                          & (0.1-10.0) 4.0                                                                           \\ \hline
-    contributeMarginFactor                    & (0.0-10.0) 2.0                                                                           \\ \hline
-    simGaussianSizeInit                       & (0.0-50) 10.0                                                                            \\ \hline
-    simGaussianSize                           & (0.0-50) 0.1                                                                             \\ \hline
-    minAngleThreshold                         & (0.0-10.0) 0.01                                                                          \\ \hline
-    Refine Fuse                               & Refine depth map fusion with the size of the new pixel defined by angle and similarity scores. \\ \hline
-    Add Landmarks To The Dense Point Cloud    & Add SfM Landmarks to the dense point cloud.                                              \\ \hline
-    Colourize Output                           & Whether to colourize output dense point cloud and mesh.                                   \\ \hline
-    Save Raw Dense Point Cloud                & Save dense point cloud before cut and filtering.                                         \\ \hline
-    Verbose Level                             & verbosity level (fatal, error, warning, info, debug, trace).                             \\ \hline
-    Output Mesh                               & Output mesh (OBJ file format). mesh.obj                                                  \\ \hline
-    Output Dense Point Cloud                  & Output dense point cloud with visibilities (SfMData file format). densePointCloud.abc    \\ \hline
-    \end{tabular}%
-    }
-    \caption{Meshroom Meshing Node}
-    \label{tab:Meshing}
-    \end{table}
-  
+  % \begin{table}[H]
+  %   \centering
+  %   \resizebox{\textwidth}{!}{%
+  %   \begin{tabular}{|l|l|}
+  %   \hline
+  %   \multicolumn{1}{|c|}{\textbf{Name}}       & \multicolumn{1}{c|}{\textbf{Description}}                                                \\ \hline
+  %   Input                                     & SfMData file.                                                                            \\ \hline
+  %   Depth Maps Folder                         & Input depth maps folder                                                                  \\ \hline
+  %   Filtered Depth Maps Folder                & Input filtered depth maps folder                                                         \\ \hline
+  %   Estimate Space From SfM                   & Estimate the 3d space from the SfM                                                       \\ \hline
+  %   Min Observations For SfM Space Estimation & Minimum number of observations for SfM space estimation. (0-100) 3                       \\ \hline
+  %   Min Observations Angle For SfM Space Estimation &
+  %     Minimum angle between two observations for SfM space estimation. (0-120) 10 \\ \hline
+  %   Max Input Points                          & Max input points loaded from depth map images (500**000** - 500000000)                   \\ \hline
+  %   Max Points                                & Max points at the end of the depth maps fusion (100**000** - 10000000)                   \\ \hline
+  %   Max Points Per Voxel                      & (500**000** – 30000000)                                                                  \\ \hline
+  %   Min Step &
+  %     \begin{tabular}[c]{@{}l@{}}The step used to load depth values from depth maps is computed  from maxInputPts. \\ Here we define the minimal value for this step,\\ so on  small datasets we will not spend too much time at the beginning loading  all depth values \\(1- 20) 2\end{tabular} \\ \hline
+  %   Partitioning                              & (singleBlock, auto)                                                                      \\ \hline
+  %   Repartition                               & (multiResolution, regularGrid)                                                           \\ \hline
+  %   angleFactor                               & (0.0-200.0) 15.0                                                                         \\ \hline
+  %   simFactor                                 & (0.0-200.0) 1.0                                                                          \\ \hline
+  %   pixSizeMarginInitCoef                     & (0.0-10.0) 2.0                                                                           \\ \hline
+  %   pixSizeMarginFinalCoef                    & (0.0-10.0) 4.0                                                                           \\ \hline
+  %   voteMarginFactor                          & (0.1-10.0) 4.0                                                                           \\ \hline
+  %   contributeMarginFactor                    & (0.0-10.0) 2.0                                                                           \\ \hline
+  %   simGaussianSizeInit                       & (0.0-50) 10.0                                                                            \\ \hline
+  %   simGaussianSize                           & (0.0-50) 0.1                                                                             \\ \hline
+  %   minAngleThreshold                         & (0.0-10.0) 0.01                                                                          \\ \hline
+  %   Refine Fuse                               & Refine depth map fusion with the size of the new pixel defined by angle and similarity scores. \\ \hline
+  %   Add Landmarks To The Dense Point Cloud    & Add SfM Landmarks to the dense point cloud.                                              \\ \hline
+  %   Colourize Output                           & Whether to colourize output dense point cloud and mesh.                                   \\ \hline
+  %   Save Raw Dense Point Cloud                & Save dense point cloud before cut and filtering.                                         \\ \hline
+  %   Verbose Level                             & verbosity level (fatal, error, warning, info, debug, trace).                             \\ \hline
+  %   Output Mesh                               & Output mesh (OBJ file format). mesh.obj                                                  \\ \hline
+  %   Output Dense Point Cloud                  & Output dense point cloud with visibilities (SfMData file format). densePointCloud.abc    \\ \hline
+  %   \end{tabular}%
+  %   }
+  %   \caption{Meshroom Meshing Node}
+  %   \label{tab:Meshing}
+  %   \end{table}
+
+    
+
+    \begin{table}[H]
+      \centering
+      \makebox[\textwidth]
+      {\includegraphics[width=1\linewidth]{meshingTable.png}    
+      }
+      \caption{Meshroom Meshing Node}
+      \label{tab:Meshing}
+      \end{table}      
 \newpage
 \subsection{Mesh Filtering}
 
@@ -790,26 +870,36 @@ This node filters and removes the unwanted elements from the resulting mesh.
 
 The components in the node are described in table \ref{tab:MeshFiltering}
 
+% \begin{table}[H]
+%   \centering
+%   \resizebox{\textwidth}{!}{%
+%   \begin{tabular}{|l|l|}
+%   \hline
+%   \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                    \\ \hline
+%   Input                               & Input Mesh (OBJ file format)                                 \\ \hline
+%   Filter Large Triangles Factor &
+%     \begin{tabular}[c]{@{}l@{}}Remove all large triangles. We consider a triangle as large if  one edge is bigger than N times the average edge length. \\ Put zero to  disable it. 60 (1 - 100)\end{tabular} \\ \hline
+%   Keep Only the Largest Mesh          & Keep only the largest connected triangles group (True/False) \\ \hline
+%   Nb Iterations                       & 5 (0 - 50)                                                   \\ \hline
+%   Lambda                              & 1 (0-10                                                      \\ \hline
+%   Verbose Level                       &                                                              \\ \hline
+%   Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}  \\ \hline
+%   Output mesh                         & Output mesh (OBJ file format) internalFolder + ‘mesh.obj     \\ \hline
+%   \end{tabular}%
+%   }
+%   \caption{Meshroom Mesh FilteringNode}
+%   \label{tab:MeshFiltering}
+%   \end{table}
+
 \begin{table}[H]
   \centering
-  \resizebox{\textwidth}{!}{%
-  \begin{tabular}{|l|l|}
-  \hline
-  \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Description}}                    \\ \hline
-  Input                               & Input Mesh (OBJ file format)                                 \\ \hline
-  Filter Large Triangles Factor &
-    \begin{tabular}[c]{@{}l@{}}Remove all large triangles. We consider a triangle as large if  one edge is bigger than N times the average edge length. \\ Put zero to  disable it. 60 (1 - 100)\end{tabular} \\ \hline
-  Keep Only the Largest Mesh          & Keep only the largest connected triangles group (True/False) \\ \hline
-  Nb Iterations                       & 5 (0 - 50)                                                   \\ \hline
-  Lambda                              & 1 (0-10                                                      \\ \hline
-  Verbose Level                       &                                                              \\ \hline
-  Verbose Level                       & {[}‘fatal’, ‘error’, ‘warning’, ‘info’, ‘debug’, ‘trace’{]}  \\ \hline
-  Output mesh                         & Output mesh (OBJ file format) internalFolder + ‘mesh.obj     \\ \hline
-  \end{tabular}%
+  \makebox[\textwidth]
+  {\includegraphics[width=1\linewidth]{mesh_filtering_table.png}    
   }
   \caption{Meshroom Mesh FilteringNode}
   \label{tab:MeshFiltering}
-  \end{table}
+  \end{table}  
+
 
   \subsection{Texturing}
   The principle of this component is to create a texture of the generated mesh.
@@ -821,39 +911,48 @@ The components in the node are described in table \ref{tab:MeshFiltering}
   
   The components in the node are described in table \ref{tab:Texturing}
   
-  \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{MVS Configuration file} & \textbf{…/mvs.ini}                                                                             \\ \hline
-    Input Dense Reconstruction      & Path to the dense reconstruction result (mesh with per vertex visibility)                      \\ \hline
-    Other Input Mesh                & Optional input mesh to texture. By default, it will texture the result of the reconstruction.  \\ \hline
-    Texture Side                    & Output texture size 1024, 2048, 4096, 8192, 16384                                              \\ \hline
-    Texture Downscale               & Texture downscale factor1, 2, 4, 8                                                             \\ \hline
-    Texture File Type               & Texture File Type ‘jpg’, ‘png’, ‘tiff’, ‘exr’                                                  \\ \hline
-    Unwrap Method &
-      \begin{tabular}[c]{@{}l@{}}Method to unwrap input mesh if it does not have UV coordinates Basic  (\textgreater 600k faces) fast and simple. \\ Can generate multiple atlases LSCM  (\textless{}= 600k faces): optimize space.\\ Generates one atlas ABF (\textless{}= 300k  faces): optimize space and stretch. \\ Generates one atlas\end{tabular} \\ \hline
-    Fill Holes                      & Fill Texture holes with plausible values True/False                                            \\ \hline
-    Padding                         & Texture edge padding size in pixel (0-100)                                                     \\ \hline
-    Max Nb of Images For Fusion     & Max number of images to combine to create the final texture (0-10)                             \\ \hline
-    Best Score Threshold            & 0.0 to disable filtering based on threshold to relative best score (0.0-1.0)                   \\ \hline
-    Angle Hard Threshold            & 0.0 to disable angle hard threshold filtering (0.0, 180.0)                                     \\ \hline
-    Force Visible By All Vertices   & Triangle visibility is based on the union of vertices visiblity.True/False                     \\ \hline
-    Flip Normals &
-    \begin{tabular}[c]{@{}l@{}}  Option to flip face normals. \\It can be needed as it depends on  the vertices order in triangles and the convention change from one  software to another. \end{tabular} \\ \hline
-    Visibility Remapping Method     & Method to remap visibilities from the reconstruction to the input mesh (Pull, Push, PullPush). \\ \hline
-    Verbose Level                   & verbosity level (fatal, error, warning, info, debug, trace).                                   \\ \hline
-    Output Folder                   & Folder for output mesh: OBJ, material and texture files.                                       \\ \hline
-    Output Mesh                     & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.obj    \\ \hline
-    Output Material                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.mtl    \\ \hline
-    Output Textures                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texture\_*.png      \\ \hline
-    \end{tabular}%
-    }
-    \caption{Meshroom Texturing Node}
-    \label{tab:Texturing}
-    \end{table}
+  % \begin{table}[H]
+  %   \centering
+  %   \resizebox{\textwidth}{!}{%
+  %   \begin{tabular}{|l|l|}
+  %   \hline
+  %   \textbf{MVS Configuration file} & \textbf{…/mvs.ini}                                                                             \\ \hline
+  %   Input Dense Reconstruction      & Path to the dense reconstruction result (mesh with per vertex visibility)                      \\ \hline
+  %   Other Input Mesh                & Optional input mesh to texture. By default, it will texture the result of the reconstruction.  \\ \hline
+  %   Texture Side                    & Output texture size 1024, 2048, 4096, 8192, 16384                                              \\ \hline
+  %   Texture Downscale               & Texture downscale factor1, 2, 4, 8                                                             \\ \hline
+  %   Texture File Type               & Texture File Type ‘jpg’, ‘png’, ‘tiff’, ‘exr’                                                  \\ \hline
+  %   Unwrap Method &
+  %     \begin{tabular}[c]{@{}l@{}}Method to unwrap input mesh if it does not have UV coordinates Basic  (\textgreater 600k faces) fast and simple. \\ Can generate multiple atlases LSCM  (\textless{}= 600k faces): optimize space.\\ Generates one atlas ABF (\textless{}= 300k  faces): optimize space and stretch. \\ Generates one atlas\end{tabular} \\ \hline
+  %   Fill Holes                      & Fill Texture holes with plausible values True/False                                            \\ \hline
+  %   Padding                         & Texture edge padding size in pixel (0-100)                                                     \\ \hline
+  %   Max Nb of Images For Fusion     & Max number of images to combine to create the final texture (0-10)                             \\ \hline
+  %   Best Score Threshold            & 0.0 to disable filtering based on threshold to relative best score (0.0-1.0)                   \\ \hline
+  %   Angle Hard Threshold            & 0.0 to disable angle hard threshold filtering (0.0, 180.0)                                     \\ \hline
+  %   Force Visible By All Vertices   & Triangle visibility is based on the union of vertices visiblity.True/False                     \\ \hline
+  %   Flip Normals &
+  %   \begin{tabular}[c]{@{}l@{}}  Option to flip face normals. \\It can be needed as it depends on  the vertices order in triangles and the convention change from one  software to another. \end{tabular} \\ \hline
+  %   Visibility Remapping Method     & Method to remap visibilities from the reconstruction to the input mesh (Pull, Push, PullPush). \\ \hline
+  %   Verbose Level                   & verbosity level (fatal, error, warning, info, debug, trace).                                   \\ \hline
+  %   Output Folder                   & Folder for output mesh: OBJ, material and texture files.                                       \\ \hline
+  %   Output Mesh                     & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.obj    \\ \hline
+  %   Output Material                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.mtl    \\ \hline
+  %   Output Textures                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texture\_*.png      \\ \hline
+  %   \end{tabular}%
+  %   }
+  %   \caption{Meshroom Texturing Node}
+  %   \label{tab:Texturing}
+  %   \end{table}
   
+
+    \begin{table}[H]
+      \centering
+      \makebox[\textwidth]
+      {\includegraphics[width=1\linewidth]{texturing_table.png}    
+      }
+      \caption{Meshroom Texturing Node}
+      \label{tab:Texturing}
+      \end{table}    
   
 
     \section{PCL}
@@ -2372,7 +2471,7 @@ The results can be illustrated on figures \ref{fig:scale_res1} and \ref{fig:scal
 \end{figure}
 
 In figure \ref{fig:scale_results}, the target scaled point cloud is illustrated with \textit{yellow}, whereas the referece lidar point cloud is on \textit{red}.
-
+ca
 
 
 

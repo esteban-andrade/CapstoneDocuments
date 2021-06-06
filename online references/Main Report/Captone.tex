@@ -420,7 +420,7 @@ The components in the node are described on table \ref{tab:CameraInit}
   
   Based on the representation of one image at different scales, SIFT can compute the  Laplacian representation's scale-space maxima. This is a defined image energy-based representation, using the differences of Gaussians.
   This Maxima is associated with the points of interest in the image. 
-  Once this is processed, it samples for each of this maximum a square image patch, whose origin is the maximum and "x" direction is the dominant gradient at the origin as suggested by \Citet*{Lowe2004} and\Citet*{Otero2014}.
+  Once this is processed, it samples for each of this maximum a square image patch, whose origin is the maximum and "x" direction is the dominant gradient at the origin as suggested by \Citet*{Lowe2004} and \Citet*{Otero2014}.
   For each keypoint, a description of these patches is associated. 
   
   The description consists of statistics of gradients which is computed in regions around the key point. The size of the area is defined by the keypoint scale and the orientation by the dominant axis.
@@ -1088,11 +1088,12 @@ for generic-purpose SAC-based Segmentation \Citep*{Rusu_ICRA2011_PCL}.
 The \textit{pcl::SACSegmentation}, creates an object and sets the model \& method type. Furthermore, it specifies the "distance threshold" used to determine the distance for a point in the model to be considered an inlier.
 The used method in this project uses the \textbf{RANSAC} method. The main advantage of RANSAC is its simplicity and robustness. 
 
-The estimated plane parameters are estimated with equation \ref{equ:camera_intrisics}, where \textbf{a,b,c,d} are the model coefficient values.
+The estimated plane parameters are estimated with equation \ref{equ:plane_param}, where \textbf{a,b,c,d} are the model coefficient values.
 \begin{equation}
   ax + by + cz + d = 0
-\end{equation}
 \label{equ:plane_param}
+\end{equation}
+
 
 Figure \ref{fig:plane_seg}, illustrates the process below. The red points are the outliers, whereas the green points are the inliers of the found plane model.
 
@@ -1158,6 +1159,7 @@ The clustering method allows dividing a non-organized point cloud dataset \textb
 Point Cloud Data Clustering can be approached in a Euclidean manner and be implemented using 3D grid subdivisions of the space with fixed-width boxes or an octree data structure.
 In this project, Kdtrees are used to find the nearest neighbours and implements a clustering technique that is similar to a flood fill algorithm \Citep*{Rusu_ICRA2011_PCL}.
 
+\newpage
 The following Steps illustrates the clustering algorithm in this project with a Kdtree:
 
 \begin{enumerate}
@@ -1254,6 +1256,7 @@ Figure \ref{fig:smoothing_curvature}, shows the curvatures at each point with th
  \label{fig:smoothing_curvature} 
 \end{figure}
 
+\newpage
 Furthermore, the Moving Least Squares Component of the PCL library also allows for different upsample methods. 
 These include:
 \begin{description}
@@ -1289,7 +1292,7 @@ Figure \ref{fig:sUpsample_def} illustrates on the left the implementation of MLS
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html#details
 %https://pointclouds.org/documentation/classpcl_1_1_poisson.html
 In this project the Poisson Reconstruction algorithm is implemented , to recontruct the processed point cloud.
-The Poisson Reconstruction algorithm demonstrates that the surface reconstruction from a set of oriented points can be associates with a spatial Poisson problem.
+The Poisson Reconstruction algorithm demonstrates that the surface reconstruction from a set of oriented points can be associated with a spatial Poisson problem.
 This formulation utilizes all the points at once, with no need of using heuristic spatial partitioning or blending, hence, making it resilient to noise as mentioned by \Citet*{Poisson}.
 
 The main objective of this algorithms to reconstruct a smooth surface, which is based on a large number of points $p_i$ from a point cloud, where each point possesses an estimate of the local surface normal $n_i$.
@@ -1307,7 +1310,7 @@ In complex calculations, it is possible to perform a \textit{least-squares fit} 
 
 
 
-
+\newpage
 \section{Open3D}
 \label{section:Open3D}
 Open3D is an open-source library that supports fast development of software that handles 3D data.
@@ -1332,13 +1335,13 @@ The core features include:
   \end{multicols}
 
 In this project, Open3D was used as an auxiliary library used as a contingency for Poisson Reconstruction. 
-As in many circumstances, the normals of a point cloud might not be oriented appropriately \textit{orient normals consistent tangent plane} allows to propagate the normal orientation with a minimum
+As in many circumstances, the normals of a point cloud might not be oriented appropriately, hence the component \textit{"orient normals consistent tangent plane"} allows to propagate the normal orientation with a minimum
 spanning-tree as suggested by \Citet*{Zhou2018}. 
 After the normals are aligned, it will excute the Poisson Surface Reconstruction algorithm \Citep*{Poisson} and solves a regularized optimization problem to obtain a smooth surface mesh. 
 
 \begin{figure}[H]%this figure will be at the right
   \centering
-  \includegraphics[width=1\textwidth]{open3dpoisson.png}
+  \includegraphics[width=0.75\textwidth]{open3dpoisson.png}
  \caption{Open3D Poisson Recontruction Example}\cite[]{Zhou2018}
  \label{fig:Possion_exampple} 
 \end{figure}
@@ -1482,13 +1485,13 @@ the accuracy of the final scan.
   \hspace*{0.8cm}  
   \includegraphics[width=0.5\textwidth]{IMG_5896_cropped.jpg}
   \captionsetup{singlelinecheck = false, format= hang, justification=raggedright,  labelsep=space}
- \caption{Open3D Poisson Recontruction Example}
+ \caption{Short Pole Camera Configuration}
  \label{fig:short_pole} 
 \end{figure}
 
 All the tall poles will be placed in a circular shape to capture as much data as possible. 
 The subject (person) that will use the RIG will be located in the circle's origin, and all the tall poles will be placed 1.5 m away from the person to have the best overlap between all cameras.
-The four short poles will be located closeup from the person that will be scanned. The four poles will be placed 60 cm away from the person (circle origin) to capture close up data for complex regions and improve the overall reconstruction.
+The four short poles will be located closeup from the person that will be scanned. These short poles will be placed 60 cm away from the person (circle origin) to capture close up data for complex regions and improve the overall reconstruction.
 The architecture of this RIG is observed on figures \ref{fig:RIG}  and \ref{fig:cad}.
 \enlargethispage{\baselineskip}
 
@@ -1514,7 +1517,7 @@ The architecture of this RIG is observed on figures \ref{fig:RIG}  and \ref{fig:
 % \newpage
 \subsection{Cameras Calibration}
 As mentioned before, there will be a set of twenty-eight cameras in the RIG. 
-It is crucial to be able to calibrate these cameras an object the intrinsic parameters in order to input these parameters into the Photogrammetry Pipeline to enhance
+It is crucial to be able to calibrate these cameras in order to retrieve the intrinsic parameters and input these parameters into the Photogrammetry Pipeline to enhance
 the reconstruction process. The intrinsic parameters are illustrated in the camera matrix on equation \ref{equ:camera_intrisics}.
 
 All the cameras were calibrated by taking a series of fifty photos of a checkerboard. The checker board is in different positions and orientation in the images, as this enhances the calibration process.
@@ -1664,7 +1667,7 @@ Table \ref{tab:Camera_Calibration} contains the result of the camera Calibration
 
 
 \subsection*{FeatureExtraction Node}
-This will be the Second Node of Reconstruction Pipeline. All the field and settings of this node are located on table \ref{tab:FeatureExtraction}.
+This will be the Second Node of Reconstruction Pipeline. All the fields and settings of this node are located on table \ref{tab:FeatureExtraction}.
 For best results all the settings were configured as below:
 
 \begin{description}
@@ -1709,7 +1712,7 @@ This is the fourth node of the Reconstruction Pipeline. All the settings for thi
 The configured settings for best results are stated below. 
 
 \begin{description}
-  \item[Describer Types]: The Selected Desciber have to  match the selected on node the \textit{FeatureExtraction Node}. Therefore the selected describers will \textbf{SIFT \& AKAZE}
+  \item[Describer Types]: The Selected Describers have to  match the selected on node the \textit{FeatureExtraction Node}. Therefore the selected describers will \textbf{SIFT \& AKAZE}
   \item[Photometric Matching Method]: The selected method is \textbf{ANN\_L2} \textit{(Approximate Nearest Neighbor Matching)}.
   \item[Geometric Estimator]: The selected Estimator \textbf{acransac}  \textit{A-Contrario RANSAC}.
   \item[Geometric Filter Type]: The selected validation method to filter feature matches is \textbf{fundamental\_matrix}.
@@ -1914,7 +1917,7 @@ All the remaining settings are configured as default and are referenced on figur
 
 
 \subsection*{Texturing Node}
-The Texturing Node is the Final Step of the Meshroom Reconstruction Pipeline. It generates a textures mesh. 
+The Texturing Node is the Final Step of the Meshroom Reconstruction Pipeline. It generates a textured mesh. 
 All the settings for this node can be referenced to table \ref{tab:Texturing}.
 
 The configured settings for best results are configured below.
@@ -1954,7 +1957,8 @@ Nevertheless, this wrapper was not implemented in the final executable.
 
 The framework consists of two wrappers \textit{(classes)} and one executable file \textit{(Main)} which will be explained below.
 
-
+The ideal format handle the files will be \textit{.ply}. Using Meshlab it is possible to convert the output mesh from Meshroom \textit{(.obj)} to \textit{.ply}.
+Then this converted file will be used in the data processing framework. 
 
 
 
@@ -1979,15 +1983,17 @@ to illustrate the scale of the given point clouds.
 
 This wrapper processes the input point clouds and sends the result of the cumulative contribution rate curves to MATLAB via the APIs to obtain the final scale ratio between two input point clouds.
 
-However, after substantial testing, it was discovered that the cumulative contribution rate curves process was highly time-consuming. Furthermore, in this particular project, the final scaling result was inconsistent. 
-As the lidar point cloud, which is used to estimate the scale, only has the front view of the person, it has some errors in the calculation process. Therefore, the implementation of this class in the final executable was not appropriate.
+However, after substantial testing, it was discovered that the cumulative contribution rate curves process was highly time-consuming. 
+Furthermore, in this particular project, the final scaling result was inconsistent. 
+As the lidar point cloud, which is used to estimate the scale, only has the front view of the person, it has some errors in the calculation process. 
+Therefore, the implementation of this class in the final executable was not appropriate.
 
 
 
 
 \subsubsection{Reconstruction}
 The Reconstruction Class is based on the PCL library and the algorithms used in section \ref{section:pcl}.
-This section will provide an insight into the class APIs and the overall functionality. For a detailed look refer to the GitHub Repository \textbf{\href{https://github.com/linbaowei/ScaleRatioICP} {ScaleRatioICP}}.
+This section will provide an insight into the class APIs and the overall functionality. For a detailed look refer to the GitHub Repository \textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}}.
 
 The description of the developed APIs (\textit{Class Public Methods}) will be explained below.
 
@@ -1998,7 +2004,7 @@ The description of the developed APIs (\textit{Class Public Methods}) will be ex
   \item[pointCloudOutliersFilter]: This API takes an reference cloud and outputs a processed point cloud with filtered data outliers. This method is based on the Statistical OutlierRemoval Filter algoritm referenced on section \ref{section:StatisticalOutlierRemovalFilter}. It requires to have configured the following fields.
   \begin{description}
     \item[- \textit{setMeanK}] : It configures the number of points (K) to use for mean distance estimation.
-    \item[- \textit{setStddevMulThresh}] : It Sets ths standard deviation multipler threshold. It considers all the points outside $\mu \pm \sigma *  std\_mul\_threshold$ as outliers where $\mu$ is the estimated mean and $\sigma$  is the standard deviation     
+    \item[- \textit{setStddevMulThresh}] : It Sets the standard deviation multipler threshold. It considers all the points outside $\mu \pm \sigma *  std\_mul\_threshold$ as outliers where $\mu$ is the estimated mean and $\sigma$  is the standard deviation     
   \end{description} 
    \item[pointCloudPlaneSegmentOperation]: This API is degined to input a given Point Cloud and output a plane segmented point cloud. The logic behing this algorithm is based on section \ref{section:Plane Model Segmentation}.
    Similarly it uses a Kdtree to search through the pointcloud as referenced on section \ref{section:KdTree}. Also it uses RANSAC  as the segmentation method and Model Type. For details about RANSAC refer to section \ref{section:ransac}.
@@ -2013,7 +2019,7 @@ The description of the developed APIs (\textit{Class Public Methods}) will be ex
    In this vector, an algorithm will iterate throughout all elements and compare their cluster size. Based on this process, it will output the largest cluster as the valid output point cloud.
    \item[pointCloudNormaliseUpscale]: This API aims to smooth the surface of the Point Cloud via MLS (\textit{MovingLeastSquares}). 
    Furthermore, it also upsamples the point cloud to a defined parameter using \textit{RANDOM\_UNIFORM\_DENSITY} as the prefered method (refer to section \ref{section:Moving Least Squares}). 
-   For this specific API uses a Kdtree (refer to section \ref{section:KdTree}) for data searching and it is required to specify the \textit{Search Radius} for determining the k-nearest neighbor for best fitting. 
+    This specific API uses a Kdtree (refer to section \ref{section:KdTree}) for data searching and it is required to specify the \textit{Search Radius} for determining the k-nearest neighbor for best fitting. 
    This method required an input point cloud, and it will output a smoothed and upsampled point cloud.
    \item[poissonReconstruction]: This API will require an input pointcloud and it will generate a reconstructed Polymesh based on the Poisson Reconstruction Algorithm (refer to section \ref{section:Poisson Surface Reconstruction}).
    For this API is required to configured the following parameters:
@@ -2028,8 +2034,8 @@ The description of the developed APIs (\textit{Class Public Methods}) will be ex
 
    \item[downsamplePointCloudVoxelGrid] : This API aims to downsample the input pointcloud through a voxel grid  filter(refer to section \ref{section:Voxel Grid Filtering}). 
    It requires the user to input the \textit{LeafSize in x,y,z} of the Voxel Grid. Based on the given LeafSizes, it will downsample all the data.
-   \item[pointCloudScaleAdjustment]: This API uses a custom-developed algorithm to scale on the point cloud. It required to input the target point cloud and the reference point cloud. 
-   This developed algorithm is based on PCA (refer to section \ref{section:Principal Component Analysis}). It calculated both centroids of the input \& reference point clouds as well as the corresponding eigenvectors. With his values, it will estimate the transform for each point cloud. Based on these results, it will calculate the Minimum and Maximum Points in \textbf{X, Y, Z} axis.
+   \item[pointCloudScaleAdjustment]: This API uses a custom-developed algorithm to scale on the point cloud. It requires to input the target point cloud and the reference point cloud. 
+   This developed algorithm is based on PCA (refer to section \ref{section:Principal Component Analysis}). It calculates both centroids of the input \& reference point clouds as well as the corresponding eigenvectors. With these values, it will estimate the transform for each point cloud. Based on these results, it will calculate the Minimum and Maximum Points in \textbf{X, Y, Z} axis.
    Based on this it will obtain the scale in axis based on the following equation, where axis applies to the \textit{X,Y,Z axis}
    \begin{equation}
      Scale_{axis} =  \frac{cloudRefMaximumPoint_{axis}-cloudRefMinimumPoint_{axis}}{cloudInputMaximumPoint_{axis}-cloudInputMinimumPoint_{axis}}
@@ -2038,19 +2044,21 @@ The description of the developed APIs (\textit{Class Public Methods}) will be ex
 With the Obtained values for the Scale in X, Y and Z from \ref{equ:scale}, it is possible to fully scale the input cloud based on the obtained results. The final results will be stored in a vector for later processing. 
    \item[pointCloudCentroidAlignmentAdjusment]: This API aims to align two given point cloud to its corresponding centroid. It is based on PCA (refer to section \ref{section:Principal Component Analysis}). Once it is properly aligned, the user can rotate in any axis (x,y,z) the output point cloud with respect to its centroid. This aims to correct the centroid orientation and increase the accuracy of the scaling process. 
    \item[transformVerification]: This API is used to Verify the error Transform error between the two point clouds. It is used to determine the transformation error between the scaled point cloud and the referenced point cloud (lidar).
-   It uses PCA (refer to section \ref{section:Principal Component Analysis}). to determine the transforms ($T$) of the two point clouds. Then it obtains the translation and rotational error between the two transforms. 
+   It uses PCA (refer to section \ref{section:Principal Component Analysis}), to determine the transforms ($T$) of the two point clouds. Then it obtains the translation and rotational error between the two transforms. 
    
    The Translation error is defined as:
    \begin{equation}
      translation\_error = \left\lVert \begin{pmatrix} x_1 \\y_1\\z_1\\1  \end{pmatrix} - \begin{pmatrix} x_2 \\y_2\\z_2\\1  \end{pmatrix} \right\rVert    
     \label{equ:translation error}
     \end{equation}
-   The Rotation error is defined as where $R(\hat{n},\theta)$ is the rotation componet of the transform 
+   The Rotation error is defined in equation \ref{equ:rotation error}, where $R(\hat{n},\theta)$ is the rotation componet of the transform 
    \begin{equation}
-     Rotation\_error =\left\lVert \log (R_1(\hat{n},\theta) * R_2(\hat{n},\theta)^{-1} ) \right\rVert 
+     Rotation\_error =\left\lVert \log (R_1(\hat{n},\theta) * R_2(\hat{n},\theta)^{-1} ) \right\rVert
+     \label{equ:rotation error} 
    \end{equation}
  With both translation and rotation error, it is possible to compare to a user-defined threshold and ensure that the error is within acceptable margins. 
  \label{scale_API}
+%  \enlargethispage{\baselineskip}
   \item[passThroughFilter]: This API aims to filter a specific point cloud based on the specific axis limit, which is known as \textit{passThroughFilter} (refer to section \ref{section:Pass Through Filter}).
   It requires the user to input an input point cloud, a string with the axis to filter, and the maximum and minimin limits of the constrained axis. This is designed to aid with the plane segmentation process and ensure appropriate limits for the scaling process.  
 \end{description}
@@ -2081,12 +2089,13 @@ All the extra APIs are used to add extra features when importing \& data. Furthe
 
 
 
-
+\newpage
 \subsubsection{Executable}
-The Executable is a program that was developed using the developed framework. For extended details on how what are the dependencies and how to install this executable, 
+The Executable is a program that was compiled using the developed framework. For extended details on how what are the dependencies and how to install this executable, 
 refer to the GitHub Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
 
-In order to run this program is necessary to input two point cloud (the target Point cloud for processing and the reference point clo[ud for scaling). Furthermore, it is necessary to specify if it is required to have output files or only be used for visualization.
+In order to run this program is necessary to input two point cloud (the target Point cloud for processing and the reference point cloud for scaling). 
+Furthermore, it is necessary to specify if it is required to have output files or only be used for visualization.
 An example is as follows.
 
 \scriptsize\begin{verbatim} 
@@ -2108,7 +2117,7 @@ Figure \ref{fig:pipeline_log}, shows the output of the executable with a valid r
 \enlargethispage{\baselineskip}
 \begin{figure}[H]%this figure will be at the right
   \centering
- \includegraphics[width=1\textwidth]{log.png}
+ \includegraphics[width=0.75\textwidth]{log.png}
 \caption{Pipeline Execution Log}
 \label{fig:pipeline_log} 
 \end{figure}
@@ -2120,14 +2129,14 @@ Figure \ref{fig:pipeline_log}, shows the output of the executable with a valid r
 
 \subsubsection*{ReconstructionMain Object}
 The ReconstructionMain Object aims to manipulate and process the input point cloud data.
-This Object aims to input the given point cloud and do all the processing that includes inputting the starting point cloud and using a series of filters to remove noice \&outliers. It aims to contain the scanner person as the region of interest. 
-Similarly, this objects scales the point cloud based on the result and the processed lidar point cloud.
+This Object aims to input the given point cloud and do all the processing that includes inputting the starting point cloud and using a series of filters to remove noice \& outliers. It aims to contain the scanner person as the region of interest. 
+Similarly, this objects scales the point cloud based on the results of the processed lidar point cloud.
 Once the point cloud has been appropriately scaled, it will use the Poisson Reconstruction Algorithm to Produce a Polymesh of the Reconstruction point cloud.
 For a detailed look at the APIs used for this Object, refer to the Repository (\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
 
 \subsubsection*{Lidar Object}
 The Lidar Object is made to handle and process the input data from the lidar that will be used for scaling. 
-This Object will process the captures point cloud in order to maintain only the region of interest of the point cloud that will be used in the Scaling process in the Reconstruction Object. 
+This Object will process the captured point cloud in order to maintain only the region of interest of the point cloud that will be used in the Scaling process in the Reconstruction Object. 
 It will use several filters and segmentation algorithms to keep the regions of interest as accurate as possible to ensure an efficient scaling.
 For a detailed look at the implemented APIs, refer to the Repository(\textbf{\href{https://github.com/esteban-andrade/3D-Reconstructrion-Scanner} {3D Reconstruction Framework}.})
 
@@ -2187,7 +2196,7 @@ Once all the processes finish, it will generate the output files if the option w
 
 For a detailed look at the process flow of the program, refer to the appendix on figure \ref{appendix::fig:flowdiagram}.
 
-The Terminal Logs are Located  on the Appendix on figures \ref{fig:log1} ,\ref{fig:log2} and \ref{fig:log3}
+The Terminal Logs are Located  in the Appendix on figures \ref{fig:log1} ,\ref{fig:log2} and \ref{fig:log3}
 
 
 
@@ -2197,10 +2206,10 @@ The Terminal Logs are Located  on the Appendix on figures \ref{fig:log1} ,\ref{f
 \section{Scale Estimation}
 \label{sectoin:Scale_est}
 The Scale estimation and Adjustment is one of the critical components of this project. 
-The mesh obtained from the photogrammetric process does not output a point cloud with the correct scale in reference to the real scanned object. 
-Therefore the point cloud obtained from the Lidar Intel Realsense L515 is used to find and adjust the scale of the processed mesh. 
+The obtained mesh from the photogrammetric process does not output a point cloud with the correct scale in reference to the real scanned object. 
+Therefore the obtained point cloud from the Lidar Intel Realsense L515 is used to find and adjust the scale of the processed mesh. 
 The reason behind this is that the Lidar obtains a real accurate result in terms of the size of the point cloud. 
-This site will match the actual dimensions of the scanned persons. Hence allowing to have the reference scale for this process. 
+This size will match the actual dimensions of the scanned persons. Hence allowing to have the reference scale for this process. 
 The reference lidar point cloud will have a scale of $1$ as it is the real scale of the person. 
 The scale estimation for the reconstruction will use the scale of this reference and estimate the scale for the target point cloud and adjust it to match the reference scale from the Lidar. 
 
@@ -2244,7 +2253,7 @@ The resuls  for this process are explain on section \ref{section:scale_res}. Sim
 Similarly,  there will be the transformation analysis to verify that the scaling process and transform matches the lidar reference point cloud.
 This process will use PCA to obtain the Transform of the reference point cloud.
 The target point cloud will transform its pose to have the same transformation as the reference point cloud. This process will also align the corresponding centroids in order to have the correct centroid orientation and align the two point clouds correctly,
-Once this process finishes the two transforms will be compared using equations \ref{equ:scale_process_eque} \& \ref{equ:translation error}.
+Once this process finishes the two transforms will be compared using equations \ref{equ:rotation error} \& \ref{equ:translation error}.
 Based on this verification step, it will be possible to determine if the scaling and reference frame matches the reference point cloud.
 
 
@@ -2277,11 +2286,11 @@ Furthermore, it explains the issues with the Poisson Reconstruction Algorithms a
 
 \section{Meshroom}
 \label{section:meshroom_results}
-As mentioned on section \ref{section:meshroom},Meshroom is a Photommetric Software with a series of multiple nodes. All  nodes are connected in a pipeline manner and follow a specific order as mentioned on section \ref{section:meshroom}.
+As mentioned on section \ref{section:meshroom}, Meshroom is a Photommetric Software with a series of multiple nodes. All  nodes are connected in a pipeline manner and follow a specific order as mentioned on section \ref{section:meshroom}.
 
 Several datasets were processed during the experimentation process with a series of different settings in all the different nodes. 
 Many of the challenges in this process were that not all viewpoints (images) were successfully accepted in the StructureFromMotion Node, which causes inaccuracies in the reconstructing process and did not produce completed meshes (scanned persons).
-On many occasions, the outputs had missing limbs or a deformed structure where non-accepted viewpoints are located.
+On many occasions, the outputs had missing limbs or a deformed structure where non-accepted viewpoints were located.
 
 After substantial investigation and experimentation with different settings in multiple nodes, such as testing different descriptors, methods, iterations, among others, the best results for this project were identified.
 Among the modified settings and parameters, it was found that map the Cameras Intrinsics to the corresponding images in order to avoid the intrinsic estimation guess. 
@@ -2293,7 +2302,7 @@ It is essential to ensure that the SFM process accepts all the images as valid v
 All the configured parameters for all the nodes are mentioned in section \ref{section:meshroom_method}.
 
 However, there are still some considerations that need to be addressed to have an accurate and complete reconstruction. 
-These considerations what sort of features are in the images. On many occasions, the clothing patterns and features of the scanned person played a key role when reconstructing the scanned person. 
+These considerations are associated with what sort of features are present in the images. On many occasions, the clothing patterns and features of the scanned person played a key role when reconstructing the scanned person. 
 In a nutshell, the more distinctive features in the scanned object, the better the overall final result will be. 
 
 \begin{figure}[H]%this figure will be at the right
@@ -2314,7 +2323,7 @@ Similarly, there were some holes in the arms due to the lack of features in thes
 As the initial Scan had some issues in certain areas, therefore it was necessary to change the subject's clothing to generate new data and rerun the photogrammetric process (Meshroom). 
 
 With a modification to the clothing of the scanned subject, the result improved.
-Some extra patterns were manually added to the upper limbs (arms). These added patterns allow to detect and extra more features in these areas that caused issues in the first Scan (figure \ref{fig:scan1}).
+Some extra patterns were manually added to the upper limbs (arms). These added patterns allowed to detect and extract more features in these areas that caused issues in the first Scan (figure \ref{fig:scan1}).
 Furthermore, the pants changed from a repetitive pattern structure to a solid pattern with manually added features. 
 
 The final result of this Scan can be observed in figure \ref{fig:scan2}.
@@ -2411,7 +2420,7 @@ The results obtained in the scaling process are based on the data set to obtain 
 These will involve the scaling process and verifying the final transform between the target and reference point cloud. 
 
 Initially,  the two sets of point cloud will look similar to figure \ref{fig:scale1}. 
-As it can be seen, the point cloud in the middle is the target result from the photogrammetric process and pipeline, whereas the right point cloud is the lidar reference point cloud.
+As it can be seen, the point cloud in the middle \textit{(yellow)} is the target result from the photogrammetric process and pipeline, whereas the right point cloud \textit{(red)} is the lidar reference point cloud.
 Based on this image, the target point cloud is smaller than the lidar reference point cloud, and it will have a different transform. 
 
 \begin{figure}[H]%this figure will be at the right
@@ -2430,7 +2439,7 @@ This matches figure \ref{fig:scale1} as the target point cloud is \textbf{0.9171
 
 \newpage
 
-\begin{wrapfigure}[14]{r}{0.5\textwidth}
+\begin{wrapfigure}[16]{r}{0.5\textwidth}
   \begin{center}
     \includegraphics[width=0.5\textwidth]{scaledexample.png}
   \end{center}
@@ -2438,13 +2447,13 @@ This matches figure \ref{fig:scale1} as the target point cloud is \textbf{0.9171
   \label{fig:scale_res1}
 \end{wrapfigure}
 With that scale value, the target point cloud gets adjusted as mentioned in section \ref{sectoin:Scale_est}, in order to match the correct scale of the scanned person. 
-The iteration process starts to adjust the target point cloud, and it will adjust the final scale. 
+The iteration process starts to adjust the target point cloud, and it will adjust the final scale. The results can be observed in figure \ref{fig:scale_res1}.
 
 Once the point cloud has finished the scaling process, the transform adjustment will starts. 
 As mentioned in section \ref{scale_API}, the transform adjustment process will use PCA to obtain the pose of the reference point cloud. Then the target point cloud will be transformed to that reference pose.
 Afterwards, it will adjust the centroid in order to align both point clouds centroids.
 
-Once the transformation and alignment process finished the error can be estimates using equations \ref{equ:scale_process_eque} \& \ref{equ:translation error}.
+Once the transformation and alignment process finished the error can be estimates using equations \ref{equ:rotation error} \& \ref{equ:translation error}.
 The obtained errors where below the configured threshold of $10$ cm.
 \begin{description}
   \item[Translation Error]: $2.52653$ cm
@@ -2471,7 +2480,7 @@ The results can be illustrated on figures \ref{fig:scale_res1} and \ref{fig:scal
 \end{figure}
 
 In figure \ref{fig:scale_results}, the target scaled point cloud is illustrated with \textit{yellow}, whereas the referece lidar point cloud is on \textit{red}.
-ca
+
 
 
 
@@ -2481,8 +2490,8 @@ This report focused on the data processing and reconstruction of the acquired da
 
 As previously mentioned, for this project, the RIG will capture a set of images used in a photogrammetric process using Meshroom to have a representation model of the person. 
 The generated result will be processed in a reconstruction framework pipeline that will run several algorithms to improve the scan. 
-Finally, the pipeline will scale the model accordingly and run the Poisson Surface Reconstruction in order to obtain the final Reconstructed model of the scanned user. 
-The result will be subsequently usable for different applications such as clothing fitting. 
+Finally, the pipeline will scale the model accordingly and run the Poisson Surface Reconstruction in order to obtain the final scaled reconstructed model of the scanned user. 
+The result will be subsequently usable for different applications such as clothing fitting as it has real size scaling dimensions. 
 
 Future development of this technology will allow more accurate scans and make this concept commercially viable for different industries such as online retailers, clothing manufacturing, among many others.
 

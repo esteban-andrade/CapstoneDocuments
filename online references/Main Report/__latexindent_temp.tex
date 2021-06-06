@@ -894,10 +894,10 @@ The components in the node are described in table \ref{tab:MeshFiltering}
 \begin{table}[H]
   \centering
   \makebox[\textwidth]
-  {\includegraphics[width=1\linewidth]{meshingTable.png}    
+  {\includegraphics[width=1\linewidth]{mesh_filtering_table.png}    
   }
-  \caption{Meshroom Meshing Node}
-  \label{tab:Meshing}
+  \caption{Meshroom Mesh FilteringNode}
+  \label{tab:MeshFiltering}
   \end{table}  
 
 
@@ -911,39 +911,48 @@ The components in the node are described in table \ref{tab:MeshFiltering}
   
   The components in the node are described in table \ref{tab:Texturing}
   
-  \begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{MVS Configuration file} & \textbf{…/mvs.ini}                                                                             \\ \hline
-    Input Dense Reconstruction      & Path to the dense reconstruction result (mesh with per vertex visibility)                      \\ \hline
-    Other Input Mesh                & Optional input mesh to texture. By default, it will texture the result of the reconstruction.  \\ \hline
-    Texture Side                    & Output texture size 1024, 2048, 4096, 8192, 16384                                              \\ \hline
-    Texture Downscale               & Texture downscale factor1, 2, 4, 8                                                             \\ \hline
-    Texture File Type               & Texture File Type ‘jpg’, ‘png’, ‘tiff’, ‘exr’                                                  \\ \hline
-    Unwrap Method &
-      \begin{tabular}[c]{@{}l@{}}Method to unwrap input mesh if it does not have UV coordinates Basic  (\textgreater 600k faces) fast and simple. \\ Can generate multiple atlases LSCM  (\textless{}= 600k faces): optimize space.\\ Generates one atlas ABF (\textless{}= 300k  faces): optimize space and stretch. \\ Generates one atlas\end{tabular} \\ \hline
-    Fill Holes                      & Fill Texture holes with plausible values True/False                                            \\ \hline
-    Padding                         & Texture edge padding size in pixel (0-100)                                                     \\ \hline
-    Max Nb of Images For Fusion     & Max number of images to combine to create the final texture (0-10)                             \\ \hline
-    Best Score Threshold            & 0.0 to disable filtering based on threshold to relative best score (0.0-1.0)                   \\ \hline
-    Angle Hard Threshold            & 0.0 to disable angle hard threshold filtering (0.0, 180.0)                                     \\ \hline
-    Force Visible By All Vertices   & Triangle visibility is based on the union of vertices visiblity.True/False                     \\ \hline
-    Flip Normals &
-    \begin{tabular}[c]{@{}l@{}}  Option to flip face normals. \\It can be needed as it depends on  the vertices order in triangles and the convention change from one  software to another. \end{tabular} \\ \hline
-    Visibility Remapping Method     & Method to remap visibilities from the reconstruction to the input mesh (Pull, Push, PullPush). \\ \hline
-    Verbose Level                   & verbosity level (fatal, error, warning, info, debug, trace).                                   \\ \hline
-    Output Folder                   & Folder for output mesh: OBJ, material and texture files.                                       \\ \hline
-    Output Mesh                     & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.obj    \\ \hline
-    Output Material                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.mtl    \\ \hline
-    Output Textures                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texture\_*.png      \\ \hline
-    \end{tabular}%
-    }
-    \caption{Meshroom Texturing Node}
-    \label{tab:Texturing}
-    \end{table}
+  % \begin{table}[H]
+  %   \centering
+  %   \resizebox{\textwidth}{!}{%
+  %   \begin{tabular}{|l|l|}
+  %   \hline
+  %   \textbf{MVS Configuration file} & \textbf{…/mvs.ini}                                                                             \\ \hline
+  %   Input Dense Reconstruction      & Path to the dense reconstruction result (mesh with per vertex visibility)                      \\ \hline
+  %   Other Input Mesh                & Optional input mesh to texture. By default, it will texture the result of the reconstruction.  \\ \hline
+  %   Texture Side                    & Output texture size 1024, 2048, 4096, 8192, 16384                                              \\ \hline
+  %   Texture Downscale               & Texture downscale factor1, 2, 4, 8                                                             \\ \hline
+  %   Texture File Type               & Texture File Type ‘jpg’, ‘png’, ‘tiff’, ‘exr’                                                  \\ \hline
+  %   Unwrap Method &
+  %     \begin{tabular}[c]{@{}l@{}}Method to unwrap input mesh if it does not have UV coordinates Basic  (\textgreater 600k faces) fast and simple. \\ Can generate multiple atlases LSCM  (\textless{}= 600k faces): optimize space.\\ Generates one atlas ABF (\textless{}= 300k  faces): optimize space and stretch. \\ Generates one atlas\end{tabular} \\ \hline
+  %   Fill Holes                      & Fill Texture holes with plausible values True/False                                            \\ \hline
+  %   Padding                         & Texture edge padding size in pixel (0-100)                                                     \\ \hline
+  %   Max Nb of Images For Fusion     & Max number of images to combine to create the final texture (0-10)                             \\ \hline
+  %   Best Score Threshold            & 0.0 to disable filtering based on threshold to relative best score (0.0-1.0)                   \\ \hline
+  %   Angle Hard Threshold            & 0.0 to disable angle hard threshold filtering (0.0, 180.0)                                     \\ \hline
+  %   Force Visible By All Vertices   & Triangle visibility is based on the union of vertices visiblity.True/False                     \\ \hline
+  %   Flip Normals &
+  %   \begin{tabular}[c]{@{}l@{}}  Option to flip face normals. \\It can be needed as it depends on  the vertices order in triangles and the convention change from one  software to another. \end{tabular} \\ \hline
+  %   Visibility Remapping Method     & Method to remap visibilities from the reconstruction to the input mesh (Pull, Push, PullPush). \\ \hline
+  %   Verbose Level                   & verbosity level (fatal, error, warning, info, debug, trace).                                   \\ \hline
+  %   Output Folder                   & Folder for output mesh: OBJ, material and texture files.                                       \\ \hline
+  %   Output Mesh                     & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.obj    \\ \hline
+  %   Output Material                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texturedMesh.mtl    \\ \hline
+  %   Output Textures                 & Folder for output mesh: OBJ, material and texture files. internalFolder + ‘texture\_*.png      \\ \hline
+  %   \end{tabular}%
+  %   }
+  %   \caption{Meshroom Texturing Node}
+  %   \label{tab:Texturing}
+  %   \end{table}
   
+
+    \begin{table}[H]
+      \centering
+      \makebox[\textwidth]
+      {\includegraphics[width=1\linewidth]{texturing_table.png}    
+      }
+      \caption{Meshroom Texturing Node}
+      \label{tab:Texturing}
+      \end{table}    
   
 
     \section{PCL}
@@ -2497,7 +2506,7 @@ Based on the results obtained in this report and future development and improvem
 
 
 \appendix
-\chapter{\vspace{-5.5cm}Appendix}
+\chapter{Appendix}\vspace{-5.5cm}
 
 
 
